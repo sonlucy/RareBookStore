@@ -1,6 +1,5 @@
 .yhw_container { /* 유혜원 공통 CSS */
   width: 60%;
-  border: 2px solid red;
   min-width: 600px;
   margin: 0 auto;
   box-sizing: border-box;
