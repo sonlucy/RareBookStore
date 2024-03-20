@@ -1,5 +1,5 @@
 .yhw_purDefDestCheckForm {
-  border: 2px solid red;
+  margin-bottom: 10px;
 }
 .yhw_purDefDestCheckForm > input, label {
   cursor: pointer;
