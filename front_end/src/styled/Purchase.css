@@ -1,13 +1,6 @@
-.yhw_container { /* 유혜원 공통 CSS */
-  width: 70%;
-  min-width: 600px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  align-items: center;
-  padding-top: 40px;
-}
 .yhw_purTopBorderBottom {
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
   border-bottom: 1px solid #E2E2E2;
 }
 .yhw_purTopCont {
