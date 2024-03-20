@@ -1,0 +1,11 @@
+.yhw_purDefDestCheckForm {
+  border: 2px solid red;
+}
+.yhw_purDefDestCheckForm > input, label {
+  cursor: pointer;
+}
+.yhw_purDefDestCheckForm > label {
+  font-size: 15px;
+  font-weight: medium;
+  margin-left: 5px;
+}

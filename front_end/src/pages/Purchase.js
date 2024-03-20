@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../styled/Purchase.css";
 // import Header from "./Header";
 import PurInfoBox from "../components/PurInfoBox";
+import PurDefDestCheck from "../components/DefDestCheck";
 import PurDefDest from "../components/PurDefDest";
 import DestForm from "../components/DestForm";
 // import Footer from "./Footer";
@@ -21,7 +22,10 @@ const Purchase = () => {
             <PurInfoBox />
           </div>
         </div>
-        <PurDefDest isChecked={isChecked} setIsChecked={setIsChecked} />
+        <div className="yhw_purDefDestCont">
+          <PurDefDestCheck isChecked={isChecked} setIsChecked={setIsChecked} />
+          <PurDefDest />
+        </div>
         <div className="yhw_destFormDiv">
           <DestForm isChecked={isChecked} />
         </div>

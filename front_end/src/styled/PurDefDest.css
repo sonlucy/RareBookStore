@@ -1,21 +1,5 @@
-.yhw_purDefDestCont {
-  width: 530px;
-  margin: 0 auto;
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-}
-.yhw_purDefDestForm > input, label {
-  cursor: pointer;
-}
-.yhw_purDefDestForm > label {
-  font-size: 15px;
-  font-weight: medium;
-  margin-left: 5px;
-}
 .yhw_defShippingInfoBox {
   padding-left: 25px;
-  margin-top: 10px;
 }
 .yhw_defShippingInfoBox > span {
   font-size: 14px;

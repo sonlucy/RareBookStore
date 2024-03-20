@@ -20,6 +20,14 @@
   margin-bottom: 30px;
   font-size: 23px;
 }
+.yhw_purDefDestCont { /* 기본배송지 체크박스, 기본배송지정보를 감싸는 div 태그 CSS */
+  width: 530px;
+  margin: 0 auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+}
 .yhw_destFormDiv {  /* 배송지 입력 form 태그 감싸는 div 태그 CSS */
   width: 650px;
   margin: 0 auto;
