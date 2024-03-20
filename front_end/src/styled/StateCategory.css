@@ -1,0 +1,39 @@
+.yhw_stateCatBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  border-bottom: 1px solid #bbb;
+}
+.yhw_stateBox {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+}
+.yhw_stateBox a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.yhw_stateCount {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 2px;
+}
+.yhw_state {
+  font-size: 12px;
+  font-weight: medium;
+  color: #A1A1A1;
+}
+/*.yhw_stateCount {   선택된 StateCategory 개수의 CSS를 변경
+  color: #C87E66;
+}*/
+/*.yhw_state {   선택된 StateCategory 상태의 CSS를 변경 
+  font-size: 14px;
+  font-weight: bolder;
+  color: black;
+}*/

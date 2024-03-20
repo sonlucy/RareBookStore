@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styled/SignUp.css";
-// import NavBar from "./NavBar";
+// import Header from "./Header";
 // import Footer from "./Footer";
 
 const SignUpMail = () => {
 
   return (
     <>
-      {/* <NavBar /> */}
+      {/* <Header /> */}
       
-      <div className="w_container">
-        <form className="w_signForm">
+      <div className="yhw_container">
+        <form className="yhw_signForm">
           <h4>환영합니다! 정보를 입력해주세요.</h4>
-          <div className="w_signInputBox">
-            <span className="w_signInputTit">이메일</span>
+          <div className="yhw_signInputBox">
+            <span className="yhw_signInputTit">이메일</span>
             <input
               // value={userEmail}
               // onChange={(e) => setUserEmail(e.target.value)}
@@ -23,8 +23,8 @@ const SignUpMail = () => {
               required
             />
           </div>
-          <div className="w_signInputBox">
-            <span className="w_signInputTit">아이디</span>
+          <div className="yhw_signInputBox">
+            <span className="yhw_signInputTit">아이디</span>
             <input
               // value={userEmail}
               // onChange={(e) => setUserEmail(e.target.value)}
@@ -32,10 +32,10 @@ const SignUpMail = () => {
               placeholder="아이디 입력"
               required
               />
-              <button className="dupCheckBtn">중복확인</button>
+              <button className="yhw_dupCheckBtn">중복확인</button>
           </div>
-          <div className="w_signInputBox">
-            <span className="w_signInputTit">비밀번호</span>
+          <div className="yhw_signInputBox">
+            <span className="yhw_signInputTit">비밀번호</span>
             <input
               // value={userPassword}
               // onChange={(e) => setUserPassword(e.target.value)}
@@ -44,8 +44,8 @@ const SignUpMail = () => {
               required
             />
           </div>
-          <div className="w_signInputBox">
-            <span className="w_signInputTit">비밀번호 확인</span>
+          <div className="yhw_signInputBox">
+            <span className="yhw_signInputTit">비밀번호 확인</span>
             <input
               // value={checkPassword}
               // onChange={(e) => setCheckPassword(e.target.value)}
@@ -54,8 +54,8 @@ const SignUpMail = () => {
               required
               />
           </div>
-          <div className="w_signInputBox">
-            <span className="w_signInputTit">닉네임</span>
+          <div className="yhw_signInputBox">
+            <span className="yhw_signInputTit">닉네임</span>
             <input
               // value={userNumber}
               // onChange={(e) => setUserNumber(e.target.value)}
@@ -63,12 +63,12 @@ const SignUpMail = () => {
               placeholder="전화번호"
               required
               />
-              <button className="dupCheckBtn">중복확인</button>
+              <button className="yhw_dupCheckBtn">중복확인</button>
           </div>
-          <div className="w_signInputBox">
-            <span className="w_signInputTit">나이</span>
+          <div className="yhw_signInputBox">
+            <span className="yhw_signInputTit">나이</span>
             <input
-              className="w_lastSignInput"
+              className="yhw_lastSignInput"
               // value={userAddress}
               // onChange={(e) => setUserAddress(e.target.value)}
               type="number"
@@ -77,18 +77,18 @@ const SignUpMail = () => {
               />
             <span>세</span>
           </div>
-          <div className="w_signInputBox">
-            <span className="w_signInputTit">성별</span>
-              <div className="w_signGenderBtns">
+          <div className="yhw_signInputBox">
+            <span className="yhw_signInputTit">성별</span>
+              <div className="yhw_signGenderBtns">
                 <button>남자</button>
                 <button>여자</button>
               </div>
           </div>
-          <div className="w_signUpBtnBox">
+          <div className="yhw_signUpBtnBox">
             <button type="submit">회원가입</button>
           </div>
         </form>
-      </div>  {/* w_container 끝 */}
+      </div>  {/* yhw_container 끝 */}
       
       {/* <Footer /> */}
     </>
