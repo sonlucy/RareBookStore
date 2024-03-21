@@ -1,5 +1,7 @@
 .sbk-RecentContainer {
   margin: 10vw 0;
+/*   display: flex; */
+  align-items: center;
 }
 
 .sbk-BookListLink {
@@ -10,8 +12,11 @@
 .sbk-RecentContainer h2 {
   display: flex;
   align-items: center;
-  padding: 0 10vw;/*  */
-  font-size: 1.5rem;
+/*   padding: 0 10vw; *//*  */
+  padding: 0 20vw;
+/*   max-width: 1400px; */
+/*   font-size: 1.5rem; */
+  font-size: 22px;
 /*   max-width: 1200px; */
 }
 
@@ -23,8 +28,10 @@
 .sbk-SliderContainer {
   position: relative;
   overflow: hidden;
-  width: 80%;
+/*   width: 80%; */
+  max-width: 1400px;
   margin: 0 auto;
+
 }
 
 .sbk-BookCardContainer {
@@ -47,7 +54,9 @@
   height: auto;
   object-fit: cover;
 }
-
+.sbk-BookCard h3 {
+  font-size: 15px;
+}
 .sbk-PrevButton {
   position: absolute;
   top: 50%;
@@ -80,13 +89,13 @@
     width: 150px;
   }
 
-  .sbk-BookCard h3 {
+/*   .sbk-BookCard h3 {
     font-size: 1rem;
   }
 
   .sbk-RecentContainer h2 {
     font-size: 1.2rem;
-  }
+  } */
 }
 
 @media screen and (max-width: 425px) {
@@ -94,12 +103,12 @@
     width: 100px;
   }
 
-  .sbk-BookCard h3 {
+/*   .sbk-BookCard h3 {
     font-size: 0.7rem;
   }
 
     .sbk-RecentContainer h2 {
       font-size: 0.9rem;
-    }
+    } */
 }
 

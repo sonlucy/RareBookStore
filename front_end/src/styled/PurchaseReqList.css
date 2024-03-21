@@ -21,12 +21,14 @@
 }
 
 .sbk-book-title {
-  font-size: 1.4rem;
+/*   font-size: 1.4rem; */
+  font-size: 20px;
   margin-top: 10px;
 }
 
 .sbk-book-info {
-  font-size: 0.9rem;
+/*   font-size: 0.9rem; */
+font-size: 15px;
   margin-top: 10px;
 }
 
@@ -45,7 +47,8 @@
   cursor: pointer;
   margin-top: 1rem;
   font-weight: bold;
-  font-size: 1.2rem;
+/*   font-size: 1.2rem; */
+  font-size: 15px;
   width: 10rem;
   height: 3.5rem;
 }
@@ -97,7 +100,7 @@ background-color: #ab705c;
   .sbk-status-button,
   .sbk-cancel-button {
     padding: 0.25rem 0.5rem;
-    font-size: 0.9rem;
+    font-size: 10px;
     width: 7rem;
     height: 2.5rem;
     margin-top: 0.5rem;
@@ -120,9 +123,7 @@ background-color: #ab705c;
   .sbk-book-info {
     font-size: 0.4rem;
   }
-/*   .sbk-button-container {
-    margin: 0.25rem;
-  } */
+
   .sbk-status-button,
   .sbk-cancel-button {
     
