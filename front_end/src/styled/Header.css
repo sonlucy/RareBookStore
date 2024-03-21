@@ -1,9 +1,10 @@
 
 .sbk-header-wrapper {
-/*   padding: 2rem 7vw; */
-  padding: 0.5rem 10rem;
-  margin: 0 20rem;
+  padding: 2rem 7vw;
+/*   padding: 0.5rem 10rem;
+  margin: 0 20rem; */
   padding-bottom: 0.2vw;
+  margin-left: 10vw;
 }
 
 .sbk-menu-container {
@@ -29,6 +30,7 @@
   font-size: 14px;
   display: flex;
   justify-content: flex-end;
+  margin-right: 20rem; /*  */
 }
 
 .sbk-li-container dl {
@@ -62,17 +64,15 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .sbk-li-container {
     font-size: 0.7rem;
 
   }
-/*   .sbk-li-container dl {
-        margin-bottom: 0rem;
-  } */
-}
 
-@media screen and (max-width: 425px) {
+} */
+
+/* @media screen and (max-width: 425px) {
   .sbk-li-container dl {
     display: block;
     margin-block-start: -0.7rem;
@@ -83,7 +83,7 @@
     float: left;
     margin-right: 0.7rem;
   }
-}
+} */
 
 .sbk-nav-container {
 /*   font-size: 1.2rem; */
@@ -137,8 +137,8 @@
 .sbk-search-input {
 /*   width: 40vw;
   min-width: 10rem; */
-  width: 607px;
-  height: 47px;
+  width: 500px;
+  height: 35px;
   border: none;
   outline: none;
   font-size: 16px;
