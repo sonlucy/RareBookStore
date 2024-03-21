@@ -25,7 +25,7 @@ function MypageView() {
           <h3 className="title">구매내역</h3>
         </div>
         <div className="recent_purchase">
-          {/* 전/입/진/종 컴포넌스 넣는 곳 */}
+          {/* 전/입/진/종 컴포넌트 넣는 곳 */}
           <PurchaseHistory />
           <div>
             <div className="purchase_list all bid">
@@ -42,7 +42,7 @@ function MypageView() {
           <h3 className="title">판매 내역</h3>
         </div>
         <div className="recent_purchase">
-          {/* 전/입/진/종 컴포넌스 넣는 곳 */}
+          {/* 전/입/진/종 컴포넌트 넣는 곳 */}
           <PurchaseHistory />
           <div>
             <div className="purchase_list all ask">
