@@ -170,7 +170,7 @@ const Header = () => {
           </dl>
         </div>
       </div>
-              <hr/>
+      <hr className="sbk-header-hr" />
     </div>
   );
 };
