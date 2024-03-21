@@ -1,5 +1,5 @@
 .sbk-seller-info-container {
-  max-width: 1200px;
+  max-width: 1000px;
   padding: 4vw 10vw;
   margin: 0 auto;
   /* 수평 가운데 정렬을 위한 마진 설정 */
@@ -68,6 +68,9 @@ font-size: 14px;
 
 .sbk-seller-hr {
   margin-bottom: 2vw;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: #E2E2E2;
 }
 
 @media screen and (max-width: 768px) {

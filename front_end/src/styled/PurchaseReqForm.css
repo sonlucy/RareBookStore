@@ -1,6 +1,7 @@
 .sbk-container {
   margin: 0 auto;
-  padding: 2vw;
+/*   padding: 2vw; */
+  padding: 0 20%;
   max-width: 1200px;
 }
 
@@ -27,7 +28,7 @@
   border: 1px solid #ccc;
   height: 2.5rem;
   font-size: 1.2rem;
-  width: 50vw;
+  width: 50rem;
 }
 
 .sbk-error-container {

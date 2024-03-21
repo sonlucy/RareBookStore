@@ -1,3 +1,4 @@
+
 .sbk-header-wrapper {
   /* padding: 2rem 7vw; */
   padding: 0.5rem 3rem;
@@ -13,7 +14,7 @@
   flex-wrap: wrap;
 }
 
-.sbk-menu-item {
+.sbk-menu-item {  
   text-decoration: none;
   color: black;
 }
@@ -25,7 +26,7 @@
 }
 
 .sbk-li-container {
-  /*   font-size: 0.9rem; */
+/*   font-size: 0.9rem; */
   font-size: 14px;
   display: flex;
   justify-content: flex-end;
@@ -85,7 +86,7 @@
 } */
 
 .sbk-nav-container {
-  /*   font-size: 1.2rem; */
+/*   font-size: 1.2rem; */
   font-size: 16px;
   text-align: left;
   margin-left: 0;
@@ -134,7 +135,7 @@
 }
 
 .sbk-search-input {
-  /*   width: 40vw;
+/*   width: 40vw;
   min-width: 10rem; */
   width: 28vw;
   height: 35px;
@@ -142,7 +143,6 @@
   outline: none;
   font-size: 16px;
 }
-
 /* 
 @media screen and (max-width: 621px) {
   .sbk-search-input {
@@ -182,7 +182,9 @@
   padding: 0.8rem 1rem;
   cursor: pointer;
 }
-
 .sbk-header-hr {
   margin: 0;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: #E2E2E2;
 }
