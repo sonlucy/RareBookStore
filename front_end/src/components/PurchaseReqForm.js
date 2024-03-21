@@ -22,37 +22,40 @@ const FormItem = styled.div`
   align-items: center;
 /*   width: 100%; */
 /*   align-items: flex-start;  */
-  @media screen and (max-width: 768px) {
+/*   @media screen and (max-width: 768px) {
     margin-bottom: 0.4rem; 
   }
   @media screen and (max-width: 425px) {
     margin-bottom: 0.2rem; 
-  }
+  } */
 `;
 
 
 const Label = styled.label`
   margin-right: 1rem; 
-  font-size: 1.3rem;
+/*   font-size: 1.3rem; */
+  font-size: 15px;
   font-weight: bold;
-  @media screen and (max-width: 768px) {
+/*   @media screen and (max-width: 768px) {
     font-size: 1rem; 
   }
   @media screen and (max-width: 425px) {
     font-size: 0.8rem; 
-  }
+  } */
 `;
 
 const Input = styled.input`
   flex-grow: 1;
-  padding: 0.5rem;
+/*   padding: 0.5rem; */
   border-radius: 10px;
   border: 1px solid ${({ hasError }) => (hasError ? 'red' : '#ccc')}; // 빨간 테두리
-  height: 2.5rem;
-  font-size: 1.2rem;
-  width: 50rem;/*  */
+/*   height: 2.5rem; */
+  height: 42px;
+/*   font-size: 1.2rem; */
+font-size: 16px;
+  width: 760px; /*  */
 
-  @media screen and (max-width: 1000px) {
+/*   @media screen and (max-width: 1000px) {
     width: 30rem;
   }
   @media screen and (max-width: 700px) {
@@ -69,7 +72,7 @@ const Input = styled.input`
   @media screen and (max-width: 425px) {
     font-size: 0.7rem; 
     height: 1.2rem;
-  }
+  } */
 `;
 
 const ErrorContainer = styled.div`
@@ -92,13 +95,16 @@ const ErrorMessage = styled.span`
 const SubmitButton = styled.button`
   background-color: #F4F4F4;
   color: black;
-  padding: 0.8rem 2rem;
+/*   padding: 0.8rem 2rem; */
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1.3rem;
+/*   font-size: 1.3rem; */
+  font-size: 15px;
   font-weight: bold;
-  width: 200px;
+/*   width: 200px; */
+width: 156px;
+height: 46px;
   margin-top: 1rem; 
   align-self: flex-end;
 
@@ -143,11 +149,14 @@ const DeadlineOptionsContainer = styled.div`
 /* const DeadlineOption = styled.div` */
 const DeadlineOption = styled.label`
   margin-right: 1rem;
-  font-size: 1.2rem;
+/*   font-size: 1.2rem; */
+  font-size: 15px;
   cursor: pointer;
-  font-size: 1.2rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
   width: 10rem;
-  padding: 0.2rem;
+  height: 32px;
   border: 1px solid #ccc;
   border-radius: 7px;
 
@@ -168,7 +177,7 @@ input[type="radio"]:checked + & {
     font-weight: bold;
     color: #8f4101;
   }
-  @media screen and (max-width: 1000px) {
+/*   @media screen and (max-width: 1000px) {
     width: 5rem;
   }
   @media screen and (max-width: 700px) {
@@ -184,7 +193,7 @@ input[type="radio"]:checked + & {
   }
   @media screen and (max-width: 425px) {
     font-size: 0.7rem; 
-  }
+  } */
 
 `;
 
