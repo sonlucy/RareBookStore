@@ -5,9 +5,10 @@
   text-align: center;
   padding: 3rem 13vw;
   padding-bottom: 7rem;
-  font-size: 1rem;
+/*   font-size: 1rem; */
+  font-size: 14px;
 }
-
+/* 
 @media screen and (max-width: 800px) {
   .sbk-footer-container {
     font-size: 0.7rem;
@@ -21,7 +22,7 @@
     padding: 2rem 5vw;
   }
 }
-
+ */
 .sbk-footer-text {
   font-weight: bold;
   display: flex;
