@@ -18,10 +18,7 @@ const purchaseRequests = [
     info: "모건 하우절|문학동네",
     image: 'img/book.png'
   },
-/*   {
-    title: 'Book 3',
-    image: 'img/book.png'
-  }, */
+
 ];
 
 function RegRequest() {
@@ -35,7 +32,7 @@ function RegRequest() {
 
         {/* 배열을 넘겨주는 방법. */}
         <PurchaseReqListOngoing requests={purchaseRequests} /> {/* 페이지에 따라 하나만 써야함 */}
-        {/* <PurchaseReqListEnd requests={purchaseRequests} /> */} {/* 버튼 없는 버전 */}
+        <PurchaseReqListEnd requests={purchaseRequests} /> {/* 버튼 없는 버전 */}
 
 
         {/* 개별로 넘겨주는 방법 */}
