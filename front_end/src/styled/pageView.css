@@ -1,0 +1,94 @@
+.cyj_content_area {
+    margin: 20px;
+  }
+  
+  .my_home {
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .user-info {
+    margin-bottom: 20px;
+  }
+  
+  .info-box {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .name {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .email {
+    font-size: 16px;
+    color: rgb(54, 54, 54);
+  }
+  
+  .my_home_title {
+    margin-top: 30px;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .list_item_img_wrap {
+    width: 100px; /* 이미지 크기에 맞게 조절 */
+    height: 100px; /* 이미지 크기에 맞게 조절 */
+    background-color: lightgrey; /* 이미지가 없을 때의 배경색 */
+    border-radius: 5px;
+  }
+  
+  .list_item_title_wrap {
+    margin-left: 15px;
+  }
+  
+  .list_item_tilte {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .list_item_status {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .column_secondary,
+  .column_last {
+    width: 45%; /* 컬럼 폭 조절 */
+  }
+  
+  .text-lookup {
+    font-size: 16px;
+  }
+  
+  .recent_purchase.area {
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .desc {
+    font-size: 16px;
+    color: lightgray;
+  }
+  
+
+  .cyj_content_area.my-page-content {
+    display: flex;
+  }
+  
+  .MypageSide {
+    flex: 2; /* MypageSide 컴포넌트의 크기를 부모 요소의 너비의 2배로 설정 */
+  }
+  
+  .my_home {
+    flex: 3; /* 나머지 내용을 MypageSide 컴포넌트의 크기에 맞추기 위해 설정 */
+    /* 필요에 따라 추가적인 스타일링을 진행하세요 */
+  }
+  
