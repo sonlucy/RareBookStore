@@ -1,0 +1,95 @@
+.sbk-seller-info-container {
+  max-width: 1200px;
+  padding: 4vw 10vw;
+  margin: 0 auto;
+  /* 수평 가운데 정렬을 위한 마진 설정 */
+  text-align: left;
+}
+.sbk-seller-info-container * {
+  /* text-align: left; */
+  text-align: inherit;
+}
+.sbk-seller-info {
+  margin-bottom: 20px;
+  /* 각 판매자 정보 요소 사이에 간격 추가 */
+}
+
+.sbk-seller-info-heading h1 {
+  font-size: 2rem;
+  margin-bottom: 5vw;
+}
+.sbk-seller-info-heading h2 {
+  font-size: 1.7rem;
+  color: #C87E66;
+}
+
+.sbk-seller-info-grade,
+.sbk-seller-info-reviews {
+  margin-top: 4vw;
+}
+
+.sbk-seller-info-value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.sbk-seller-info-grade-container {
+  margin-bottom: 2rem;
+}
+.sbk-review {
+  margin-bottom: 2rem;
+}
+
+
+.sbk-review-content {
+  margin-left: 20px;
+}
+
+.sbk-seller-info-label,
+.sbk-review-buyer-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  display: inline-block;
+  width: 10rem;/*  */
+}
+
+.sbk-seller-hr {
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+
+  .sbk-seller-info-heading h1 {
+    font-size: 1.8rem;
+  }
+  .sbk-seller-info-heading h2 {
+    font-size: 1.5rem;
+  }
+  .sbk-seller-info-value {
+    font-size: 1.8rem;
+  }
+  .sbk-seller-info-label,
+  .sbk-review-buyer-name {
+    font-size: 1rem; /* calc(1.2rem - 0.2rem); */
+  }
+}
+
+@media screen and (max-width: 425px) {
+
+  .sbk-seller-info-heading h1 {
+    font-size: 1.6rem;
+  }
+
+  .sbk-seller-info-heading h2 {
+    font-size: 1.3rem;
+  }
+  .sbk-seller-info-value {
+    font-size: 1.5rem;
+  }
+  .sbk-seller-info-label,
+  .sbk-review-buyer-name {
+    font-size: 0.8rem;
+    /* calc(1.2rem - 0.2rem); */
+  }
+}
