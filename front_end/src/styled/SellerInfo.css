@@ -11,21 +11,26 @@
 }
 .sbk-seller-info {
   margin-bottom: 20px;
-  /* 각 판매자 정보 요소 사이에 간격 추가 */
 }
 
 .sbk-seller-info-heading h1 {
   font-size: 2rem;
-  margin-bottom: 5vw;
+  margin-bottom: 2rem;
 }
 .sbk-seller-info-heading h2 {
   font-size: 1.7rem;
   color: #C87E66;
 }
 
+.sbk-seller-info-grade h2,
+.sbk-seller-info-reviews h2 {
+  font-size: 1.4rem;
+}
+
 .sbk-seller-info-grade,
 .sbk-seller-info-reviews {
-  margin-top: 4vw;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
 }
 
 .sbk-seller-info-value {
@@ -34,15 +39,16 @@
 }
 
 .sbk-seller-info-grade-container {
-  margin-bottom: 2rem;
+  margin-bottom: 2vw;
 }
 .sbk-review {
-  margin-bottom: 2rem;
+  margin-bottom: 2vw;
 }
 
 
 .sbk-review-content {
   margin-left: 20px;
+  font-size: 1.2rem;
 }
 
 .sbk-seller-info-label,
@@ -51,45 +57,66 @@
   font-weight: bold;
 
   display: inline-block;
-  width: 10rem;/*  */
+  width: 10rem;
 }
 
 .sbk-seller-hr {
-  margin-bottom: 2rem;
+  margin-bottom: 2vw;
 }
 
 @media screen and (max-width: 768px) {
 
   .sbk-seller-info-heading h1 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
   .sbk-seller-info-heading h2 {
     font-size: 1.5rem;
   }
+  .sbk-seller-info-grade h2,
+  .sbk-seller-info-reviews h2 {
+    font-size: 1.2rem;
+  }
+  
+
   .sbk-seller-info-value {
     font-size: 1.8rem;
   }
   .sbk-seller-info-label,
   .sbk-review-buyer-name {
     font-size: 1rem; /* calc(1.2rem - 0.2rem); */
+    width: 5rem;
+
+  }
+
+  .sbk-review-content {
+    font-size: 1rem;
   }
 }
 
 @media screen and (max-width: 425px) {
 
   .sbk-seller-info-heading h1 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 
   .sbk-seller-info-heading h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
+
+  .sbk-seller-info-grade h2,
+  .sbk-seller-info-reviews h2 {
+    font-size: 1rem;
+  }
+
   .sbk-seller-info-value {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
   .sbk-seller-info-label,
   .sbk-review-buyer-name {
     font-size: 0.8rem;
-    /* calc(1.2rem - 0.2rem); */
+/*     width: 3rem; */
+  }
+  .sbk-review-content {
+    font-size: 0.8rem;
   }
 }
