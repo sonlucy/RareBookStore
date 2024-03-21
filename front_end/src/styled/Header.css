@@ -1,10 +1,10 @@
 
 .sbk-header-wrapper {
-  padding: 2rem 7vw;
-/*   padding: 0.5rem 10rem;
-  margin: 0 20rem; */
+  /* padding: 2rem 7vw; */
+  padding: 0.5rem 3rem;
+  margin: 0 20rem;
   padding-bottom: 0.2vw;
-  padding-left: 10vw;
+  /* padding-left: 10vw; */
 }
 
 .sbk-menu-container {
@@ -30,7 +30,7 @@
   font-size: 14px;
   display: flex;
   justify-content: flex-end;
-  margin-right: 10vw; /*  */
+  /*margin-right: 10vw;   */
 }
 
 .sbk-li-container dl {
@@ -42,7 +42,7 @@
 
 .sbk-li-container dt {
   float: left;
-  margin-right: 1.5rem;
+  margin-right: 0.5rem;
 }
 
 .sbk-li-container dd {
@@ -137,7 +137,7 @@
 .sbk-search-input {
 /*   width: 40vw;
   min-width: 10rem; */
-  width: 30vw;
+  width: 28vw;
   height: 35px;
   border: none;
   outline: none;
@@ -171,6 +171,7 @@
 .sbk-search-icon {
   color: #BC6F37;
   margin-right: 0.5rem;
+  margin-left: 10px;
 }
 
 .sbk-search-button {
