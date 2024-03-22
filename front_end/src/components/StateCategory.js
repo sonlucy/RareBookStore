@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "../styled/StateCategory.css";
 import { Link } from "react-router-dom";
 
 const StateCategory = ({ onStateChange }) => {
-  const [selectedState, setSelectedState] = useState('최상'); // 기본값으로 최상 선택
+  useEffect(() => {
+    // 모든 상태 요소 선택
+    const stateWraps = document.querySelectorAll('.yhw_stateWrap');
+  
+    // 모든 상태 요소에 대해 순회하면서 초기 스타일 적용
+    stateWraps.forEach(stateWrap => {
+      const stateText = stateWrap.querySelector('.yhw_state').textContent; // 상태 요소 내의 텍스트 선택
+      const stateCount = stateWrap.querySelector('.yhw_stateCount'); // 상태 요소 내의 개수 요소 선택
+      const stateState = stateWrap.querySelector('.yhw_state'); // 상태 요소 내의 상태 요소 선택
+  
+      if (stateText === '최상') { // 선택한 상태가 최상인지 확인
+        stateCount.style.color = 'orange'; // 주황색으로 변경
+        stateState.style.color = 'black'; // 검정색으로 변경
+        stateState.style.fontWeight = 'bold'; // bold체로 변경
+      }
+    });
+  }, []); // 빈 배열을 전달하여 최초 한 번만 실행되도록 설정
   
   const handleStateClick = (selectedStt) => {
     onStateChange(selectedStt); // 선택된 상태를 부모 컴포넌트(= BuyDetail.js)로 전달
@@ -24,7 +40,6 @@ const StateCategory = ({ onStateChange }) => {
         stateState.style.fontWeight = ''; // 기본체로 변경
       }
     });
-    setSelectedState(selectedStt); // 선택한 상태로 상태 업데이트
   };
   
   return (

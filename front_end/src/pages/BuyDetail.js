@@ -13,7 +13,6 @@ import { productInfosData } from "../testData/productInfosData";
 const BuyDetail = () => {
   // 선택된 상태를 저장하는 state
   const [filteredProductInfos, setFilteredProductInfos] = useState(productInfosData);
-  // 2024.03.22 --> 페이지 기본 상태로 "최상"상태가 선택되어 있도록 설정중(미완성)
 
   const handleStateChange = (selectedStt) => {
     let filteredProducts;
