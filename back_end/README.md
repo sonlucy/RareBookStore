@@ -36,6 +36,9 @@
 클라이언트는 서버에 요청을 보내고, 서버는 해당 요청을 받아 처리한 후 필요한 응답을 클라이언트에게 반환.
 
 ### Architecture
+### Architecture
+
+
 
         +---------------------------------+
         |             server.js           |
@@ -50,33 +53,32 @@
         +---------------------------------+
                         |
                         v
-
 +-----------------------|------------------------+
-| userRoutes.js |
-| - Define routes using Express Router |
-| - Handle '/signup' POST requests |
-| - Handle '/loginCheck' POST requests |
-| - Handle '/logout' GET requests |
+|               userRoutes.js                   |
+|   - Define routes using Express Router       |
+|   - Handle '/signup' POST requests           |
+|   - Handle '/loginCheck' POST requests       |
+|   - Handle '/logout' GET requests           |
 +----------------------------------------------+
-|
-v
+                        |
+                        v
 +-----------------------|------------------------+
-| userController.js |
-| - Define functions for user requests |
-| - Handle signup, login, and logout |
-| - Interact with userDB for database ops |
+|              userController.js               |
+|   - Define functions for user requests      |
+|   - Handle signup, login, and logout        |
+|   - Interact with userDB for database ops   |
 +----------------------------------------------+
-|
-v
+                        |
+                        v
 +-----------------------|------------------------+
-| userDB.js |
-| - Define database-related functions |
-| - Execute queries for user operations |
+|                 userDB.js                   |
+|   - Define database-related functions      |
+|   - Execute queries for user operations    |
 +----------------------------------------------+
-|
-v
+                        |
+                        v
 +-----------------------|------------------------+
-| db.js |
-| - Configure MySQL database connection |
-| - Connect to specified database |
+|                  db.js                      |
+|   - Configure MySQL database connection    |
+|   - Connect to specified database         |
 +----------------------------------------------+
