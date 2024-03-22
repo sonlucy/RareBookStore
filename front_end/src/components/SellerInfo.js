@@ -2,6 +2,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import '../styled/SellerInfo.css'
 
 function SellerInfo({ sellerInfoList }) {
+  const totalReviews = sellerInfoList.reduce((total, seller) => total + seller.reviews.length, 0);
+
   return (
       <div className="sbk-seller-info-container">
         {sellerInfoList.map((sellerInfo, index) => (
@@ -25,7 +27,12 @@ function SellerInfo({ sellerInfoList }) {
             </div>
 
             <div className="sbk-seller-info-reviews">
-              <h2>판매자 후기</h2>
+              <div className='sbk-flex-container'>
+                <h2>판매자 후기</h2>
+                <h2>
+                  <span style={{ color: '#828282' }}>{`${totalReviews}`}</span> {/* 리뷰 개수 동적으로 받아와서 표시 */}
+                </h2>
+              </div>
               <hr className='sbk-seller-hr' />
               {sellerInfo.reviews.map((review, index) => (
                 <div key={index} className="sbk-review">
