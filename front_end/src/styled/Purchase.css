@@ -1,0 +1,47 @@
+.yhw_purTopBorderBottom {
+  width: 80%;
+  margin: 0 auto;
+  border-bottom: 1px solid #E2E2E2;
+}
+.yhw_purTopCont {
+  width: 500px;
+  margin: 15px auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+.yhw_purTopCont > b { /* 구매하기 글씨 CSS */
+  margin-bottom: 50px;
+  font-size: 23px;
+}
+.yhw_purDefDestCont { /* 기본배송지 체크박스, 기본배송지정보를 감싸는 div 태그 CSS */
+  width: 530px;
+  margin: 0 auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.yhw_destFormDiv {  /* 배송지 입력 form 태그 감싸는 div 태그 CSS */
+  width: 650px;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.yhw_purBtn {
+  width: 120px;
+  height: 35px;
+  margin: 0 auto;
+  margin-top: 25px;
+  display: block;
+  background-color: #C87E66;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.yhw_purBtn:hover {
+  background-color: #ab705c;
+}
