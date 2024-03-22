@@ -1,0 +1,48 @@
+.yhw_detailTopProdBox {
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+}
+.yhw_detailTopProdInfoBox {
+  display: flex;
+  width: 500px;
+}
+.yhw_detailTopProdInfoBox img {
+  width: 180px;
+  height: 240px;
+  margin-right: 40px;
+}
+.yhw_detailTopProdInfoTxt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.yhw_detailTopProdInfoTxt b {
+  font-size: 23px;
+  margin-bottom: 5px;
+}
+.yhw_detailTopProdInfoTxt > span {
+  font-size: 15px;
+}
+.yhw_detailTopProdInfoTop {
+  display: flex;
+  flex-direction: column;
+}
+.yhw_detailTopBuyer {
+  font-size: 14px;
+  color: #C87E66;
+  margin-top: 20px;
+}
+.yhw_detailTopProdInfoBottom {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.yhw_detailTopDeadline {
+  font-size: 14px;
+  color: #EB217C;
+}
+.yhw_detailTopDate {
+  font-size: 15px;
+  font-weight: medium;
+}
