@@ -13,8 +13,9 @@ const sellerInfoList = [
     point: 4.2,
     reviews: [
       { buyerName: "아기돌고래", review: "상품 좋았습니다^^" },
-      { buyerName: "아기판다", review: "깨끗하고 좋았습니다!" }
-    ]
+      { buyerName: "아기판다", review: "깨끗하고 좋았습니다!" },
+    ],
+    itemSellKeys: [123, 456, 789, 111, 222, 333, 444, 555, 666, 777, 888, 999]
   },
 
 ];
