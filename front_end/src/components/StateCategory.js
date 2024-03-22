@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import "../styled/StateCategory.css";
 import { Link } from "react-router-dom";
 
-const StateCategory = ({ onStateChange }) => {
+const StateCategory = ({ onStateChange }) => {  // DOM에 접근하는 것보다 React의 상태와 생명주기 함수를 활용하여 보다 선호되는 방식이라고 하여 수정해봄
+  
   useEffect(() => {
     // 모든 상태 요소 선택
     const stateWraps = document.querySelectorAll('.yhw_stateWrap');
@@ -21,6 +22,7 @@ const StateCategory = ({ onStateChange }) => {
     });
   }, []); // 빈 배열을 전달하여 최초 한 번만 실행되도록 설정
   
+  // 클릭 이벤트 핸들러
   const handleStateClick = (selectedStt) => {
     onStateChange(selectedStt); // 선택된 상태를 부모 컴포넌트(= BuyDetail.js)로 전달
     
