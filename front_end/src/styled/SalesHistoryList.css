@@ -2,14 +2,12 @@
 .sbk-purchase-req-card {
   display: flex;
   box-shadow: 0 1px 0 0 #ccc;
-/*   padding: 1vw 2vw; */
+  padding: 1rem 2vw;
   max-width: 1200px;
   position: relative;
   margin: 0 auto;
 }
-/* .sbk-list-inner-container {
-  padding: 1rem;
-} */
+
 .sbk-book-image {
   width: 170px;
   border-radius: 8px;
@@ -19,18 +17,18 @@
 .sbk-text-container {
   width: 10rem;
   text-align: left;
-  margin: 1.5vw 2vw;
+  margin: 2vw;
 }
 
 .sbk-book-title {
-/*   font-size: 1.4rem; */
+  /*   font-size: 1.4rem; */
   font-size: 20px;
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 .sbk-book-info {
-/*   font-size: 0.9rem; */
-font-size: 15px;
+  /*   font-size: 0.9rem; */
+  font-size: 15px;
   margin-top: 10px;
 }
 
@@ -49,14 +47,14 @@ font-size: 15px;
   cursor: pointer;
   margin-top: 1rem;
   font-weight: bold;
-/*   font-size: 1.2rem; */
+  /*   font-size: 1.2rem; */
   font-size: 15px;
   width: 10rem;
   height: 3.5rem;
 }
 
 .sbk-status-button:hover {
-background-color: #ab705c;
+  background-color: #ab705c;
 
 }
 
@@ -77,30 +75,7 @@ background-color: #ab705c;
   margin: 1rem;
 
 }
-.sbk-main-container {
-  margin-bottom: 4.5rem;
-}
 
-.sbk-book-status {
-  /*   text-align: left; */
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.sbk-book-status-dl {
-  display: block;
-}
-
-.sbk-book-status-dt {
-  float: left;
-
-}
-
-.sbk-book-status-dd {
-  display: block;
-  margin-inline-start: 9rem;
-  width: 100px;
-}
 @media screen and (max-width: 768px) {
   .sbk-book-image {
     width: 100px;
@@ -111,14 +86,14 @@ background-color: #ab705c;
   }
 
   .sbk-book-title {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .sbk-book-info {
-    font-size: 10px;
+    font-size: 0.6rem;
   }
 
-/*   .sbk-button-container {
+  /*   .sbk-button-container {
     margin: 0.5rem;
   } */
 
@@ -129,10 +104,6 @@ background-color: #ab705c;
     width: 7rem;
     height: 2.5rem;
     margin-top: 0.5rem;
-  }
-
-  .sbk-book-status {
-    font-size: 10px;
   }
 }
 
@@ -146,22 +117,20 @@ background-color: #ab705c;
   }
 
   .sbk-book-title {
-    font-size: 15px;
+    font-size: 0.8rem;
   }
 
   .sbk-book-info {
-    font-size: 8px;
+    font-size: 0.4rem;
   }
 
   .sbk-status-button,
   .sbk-cancel-button {
-    
-font-size: 8px;
+
+    font-size: 0.4rem;
     width: 4rem;
     height: 1.2rem;
     margin-top: 0.25rem;
 
   }
-
-
 }
