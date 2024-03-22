@@ -1,0 +1,42 @@
+.yhw_destFormInputBox { /* 각 label과 input 태그를 담는 div 태그 CSS */
+  width: 520px;
+  display: flex;
+  margin-bottom: 15px;
+}
+.yhw_destFormInputBox label {
+  font-size: 15px;
+  font-weight: bolder;
+  padding-top: 8px;
+  width: 70px;
+  text-align: right;
+  margin-right: 10px;
+  display: inline-block;
+}
+.yhw_destFormInputBox input {
+  width: 400px;
+  height: 25px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: block;
+}
+.yhw_destFormPostBox { /* 우편번호 input, span 태그 감싸는 div 태그 CSS */
+  display: flex;
+  justify-content: space-between;
+}
+input.yhw_destFormInputPostCode { /* 우편번호 글씨 왼쪽 input 태그 CSS */
+  width: 330px;
+}
+span.yhw_destFormSpanPostCode { /* 우편번호 글씨 span 태그 CSS */
+  text-align: right;
+  display: inline-block;
+  padding-top: 8px;
+  font-size: 15px;
+}
+div.yhw_destFomrInputAddrBox {  /* 주소 input 태그들 감싸는 div 태그 CSS */
+  width: 420px;
+}
+div.yhw_destFomrInputAddrBox input {
+  max-width: 95%;
+  margin-bottom: 10px;
+}

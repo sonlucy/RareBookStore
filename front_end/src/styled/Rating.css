@@ -1,0 +1,45 @@
+.tab {
+  display: flex;
+}
+
+.tab button {
+  flex: 1;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.tab button:hover {
+  background-color: gainsboro;
+}
+
+.tab button:focus {
+  color: #AB705C;
+  font-weight: bold;
+}
+
+.rating-table {
+  display: flex;
+}
+
+.rating-row {
+  display: flex;
+  flex: 1;
+}
+
+.rating-cell {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+}
+
+.rating-cell:last-child {
+  border-right: none;
+}
+
+.rating-cell.best {
+  font-weight: bold;
+}
