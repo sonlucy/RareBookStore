@@ -35,48 +35,4 @@
 클라이언트의 요청을 받아 서버에서 처리하고, 데이터베이스와의 상호작용을 통해 사용자 관련 기능을 수행.
 클라이언트는 서버에 요청을 보내고, 서버는 해당 요청을 받아 처리한 후 필요한 응답을 클라이언트에게 반환.
 
-### Architecture
 
-        +---------------------------------+
-        |             server.js           |
-        |    - Express server creation    |
-        |    - Middleware configuration   |
-        |    - Session management         |
-        |    - JSON data parsing          |
-        |    - CORS configuration         |
-        |    - Routing to userRoutes      |
-        |    - Server listening on port   |
-        |                 3001            |
-        +---------------------------------+
-                        |
-                        v
-
-+-----------------------|------------------------+
-| userRoutes.js |
-| - Define routes using Express Router |
-| - Handle '/signup' POST requests |
-| - Handle '/loginCheck' POST requests |
-| - Handle '/logout' GET requests |
-+----------------------------------------------+
-|
-v
-+-----------------------|------------------------+
-| userController.js |
-| - Define functions for user requests |
-| - Handle signup, login, and logout |
-| - Interact with userDB for database ops |
-+----------------------------------------------+
-|
-v
-+-----------------------|------------------------+
-| userDB.js |
-| - Define database-related functions |
-| - Execute queries for user operations |
-+----------------------------------------------+
-|
-v
-+-----------------------|------------------------+
-| db.js |
-| - Configure MySQL database connection |
-| - Connect to specified database |
-+----------------------------------------------+
