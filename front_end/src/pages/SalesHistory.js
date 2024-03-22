@@ -12,7 +12,7 @@ const purchaseRequests = [
     info: "모건 하우절|문학동네",
     image: 'img/book.png',
     damage: '상',
-    price: '11000',
+    price: '11,000',
     expiry: '2020-12-12',
     aucStatus: true
   },
@@ -21,7 +21,7 @@ const purchaseRequests = [
     info: "모건 하우절|문학동네",
     image: 'img/book.png',
     damage: '상',
-    price: '11000',
+    price: '12,000',
     expiry: '2020-12-12',
     aucStatus: false
   },
@@ -36,7 +36,7 @@ function SalesHistory() {
 
 
 
-        <SalesHistoryList requests={purchaseRequests} /> {/* 판매내역 부분 확인 */}
+        <SalesHistoryList requests={purchaseRequests} /> 
 
         <br /><br />
 
