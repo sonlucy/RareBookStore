@@ -7,6 +7,7 @@ import PurchaseReqForm from '../components/PurchaseReqForm';
 import PurchaseReqListOngoing from '../components/PurchaseReqListOngoing';
 import PurchaseReqListEnd from '../components/PurchaseReqListEnd';
 import SalesHistoryList from '../components/SalesHistoryList';
+import MyPageSide from '../components/MypageSide';
 
 const purchaseRequests = [
   {
@@ -35,9 +36,10 @@ function RegRequest() {
     <div className="App">
       <Router>
         <Header />
-
-
-        <PurchaseReqForm />
+        <div style={{ display: 'flex' }}> {/* 옆에 붙이기 */}
+          <MyPageSide />
+          <PurchaseReqForm />
+        </div>
 
         {/* 배열을 넘겨주는 방법. */}
         <PurchaseReqListOngoing requests={purchaseRequests} /> {/* 페이지에 따라 하나만 써야함 */}
