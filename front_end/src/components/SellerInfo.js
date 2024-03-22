@@ -3,6 +3,7 @@ import '../styled/SellerInfo.css'
 
 function SellerInfo({ sellerInfoList }) {
   const totalReviews = sellerInfoList.reduce((total, seller) => total + seller.reviews.length, 0);
+  const totalItemsSold = sellerInfoList.reduce((total, seller) => total + seller.itemSellKeys.length, 0);
 
   return (
       <div className="sbk-seller-info-container">
@@ -40,10 +41,22 @@ function SellerInfo({ sellerInfoList }) {
                   <span className="sbk-review-content">{review.review}</span>
                 </div>
               ))}
-
             </div>
+
+
+            <div className="sbk-seller-info-reviews">
+            <div className='sbk-flex-container'>
+              <h2>판매 개수</h2>
+              <h2>
+                <span style={{ color: '#828282' }}>{`${totalItemsSold}`}</span> {/* 리뷰 개수 동적으로 받아와서 표시 */}
+              </h2>
+            </div>
+            </div>
+
           </div>
+          
         ))}
+        
       </div>
   );
 }
