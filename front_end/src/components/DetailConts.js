@@ -17,6 +17,9 @@ const DetailConts = ({ productInfo }) => {
             {condition.map((state, index) => (
               <span key={index} className="yhw_detailContsState">{state}</span>
             ))}
+            {/* <span className="yhw_detailContsState">(상태 받아올 부분) 낙서 및 필기 있음</span>
+            <span className="yhw_detailContsState">(상태 받아올 부분) 파손 있음</span>
+            <span className="yhw_detailContsState">(상태 받아올 부분) 액체로 인한 오염 있음</span> */}
           </div>
         </div>
       </div>

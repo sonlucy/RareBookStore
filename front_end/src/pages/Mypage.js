@@ -1,19 +1,13 @@
-import React from 'react';
-import '../styled/pageView.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import MypageSide from '../components/MypageSide';
-import MainPurchaseHistory from '../components/MainPurchaseHistory';
+import React from "react";
+import "../styled/pageView.css";
+import MypageSide from "../components/MypageSide";
+import MainPurchaseHistory from "../components/MainPurchaseHistory";
 
 function MypageView() {
   return (
-    <>
-    {/* 헤더 */}
-    <Header />
-
     <div className="cyj_content_area my-page-content">
       {/* 사이드바 넣는 곳 */}
-       <div className="my-page-sidebar">
+      <div className="my-page-sidebar">
         <MypageSide />
       </div>
       <div className="my_home">
@@ -54,7 +48,7 @@ function MypageView() {
           <div>
             <div className="purchase_list all ask">
               <div className="recent_purchase area">
-                  {/* DB로 파일 불러오기 */}
+                {/* DB로 파일 불러오기 */}
                 <p className="desc">거래 내역이 없습니다</p>
               </div>
             </div>
@@ -62,10 +56,6 @@ function MypageView() {
         </div>
       </div>
     </div>
-  
-    {/* 푸터 */}
-    <Footer />
-    </>
   );
 }
 

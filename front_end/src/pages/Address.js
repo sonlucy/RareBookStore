@@ -3,15 +3,9 @@ import '../styled/AddressView.css';
 import MypageSide from '../components/MypageSide';
 import DestForm from '../components//DestForm';
 import DefDestCheck from '../components//DefDestCheck';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 function Address() {
   return (
-    <>
-    {/* 헤더 */}
-    <Header />
-    
     <div className="cyj_content_area Address-content">
       {/* 사이드바 넣는 곳 */}
        <div className="Address-sidebar">
@@ -31,11 +25,6 @@ function Address() {
         </div>
       </div>
     </div>
-
-    {/* 푸터 */}
-    <Footer />
-    </>
-    
   );
 }
 
