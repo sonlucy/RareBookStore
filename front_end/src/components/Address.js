@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styled/AddressView.css';
-import MypageSide from './MypageSide';
-import DestForm from './DestForm';
-import DefDestCheck from './DefDestCheck';
+import MypageSide from '../components/MypageSide';
+import DestForm from '../components//DestForm';
+import DefDestCheck from '../components//DefDestCheck';
 
 function Address() {
   return (
