@@ -24,10 +24,16 @@ font-size: 22px;
   color: #C87E66;
 }
 
+.sbk-flex-container {
+  display: flex;
+  align-items: center;
+}
+
 .sbk-seller-info-grade h2,
 .sbk-seller-info-reviews h2 { /* 판매자등급, 판매자후기 */
 /*   font-size: 1.4rem; */
   font-size: 18px;
+  margin-right: 1rem;
 }
 
 .sbk-seller-info-grade,
@@ -63,7 +69,7 @@ font-size: 14px;
   font-weight: bold;
 
   display: inline-block;
-  width: 10rem;
+  width: 7rem;
 }
 
 .sbk-seller-hr {
