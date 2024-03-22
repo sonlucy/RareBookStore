@@ -9,7 +9,6 @@ const SalesHistoryList = ({ requests }) => {
       {requests.map((request, index) => (
         <div className="sbk-purchase-req-card" key={index}>
 {/*           <div className='sbk-list-inner-container'>
-
           </div> */}
           <img className="sbk-book-image" src={request.image} alt={request.title} />
           <div className="sbk-text-container">
@@ -26,7 +25,7 @@ const SalesHistoryList = ({ requests }) => {
               </dl>
               <dl className='sbk-book-status-dl'>
                 <dt className='sbk-book-status-dt'>입찰가</dt>
-                <dd className='sbk-book-status-dd'>{request.price}</dd>
+                <dd className='sbk-book-status-dd'>{request.price}원</dd>
               </dl>
               <dl className='sbk-book-status-dl'>
                 <dt className='sbk-book-status-dt'>입찰만료기한</dt>
