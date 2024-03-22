@@ -18,7 +18,7 @@ const SignUpEasy = () => {
               // value={userNumber}
               // onChange={(e) => setUserNumber(e.target.value)}
               type="text"
-              placeholder="전화번호"
+              placeholder="닉네임"
               required
               />
               <button className="yhw_dupCheckBtn">중복확인</button>
@@ -30,7 +30,6 @@ const SignUpEasy = () => {
               // value={userAddress}
               // onChange={(e) => setUserAddress(e.target.value)}
               type="number"
-              placeholder="나이"
               required
               />
             <span>세</span>
