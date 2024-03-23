@@ -12,8 +12,9 @@ import RegRequest from "./pages/RegRequest";
 import SalesHistory from "./pages/SalesHistory";
 import SellerInfoPage from "./pages/SellerInfoPage";
 import SignUpEasy from "./pages/SignUpEasy";
-import SignUpMail from "./pages/SignUpMail";
+// import SignUpMail from "./pages/SignUpMail";
 import SNSLogin from "./pages/SNSLogin";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -31,8 +32,9 @@ function App() {
         <Route path="SalesHistory" element={<SalesHistory />}></Route>
         <Route path="SellerInfoPage" element={<SellerInfoPage />}></Route>
         <Route path="SignUpEasy" element={<SignUpEasy />}></Route>
-        <Route path="SignUpMail" element={<SignUpMail />}></Route>
+        {/* <Route path="SignUpMail" element={<SignUpMail />}></Route> */}
         <Route path="SNSLogin" element={<SNSLogin />}></Route>
+        <Route path="Admin" element={<Admin />}></Route>
       </Routes>
     </div>
   );
