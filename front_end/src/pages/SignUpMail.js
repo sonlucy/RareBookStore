@@ -121,6 +121,7 @@ const SignUpMail = () => {
             />
             <button className="yhw_dupCheckBtn">중복확인</button>
           </div>
+          <div>
             <span className="yhw_signInputTit">나이</span>
             <input
               className="yhw_lastSignInput"
@@ -133,15 +134,13 @@ const SignUpMail = () => {
           </div>
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">성별</span>
-            <div className="yhw_signGenderBtns">
-              <button>남자</button>
-              <button>여자</button>
-            </div>
+              <div className="yhw_signGenderBtns">
+                <button>남자</button>
+                <button>여자</button>
+              </div>
           </div>
           <div className="yhw_signUpBtnBox">
-            <button type="submit" onClick={submitBtn}>
-              회원가입
-            </button>
+            <button type="submit">회원가입</button>
           </div>
         </form>
       </div>

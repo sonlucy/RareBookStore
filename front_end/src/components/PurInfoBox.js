@@ -12,13 +12,6 @@ const PurInfoBox = () => {
           <div className="yhw_purInfoTxtTop">
             <b>도서명</b>
             <span className="yhw_purInfoWriterPub">{/* 저자 들어갈 부분 */}저자 | {/* 출판사 들어갈 부분 */}출판사</span>
-<<<<<<< HEAD
-            <span className="yhw_purInfoSeller">판매자: {/* 판매자 들어갈 부분 */}아기사자</span>
-          </div>
-          <div className="yhw_purInfoTxtBottom">
-            <span className="yhw_purInfoStat">상태 등급: <b>{/* 상태 들어갈 부분 */}최상</b></span>
-            <span className="yhw_purInfoPrice">판매 입찰가: <b>{/* 가격 들어갈 부분 */}12,000원</b></span>
-=======
             <span className="yhw_purInfoSeller">판매자 {/* 판매자 들어갈 부분 */}아기사자</span>
           </div>
           <div className="yhw_purInfoTxtBottom">
@@ -28,7 +21,6 @@ const PurInfoBox = () => {
             <div className="yhw_purInfoPrice">
               <span>판매 입찰가</span><b>{/* 가격 들어갈 부분 */}12,000원</b>
             </div>
->>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
           </div>
         </div>
       </div>

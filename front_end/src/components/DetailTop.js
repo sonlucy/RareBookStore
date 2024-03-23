@@ -11,11 +11,7 @@ const DetailTop = () => {
           <div className="yhw_detailTopProdInfoTop">
             <b>{/* 도서명 받아올 부분 */}도서명</b>
             <span>{/* 저자 받아올 부분 */}저자</span>
-<<<<<<< HEAD
-            <span className="yhw_detailTopBuyer">구매자: {/* 구매자 받아올 부분 */}아기돌고래</span>
-=======
             <span className="yhw_detailTopBuyer">구매자 {/* 구매자 받아올 부분 */}아기돌고래</span>
->>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
           </div>
           <div className="yhw_detailTopProdInfoBottom">
             <span className="yhw_detailTopDeadline">입찰 마감 기한</span>
