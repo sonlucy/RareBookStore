@@ -1,0 +1,10 @@
+.yhw_defShippingInfoBox {
+  padding-left: 25px;
+}
+.yhw_defShippingInfoBox > span {
+  font-size: 14px;
+  font-weight: medium;
+  line-height: 20px;
+  display: block;
+  margin-bottom: 0;
+}

@@ -1,0 +1,89 @@
+.yhw_detailContsBox {
+  margin-top: 50px;
+  height: 210px;
+  border-bottom: 1px solid #E2E2E2;
+  display: flex;
+  justify-content: space-between;
+}
+/*.yhw_detailContsBox > div {   justify-content:space-between 하기 위해 왼쪽구역(이미지, 텍스트)과 오른쪽구역(버튼)을 나눔 
+  border: 2px solid red;
+}*/
+.yhw_detailContsLElts {
+  display: flex;
+  height: 160px;
+}
+.yhw_detailContsLElts img {
+  width: 120px;
+  height: 160px;
+  margin-right: 40px;
+}
+.yhw_detailContsLTxt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.yhw_detailContsLTop {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+.yhw_detailContsLTop span {
+<<<<<<< HEAD
+  font-size: 13px;
+  font-weight: bold;
+=======
+  font-size: 14px;
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
+}
+.yhw_detailContsSeller {
+  color: #C87E66;
+  margin-top: 10px;
+}
+.yhw_detailContsLBottom {
+  display: flex;
+  flex-direction: column;
+<<<<<<< HEAD
+  height: 70px;
+=======
+  height: 60px;
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
+}
+.yhw_detailContsState {
+  color: #828282;
+  line-height: 20px;
+<<<<<<< HEAD
+  font-size: 12px;
+=======
+  font-size: 13px;
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
+}
+.yhw_detailContsRBtns {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 160px;
+  margin-right: 20px;
+}
+.yhw_detailContsRBtns button {
+  font-size: 13px;
+  font-weight: 900;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.yhw_detailContsRBtns button:first-child {
+  background-color: #C87E66;
+  color: white;
+  margin-bottom: 10px;
+}
+.yhw_detailContsRBtns button:first-child:hover {
+  background-color: #ab705c;
+}
+.yhw_detailContsRBtns button:last-child {
+  background-color: #F4F4F4;
+  color: #000;
+}
+.yhw_detailContsRBtns button:last-child:hover {
+  background-color: #cbcbcb;
+}

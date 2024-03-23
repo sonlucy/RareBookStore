@@ -1,0 +1,34 @@
+.yhw_dateInquiryMarginAuto {
+  width: 100%;
+}
+.yhw_dateInquiryBox {
+  width: 350px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.yhw_dateInquiryInputs {
+  /* width: 260px; */
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.yhw_dateInquiryInputs > input {
+  width: 120px;
+  height: 100%;
+  border: 1px solid #D6D6D6;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.yhw_dateInquiryBox > button {
+  width: 70px;
+  height: 30px;
+  border: none;
+  font-size: 17px;
+  font-weight: medium;
+  background-color: #2D2D2D;
+  color: white;
+  padding-bottom: 4px;
+}

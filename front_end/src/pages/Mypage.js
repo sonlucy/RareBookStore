@@ -1,10 +1,15 @@
 import React from 'react';
 import '../styled/pageView.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import MypageSide from '../components/MypageSide';
-import PurchaseHistory from '../components/PurchaseHistory';
+import MainPurchaseHistory from '../components/MainPurchaseHistory';
 
 function MypageView() {
   return (
+    <>
+    <Header />
+
     <div className="cyj_content_area my-page-content">
       {/* 사이드바 넣는 곳 */}
        <div className="my-page-sidebar">
@@ -27,7 +32,7 @@ function MypageView() {
         </div>
         <div className="recent_purchase">
           {/* 전/입/진/종 컴포넌트 넣는 곳 */}
-          <PurchaseHistory />
+          <MainPurchaseHistory />
           <div>
             <div className="purchase_list all bid">
               <div>
@@ -44,7 +49,7 @@ function MypageView() {
         </div>
         <div className="recent_purchase">
           {/* 전/입/진/종 컴포넌트 넣는 곳 */}
-          <PurchaseHistory />
+          <MainPurchaseHistory />
           <div>
             <div className="purchase_list all ask">
               <div className="recent_purchase area">
@@ -56,6 +61,9 @@ function MypageView() {
         </div>
       </div>
     </div>
+    
+    <Footer />
+    </>
   );
 }
 

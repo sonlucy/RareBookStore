@@ -1,0 +1,23 @@
+.yhw_dropdownBox {
+  width: 100%;
+}
+.yhw_dropdownBox select {
+  display: inline-block;
+  margin: 30px 0 0 0;
+  width: 150px;
+  height: 30px;
+  color: #333;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid #D6D6D6;
+  border-radius: 7px;
+  user-select: none;  /* 사용자가 선택한 옵션을 선택할 수 없게 함 ?? */
+}
+.yhw_dropdownBox option {
+  padding: 30px;
+  background: #fff;
+  color: #333;
+  border: 1px solid #000;
+  transition: all 0.3s;
+}

@@ -1,0 +1,76 @@
+.yhw_signForm {
+  width: 100%;
+  height: 800px;
+}
+.yhw_signForm > h4 {
+  display: block;
+  width: 600px;
+  margin: 30px auto;
+  text-align: center;
+}
+.yhw_signInputBox {
+  width: 600px;
+  display: flex;
+  padding: 10px;
+  margin: 0 auto;
+  align-items: center;
+}
+.yhw_signInputTit {
+  text-align: right;
+  display: block;
+  width: 150px;
+  margin: 0 10px;
+  font-weight: bold;
+}
+.yhw_signInputBox > input {
+  display: block;
+  width: 245px;
+  height: 25px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+input.yhw_lastSignInput {   /* 나이 입력 input 태그 CSS */
+  display: block;
+  width: 50px;
+  margin-right: 10px;
+}
+.yhw_signGenderBtns {
+  display: flex;
+  width: 160px;
+}
+.yhw_signGenderBtns > button {
+  width: 80px;
+  height: 35px;
+  margin-right: 10px;
+  background-color: white;
+  border: lightgray 1px solid;
+  border-radius: 5px;
+}
+.yhw_signGenderBtns > button:hover {
+  background-color: lightgray;
+}
+.yhw_signUpBtnBox {   /* 회원가입 버튼 감싸는 div 태그 CSS */
+  text-align: center;
+  margin-top: 40px;
+}
+.yhw_signUpBtnBox > button {   /* 회원가입 button 태그 CSS */
+  width: 120px;
+  height: 40px;
+  background-color: #C87E66;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.yhw_dupCheckBtn {   /* 중복확인 button 태그 CSS */
+  width: 70px;
+  height: 35px;
+  background-color: #C87E66;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: medium;
+  margin-left: 5px;
+}
