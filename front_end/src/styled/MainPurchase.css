@@ -1,0 +1,46 @@
+.tab {
+    display: flex;
+  }
+  
+  .tab button {
+    flex: 1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tab button:hover {
+    background-color: gainsboro;
+  }
+  
+  .tab button:focus {
+    color: #AB705C;
+    font-weight: bold;
+  }
+  
+  .Purchase-table {
+    display: flex;
+  }
+  
+  .Purchase-row {
+    display: flex;
+    flex: 1;
+  }
+  
+  .Purchase-cell {
+    flex: 1;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .Purchase-cell:last-child {
+    border-right: none;
+  }
+  
+  .Purchase-cell.best {
+    font-weight: bold;
+  }
+  

@@ -1,0 +1,72 @@
+
+.sbk-PurchaseRequestContainer {
+  display: flex;
+  align-items: center;
+/*   max-width: 1200px; */
+/*   padding: 2vw; 
+  margin: 5rem auto; */
+    padding: 0 20vw;/*  */
+    
+  margin: 10vw 0;
+}
+
+.sbk-Title {
+ /*  margin: 3rem 8vw; */
+/*   font-size: 1.5rem; */
+font-size: 22px;
+  margin-right: 4rem;
+}
+
+
+
+.sbk-Button {
+  background-color: #C87E66;
+  color: white;
+/*   padding: 0.8rem 2rem; */
+width: 156px;
+height: 46px;
+display: flex;
+justify-content: center;
+align-items: center;
+  border: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+/*   font-size: 1rem; */
+font-size: 15px;
+  text-decoration: none;
+}
+
+.sbk-Button:hover {
+  background-color: #ab705c;
+}
+
+/* .sbk-Button:active {
+  background-color: #8e5e49;
+} */
+
+@media screen and (max-width: 768px) {
+  .sbk-Title {
+/*     font-size: 15px;
+    margin-right: 2rem; */
+    font-size: 17px;
+  }
+
+  .sbk-Button {
+    font-size: 10px;
+/*     padding: 0.5rem 1rem; */
+    width: 120px;
+    height: 28px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .sbk-Title {
+    margin-right: 0.9rem;
+    font-size: 0.7rem;
+  }
+
+/*   .sbk-Button {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.8rem;
+  } */
+}

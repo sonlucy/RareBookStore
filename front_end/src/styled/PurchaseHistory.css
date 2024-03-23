@@ -9,6 +9,7 @@
 .yhw_purHistMainCont {
   width: 80%;
   min-width: 350px;
+<<<<<<< HEAD
 }
 .yhw_purHistTopCont {
   width: 75%;
@@ -26,13 +27,46 @@
 }
 .yhw_purHistLists {
   width: 70%;
+=======
+  padding: 41px 0;
+}
+.yhw_purHistTopCont {
+  width: 100%;
+}
+.yhw_purHistTopCont > b {
+  font-size: 20px;
+  font-weight: 900;
+}
+.yhw_purHistContentsBox { /* 해당 날짜, 구매내역 리스트 감싸는 div 태그 CSS */
+  width: 85%;
+  margin: 0;
+  margin-left: 30px;
+}
+.yhw_purHistContentsDate {  /* 해당 날짜 span 태그 CSS */
+  font-size: 17px;
+  font-weight: 600;
+  margin-left: 30px;
+}
+.yhw_purHistLists {
+  width: 100%;
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
   min-width: 600px;
   list-style: none;
   padding: 0;
 }
+<<<<<<< HEAD
 .yhw_purHistLists li {
   display: flex;
   justify-content: space-between;
+=======
+.yhw_purHistLists > li {
+  padding-left: 30px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: #E2E2E2 1px solid;
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
 }
 .yhw_purHistBtns {
   width: 120px;
@@ -45,6 +79,10 @@
   color: white;
   border: none;
   border-radius: 5px;
+<<<<<<< HEAD
+=======
+  cursor: pointer;
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
   font-weight: bold;
   font-size: 15px;
   margin-bottom: 10px;

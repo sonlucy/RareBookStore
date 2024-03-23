@@ -1,0 +1,39 @@
+
+.sbk-footer-container {
+  background-color: #F0F0F0;
+  color: #000000;
+  text-align: center;
+  padding: 3rem 20vw;
+  padding-bottom: 7rem;
+/*   font-size: 1rem; */
+  font-size: 14px;
+}
+/* 
+@media screen and (max-width: 800px) {
+  .sbk-footer-container {
+    font-size: 0.7rem;
+    padding: 3rem 5vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .sbk-footer-container {
+    font-size: 0.5rem;
+    padding: 2rem 5vw;
+  }
+}
+ */
+.sbk-footer-text {
+  font-weight: bold;
+  display: flex;
+  align-items: flex-start;
+}
+
+
+.sbk-admin-link {
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 2.5vw;
+}

@@ -28,8 +28,12 @@
   width: 400px;
 }
 .yhw_detailContsLTop span {
+<<<<<<< HEAD
   font-size: 13px;
   font-weight: bold;
+=======
+  font-size: 14px;
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
 }
 .yhw_detailContsSeller {
   color: #C87E66;
@@ -38,12 +42,20 @@
 .yhw_detailContsLBottom {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   height: 70px;
+=======
+  height: 60px;
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
 }
 .yhw_detailContsState {
   color: #828282;
   line-height: 20px;
+<<<<<<< HEAD
   font-size: 12px;
+=======
+  font-size: 13px;
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
 }
 .yhw_detailContsRBtns {
   display: flex;

@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styled/SignUp.css";
+<<<<<<< HEAD
 // import Header from "./Header";
 // import Footer from "./Footer";
+=======
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
 
 const SignUpEasy = () => {
 
   return (
     <>
+<<<<<<< HEAD
       {/* <Header /> */}
+=======
+      <Header />
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
       <div className="yhw_container">
         <form className="yhw_signForm">
           <h4>환영합니다! 정보를 입력해주세요.</h4>
@@ -48,7 +57,11 @@ const SignUpEasy = () => {
         </form>
       </div>  {/* yhw_container 끝 */}
       
+<<<<<<< HEAD
       {/* <Footer /> */}
+=======
+      <Footer />
+>>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
     </>
   );
 };
