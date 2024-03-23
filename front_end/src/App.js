@@ -1,10 +1,10 @@
-import "./styled/App.css";
-import CategoryBookList from "./pages/CategoryBookLIst";
+import React from 'react';
 
 function App() {
-  return <div className="App">
-    <CategoryBookList />
-  </div>;
+  return (
+      <div className="App">
+      </div>
+  );
 }
 
 export default App;

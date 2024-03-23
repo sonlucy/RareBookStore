@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const CenteredContainer = styled.div`
     display: flex;
@@ -23,7 +25,7 @@ const LoginContainer = styled.div`
     align-items: center;
     width: 385px;
     height: 176px;
-    margin: 50px 0;
+    margin: 0;
 `;
 
 const LogoImage = styled.div`
@@ -79,26 +81,31 @@ const IdContainer = styled.div`
     background-color: #F2F8FF;
     border-radius: 10px;
 `;
+
 function SNSLogin(props) {
     return (
-        <CenteredContainer>
-            <SNSLoginContainer>
-                <LogoImage></LogoImage>
-                <LoginContainer>
-                    <KakaoContainer>
-                        <KakaoLogoImage />
-                        <span>카카오로 시작하기</span>
-                    </KakaoContainer>
-                    <GoogleContainer>
-                        <GoogleLogoImage />
-                        <span>구글로 시작하기</span>
-                    </GoogleContainer>
-                    <IdContainer>
-                        <span>아이디/비밀번호</span>
-                    </IdContainer>
-                </LoginContainer>
-            </SNSLoginContainer>
-        </CenteredContainer>
+        <div>
+            <Header />
+            <CenteredContainer>
+                <SNSLoginContainer>
+                    <LogoImage></LogoImage>
+                    <LoginContainer>
+                        <KakaoContainer>
+                            <KakaoLogoImage />
+                            <span>카카오로 시작하기</span>
+                        </KakaoContainer>
+                        <GoogleContainer>
+                            <GoogleLogoImage />
+                            <span>구글로 시작하기</span>
+                        </GoogleContainer>
+                        <IdContainer>
+                            <span>아이디/비밀번호</span>
+                        </IdContainer>
+                    </LoginContainer>
+                </SNSLoginContainer>
+            </CenteredContainer>
+            <Footer />
+        </div>
     );
 }
 
