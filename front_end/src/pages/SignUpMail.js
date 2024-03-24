@@ -3,21 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styled/SignUp.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import useSignUp from "../hooks/api/useSignUp";
 
 const SignUpMail = () => {
-  // ========================== backend ==================================//
-  const [userData, setUserData] = useState({
-    userid: "",
-    userpwd: "",
-    email: "",
-    nickname: "",
-    age: "",
-    gender: "",
-    contact: "",
-    grade: "",
-    point: "",
-  });
-  const navigate = useNavigate();
+  // 커스텀 훅스
+  const { userData, setUserData, signupCheck } = useSignUp();
 
   const submitBtn = async (event) => {
     event.preventDefault(); // Prevent default form submission
@@ -30,35 +20,7 @@ const SignUpMail = () => {
       alert("아이디, 비밀번호, 이메일, 닉네임을 입력해주세요");
       return;
     }
-    try {
-      const res = await fetch("/api/signup", {
-        method: "POST",
-        body: JSON.stringify(userData),
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await res.json();
-
-      alert(data);
-      if (res.status === 200) {
-        navigate("/IDPWLogin");
-      } else {
-        setUserData({
-          userid: "",
-          userpwd: "",
-          email: "",
-          nickname: "",
-          age: "",
-          gender: "",
-          contact: "",
-          grade: "",
-          point: "",
-        });
-        return;
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    signupCheck();
   };
 
   const handleChange = (e) => {
@@ -95,11 +57,7 @@ const SignUpMail = () => {
           </div>
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">비밀번호 확인</span>
-            <input
-              type="password"
-              placeholder="비밀번호 확인"
-              required
-            />
+            <input type="password" placeholder="비밀번호 확인" required />
           </div>
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">이메일</span>
@@ -115,13 +73,14 @@ const SignUpMail = () => {
             <span className="yhw_signInputTit">닉네임</span>
             <input
               type="text"
+              name="nickname"
               placeholder="닉네임"
               value={userData.nickname}
               onChange={handleChange}
             />
             <button className="yhw_dupCheckBtn">중복확인</button>
           </div>
-          <div>
+          <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">나이</span>
             <input
               className="yhw_lastSignInput"
@@ -134,13 +93,15 @@ const SignUpMail = () => {
           </div>
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">성별</span>
-              <div className="yhw_signGenderBtns">
-                <button>남자</button>
-                <button>여자</button>
-              </div>
+            <div className="yhw_signGenderBtns">
+              <button>남자</button>
+              <button>여자</button>
+            </div>
           </div>
           <div className="yhw_signUpBtnBox">
-            <button type="submit">회원가입</button>
+            <button type="submit" onClick={submitBtn}>
+              회원가입
+            </button>
           </div>
         </form>
       </div>
