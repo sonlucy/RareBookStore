@@ -1,12 +1,12 @@
 //db.js
-const mysql = require("mysql");
 
+const mysql = require("mysql");
+require("dotenv").config();
 const conn = mysql.createConnection({
-  host: "localhost",
-  // port: "3306",
-  user: "root",
-  password: "1234",
-  database: "bookDB",
+  host: process.env.REACT_APP_HOST,
+  user: process.env.REACT_APP_USER,
+  password: process.env.REACT_APP_PASSWORD,
+  database: process.env.REACT_APP_DATABASE,
 });
 
 conn.connect((err) => {
