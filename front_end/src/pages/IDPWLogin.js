@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 // import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100vh;
 `;
 
 const H2 = styled.h2`
   margin-bottom: 52px;
+  text-align: center;
 `;
 const LoginForm = styled.form`
   display: flex;
@@ -23,6 +26,7 @@ const LoginForm = styled.form`
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
+  margin-top: 200px;
 `;
 
 const FormGroup = styled.div`
@@ -118,6 +122,8 @@ const IDPWLogin = () => {
   };
 
   return (
+    <>
+    <Header />
     <Container>
       <LoginForm onSubmit={handleLogin}>
         <H2>로그인</H2>
@@ -148,6 +154,8 @@ const IDPWLogin = () => {
                 </AdditionalLinks> */}
       </LoginForm>
     </Container>
+    <Footer />
+    </>
   );
 };
 
