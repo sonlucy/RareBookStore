@@ -62,7 +62,7 @@ const Header = () => {
             </dt>
             <dt>
               <NavLink
-                to="/login"
+                to="/SNSLogin"
                 className="sbk-menu-item"
                 activeClassName="active"
                 onClick={handleItemClick}
