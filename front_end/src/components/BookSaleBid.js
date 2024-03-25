@@ -142,7 +142,7 @@ function BookSaleBid(props) {
                         </HopePrice>
                         <HopePrice>
                             <Label>판매 입찰 주의사항</Label>
-                            <p>선택한 도서의 결함 상태에 따라 도서 상태 등급이 정해집니다.<br />도서 상태 등급은 판매 입찰 후마이페이지 > 판매하기 > 현황보기에서 확인하실 수 있습니다.<br />구매 희망자가 설정한 입찰 마감 기한 내에 구매가 이루어지지 않으면 옥션은 기각됩니다.</p>
+                            <p>선택한 도서의 결함 상태에 따라 도서 상태 등급이 정해집니다.<br />도서 상태 등급은 판매 입찰 후마이페이지 &gt; 판매하기 &gt; 현황보기에서 확인하실 수 있습니다.<br />구매 희망자가 설정한 입찰 마감 기한 내에 구매가 이루어지지 않으면 옥션은 기각됩니다.</p>
                         </HopePrice>
                         <AgreeContainer>
                             <input type="checkbox" id="agreeTerms" checked={agreedToTerms} onChange={handleAgree} />
