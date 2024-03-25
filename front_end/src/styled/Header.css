@@ -1,8 +1,8 @@
 
 .sbk-header-wrapper {
-  /* padding: 2rem 7vw; */
-  padding: 0.5rem 3rem;
-  margin: 0 20rem;
+  padding: 2rem 7vw;
+/*   padding: 0.5rem 3rem; */
+/*   margin: 0 10vw; */
   padding-bottom: 0.2vw;
   /* padding-left: 10vw; */
 }
@@ -26,8 +26,7 @@
 }
 
 .sbk-li-container {
-/*   font-size: 0.9rem; */
-  font-size: 14px;
+  font-size: 0.875rem; /* 14px */
   display: flex;
   justify-content: flex-end;
   /*margin-right: 10vw;   */
@@ -64,30 +63,10 @@
   font-weight: bold;
 }
 
-/* @media screen and (max-width: 768px) {
-  .sbk-li-container {
-    font-size: 0.7rem;
-
-  }
-
-} */
-
-/* @media screen and (max-width: 425px) {
-  .sbk-li-container dl {
-    display: block;
-    margin-block-start: -0.7rem;
-    margin-block-end: 5vw;
-  }
-
-  .sbk-li-container dt {
-    float: left;
-    margin-right: 0.7rem;
-  }
-} */
 
 .sbk-nav-container {
-/*   font-size: 1.2rem; */
-  font-size: 16px;
+  font-size: 1rem;
+/*   font-size: 16px; */
   text-align: left;
   margin-left: 0;
 }
@@ -119,11 +98,7 @@
   font-weight: bold;
 }
 
-/* @media screen and (max-width: 768px) {
-  .sbk-nav-container a {
-    font-size: 0.9rem;
-  }
-} */
+
 
 .sbk-search-container {
   display: flex;
@@ -135,43 +110,38 @@
 }
 
 .sbk-search-input {
-/*   width: 40vw;
-  min-width: 10rem; */
-  width: 28vw;
+  width: 30vw;
+  min-width: 10rem;
+/*   width: 28vw; */
   height: 35px;
   border: none;
   outline: none;
-  font-size: 16px;
+  font-size: 1rem;
 }
-/* 
+
 @media screen and (max-width: 621px) {
   .sbk-search-input {
-    width: 60vw;
+    width: 55vw;
   }
 }
 
 @media screen and (max-width: 425px) {
   .sbk-search-input {
-    width: 15rem;
+    width: 13rem;
   }
 }
 
 @media screen and (max-width: 375px) {
   .sbk-search-input {
-    width: 12rem;
+    width: 10rem;
   }
 }
 
-@media screen and (max-width: 320px) {
-  .sbk-search-input {
-    width: 10rem;
-  }
-} */
 
 .sbk-search-icon {
   color: #BC6F37;
   margin-right: 0.5rem;
-  margin-left: 10px;
+/*   margin-left: 10px; */
 }
 
 .sbk-search-button {
@@ -181,10 +151,75 @@
   border-radius: 8px;
   padding: 0.8rem 1rem;
   cursor: pointer;
+  font-size: 0.8rem;
 }
 .sbk-header-hr {
   margin: 0;
   border-width: 1px 0 0 0;
   border-style: solid;
   border-color: #E2E2E2;
+}
+
+
+@media screen and (min-width: 1440px) {
+  .sbk-header-wrapper {
+    padding-left: 20vw;
+    padding-right: 20vw;
+  }
+}
+@media screen and (max-width: 768px) {
+  .sbk-li-container {
+    font-size: 0.7rem;
+
+  }
+
+  .sbk-nav-container {
+    font-size: 0.9rem;
+  }
+
+  .sbk-search-input {
+    font-size: 0.9rem;
+  }
+
+  .sbk-nav-container a {
+    font-size: 0.9rem;
+  }
+  .sbk-search-input {
+    font-size: 0.9rem;
+  }
+  .sbk-search-button {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .sbk-li-container dl {
+    display: block;
+    margin-block-start: -0.7rem;
+    margin-block-end: 5vw;
+  }
+
+  .sbk-li-container dt {
+    float: left;
+    margin-right: 0.7rem;
+  }
+
+    .sbk-nav-container {
+      font-size: 0.7rem;
+    }
+
+    .sbk-search-input {
+      font-size: 0.7rem;
+    }
+
+    .sbk-nav-container a {
+      font-size: 0.7rem;
+    }
+
+      .sbk-search-input {
+    font-size: 0.7rem;
+  }
+    .sbk-search-button {
+    font-size: 0.6rem;
+  }
 }
