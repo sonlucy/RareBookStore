@@ -1,9 +1,20 @@
 
 .sbk-container {
-  margin: 0 auto;
-  padding: 2vw;
-  max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2vw;
+  width: 70%;
+}
+.sbk-purchase-request-form-title {
+    margin: 0 auto;
+    /*   max-width: 1200px; */
+}
+.sbk-purchase-request-form-title h1 {
+  font-size: 1.125rem; /* 18px */
+}
 
+.sbk-purchase-request-form-hr {
+  border-width: 1px 0 0 0;
+  border-style: solid;
 }
 
 .sbk-purchase-request-form {
@@ -11,7 +22,8 @@
   flex-direction: column;
   align-items: left;
   padding: 1rem; /*  */
-  
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .sbk-form-item {
