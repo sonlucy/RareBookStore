@@ -1,4 +1,4 @@
-// 기본 배송지 정보
+// 기본 배송지 정보 테스트 데이터
 export const defShippingData = {
   name: '홍길동',
   phone: '010-1234-5678',
