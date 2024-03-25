@@ -1,12 +1,13 @@
-
-.App {
+/* .App {
   text-align: center;
-}
-.yhw_container { /* 유혜원 공통 CSS */
+} */
+.yhw_container {
+  /* 유혜원 공통 CSS */
   width: 60%;
   min-width: 600px;
   margin: 0 auto;
   box-sizing: border-box;
   align-items: center;
   padding-top: 40px;
+  padding-bottom: 200px;
 }

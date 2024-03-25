@@ -1,0 +1,25 @@
+.yhw_detailCont {
+  width: 90%;
+  margin: 0 auto;
+}
+.yhw_detailTopBox {
+  width: 80%;
+  margin: 0 auto;
+}
+.yhw_detailTopNav a { /* 상품 상세페이지 상단 네비게이션 Link 태그 CSS */
+  text-decoration: none;
+}
+.yhw_detailTopNav span {
+  font-size: 13px;
+  color: black;
+  line-height: 25px;
+}
+.yhw_deailStatCatBox {
+  width: 100%;
+  margin: 0 auto;
+}
+.yhw_detailMainBox {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}

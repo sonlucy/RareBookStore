@@ -1,0 +1,38 @@
+.yhw_stateCatBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  border-bottom: 1px solid #bbb;
+}
+.yhw_stateBox {
+  width: 33%;
+  padding: 10px;
+}
+.yhw_stateWrap {  /* 상품개수와 상태 근처만 클릭되게 하기 위해 감싸는 div 태그 CSS */
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  width: 50px;
+  cursor: pointer;
+}
+.yhw_stateCount {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 2px;
+}
+.yhw_state {
+  font-size: 12px;
+  font-weight: medium;
+  color: #A1A1A1;
+}
+.yhw_stateCountColorChange {  /* 선택된 StateCategory의 개수(count) CSS를 변경 */
+  color: #C87E66;
+}
+.yhw_stateColorChange {  /* 선택된 StateCategory의 상태(state) CSS를 변경 */
+  /* font-size: 14px; */
+  font-weight: bolder;
+  color: black;
+}
