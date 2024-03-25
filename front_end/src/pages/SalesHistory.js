@@ -1,10 +1,11 @@
 
 
-import { BrowserRouter as Router } from 'react-router-dom';
+/* import { BrowserRouter as Router } from 'react-router-dom'; */
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PurchaseReqForm from '../components/PurchaseReqForm';
 import SalesHistoryList from '../components/SalesHistoryList';
+import MyPageSide from '../components/MypageSide';
 
 const purchaseRequests = [
   {
@@ -31,17 +32,15 @@ const purchaseRequests = [
 function SalesHistory() {
   return (
     <div className="App">
-      <Router>
+
         <Header />
 
-
+        <MyPageSide />
 
         <SalesHistoryList requests={purchaseRequests} /> 
 
-        <br /><br />
-
         <Footer />
-      </Router>
+
     </div>
   );
 }
