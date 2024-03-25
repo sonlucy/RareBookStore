@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styled/DestForm.css";
-import { defShippingData } from "../testData/defShippingData";  // TestData 폴더에 저장된 기본 배송지 정보를 가져옴
+import { defShippingData } from "../asset/defShippingData";  // TestData 폴더에 저장된 기본 배송지 정보를 가져옴
 
 const DestForm = ({ isChecked }) => { // 페이지파일(= Purchase.js)에 있는 isChecked를 props로 받아옴
   const [name, setName] = useState('');

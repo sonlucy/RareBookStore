@@ -8,7 +8,7 @@ import StateCategory from "../components/StateCategory";
 import DropDownSort from "../components/DropDownSort";
 import DetailConts from "../components/DetailConts";
 import Footer from "../components/Footer";
-import { productInfosData } from "../testData/productInfosData";
+import { productInfosData } from "../asset/productInfosData";
 
 const BuyDetail = () => {
   const [selectedState, setSelectedState] = useState('최상'); // 초기 선택된 상태 설정

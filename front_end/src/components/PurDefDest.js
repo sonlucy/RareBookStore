@@ -1,6 +1,6 @@
 import React from "react";
 import "../styled/PurDefDest.css";
-import { defShippingData } from "../testData/defShippingData";  // TestData 폴더에 저장된 기본 배송지 정보를 가져옴
+import { defShippingData } from "../asset/defShippingData";  // TestData 폴더에 저장된 기본 배송지 정보를 가져옴
 
 const PurDefDest = () => {
   // 이름을 성과 이름으로 분리하여 성만 출력하고, 이름은 **로 대체하여 반환하는 함수
