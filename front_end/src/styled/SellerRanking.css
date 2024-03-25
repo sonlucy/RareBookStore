@@ -10,11 +10,14 @@
   margin-bottom: 7rem;
 }
 
-/* .sbk-seller-info-container{
-  display: flex;
+.jyh-sellerRank-Container {
+  padding: 0;
 }
 
-.jyh-sellerRank-container {
-  display: flex;
-} */
+.jyh-seller-info-container {
+  /* max-width: 1000px; */
+  padding: 0;
+  width: 700px;
+  /* margin: 0 auto; */
+}
 

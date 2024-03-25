@@ -4,7 +4,7 @@ import '../styled/SellerRanking.css'
 
 function SellerRanking({ sellerInfoList }) {
   return (
-      <div className="sbk-seller-info-container">
+      <div className="jyh-seller-info-container">
         {sellerInfoList.map((sellerInfo, index) => (
           <div key={index} className="sbk-seller-info">
             <div className='jyh-seller-info'>

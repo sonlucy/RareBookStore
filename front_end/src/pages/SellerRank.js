@@ -2,6 +2,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styled/PurchaseHistory.css";
+import "../styled/SellerRanking.css"
 import SellerRanking from "../components/SellerRanking";
 import MyPageSide from "../components/MypageSide";
 
@@ -50,9 +51,10 @@ function SellerRank() {
           <div className="yhw_MypageSideAdd">
             <MyPageSide />
           </div>
-          <div className="yhw_purHistMainCont">
+          <div className="jyh-sellerRank-Container">
+          {/* <div className="yhw_purHistMainCont"> */}
             <SellerRanking sellerInfoList={sellerInfoListWithGrade} />
-          </div>
+          {/* </div> */}</div>
         </div>
       </div>
 
