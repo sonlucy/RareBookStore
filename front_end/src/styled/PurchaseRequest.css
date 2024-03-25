@@ -32,7 +32,7 @@ align-items: center;
   border-radius: 4px;
   cursor: pointer;
 /*   font-size: 1rem; */
-font-size: 15px;
+font-size: 0.9375rem; /* 15px; */
   text-decoration: none;
 }
 
@@ -48,25 +48,25 @@ font-size: 15px;
   .sbk-Title {
 /*     font-size: 15px;
     margin-right: 2rem; */
-    font-size: 17px;
+    font-size: 1rem;
   }
 
   .sbk-Button {
-    font-size: 10px;
+    font-size: 0.7rem;
 /*     padding: 0.5rem 1rem; */
     width: 120px;
-    height: 28px;
+    height: 30px;
   }
 }
 
 @media screen and (max-width: 425px) {
   .sbk-Title {
     margin-right: 0.9rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
-/*   .sbk-Button {
+  .sbk-Button {
     font-size: 0.6rem;
-    padding: 0.3rem 0.8rem;
-  } */
+/*     padding: 0.3rem 0.8rem; */
+  }
 }

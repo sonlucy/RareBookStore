@@ -12,8 +12,13 @@
 } */
 .sbk-book-image {
   width: 170px;
+/*   height: auto; */
   border-radius: 8px;
   margin: 1vw;
+
+  max-width: 170px; 
+/*   max-height: 250px; */
+  margin: 1.5vw 2vw;
 }
 
 .sbk-text-container {
@@ -23,15 +28,13 @@
 }
 
 .sbk-book-title {
-/*   font-size: 1.4rem; */
-  font-size: 20px;
+  font-size: 1.25rem; /* 20px; */
   margin-top: 0px;
 }
 
 .sbk-book-info {
-/*   font-size: 0.9rem; */
-font-size: 15px;
-  margin-top: 10px;
+font-size: 0.9375rem;  /* 15px */
+/*   margin-top: 10px; */
 }
 
 /* .sbk-book-state {
@@ -50,7 +53,7 @@ font-size: 15px;
   margin-top: 1rem;
   font-weight: bold;
 /*   font-size: 1.2rem; */
-  font-size: 15px;
+  font-size: 0.9375rem; 
   width: 10rem;
   height: 3.5rem;
 }
@@ -74,16 +77,17 @@ background-color: #ab705c;
   right: 3vw;
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  margin: 1vw;
 
 }
 .sbk-main-container {
-  margin-bottom: 4.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 5rem;
 }
 
 .sbk-book-status {
   /*   text-align: left; */
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: bold;
 }
 
@@ -103,7 +107,7 @@ background-color: #ab705c;
 }
 @media screen and (max-width: 768px) {
   .sbk-book-image {
-    width: 100px;
+    width: 120px;
   }
 
   .sbk-text-container {
@@ -111,11 +115,11 @@ background-color: #ab705c;
   }
 
   .sbk-book-title {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .sbk-book-info {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
 
 /*   .sbk-button-container {
@@ -125,20 +129,31 @@ background-color: #ab705c;
   .sbk-status-button,
   .sbk-cancel-button {
     padding: 0.25rem 0.5rem;
-    font-size: 10px;
+    font-size: 0.625rem;
     width: 7rem;
     height: 2.5rem;
     margin-top: 0.5rem;
   }
 
   .sbk-book-status {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
+
+  .sbk-book-status-dd {
+    margin-inline-start: 6rem;
+    width: 70px;
+  }
+
+  .sbk-main-container {
+    margin-top: 1vw;
+    margin-bottom: 10vw;
+  }
+  
 }
 
 @media screen and (max-width: 425px) {
   .sbk-book-image {
-    width: 80px;
+    width: 90px;
   }
 
   .sbk-text-container {
@@ -146,22 +161,30 @@ background-color: #ab705c;
   }
 
   .sbk-book-title {
-    font-size: 15px;
+    font-size: 0.8rem;
   }
 
   .sbk-book-info {
-    font-size: 8px;
+    font-size: 0.5rem;
   }
 
   .sbk-status-button,
   .sbk-cancel-button {
     
-font-size: 8px;
-    width: 4rem;
-    height: 1.2rem;
+    font-size: 0.5rem;
+    width: 4.5rem;
+    height: 1.5rem;
     margin-top: 0.25rem;
 
   }
 
+  .sbk-book-status-dd {
+    margin-inline-start: 5rem;
+  }
 
+  .sbk-book-status-dl {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 0.5rem;
+}
 }
