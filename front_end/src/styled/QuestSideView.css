@@ -1,0 +1,41 @@
+.cyj_qna_area {
+    padding: 20px;
+  }
+  
+  .snb_main_title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .snb_list {
+    margin-bottom: 30px;
+  }
+  
+  .snb_title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .snb_menu {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .menu_item {
+    margin-bottom: 10px;
+  }
+  
+  .menu_link {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+  }
+  
+  .menu_link:hover {
+    color: #AB705C;
+  }
+
+  .menu_link:focus {
+    color: #AB705C;
+  }
