@@ -1,0 +1,20 @@
+.jyh-seller-info-label {
+/*   font-size: 1.2rem; */
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  padding-left: 2rem;
+}
+
+.sbk-seller-info-grade, .sbk-seller-info-reviews {
+  margin-bottom: 7rem;
+}
+
+/* .sbk-seller-info-container{
+  display: flex;
+}
+
+.jyh-sellerRank-container {
+  display: flex;
+} */
+
