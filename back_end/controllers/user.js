@@ -2,20 +2,26 @@
 const bcrypt = require("bcrypt");
 const userDB = require("../models/userDB");
 
+// 텍스트 값을 hash로 변환
 const textToHash = async (text) => {
-  // 텍스트 값을 hash로 변환
+  // 해시 생성에 사용될 saltRounds 값을 정의
   const saltRounds = 10;
 
   try {
+    // bcrypt 모듈을 사용하여 텍스트를 해시로 변환
     const hash = await bcrypt.hash(text, saltRounds);
+    // 생성된 해시를 반환
     return hash;
   } catch (err) {
+    // 오류가 발생하면 콘솔에 오류를 기록하고 오류를 반환
     console.error(err);
     return err;
   }
 };
 
+// 사용자 가입을 처리하는 함수
 exports.signup = async (req, res) => {
+  // 요청에서 필요한 사용자 정보를 추출
   const {
     userid,
     userpwd,
@@ -29,13 +35,16 @@ exports.signup = async (req, res) => {
   } = req.body;
 
   try {
+    // 이미 해당 사용자 ID로 가입된 사용자가 있는지 확인
     const getUser = await userDB.getUser(userid);
     if (getUser.length) {
+      // 사용자가 이미 존재하는 경우 401 상태 코드와 메시지를 반환
       res.status(401).json("이미 존재하는 아이디입니다.");
       return;
     }
-
+    // 사용자 비밀번호를 해시로 변환
     const hash = await textToHash(userpwd);
+    // 사용자 정보를 DB에 추가
     const signUp = await userDB.signUp([
       userid,
       hash,
@@ -47,66 +56,11 @@ exports.signup = async (req, res) => {
       grade,
       point,
     ]);
+    // 가입이 성공적으로 완료되면 200 상태 코드와 성공 메시지를 반환
     res.status(200).json("가입 성공");
   } catch (err) {
+    // 오류가 발생하면 콘솔에 오류를 기록하고 500 상태 코드와 오류를 반환
     console.error(err);
     res.status(500).json(err);
   }
-};
-
-const hashCompare = async (inputValue, hash) => {
-  try {
-    const isMatch = await bcrypt.compare(inputValue, hash);
-    if (isMatch) return true;
-    else return false;
-  } catch (err) {
-    console.error(err);
-    return err;
-  }
-};
-
-exports.loginCheck = async (req, res) => {
-  const { userid, userpwd } = req.body;
-
-  try {
-    const getUser = await userDB.getUser(userid);
-    if (!getUser.length) {
-      res.status(401).json("존재하지 않는 아이디입니다.");
-      return;
-    }
-
-    const blobToStr = Buffer.from(getUser[0].userpwd).toString();
-    const isMatch = await hashCompare(userpwd, blobToStr);
-
-    if (!isMatch) {
-      res.status(401).json("비밀번호가 일치하지 않습니다.");
-      return;
-    }
-    // 로그인 성공 시 세션에 사용자 정보 저장
-    req.session.userid = userid;
-    req.session.user = getUser[0]; // 필요한 경우 사용자 정보의 일부만 저장 가능
-    res.status(200).json("로그인 성공");
-  } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
-  }
-};
-
-exports.logout = (req, res) => {
-  // 세션에서 사용자 정보 삭제
-  req.session.destroy((err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json("로그아웃 실패");
-      return;
-    }
-    res.clearCookie("connect.sid"); // 세션 쿠키 삭제 (이름)
-
-    // 모든 쿠키의 값을 "0"으로 변경
-    // const cookies = req.cookies;
-    // for (const cookieName in cookies) {
-    //   res.cookie(cookieName, "0", { maxAge: 0 });
-    // }
-    res.status(200).json("로그아웃 성공");
-  });
 };

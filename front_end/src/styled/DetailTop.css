@@ -21,24 +21,15 @@
   font-size: 23px;
   margin-bottom: 5px;
 }
-<<<<<<< HEAD
-.yhw_detailTopProdInfoTxt span {
-  font-size: 15px;
-  font-weight: bold;
-=======
 .yhw_detailTopProdInfoTxt > span {
   font-size: 15px;
->>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
 }
 .yhw_detailTopProdInfoTop {
   display: flex;
   flex-direction: column;
 }
 .yhw_detailTopBuyer {
-<<<<<<< HEAD
-=======
   font-size: 14px;
->>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
   color: #C87E66;
   margin-top: 20px;
 }
@@ -47,13 +38,6 @@
   flex-direction: column;
   margin-bottom: 20px;
 }
-<<<<<<< HEAD
-/* .yhw_detailTopProdInfoBottom span {
-  font-size: 13px;
-} */
-.yhw_detailTopDeadline {
-  color: #EB217C;  
-=======
 .yhw_detailTopDeadline {
   font-size: 14px;
   color: #EB217C;
@@ -61,5 +45,4 @@
 .yhw_detailTopDate {
   font-size: 15px;
   font-weight: medium;
->>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
 }

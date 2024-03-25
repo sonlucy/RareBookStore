@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const CenteredContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 800px;
 `;
 
 const SNSLoginContainer = styled.div`
@@ -14,6 +18,7 @@ const SNSLoginContainer = styled.div`
     align-items: center;
     width: 650px;
     height: 450px;
+    margin-bottom: 200px;
 `;
 
 const LoginContainer = styled.div`
@@ -23,14 +28,14 @@ const LoginContainer = styled.div`
     align-items: center;
     width: 385px;
     height: 176px;
-    margin: 50px 0;
+    margin: 0;
 `;
 
 const LogoImage = styled.div`
     width: 165px;
     height: 42px;
     background-image: url('/Logo.png');
-    margin: auto;
+    margin: 50px;
 `;
 
 const KakaoLogoImage = styled.div`
@@ -70,7 +75,7 @@ const GoogleContainer = styled.div`
     border-radius: 10px;
 `;
 
-const IdContainer = styled.div`
+const IdContainer = styled(NavLink)`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,27 +83,34 @@ const IdContainer = styled.div`
     height: 52px;
     background-color: #F2F8FF;
     border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
 `;
+
 function SNSLogin(props) {
     return (
-        <CenteredContainer>
-            <SNSLoginContainer>
-                <LogoImage></LogoImage>
-                <LoginContainer>
-                    <KakaoContainer>
-                        <KakaoLogoImage />
-                        <span>카카오로 시작하기</span>
-                    </KakaoContainer>
-                    <GoogleContainer>
-                        <GoogleLogoImage />
-                        <span>구글로 시작하기</span>
-                    </GoogleContainer>
-                    <IdContainer>
-                        <span>아이디/비밀번호</span>
-                    </IdContainer>
-                </LoginContainer>
-            </SNSLoginContainer>
-        </CenteredContainer>
+        <div>
+            <Header />
+            <CenteredContainer>
+                <SNSLoginContainer>
+                    <LogoImage></LogoImage>
+                    <LoginContainer>
+                        <KakaoContainer>
+                            <KakaoLogoImage />
+                            <span>카카오로 시작하기</span>
+                        </KakaoContainer>
+                        <GoogleContainer>
+                            <GoogleLogoImage />
+                            <span>구글로 시작하기</span>
+                        </GoogleContainer>
+                        <IdContainer to="/IDPWLogin">
+                            <span>아이디/비밀번호</span>
+                        </IdContainer>
+                    </LoginContainer>
+                </SNSLoginContainer>
+            </CenteredContainer>
+            <Footer />
+        </div>
     );
 }
 

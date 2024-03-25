@@ -1,9 +1,5 @@
 .yhw_purInfoBox {
   display: flex;
-<<<<<<< HEAD
-  margin-bottom: 20px;
-=======
->>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
 }
 .yhw_purInfoBox > a {
   display: block;
@@ -26,10 +22,7 @@
 }
 .yhw_purInfoTxtTop > b {
   font-size: 20px;
-<<<<<<< HEAD
-=======
   margin-bottom: 3px;
->>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
 }
 .yhw_purInfoTxtTop > span {
   font-size: 15px;
@@ -45,11 +38,6 @@
   display: flex;
   flex-direction: column;
 }
-<<<<<<< HEAD
-.yhw_purInfoTxtBottom > span {
-  font-size: 15px;
-  line-height: 21px;
-=======
 .yhw_purInfoTxtBottom > div {
   display: flex;
 }
@@ -66,5 +54,4 @@
 }
 .yhw_purInfoStat {
   margin-bottom: 2px;
->>>>>>> 653a7cd12dcc891b2bd7fbca801f3a95682d62ef
 }
