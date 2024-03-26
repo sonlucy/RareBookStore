@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styled/BookStateCategory.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -13,6 +13,11 @@ import { buyerBookData } from '../assets/buyerBook';
 function RegRequest() {
   const [selectedTab, setSelectedTab] = useState('진행중');
   const [filteredRequests, setFilteredRequests] = useState([]);
+
+  useEffect(() => {
+    setSelectedTab('진행중');
+    filterRequests('진행중');
+  }, []); 
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
@@ -45,7 +50,10 @@ function RegRequest() {
           <div className='sbk-purchase-request-form-title'>
             <h1>구매 희망 도서 신청내역</h1>
           </div>
-          <BookSell onSelect={handleTabChange} />
+          <BookSell onSelect={handleTabChange} requests={buyerBookData} />{/*  */}
+          <div className='sbk-purchase-request-form-title'>
+            <h3 className='sbk-purchase-request-form-item-quantity'>상품 전체 &nbsp;{filteredRequests.length}</h3>
+          </div>
           {selectedTab === '진행중' && <PurchaseReqListOngoing requests={filteredRequests} />}
           {selectedTab !== '진행중' && <PurchaseReqListEnd requests={filteredRequests} />}
         </div>

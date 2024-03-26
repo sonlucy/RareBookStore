@@ -11,11 +11,13 @@
   padding: 1rem;
 } */
 .sbk-book-image {
-  width: 170px;
+/*   width: 170px; */
 /*   height: auto; */
   border-radius: 8px;
   margin: 1vw;
 
+  width: 127px;
+  height: 187px;
   max-width: 170px; 
 /*   max-height: 250px; */
   margin: 1.5vw 2vw;
@@ -29,12 +31,12 @@
 
 .sbk-book-title {
   font-size: 1.25rem; /* 20px; */
-  margin-top: 0px;
+  margin: 0;
 }
 
 .sbk-book-info {
 font-size: 0.9375rem;  /* 15px */
-/*   margin-top: 10px; */
+margin-top: 0.5rem;
 }
 
 /* .sbk-book-state {
@@ -54,8 +56,8 @@ font-size: 0.9375rem;  /* 15px */
   font-weight: bold;
 /*   font-size: 1.2rem; */
   font-size: 0.9375rem; 
-  width: 10rem;
-  height: 3.5rem;
+  width: 9.75rem; /* 156px; */
+  height: 2.875rem; /* 46px; */
 }
 
 .sbk-status-button:hover {
@@ -81,8 +83,7 @@ background-color: #ab705c;
 
 }
 .sbk-main-container {
-  margin-top: 0.5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 2.5rem;
 }
 
 .sbk-book-status {
@@ -93,6 +94,7 @@ background-color: #ab705c;
 
 .sbk-book-status-dl {
   display: block;
+  margin: 0.3rem 0;
 }
 
 .sbk-book-status-dt {
@@ -106,9 +108,9 @@ background-color: #ab705c;
   width: 100px;
 }
 @media screen and (max-width: 768px) {
-  .sbk-book-image {
+/*   .sbk-book-image {
     width: 120px;
-  }
+  } */
 
   .sbk-text-container {
     width: 7rem;
@@ -153,7 +155,8 @@ background-color: #ab705c;
 
 @media screen and (max-width: 425px) {
   .sbk-book-image {
-    width: 90px;
+    width: 80px;
+    height: 130px;
   }
 
   .sbk-text-container {
