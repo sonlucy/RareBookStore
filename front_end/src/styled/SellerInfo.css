@@ -2,7 +2,6 @@
   max-width: 1000px;
   padding: 4vw 10vw;
   margin: 0 auto;
-  /* 수평 가운데 정렬을 위한 마진 설정 */
   text-align: left;
 }
 .sbk-seller-info-container * {
@@ -14,13 +13,11 @@
 }
 
 .sbk-seller-info-heading h1 {
-/*   font-size: 2rem; */
-font-size: 22px;
+font-size: 1.375rem; /* 22px; */
   margin-bottom: 2rem;
 }
 .sbk-seller-info-heading h2 {
-/*   font-size: 1.7rem; */
-font-size: 22px;
+font-size: 1.375rem; /* 22px; */
   color: #C87E66;
 }
 
@@ -31,8 +28,7 @@ font-size: 22px;
 
 .sbk-seller-info-grade h2,
 .sbk-seller-info-reviews h2 { /* 판매자등급, 판매자후기 */
-/*   font-size: 1.4rem; */
-  font-size: 18px;
+  font-size: 1.125rem;/*  18px; */
   margin-right: 1rem;
 }
 
@@ -44,7 +40,7 @@ font-size: 22px;
 
 .sbk-seller-info-value {
 /*   font-size: 2rem; */
-  font-size: 35px;
+  font-size: 2.1875rem; /* 35px; */
   font-weight: bold;
 }
 
@@ -58,14 +54,12 @@ font-size: 22px;
 
 .sbk-review-content {
   margin-left: 20px;
-/*   font-size: 1.2rem; */
-font-size: 14px;
+  font-size: 0.875rem;/*  14px; */
 }
 
 .sbk-seller-info-label,
 .sbk-review-buyer-name {
-/*   font-size: 1.2rem; */
-font-size: 14px;
+  font-size: 0.875rem;/*  14px; */
   font-weight: bold;
 
   display: inline-block;
@@ -82,56 +76,56 @@ font-size: 14px;
 @media screen and (max-width: 768px) {
 
   .sbk-seller-info-heading h1 {
-    font-size: 1.7rem;
+    font-size: 1.1rem;
   }
   .sbk-seller-info-heading h2 {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
   .sbk-seller-info-grade h2,
   .sbk-seller-info-reviews h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   
 
   .sbk-seller-info-value {
     font-size: 1.8rem;
   }
-  .sbk-seller-info-label,
-  .sbk-review-buyer-name {
-    font-size: 1rem; /* calc(1.2rem - 0.2rem); */
-    width: 5rem;
-
-  }
 
   .sbk-review-content {
-    font-size: 1rem;
+    font-size: 0.7rem;
+  }
+  .sbk-seller-info-label,
+  .sbk-review-buyer-name {
+    font-size: 0.7rem; /* calc(1.2rem - 0.2rem); */
+    width: 5rem;
+
   }
 }
 
 @media screen and (max-width: 425px) {
 
   .sbk-seller-info-heading h1 {
-    font-size: 1.4rem;
-  }
-
-  .sbk-seller-info-heading h2 {
-    font-size: 1.2rem;
-  }
-
-  .sbk-seller-info-grade h2,
-  .sbk-seller-info-reviews h2 {
     font-size: 1rem;
   }
 
-  .sbk-seller-info-value {
-    font-size: 1.3rem;
+  .sbk-seller-info-heading h2 {
+    font-size: 1rem;
   }
-  .sbk-seller-info-label,
-  .sbk-review-buyer-name {
-    font-size: 0.8rem;
-/*     width: 3rem; */
+  .sbk-seller-info-grade h2,
+  .sbk-seller-info-reviews h2 {
+    font-size: 0.9rem;
+  }
+  
+  .sbk-seller-info-value {
+    font-size: 1.4rem;
   }
   .sbk-review-content {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
+  }
+
+  .sbk-seller-info-label,
+  .sbk-review-buyer-name {
+    font-size: 0.6rem;
+/*     width: 3rem; */
   }
 }
