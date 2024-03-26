@@ -4,10 +4,16 @@
 .yhw_container {
   /* 유혜원 공통 CSS */
   width: 60%;
-  min-width: 600px;
   margin: 0 auto;
   box-sizing: border-box;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 200px;
+}
+/* ******************************************************* */
+/* 유혜원 공통 CSS 반응형 */
+@media screen and (max-width: 1440px) {  /* 화면의 너비가 최대 1440px 일 때 */
+  div.yhw_container {
+    margin: 0 7vw;
+  }
 }

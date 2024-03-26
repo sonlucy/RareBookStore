@@ -1,5 +1,10 @@
+.yhw_destForm {
+  width: 60%;
+  margin: 0 auto;
+}
 .yhw_destFormInputBox { /* 각 label과 input 태그를 담는 div 태그 CSS */
-  width: 520px;
+  width: 90%;
+  box-sizing: border-box;
   display: flex;
   margin-bottom: 15px;
 }
@@ -8,35 +13,51 @@
   font-weight: bolder;
   padding-top: 8px;
   width: 70px;
+  min-width: 70px;
   text-align: right;
   margin-right: 10px;
-  display: inline-block;
+  display: block;
 }
-.yhw_destFormInputBox input {
-  width: 400px;
+.yhw_destFormInputBox input { /* 모든 input 태그 CSS */
   height: 25px;
   border: 1px solid lightgray;
   border-radius: 5px;
   padding: 5px 10px;
   display: block;
 }
+.yhw_destFormInputBox > input {
+  /* width: 800px; */
+  width: 100%;
+}
 .yhw_destFormPostBox { /* 우편번호 input, span 태그 감싸는 div 태그 CSS */
   display: flex;
   justify-content: space-between;
 }
 input.yhw_destFormInputPostCode { /* 우편번호 글씨 왼쪽 input 태그 CSS */
-  width: 330px;
+  width: 75%;
+  margin-bottom: 10px;
 }
 span.yhw_destFormSpanPostCode { /* 우편번호 글씨 span 태그 CSS */
   text-align: right;
-  display: inline-block;
+  display: block;
   padding-top: 8px;
   font-size: 15px;
+  width: 65px;
+  min-width: 65px;
 }
 div.yhw_destFomrInputAddrBox {  /* 주소 input 태그들 감싸는 div 태그 CSS */
-  width: 420px;
+  width: 100%;
 }
-div.yhw_destFomrInputAddrBox input {
-  max-width: 95%;
+div.yhw_destFomrInputAddrBox > input {
+  width: 100%;
+  box-sizing: border-box;   /* div에 box-sizing: border-box; 를 넣어주는 게 아니라, 자식 요소한테 넣어줘야 함 */
+  height: 35px;
   margin-bottom: 10px;
+}
+/* ******************************************************* */
+/* CSS 반응형 */
+@media screen and (max-width: 1440px) {  /* 화면의 너비가 최대 1440px 일 때 */
+  .yhw_destForm {
+    width: 90%;
+  }
 }
