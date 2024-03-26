@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import PurchaseReqForm from '../components/PurchaseReqForm';
 import SalesHistoryList from '../components/SalesHistoryList';
 import MyPageSide from '../components/MypageSide';
-import { buyerBookData } from '../assets/buyerBook';
+import { buyerBookData } from '../asset/buyerBook';
 import DateInquiry from '../components/DateInquiry';
 
 function SalesHistory() {
