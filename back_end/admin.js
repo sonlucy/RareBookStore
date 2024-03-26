@@ -1,6 +1,6 @@
 const express = require("express"); // npm i express | yarn add express
 const cors    = require("cors");    // npm i cors | yarn add cors
-const mysql   = require("mysql2");   // npm i mysql2 | yarn add mysql
+const mysql   = require("mysql2");   // npm i mysql2 | yarn add mysql2
 const app     = express();
 const port    = 3001; // 포트번호 설정
 

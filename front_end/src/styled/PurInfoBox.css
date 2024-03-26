@@ -5,7 +5,7 @@
   display: block;
   width: 150px;
   height: 200px;
-  margin-right: 40px;
+  margin-right: 5vw;
 }
 .yhw_purInfoBox > a > img {
   width: 100%;
@@ -50,6 +50,7 @@
 .yhw_purInfoTxtBottom b {
   font-size: 17px;
   line-height: 22px;
+  width: 90px;
   display: block;
 }
 .yhw_purInfoStat {

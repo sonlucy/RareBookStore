@@ -1,28 +1,37 @@
+.yhw_purchaseCont {
+  width: 100%;
+  margin: 0 auto;
+}
 .yhw_purTopBorderBottom {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   border-bottom: 1px solid #E2E2E2;
 }
 .yhw_purTopCont {
-  width: 500px;
+  width: fit-content;
   margin: 15px auto;
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
+  padding: 40px;
 }
 .yhw_purTopCont > b { /* 구매하기 글씨 CSS */
   margin-bottom: 50px;
   font-size: 23px;
 }
 .yhw_purDefDestCont { /* 기본배송지 체크박스, 기본배송지정보를 감싸는 div 태그 CSS */
-  width: 530px;
+  width: 100%;
   margin: 0 auto;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
 }
+.yhw_purDefDestBox {
+  width: 50%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 .yhw_destFormDiv {  /* 배송지 입력 form 태그 감싸는 div 태그 CSS */
-  width: 650px;
+  width: 100%;
   margin: 0 auto;
   margin-top: 20px;
   display: flex;
@@ -44,4 +53,48 @@
 }
 .yhw_purBtn:hover {
   background-color: #ab705c;
+}
+/* ******************************************************* */
+/* CSS 반응형 */
+@media screen and (max-width: 1440px) {  /* 화면의 너비가 최대 1440px 일 때 (1440px 미만) */
+  .yhw_purTopCont {
+    transform: scale(0.9, 0.9);
+    padding: 3vw;
+  }
+  .yhw_purDefDestBox {
+    transform: scale(0.9, 0.9);
+    width: 80%;
+    padding: 0 3vw;
+  }
+  .yhw_destFormDiv {
+    transform: scale(0.9, 0.9);
+  }
+}
+@media screen and (max-width: 621px) {
+  .yhw_purTopCont {
+    transform: scale(0.85, 0.85);
+  }
+  .yhw_purDefDestBox {
+    width: 90%;
+    padding: 0 2vw;
+    transform: scale(0.85, 0.85);
+  }
+  .yhw_destFormDiv {
+    transform: scale(0.85, 0.85);
+  }
+}
+@media screen and (max-width: 425px) {
+  .yhw_purTopCont {
+    transform: scale(0.8, 0.8);
+    padding: 0;
+    margin: 0;
+  }
+  .yhw_purDefDestBox {
+    transform: scale(0.8, 0.8);
+    width: 100%;
+    padding: 0 1vw;
+  }
+  .yhw_destFormDiv {
+    transform: scale(0.8, 0.8);
+  }
 }

@@ -1,4 +1,4 @@
-// 상품 정보
+// 상품 정보 테스트 데이터
 export const productInfosData = [
   {
     price: '12,000원',
