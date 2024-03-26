@@ -8,7 +8,9 @@ import Main from "./pages/Main";
 import Mypage from "./pages/Mypage";
 import Purchase from "./pages/Purchase";
 import PurchaseHistory from "./pages/PurchaseHistory";
-import RegRequest from "./pages/RegRequest";
+import RegRequest1 from "./pages/RegRequest1";
+import RegRequest2 from "./pages/RegRequest2";
+import RegRequest3 from "./pages/RegRequest3";
 import SalesHistory from "./pages/SalesHistory";
 import SellerInfoPage from "./pages/SellerInfoPage";
 import SignUpEasy from "./pages/SignUpEasy";
@@ -29,7 +31,9 @@ function App() {
         <Route path="Mypage" element={<Mypage />}></Route>
         <Route path="Purchase" element={<Purchase />}></Route>
         <Route path="PurchaseHistory" element={<PurchaseHistory />}></Route>
-        <Route path="RegRequest" element={<RegRequest />}></Route>
+        <Route path="RegRequest1" element={<RegRequest1 />}></Route>
+        <Route path="RegRequest2" element={<RegRequest2 />}></Route>
+        <Route path="RegRequest3" element={<RegRequest3 />}></Route>
         <Route path="SalesHistory" element={<SalesHistory />}></Route>
         <Route path="SellerInfoPage" element={<SellerInfoPage />}></Route>
         <Route path="SignUpEasy" element={<SignUpEasy />}></Route>
