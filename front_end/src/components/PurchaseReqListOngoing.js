@@ -1,38 +1,28 @@
-/* import React from 'react';
-import '../styled/PurchaseReqList.css';
-
-const PurchaseReqListOngoing = ({ title, info, image }) => {
-  return (
-    <div className="sbk-purchase-req-card">
-      <img className="sbk-book-image" src={image} alt={title} />
-      <div className="sbk-text-container">
-        <h2 className="sbk-book-title">{title}</h2>
-        <h2 className="sbk-book-info">{info}</h2>
-      </div>
-      <div className="sbk-button-container">
-        <button className="sbk-status-button">현황 보기</button>
-        <button className="sbk-cancel-button">상품등록 취소</button>
-      </div>
-    </div>
-  );
-};
-
-export default PurchaseReqListOngoing;
- */
-
 import React from 'react';
 import '../styled/PurchaseReqList.css';
+
+const formatDate = (dateString) => {
+  const dateStringAsStr = dateString.toString(); // int -> string
+
+  const year = dateStringAsStr.slice(0, 4);
+  const month = dateStringAsStr.slice(4, 6);
+  const day = dateStringAsStr.slice(6, 8);
+
+  return `${year}-${month}-${day}`;
+};
+
 
 const PurchaseReqListOngoing = ({ requests }) => {
   return (
     <div>
       {requests.map((request, index) => (
         <div className="sbk-purchase-req-card" key={index}>
-          <img className="sbk-book-image" src={request.image} alt={request.title} />
+          <img className="sbk-book-image" src={request.image} alt={request.itemTitle} />
           <div className="sbk-text-container">
             <div className='sbk-main-container'>
-              <h2 className="sbk-book-title">{request.title}</h2>
-              <h2 className="sbk-book-info">{request.info}</h2>
+              <h2 className="sbk-book-title">{request.itemTitle}</h2>
+              <h2 className="sbk-book-info">{`${request.author} | ${request.publisher}`}</h2>
+
             </div>
 
             <div className='sbk-book-status'>
@@ -46,7 +36,7 @@ const PurchaseReqListOngoing = ({ requests }) => {
               </dl>
               <dl className='sbk-book-status-dl'>
                 <dt className='sbk-book-status-dt'>입찰만료기한</dt>
-                <dd className='sbk-book-status-dd' style={{ color: '#EB217C' }}>{request.expiry}</dd>
+                <dd className='sbk-book-status-dd' style={{ color: '#EB217C' }}>{formatDate(request.expiry)}</dd>
               </dl>
             </div>
           </div>

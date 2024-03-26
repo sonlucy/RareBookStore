@@ -7,7 +7,9 @@ export const buyerBookData = [
     "author": "책저자",
     "publisher": "출판",
     "expiry": 20230301, 
-    "aucStatus": 2
+    "aucStatus": 2,
+    "damage": '상',
+    "price": '11,000',
   },
   {
     "image": 'img/book.png',
@@ -17,7 +19,9 @@ export const buyerBookData = [
     "author": "책저자",
     "publisher": "출판",
     "expiry": 20230228,
-    "aucStatus": 1
+    "aucStatus": 1,
+    "damage": '상',
+    "price": '11,000',
   },
   {
     "image": 'img/book.png',
@@ -27,7 +31,9 @@ export const buyerBookData = [
     "author": "책저자",
     "publisher": "출판",
     "expiry": 20230315,
-    "aucStatus": 3
+    "aucStatus": 3,
+    "damage": '상',
+    "price": '11,000',
   },
     {
     "image": 'img/book.png',
@@ -37,7 +43,9 @@ export const buyerBookData = [
     "author": "책저자",
     "publisher": "출판",
     "expiry": 20230301,
-    "aucStatus": 2
+    "aucStatus": 2,
+    "damage": '상',
+    "price": '11,000',
   },
   {
     "image": 'img/book.png',
@@ -47,7 +55,9 @@ export const buyerBookData = [
     "author": "책저자",
     "publisher": "출판",
     "expiry": 20230228,
-    "aucStatus": 1
+    "aucStatus": 1,
+    "damage": '상',
+    "price": '11,000',
   },
   {
     "image": 'img/book.png',
@@ -57,6 +67,8 @@ export const buyerBookData = [
     "author": "책저자",
     "publisher": "출판",
     "expiry": 20230315,
-    "aucStatus": 3
+    "aucStatus": 3,
+    "damage": '상',
+    "price": '11,000',
   }
 ]
