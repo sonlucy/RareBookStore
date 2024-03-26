@@ -11,9 +11,7 @@
   display: flex;
   align-items: center;
   padding: 0 20vw;
-  /*  */
-/*   font-size: 1.5rem; */
-font-size: 22px;
+  font-size: 1.375rem; /* 22px */
   /*   max-width: 1200px; */
 }
 
@@ -51,14 +49,14 @@ font-size: 22px;
   object-fit: cover;
 }
 .sbk-BookCard h3 {
-    font-size: 15px;
+    font-size: 0.9375rem;/*  15px; */
 }
 
 .sbk-PrevButton {
   position: absolute;
   top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
+  left: 1vw;
+  transform: translateY(-90%);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -68,8 +66,8 @@ font-size: 22px;
 .sbk-NextButton {
   position: absolute;
   top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
+  right: 1vw;
+  transform: translateY(-90%);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -87,24 +85,27 @@ font-size: 22px;
   }
 
   .sbk-BookCard h3 {
-    font-size: 10px;
+    font-size: 0.7rem;
   }
 
   .sbk-RecentContainer h2 {
-    font-size: 17px;
+    font-size: 1rem;
   }
 }
 
-/* @media screen and (max-width: 425px) {
+@media screen and (max-width: 425px) {
   .sbk-BookCard img {
     width: 100px;
   }
 
   .sbk-BookCard h3 {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 
   .sbk-RecentContainer h2 {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
-} */
+  .sbk-Icon {
+    font-size: 14px;
+  }
+}
