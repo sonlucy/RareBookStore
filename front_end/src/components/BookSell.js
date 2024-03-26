@@ -1,23 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styled/BookStateCategory.css';
 
+function BookSell({ onSelect }) {
+  const [selectedTab, setSelectedTab] = useState('진행중');
 
-function BookSell() {
+  const handleClick = (tab) => {
+    setSelectedTab(tab);
+    onSelect(tab);
+  };
+
   return (
     <div className="cyj_book-category">
       <div className="tab">
-        {/* DB 코드 받아와야함 */}
-        <button className="tablinks">0</button>
-        <button className="tablinks">0</button>
-        <button className="tablinks">0</button>
-      </div>
-
-      <div className="category-table">
-        <div className="category-row">
-          <div className="category-cell">진행중</div>
-          <div className="category-cell">낙찰</div>
-          <div className="category-cell">기한만료</div>
-        </div>
+        <button
+          className={selectedTab === '진행중' ? 'tablinks active' : 'tablinks'}
+          onClick={() => handleClick('진행중')}
+        >
+          진행중
+        </button>
+        <button
+          className={selectedTab === '낙찰' ? 'tablinks active' : 'tablinks'}
+          onClick={() => handleClick('낙찰')}
+        >
+          낙찰
+        </button>
+        <button
+          className={selectedTab === '기한만료' ? 'tablinks active' : 'tablinks'}
+          onClick={() => handleClick('기한만료')}
+        >
+          기한만료
+        </button>
       </div>
     </div>
   );
