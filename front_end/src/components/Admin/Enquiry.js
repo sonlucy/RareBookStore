@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styled/Enquiry.css';
-import QuestSide from '../components/QuestSide';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import '../../styled/Enquiry.css';
+import QuestSide from '../QuestSide';
+import Header from '../Header';
+import Footer from '../Footer';
 
 function Enquiry() {
   const [enquiries, setEnquiries] = useState([]);
