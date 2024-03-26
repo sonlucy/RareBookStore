@@ -16,9 +16,18 @@
   background-color: gainsboro;
 }
 
-.tab button:focus {
+/* .tab button:focus {
   color: #AB705C;
   font-weight: bold;
+} */
+
+.active-count {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.active-count.active {
+  color: #AB705C;
 }
 
 .category-table {
