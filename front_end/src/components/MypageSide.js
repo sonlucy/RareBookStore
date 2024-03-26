@@ -15,7 +15,7 @@ function MyPageSide() {
                             <Link to="/PurchaseHistory" className="menu_link">구매내역</Link>
                         </li>
                         <li className="menu_item">
-                            <Link to="/my/selling" className="menu_link">판매내역</Link>
+                            <Link to="/SalesHistory" className="menu_link">판매내역</Link>
                         </li>
                         <li className="menu_item">
                             <Link to="/my/wishlist" className="menu_link">구매 희망 도서</Link>
