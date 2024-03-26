@@ -23,8 +23,10 @@ const Purchase = () => {
           </div>
         </div>
         <div className="yhw_purDefDestCont">
-          <PurDefDestCheck isChecked={isChecked} setIsChecked={setIsChecked} />
-          <PurDefDest />
+          <div className="yhw_purDefDestBox">
+            <PurDefDestCheck isChecked={isChecked} setIsChecked={setIsChecked} />
+            <PurDefDest />
+          </div>
         </div>
         <div className="yhw_destFormDiv">
           <DestForm isChecked={isChecked} />
