@@ -125,11 +125,11 @@ function SNSLogin(props) {
           if (!isDuplicate) {
             // 이메일이 중복되지 않으면 프로필 설정 및 페이지 이동
             setProfile({ id, email });
-            sessionStorage.setItem("userEmail", email);
+            sessionStorage.setItem("id", id); // 아이디값 세션스토리지에 저장
             navigate("/SignUpEasy", { state: { profile: { id, email } } });
           } else {
-            // 이메일이 중복되면 이메일 세션에 저장후 로그인 완료
-            sessionStorage.setItem("userEmail", email);
+            // 이메일이 중복되면 아이디 세션스토리지에 저장후 로그인 완료
+            sessionStorage.setItem("id", id);
             navigate("/");
           }
         })
