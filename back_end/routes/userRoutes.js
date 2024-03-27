@@ -8,6 +8,7 @@ const businessLogic = require("../models/userDB"); // 비지니스 로직
 // 라우트 설정
 router.post("/signup", userController.signup); // 회원가입 부분
 router.post("/loginCheck", businessLogic.loginCheck); // 로그인 부분
-// router.get("/logout", businessLogic.logout); // 로그아웃 부분
+router.post("/checkEmailDuplicate", businessLogic.checkEmailDuplicate); // 이메일 중복확인
+router.get("/logout", businessLogic.logout); // 로그아웃 부분
 
 module.exports = router;

@@ -8,7 +8,8 @@ exports.signUp = (data) => {
   return new Promise((resolve, reject) => {
     db.query(
       // 사용자 정보를 customers 테이블에 삽입
-      `INSERT INTO customers (userid, userpwd, email, nickname, age, gender, contact, grade, point) VALUES (?,?,?,?,?,?,?,?,?) `,
+      `INSERT INTO customers (userid, userpwd, email, nickname, age, gender) VALUES (?,?,?,?,?,?) `,
+      // `INSERT INTO customers (userid, userpwd, email, nickname, age, gender, contact, grade, point) VALUES (?,?,?,?,?,?,?,?,?) `,
       [
         data[0],
         data[1],
@@ -16,9 +17,9 @@ exports.signUp = (data) => {
         data[3],
         data[4],
         data[5],
-        data[6],
-        data[7],
-        data[8],
+        // data[6],
+        // data[7],
+        // data[8],
       ],
       (err, result) => {
         if (err) reject(err);
@@ -40,6 +41,40 @@ exports.getUser = (userid) => {
       }
     );
   });
+};
+
+// 특정 이메일을 가진 사용자를 가져오는 함수
+exports.getUserByEmail = (email) => {
+  return new Promise((resolve, reject) => {
+    db.query(
+      `SELECT * FROM customers WHERE email = ?`,
+      email,
+      (err, result) => {
+        if (err) reject(err);
+        else resolve(result[0]); // 결과가 배열 형태로 반환되므로 첫 번째 요소만 반환합니다.
+      }
+    );
+  });
+};
+
+// 사용자 이메일 중복을 확인하는 함수
+exports.checkEmailDuplicate = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // 해당 이메일로 사용자 정보를 가져옴
+    const getUserByEmail = await exports.getUserByEmail(email);
+    if (getUserByEmail) {
+      // 이미 존재하는 이메일이면 409 상태 코드와 메시지를 반환
+      res.status(409).json("중복된 이메일입니다.");
+    } else {
+      // 존재하지 않는 이메일이면 200 상태 코드와 메시지를 반환
+      res.status(200).json("사용 가능한 이메일입니다.");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
 };
 
 // 입력된 비밀번호와 해시된 비밀번호를 비교하는 함수
@@ -86,15 +121,17 @@ exports.loginCheck = async (req, res) => {
   }
 };
 
-// exports.logout = (req, res) => {
-//   // 세션에서 사용자 정보 삭제
-//   req.session.destroy((err) => {
-//     if (err) {
-//       console.error(err);
-//       res.status(500).json("로그아웃 실패");
-//       return;
-//     }
-//     res.clearCookie("connect.sid"); // 세션 쿠키 삭제 (이름)
-//     res.status(200).json("로그아웃 성공");
-//   });
-// };
+exports.logout = (req, res) => {
+  // 세션에서 사용자 정보 삭제
+  req.session.destroy((err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json("로그아웃 실패");
+      return;
+    } else {
+      res.clearCookie("connect.sid"); // 세션 쿠키 삭제 (이름)
+      // res.session.user_id.cookie.maxAge = 0;
+      res.status(200).json("로그아웃 성공");
+    }
+  });
+};

@@ -29,9 +29,9 @@ exports.signup = async (req, res) => {
     nickname,
     age,
     gender,
-    contact,
-    grade,
-    point,
+    // contact,
+    // grade,
+    // point,
   } = req.body;
 
   try {
@@ -52,9 +52,9 @@ exports.signup = async (req, res) => {
       nickname,
       age,
       gender,
-      contact,
-      grade,
-      point,
+      // contact,
+      // grade,
+      // point,
     ]);
     // 가입이 성공적으로 완료되면 200 상태 코드와 성공 메시지를 반환
     res.status(200).json("가입 성공");
