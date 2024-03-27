@@ -66,6 +66,7 @@ const PurchaseReqForm = () => {
   return (
     <div className="sbk-container">
       <form className="sbk-purchase-request-form" onSubmit={handleSubmit}>
+        <div className='sbk-form-fields-container'>
         <InputField
           label="책 제목"
           name="bookTitle"
@@ -110,6 +111,8 @@ const PurchaseReqForm = () => {
         <div className="sbk-error-container">
           {errors.deadline && <span className="sbk-error-message">* 입찰 마감기한을 선택하세요.</span>}
         </div>
+          </div>
+        
         <button type="submit" className={`sbk-submit-button ${isFormFilled ? 'sbk-submit-button-filled' : ''}`}>등록 신청</button>
       </form>
       {/* PurchaseReqList 컴포넌트 */}

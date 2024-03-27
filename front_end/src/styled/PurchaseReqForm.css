@@ -1,9 +1,20 @@
 
 .sbk-container {
-    margin: 0 auto;
-    padding-top: 2vw;
+  margin: 0 auto;
+  padding-top: 2vw;
   width: 70%;
+  
 }
+.sbk-purchase-request-form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 1rem; /*  */
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 25rem;/*  */
+}
+
 .sbk-purchase-request-form-title {
     margin: 0 auto;
     /*   max-width: 1200px; */
@@ -16,18 +27,13 @@
   border-width: 1px 0 0 0;
   border-style: solid;
 }
-
-.sbk-purchase-request-form {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  padding: 1rem; /*  */
-  max-width: 1200px;
-  margin: 0 auto;
+.sbk-form-fields-container {
+  min-height: 20rem;
+/*   max-height: auto; */
 }
 
 .sbk-form-item {
-  margin-bottom: 1rem;
+height: 4.5rem;
 /*   display: flex; */
 /*   flex-direction: row; */
   align-items: center;
@@ -42,7 +48,7 @@
 .sbk-input {
   flex-grow: 1;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #d2d2d2;
   height: 42px;
   font-size: 1rem;
   padding-left: 10px;
@@ -53,7 +59,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 0.5rem;
+  margin-top: 0.1rem;
   padding-left: 6rem;
 }
 
@@ -127,16 +133,13 @@
 
 
 
-@media screen and (max-width: 1000px) {
-/*   .sbk-purchase-request-form {
-    width: 100%;
-  } */
+@media screen and (max-width: 1024px) {
+
     .sbk-form-item {
       width: 100%;
     }
   .sbk-input {
     width: 80%;
-/* width: 30rem; */
   }
 
 .sbk-deadline-option {
@@ -148,7 +151,9 @@
   border-radius: 7px;
   transition: background-color 0.3s;
 }
-
+.sbk-form-fields-container {
+  min-height: 25rem;
+}
 
 }
 
@@ -195,6 +200,9 @@
     flex-direction: column; /* 세로로 정렬 */
 
   }
+.sbk-form-fields-container {
+  min-height: 27rem;
+}
 
 }
 
@@ -236,4 +244,15 @@
   .sbk-error-message {
     font-size: 0.5rem;
   }
+
+  .sbk-form-fields-container {
+    min-height: 25rem;
+  }
+
+
+}
+
+.sbk-purchase-request-form-item-quantity {
+  font-size: 0.75rem;
+  color: #525252;
 }
