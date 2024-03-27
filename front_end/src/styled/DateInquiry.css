@@ -11,7 +11,7 @@
 }
 .yhw_dateInquiryInputs {
   /* width: 260px; */
-  height: 30px;
+  min-height: 30px;
   display: flex;
   justify-content: space-between;
 }
@@ -36,4 +36,26 @@
   background-color: #2D2D2D;
   color: white;
   padding-bottom: 4px;
+}
+/* ******************************************************* */
+/* CSS 반응형 */
+@media screen and (max-width: 621px) {
+  .yhw_dateInquiryBox {
+    max-width: 200px;
+  }
+  .yhw_dateInquiryInputs {
+    flex-direction: column;
+  }
+  .yhw_dateInquiryBox > button {
+    margin-top: 5vh;
+  }
+}
+@media screen and (max-width: 425px) {
+  .yhw_dateInquiryBox {
+    flex-direction: column;
+    max-width: 130px;
+  }
+  .yhw_dateInquiryBox > button {
+    margin-top: 1vh;
+  }
 }
