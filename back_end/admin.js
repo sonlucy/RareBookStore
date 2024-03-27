@@ -5,13 +5,7 @@ const app     = express();
 const port    = 3001; // 포트번호 설정
 
 const { error } = require('console')
-const conn = mysql.createConnection({
-  host : 'localhost',
-  port : '3306',
-  user : 'root',
-  password : '1234',
-  database : 'bookdb'
-});
+const conn = require('./database/db');
 
 app.use(express.json())
 
