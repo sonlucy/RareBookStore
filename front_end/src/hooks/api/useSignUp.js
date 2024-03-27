@@ -9,9 +9,9 @@ const useSignUp = () => {
     nickname: "",
     age: "",
     gender: "",
-    contact: "",
-    grade: "",
-    point: "",
+    // contact: "",
+    // grade: "",
+    // point: "",
   });
 
   const navigate = useNavigate();
@@ -27,7 +27,9 @@ const useSignUp = () => {
       const data = await res.json();
 
       alert(data);
-      if (res.status === 200) {
+      if (res.status === 200 && userData.userid > 20) {
+        navigate("/");
+      } else if (res.status === 200) {
         navigate("/IDPWLogin");
       } else {
         setUserData({
@@ -37,9 +39,9 @@ const useSignUp = () => {
           nickname: "",
           age: "",
           gender: "",
-          contact: "",
-          grade: "",
-          point: "",
+          // contact: "",
+          // grade: "",
+          // point: "",
         });
         return;
       }

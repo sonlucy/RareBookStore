@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 import useLoginCheck from "../hooks/api/useLoginCheck";
 
 const Container = styled.div`
@@ -64,19 +65,20 @@ const SubmitButton = styled.button`
 
 const AdditionalLinks = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   margin-top: 10px;
 `;
 
-// const AdditionalLink = styled(Link)`
-//   color: #007bff;
-//   text-decoration: none;
-//   cursor: pointer;
+const AdditionalLink = styled(Link)`
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
 
-//   &:hover {
-//     text-decoration: underline;
-//   }
-// `;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const IDPWLogin = () => {
   // 커스텀 훅스
@@ -122,10 +124,10 @@ const IDPWLogin = () => {
             />
           </FormGroup>
           <SubmitButton type="submit">로그인</SubmitButton>
-          {/* <AdditionalLinks>
-                    <AdditionalLink to="/">아이디 / 비밀번호 찾기</AdditionalLink>
-                    <AdditionalLink to="/">회원가입</AdditionalLink>
-                </AdditionalLinks> */}
+          <AdditionalLinks>
+            {/* <AdditionalLink href="/">아이디 / 비밀번호 찾기</AdditionalLink> */}
+            <AdditionalLink to="/SignUpMail">회원가입</AdditionalLink>
+          </AdditionalLinks>
         </LoginForm>
       </Container>
       <Footer />

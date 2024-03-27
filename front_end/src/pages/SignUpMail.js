@@ -94,8 +94,26 @@ const SignUpMail = () => {
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">성별</span>
             <div className="yhw_signGenderBtns">
-              <button>남자</button>
-              <button>여자</button>
+              <button
+                name="gender"
+                value="M"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleChange(e);
+                }}
+              >
+                남자
+              </button>
+              <button
+                name="gender"
+                value="F"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleChange(e);
+                }}
+              >
+                여자
+              </button>
             </div>
           </div>
           <div className="yhw_signUpBtnBox">
