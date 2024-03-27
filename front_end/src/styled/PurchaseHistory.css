@@ -3,12 +3,12 @@
   display: flex;
 }
 .yhw_MypageSideAdd {
-  width: 20%;
-  min-width: 250px;
+  width: 25%;
+  min-width: 170px;
 }
 .yhw_purHistMainCont {
   width: 80%;
-  min-width: 350px;
+  /* min-width: 350px; */
   padding: 41px 0;
 }
 .yhw_purHistTopCont {
@@ -21,7 +21,7 @@
 .yhw_purHistContentsBox { /* 해당 날짜, 구매내역 리스트 감싸는 div 태그 CSS */
   width: 85%;
   margin: 0;
-  margin-left: 30px;
+  /* margin-left: 2vw; */
 }
 .yhw_purHistContentsDate {  /* 해당 날짜 span 태그 CSS */
   font-size: 17px;
@@ -30,11 +30,10 @@
 }
 .yhw_purHistLists {
   width: 100%;
-  min-width: 600px;
   list-style: none;
   padding: 0;
 }
-.yhw_purHistLists > li {
+.yhw_purHistLists > li {  /* PurInfoBox 컴포넌트랑 구매후기작성 버튼 감싸는 li 태그 CSS */
   padding-left: 30px;
   display: flex;
   justify-content: space-between;
@@ -57,4 +56,55 @@
   font-weight: bold;
   font-size: 15px;
   margin-bottom: 10px;
+}
+/* ******************************************************* */
+/* CSS 반응형 */
+@media screen and (max-width: 1440px) {  /* 화면의 너비가 최대 1440px 일 때 (1440px 미만) */
+  .yhw_purHistCont {
+    transform: scale(0.9, 0.9);
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -4vh;
+  }
+  .yhw_purHistContentsBox {
+    margin: 0;
+  }
+  .yhw_purHistLists > li {  /* PurInfoBox 컴포넌트랑 구매후기작성 버튼 감싸는 li 태그 CSS 반응형 => 구매후기버튼 밑으로 */
+    flex-direction: column;
+  }
+  .yhw_purHistBtns {
+    width: 100%;
+    max-width: 330px;
+    margin-top: 2vh;
+  }
+}
+@media screen and (max-width: 621px) {
+  .yhw_purHistCont {
+    transform: scale(0.8, 0.8);
+    top: -8vh;
+  }
+  .yhw_purHistTopCont {
+    margin: 0;
+  }
+  .yhw_purHistLists > li {
+    padding: 0;
+  }
+  .yhw_purHistContentsDate {
+    margin: 0;
+  }
+  .yhw_purHistBtns {
+    margin: 1vh auto 0 auto;
+  }
+}
+@media screen and (max-width: 425px) {
+  .yhw_purHistCont {
+    transform: scale(0.7, 0.7);
+    top: -16vh;
+  }
+  .yhw_purHistBtns {
+    width: 100%;
+    margin: 0;
+    margin-top: 1vh;
+  }
 }
