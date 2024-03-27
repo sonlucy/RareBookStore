@@ -8,7 +8,7 @@ import PurchaseReqListEnd from '../components/PurchaseReqListEnd';
 import SalesHistoryList from '../components/SalesHistoryList';
 import MyPageSide from '../components/MypageSide';
 import BookSell from '../components/BookSell';
-import { buyerBookData } from '../assets/buyerBook';
+import { buyerBookData } from '../asset/buyerBook';
 
 function RegRequest() {
   const [selectedTab, setSelectedTab] = useState('진행중');
