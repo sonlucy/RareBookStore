@@ -5,7 +5,7 @@ const app     = express();
 const port    = 3001; // 포트번호 설정
 
 const { error } = require('console')
-const conn = require('./database/db');
+const conn = require('./database/db.js');
 
 app.use(express.json())
 

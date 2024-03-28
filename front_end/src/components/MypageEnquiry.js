@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../styled/Enquiry.css';
+import '../../styled/MypageEnquiry.css';
 import QuestSide from '../QuestSide';
 import Header from '../Header';
 import Footer from '../Footer';
