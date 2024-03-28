@@ -16,6 +16,7 @@ import SignUpMail from "./pages/SignUpMail";
 import SNSLogin from "./pages/SNSLogin";
 import Admin from "./pages/Admin";
 import SellerRank from "./pages/SellerRank";
+import QuestionForm from "./pages/QuestionForm";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="SNSLogin" element={<SNSLogin />}></Route>
         <Route path="Admin" element={<Admin />}></Route>
         <Route path="SellerRank" element={<SellerRank />}></Route>
+        <Route path="QuestionForm" element={<QuestionForm />}></Route>
       </Routes>
     </div>
   );
