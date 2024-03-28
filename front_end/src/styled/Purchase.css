@@ -21,7 +21,7 @@
 .yhw_purDefDestCont { /* 기본배송지 체크박스, 기본배송지정보를 감싸는 div 태그 CSS */
   width: 100%;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
 }

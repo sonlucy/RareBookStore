@@ -70,14 +70,17 @@
   .yhw_purHistContentsBox {
     margin: 0;
   }
+}
+@media screen and (max-width: 920px) {
   .yhw_purHistLists > li {  /* PurInfoBox 컴포넌트랑 구매후기작성 버튼 감싸는 li 태그 CSS 반응형 => 구매후기버튼 밑으로 */
     flex-direction: column;
+    padding-bottom: 5vh;
   }
   .yhw_purHistBtns {
     width: 100%;
-    max-width: 330px;
-    margin-top: 2vh;
-  }
+    max-width: 340px;
+    margin-top: 3vh;
+  }  
 }
 @media screen and (max-width: 621px) {
   .yhw_purHistCont {
@@ -87,20 +90,23 @@
   .yhw_purHistTopCont {
     margin: 0;
   }
-  .yhw_purHistLists > li {
-    padding: 0;
-  }
   .yhw_purHistContentsDate {
     margin: 0;
   }
+  .yhw_purHistLists > li {
+    padding-bottom: 4vh;
+  }
   .yhw_purHistBtns {
-    margin: 1vh auto 0 auto;
+    margin: 2vh auto 0 auto;
   }
 }
 @media screen and (max-width: 425px) {
   .yhw_purHistCont {
     transform: scale(0.7, 0.7);
     top: -16vh;
+  }
+  .yhw_purHistLists > li {
+    padding-bottom: 3vh;
   }
   .yhw_purHistBtns {
     width: 100%;
