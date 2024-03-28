@@ -17,6 +17,7 @@ import SNSLogin from "./pages/SNSLogin";
 import Admin from "./pages/Admin";
 import SellerRank from "./pages/SellerRank";
 import QuestionForm from "./pages/QuestionForm";
+import AdminLogin from "./pages/AdminLogin";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="BuyDetail" element={<BuyDetail />}></Route>
         <Route path="CategoryBookList" element={<CategoryBookList />}></Route>
         <Route path="IDPWLogin" element={<IDPWLogin />}></Route>
+        <Route path="AdminLogin" element={<AdminLogin />}></Route>
         <Route path="Mypage" element={<Mypage />}></Route>
         <Route path="Purchase" element={<Purchase />}></Route>
         <Route path="PurchaseHistory" element={<PurchaseHistory />}></Route>
