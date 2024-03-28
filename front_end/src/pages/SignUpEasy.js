@@ -37,7 +37,6 @@ const SignUpEasy = () => {
       ...userData,
       userid: profile.id,
       email: profile.email,
-      // gender: selectedGender, // 성별 눌렀을 때 값 추가
     };
     // 업데이트된 userData를 이용하여 회원가입 체크
     setUserData(updatedUserData);
