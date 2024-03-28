@@ -49,14 +49,14 @@
   font-size: 16px;
   line-height: 21px;
   width: 65%;
-  /* min-width: 85px; */
+  min-width: 90px;
   display: block;
 }
 .yhw_purInfoTxtBottom b {
   font-size: 17px;
   line-height: 22px;
   width: 55%;
-  /* min-width: 72px; */
+  min-width: 75px;
   display: block;
 }
 .yhw_purInfoStat {
@@ -64,9 +64,10 @@
 }
 /* ******************************************************* */
 /* CSS 반응형 */
-@media screen and (max-width: 1440px) {  /* 화면의 너비가 최대 1440px 일 때 (1440px 미만) */
-  @media screen and (min-width: 621px) {  /* 이면서 최소 621px 이상일 때 */
+@media screen and (max-width: 621px) {  /* 화면의 너비가 최대 621px (621px 미만) */
+  @media screen and (min-width: 425px) {  /* 이면서 최소 425px 이상일 때 */
     .yhw_purInfoTxtBottom span {
+      min-width: 50px;
       width: 50px;
     }
   }
