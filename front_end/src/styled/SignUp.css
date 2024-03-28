@@ -4,12 +4,12 @@
 }
 .yhw_signForm > h4 {
   display: block;
-  width: 70%;
+  width: 65%;
   margin: 30px auto;
   text-align: center;
 }
 .yhw_signInputBox {
-  width: 70%;
+  width: 60%;
   display: flex;
   padding: 10px;
   margin: 0 auto;
@@ -33,12 +33,12 @@
   padding: 5px 10px;
   box-sizing: border-box;
 }
-input.yhw_lastSignInput {   /* 나이 입력 input 태그 CSS */
+input.yhw_AgeInput {   /* 나이 입력 input 태그 CSS */
   display: block;
   width: 10%;
   max-width: 15%;
   min-width: 50px;
-  height: 34px;
+  height: 37px;
   margin-left: 0;
   margin-right: 10px;
 }
@@ -57,6 +57,9 @@ input.yhw_lastSignInput {   /* 나이 입력 input 태그 CSS */
 }
 .yhw_signGenderBtns > button:hover {
   background-color: lightgray;
+}
+.yhw_signGenderBtns > button:active {
+  background-color: lightgray;  
 }
 .yhw_signUpBtnBox {   /* 회원가입 버튼 감싸는 div 태그 CSS */
   text-align: center;
