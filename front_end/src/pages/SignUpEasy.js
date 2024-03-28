@@ -4,9 +4,11 @@ import "../styled/SignUp.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import useSignUp from "../hooks/api/useSignUp"; // useSignUp 훅 가져오기
+import useGenderSelection from "../hooks/useGenderSelection"; // useGenderSelection 훅 가져오기
 
 const SignUpEasy = () => {
   const { userData, setUserData, signupCheck } = useSignUp(); // useSignUp 훅 사용
+  const { selectedGender, handleGenderButtonClick } = useGenderSelection(); // useGenderSelection 훅 사용
 
   // 프로필 값 받기
   const location = useLocation();
@@ -30,6 +32,7 @@ const SignUpEasy = () => {
       ...userData,
       userid: profile.id,
       email: profile.email,
+      gender: selectedGender, // 성별 눌렀을 때 값 추가
     };
     // 업데이트된 userData를 이용하여 회원가입 체크
     setUserData(updatedUserData);
@@ -68,6 +71,7 @@ const SignUpEasy = () => {
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">나이</span>
             <input
+              className="yhw_AgeInput"
               type="number"
               name="age"
               value={userData.age}
@@ -85,6 +89,7 @@ const SignUpEasy = () => {
               onChange={handleChange}
               required
             />
+            <button className="yhw_dupCheckBtn">중복확인</button>
           </div>
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">성별</span>
@@ -95,7 +100,9 @@ const SignUpEasy = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   handleChange(e);
+                  handleGenderButtonClick('M');
                 }}
+                style={{ backgroundColor: selectedGender === 'M' ? 'lightgray' : '' }}
               >
                 남자
               </button>
@@ -105,7 +112,9 @@ const SignUpEasy = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   handleChange(e);
+                  handleGenderButtonClick('F');
                 }}
+                style={{ backgroundColor: selectedGender === 'F' ? 'lightgray' : '' }}
               >
                 여자
               </button>

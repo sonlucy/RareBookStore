@@ -6,12 +6,14 @@ import Footer from "../components/Footer";
 import useSignUp from "../hooks/api/useSignUp";
 import useUserIdCheck from "../hooks/api/useUserIdCheck";
 import useNicknameCheck from "../hooks/api/useNicknameCheck";
+import useGenderSelection from "../hooks/useGenderSelection"; // useGenderSelection 훅 가져오기
 
 const SignUpMail = () => {
   // 커스텀 훅스
   const { userData, setUserData, signupCheck } = useSignUp();
   const { checkUserIdDuplicate, isDuplicate, setIsDuplicate } =
     useUserIdCheck();
+  const { selectedGender, handleGenderButtonClick } = useGenderSelection(); // useGenderSelection 훅 사용
 
   const {
     isNicknameDuplicate,
@@ -119,7 +121,7 @@ const SignUpMail = () => {
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">나이</span>
             <input
-              className="yhw_lastSignInput"
+              className="yhw_AgeInput"
               type="text"
               name="age"
               value={userData.age}
@@ -136,7 +138,9 @@ const SignUpMail = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   handleChange(e);
+                  handleGenderButtonClick('M');
                 }}
+                style={{ backgroundColor: selectedGender === 'M' ? 'lightgray' : '' }}
               >
                 남자
               </button>
@@ -146,7 +150,9 @@ const SignUpMail = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   handleChange(e);
+                  handleGenderButtonClick('F');
                 }}
+                style={{ backgroundColor: selectedGender === 'F' ? 'lightgray' : '' }}
               >
                 여자
               </button>
