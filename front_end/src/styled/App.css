@@ -17,3 +17,15 @@
     margin: 0 7vw;
   }
 }
+
+.sbk-container {
+  margin: 0 auto;
+  padding-top: 2rem;
+  width: 80%;
+  margin: 0;
+
+}
+
+.height-container {
+  min-height: 100vh; /* 푸터 내리기 위해 화면 크기에 맞춰 높이 설정 */
+}
