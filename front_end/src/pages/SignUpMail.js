@@ -7,6 +7,7 @@ import useSignUp from "../hooks/api/useSignUp";
 import useUserIdCheck from "../hooks/api/useUserIdCheck";
 import useNicknameCheck from "../hooks/api/useNicknameCheck";
 import useGenderSelection from "../hooks/useGenderSelection"; // useGenderSelection 훅 가져오기
+import usePasswordMatch from '../hooks/usePasswordMatch'; // 패스워드 확인용 훅 usePasswordMatch
 
 const SignUpMail = () => {
   // 커스텀 훅스
@@ -23,7 +24,7 @@ const SignUpMail = () => {
   
   // 비밀번호 일치 확인용 훅 사용
   const match = usePasswordMatch(password, checkPassword);
-  
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
