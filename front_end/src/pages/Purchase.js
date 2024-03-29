@@ -13,6 +13,7 @@ const Purchase = () => {
   
   return (
     <>
+      <div className="height-container">
       <Header />
 
       <div className="yhw_container">
@@ -33,7 +34,7 @@ const Purchase = () => {
         </div>
         <button className="yhw_purBtn">구매하기</button>
       </div>
-
+</div>
       <Footer />
     </>
   );

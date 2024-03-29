@@ -8,12 +8,13 @@ import Footer from '../components/Footer';
 
 function Address() {
   return (
-    <>
+<>
+      <div className="height-container">
     <Header />
     
     <div className="cyj_content_area Address-content">
       {/* 사이드바 넣는 곳 */}
-       <div className="Address-sidebar">
+        <div className="Address-sidebar">
         <MypageSide />
       </div>
       <div className="my_Address">
@@ -30,7 +31,7 @@ function Address() {
         </div>
       </div>
     </div>
-
+</div>
     <Footer />
     </>
     

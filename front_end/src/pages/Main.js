@@ -67,14 +67,16 @@ function Main() {
   };
 
   return (
-    <div className="App">
+<>
+      <div className="height-container">
       <Header isLoggedIn={isLoggedIn} />
       <Title />
       <RecentBooks books={recentBooks} titleText="최근 구매 희망 도서" />
       <RecentBooks books={recentBooks} titleText="최근 판매 도서" />
       <PurchaseRequest />
-      <Footer />
     </div>
+      <Footer />
+      </>
   );
 }
 

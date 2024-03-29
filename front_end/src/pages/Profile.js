@@ -10,6 +10,7 @@ import Footer from "../components/Footer";
 const PurchaseHistory = () => {
   return (
     <>
+      <div className="height-container">
       <Header />
       <div className="lcm_container">
         <div className="lcm_purHistCont">
@@ -82,7 +83,7 @@ const PurchaseHistory = () => {
           </div>
         </div>
       </div>
-
+</div>
       <Footer />
     </>
   );

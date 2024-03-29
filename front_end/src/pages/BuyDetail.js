@@ -44,6 +44,7 @@ const BuyDetail = () => {
   
   return (
     <>
+      <div className="height-container">
       <Header />
 
       <div className="yhw_container">
@@ -71,7 +72,7 @@ const BuyDetail = () => {
           </div>
         </div>  {/* yhw_detailCont 끝 */}
       </div>
-      
+      </div>
       <Footer />
     </>
   );

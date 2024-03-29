@@ -44,7 +44,8 @@ const sellerInfoListWithGrade = setGradeForSellerInfoList(sellerInfoList);
 
 function SellerRank() {
   return (
-    <div className="App">
+    <>
+      <div className="height-container">
       <Header />
       <div className="yhw_container">
         <div className="yhw_purHistCont">
@@ -57,9 +58,9 @@ function SellerRank() {
           {/* </div> */}</div>
         </div>
       </div>
-
-      <Footer />
     </div>
+      <Footer />
+      </>
   );
 }
 

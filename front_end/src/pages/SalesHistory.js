@@ -11,8 +11,8 @@ import DateInquiry from '../components/DateInquiry';
 
 function SalesHistory() {
   return (
-    <div className="App">
-
+    <>
+      <div className="height-container">
         <Header />
       <div style={{ display: 'flex' }}>
         <MyPageSide />
@@ -25,10 +25,9 @@ function SalesHistory() {
         </div>
       </div>
         
-
-        <Footer />
-
     </div>
+        <Footer />
+        </>
   );
 }
 
