@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import "../styled/Header.css";
 import { FaSearch } from "react-icons/fa";
+import useLogOut from "../hooks/api/useLogOut";
 
-const Header = () => {
+const Header = ({ isLoggedIn }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate(); // useNavigate 훅
   const location = useLocation();
-
+  const { logout } = useLogOut(); // 로그아웃 훅 사용
 
   const handleItemClick = (event) => {
     const items = document.querySelectorAll(".sbk-menu-item");
@@ -35,6 +36,12 @@ const Header = () => {
       handleSearchSubmit(); // 검색 실행
     }
   }
+
+  const handleLogout = () => {
+    logout(); // 로그아웃 함수 호출
+    window.location.reload(); // 페이지 리로드
+  };
+
   return (
     <div>
       <div className="sbk-header-wrapper">
@@ -61,14 +68,20 @@ const Header = () => {
               </NavLink>
             </dt>
             <dt>
-              <NavLink
-                to="/SNSLogin"
-                className="sbk-menu-item"
-                activeClassName="active"
-                onClick={handleItemClick}
-              >
-                로그인/회원가입
-              </NavLink>
+              {isLoggedIn ? (
+                <div className="sbk-menu-item" onClick={handleLogout}>
+                  로그아웃
+                </div>
+              ) : (
+                <NavLink
+                  to="/SNSLogin"
+                  className="sbk-menu-item"
+                  activeClassName="active"
+                  onClick={handleItemClick}
+                >
+                  로그인/회원가입
+                </NavLink>
+              )}
             </dt>
           </dl>
         </div>
