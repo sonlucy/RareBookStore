@@ -14,6 +14,22 @@ const SignUpMail = () => {
   const { checkUserIdDuplicate, isDuplicate, setIsDuplicate } =
     useUserIdCheck();
   const { selectedGender, handleGenderButtonClick } = useGenderSelection(); // useGenderSelection 훅 사용
+  const [password, setPassword] = useState('');           // password와 checkPassword가 일치하는지 확인하기 위해 사용
+  const [checkPassword, setCheckPassword] = useState(''); // password와 checkPassword가 일치하는지 확인하기 위해 사용
+
+  //============== 비밀번호 유효성 검사 ==============//
+  const pwValidatioCheck =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
+  
+  // 비밀번호 일치 확인용 훅 사용
+  const match = usePasswordMatch(password, checkPassword);
+  
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleConfirmPasswordChange = (e) => {
+    setCheckPassword(e.target.value);
+  };
 
   const {
     isNicknameDuplicate,
@@ -79,17 +95,31 @@ const SignUpMail = () => {
           </div>
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">비밀번호</span>
-            <input
-              type="password"
-              name="userpwd"
-              placeholder="비밀번호"
-              value={userData.userpwd}
-              onChange={handleChange}
-            />
+            <div className="yhw_signMailPWInputBox">
+              <input
+                type="password"
+                name="userpwd"
+                placeholder="비밀번호"
+                value={userData.userpwd}
+                onChange={(e) => {
+                  handleChange(e);
+                  handlePasswordChange(e);
+                }}
+              />
+              <p className="yhw_passwordCheckMsg"
+                 style={{ color: pwValidatioCheck.test(userData.userpwd) ? 'green' : 'red' }}>
+                {pwValidatioCheck.test(userData.userpwd) ? '조건 충족' : '하나 이상의 대문자, 소문자, 숫자, 특수문자 포함 8자 이상'}
+              </p>
+            </div>
           </div>
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">비밀번호 확인</span>
-            <input type="password" placeholder="비밀번호 확인" required />
+            <div className="yhw_signMailPWInputBox">
+              <input value={checkPassword} onChange={handleConfirmPasswordChange} type="password" placeholder="비밀번호 확인" required />
+              <p className="yhw_passwordCheckMsg" style={{ color: match === true ? 'green' : 'red' }}>
+                {match && match === true ? '비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.'}
+              </p>
+            </div>
           </div>
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">이메일</span>
