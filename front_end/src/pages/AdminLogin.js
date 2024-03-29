@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-import useLoginCheck from "../hooks/api/useLoginCheck";
+import useAdminLoginCheck from "../hooks/api/useAdminLoginCheck";
 
 const Container = styled.div`
   display: flex;
@@ -63,38 +63,39 @@ const SubmitButton = styled.button`
   }
 `;
 
-const AdditionalLinks = styled.div`
-  display: flex;
-  /* justify-content: space-between; */
-  justify-content: center;
-  margin-top: 10px;
-`;
+// const AdditionalLinks = styled.div`
+//   display: flex;
+//   /* justify-content: space-between; */
+//   justify-content: center;
+//   margin-top: 10px;
+// `;
 
-const AdditionalLink = styled(Link)`
-  color: #007bff;
-  text-decoration: none;
-  cursor: pointer;
+// const AdditionalLink = styled(Link)`
+//   color: #007bff;
+//   text-decoration: none;
+//   cursor: pointer;
 
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+//   &:hover {
+//     text-decoration: underline;
+//   }
+// `;
 
-const IDPWLogin = () => {
+const AdminLogin = () => {
   // 커스텀 훅스
-  const { userData, setUserData, loginCheck } = useLoginCheck();
+  const { adminUserData, setAdminUserData, adminloginCheck } =
+    useAdminLoginCheck();
 
   const handleLogin = (event) => {
     event.preventDefault();
-    if (Object.values(userData).some((value) => value === "")) {
+    if (Object.values(adminUserData).some((value) => value === "")) {
       alert("아이디와 비밀번호를 입력해주세요");
       return;
     }
-    loginCheck();
+    adminloginCheck();
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
+    setAdminUserData({ ...adminUserData, [name]: value });
   };
 
   return (
@@ -108,7 +109,7 @@ const IDPWLogin = () => {
             <InputField
               type="text"
               name="userid"
-              value={userData.userid}
+              value={adminUserData.userid}
               onChange={handleChange}
               placeholder="아이디를 입력하세요"
             />
@@ -118,20 +119,20 @@ const IDPWLogin = () => {
             <InputField
               type="password"
               name="userpwd"
-              value={userData.userpwd}
+              value={adminUserData.userpwd}
               onChange={handleChange}
               placeholder="비밀번호를 입력하세요"
             />
           </FormGroup>
           <SubmitButton type="submit">로그인</SubmitButton>
-          <AdditionalLinks>
-            {/* <AdditionalLink href="/">아이디 / 비밀번호 찾기</AdditionalLink> */}
-            <AdditionalLink to="/SignUpMail">회원가입</AdditionalLink>
-          </AdditionalLinks>
+          {/* <AdditionalLinks> */}
+          {/* <AdditionalLink href="/">아이디 / 비밀번호 찾기</AdditionalLink> */}
+          {/* <AdditionalLink to="/SignUpMail">회원가입</AdditionalLink>
+          </AdditionalLinks> */}
         </LoginForm>
       </Container>
       <Footer />
     </>
   );
 };
-export default IDPWLogin;
+export default AdminLogin;

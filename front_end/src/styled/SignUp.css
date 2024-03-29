@@ -1,15 +1,15 @@
 .yhw_signForm {
   width: 100%;
-  height: 800px;
+  height: 50vh;
 }
 .yhw_signForm > h4 {
   display: block;
-  width: 600px;
+  width: 65%;
   margin: 30px auto;
   text-align: center;
 }
 .yhw_signInputBox {
-  width: 600px;
+  width: 60%;
   display: flex;
   padding: 10px;
   margin: 0 auto;
@@ -18,30 +18,38 @@
 .yhw_signInputTit {
   text-align: right;
   display: block;
-  width: 150px;
+  width: 30%;
+  min-width: 60px;
   margin: 0 10px;
   font-weight: bold;
+  align-items: flex-end;
 }
 .yhw_signInputBox > input {
   display: block;
-  width: 245px;
-  height: 25px;
+  width: 55%;
+  height: 40px;
   border: 1px solid lightgray;
   border-radius: 5px;
   padding: 5px 10px;
+  box-sizing: border-box;
 }
-input.yhw_lastSignInput {   /* 나이 입력 input 태그 CSS */
+input.yhw_AgeInput {   /* 나이 입력 input 태그 CSS */
   display: block;
-  width: 50px;
+  width: 10%;
+  max-width: 15%;
+  min-width: 50px;
+  height: 37px;
+  margin-left: 0;
   margin-right: 10px;
 }
 .yhw_signGenderBtns {
   display: flex;
-  width: 160px;
+  width: 22%;
 }
-.yhw_signGenderBtns > button {
-  width: 80px;
-  height: 35px;
+.yhw_signGenderBtns > button {  /* 남자 여자 버튼 */
+  width: 50%;
+  min-width: 50px;
+  height: 36px;
   margin-right: 10px;
   background-color: white;
   border: lightgray 1px solid;
@@ -49,6 +57,9 @@ input.yhw_lastSignInput {   /* 나이 입력 input 태그 CSS */
 }
 .yhw_signGenderBtns > button:hover {
   background-color: lightgray;
+}
+.yhw_signGenderBtns > button:active {
+  background-color: lightgray;  
 }
 .yhw_signUpBtnBox {   /* 회원가입 버튼 감싸는 div 태그 CSS */
   text-align: center;
@@ -64,7 +75,8 @@ input.yhw_lastSignInput {   /* 나이 입력 input 태그 CSS */
   font-weight: bold;
 }
 .yhw_dupCheckBtn {   /* 중복확인 button 태그 CSS */
-  width: 70px;
+  width: 75px;
+  min-width: 75px;
   height: 35px;
   background-color: #C87E66;
   color: white;
@@ -73,4 +85,21 @@ input.yhw_lastSignInput {   /* 나이 입력 input 태그 CSS */
   font-size: 12px;
   font-weight: medium;
   margin-left: 5px;
+}
+/* ******************************************************* */
+/* CSS 반응형 */
+@media screen and (max-width: 1440px) {  /* 화면의 너비가 최대 1440px 일 때 (1440px 미만) */
+  .yhw_signInputBox > input {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 621px) {
+  .yhw_signInputBox > input {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 425px) {
+  .yhw_signInputBox > input {
+    width: 20%;
+  }
 }

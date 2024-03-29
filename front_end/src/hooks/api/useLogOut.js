@@ -9,7 +9,9 @@ const useLogOut = () => {
     try {
       // Perform Google logout
       await googleLogout();
+
       sessionStorage.removeItem('id'); // 구글 로그아웃을 위해 세션의 id를 삭제
+
 
       // Perform server logout
       const res = await fetch("/api/logout", {

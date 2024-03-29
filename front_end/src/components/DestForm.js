@@ -20,51 +20,49 @@ const DestForm = ({ isChecked }) => { // 페이지파일(= Purchase.js)에 있�
 
   return (
     <form className="yhw_destForm">
-      <div className="yhw_destFormCont">
-        <div className="yhw_destFormInputBox">
-          <label>받는 사람</label>
-          <input
-            type="text"
-            name="name"
-            value={isChecked ? defShippingData.name : name}
-            onChange={onChange}
-          />
-        </div>
-        <div className="yhw_destFormInputBox">
-          <label>핸드폰</label>
-          <input
-            type="text"
-            name="phone"
-            value={isChecked ? defShippingData.phone : phone}
-            onChange={onChange}
-          />
-        </div>
-        <div className="yhw_destFormInputBox">
-          <label className="yhw_destFormAddrLabel">주소</label>
-          <div className="yhw_destFomrInputAddrBox">
-            <div className="yhw_destFormPostBox">
-              <input
-                className="yhw_destFormInputPostCode"
-                type="number"
-                name="postCode"
-                value={isChecked ? defShippingData.postCode : postCode}
-                onChange={onChange}
-              />
-              <span className="yhw_destFormSpanPostCode">우편번호</span>
-            </div>
+      <div className="yhw_destFormInputBox">
+        <label>받는 사람</label>
+        <input
+          type="text"
+          name="name"
+          value={isChecked ? defShippingData.name : name}
+          onChange={onChange}
+        />
+      </div>
+      <div className="yhw_destFormInputBox">
+        <label>핸드폰</label>
+        <input
+          type="text"
+          name="phone"
+          value={isChecked ? defShippingData.phone : phone}
+          onChange={onChange}
+        />
+      </div>
+      <div className="yhw_destFormInputBox">
+        <label className="yhw_destFormAddrLabel">주소</label>
+        <div className="yhw_destFomrInputAddrBox">
+          <div className="yhw_destFormPostBox">
             <input
-              type="text"
-              name="address"
-              value={isChecked ? defShippingData.address : address}
+              className="yhw_destFormInputPostCode"
+              type="number"
+              name="postCode"
+              value={isChecked ? defShippingData.postCode : postCode}
               onChange={onChange}
             />
-            <input
-              type="text"
-              name="detailAddress"
-              value={isChecked ? defShippingData.detailAddress : detailAddress}
-              onChange={onChange}
-            />
+            <span className="yhw_destFormSpanPostCode">우편번호</span>
           </div>
+          <input
+            type="text"
+            name="address"
+            value={isChecked ? defShippingData.address : address}
+            onChange={onChange}
+          />
+          <input
+            type="text"
+            name="detailAddress"
+            value={isChecked ? defShippingData.detailAddress : detailAddress}
+            onChange={onChange}
+          />
         </div>
       </div>
     </form>

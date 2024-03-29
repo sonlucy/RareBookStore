@@ -5,7 +5,7 @@
 }
 .yhw_detailTopProdInfoBox {
   display: flex;
-  width: 500px;
+  width: fit-content;
 }
 .yhw_detailTopProdInfoBox img {
   width: 180px;
@@ -45,4 +45,52 @@
 .yhw_detailTopDate {
   font-size: 15px;
   font-weight: medium;
+}
+/* ******************************************************* */
+/* CSS 반응형 */
+@media screen and (max-width: 1440px) {  /* 화면의 너비가 최대 1440px 일 때 */
+  .yhw_detailTopProdBox {
+    transform: scale(0.95, 0.95);
+  }
+  /* .yhw_detailTopProdInfoBox {
+    flex-direction: column;
+  } */
+  .yhw_detailTopProdInfoBox img {
+    width: 150px;
+    height: 210px;
+    display: block;
+  }
+}
+@media screen and (max-width: 768px) {
+  .yhw_detailTopProdBox {
+    transform: scale(0.9, 0.9);
+  }
+  .yhw_detailTopProdInfoBox {
+    margin: 0 auto;
+  }
+  .yhw_detailTopProdInfoBox img {
+    width: 150px;
+    height: 200px;
+  }
+}
+@media screen and (max-width: 621px) {
+  .yhw_detailTopProdBox {
+    transform: scale(0.85, 0.85);
+  }
+  .yhw_detailTopProdInfoBox {
+    flex-direction: column;
+  }
+  .yhw_detailTopProdInfoBox img {
+    width: 120px;
+    height: 160px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .yhw_detailTopProdBox {
+    transform: scale(0.8, 0.8);
+  }
+  .yhw_detailTopProdInfoBox img {
+    width: 90px;
+    height: 120px;
+  }
 }

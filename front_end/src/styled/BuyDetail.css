@@ -23,3 +23,11 @@
   margin: 0 auto;
   margin-top: 20px;
 }
+/* ******************************************************* */
+/* CSS 반응형 */
+@media screen and (max-width: 768px) {  /* 화면의 너비가 최대 621px 일 때 (621px 미만) */
+  .yhw_detailCont {
+    width: 100%;
+    margin: 0;
+  }
+}

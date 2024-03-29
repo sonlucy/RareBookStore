@@ -1,11 +1,12 @@
 .yhw_purInfoBox {
   display: flex;
+  width: fit-content;
 }
 .yhw_purInfoBox > a {
   display: block;
   width: 150px;
   height: 200px;
-  margin-right: 40px;
+  margin-right: 4vw;
 }
 .yhw_purInfoBox > a > img {
   width: 100%;
@@ -34,24 +35,45 @@
   margin-top: 10px;
   font-size: 14px;
 }
-.yhw_purInfoTxtBottom {
+.yhw_purInfoTxtBottom { /* 상태등급, 판매입찰가 모두 감싸는 div 태그 CSS */
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .yhw_purInfoTxtBottom > div {
   display: flex;
+  width: 100%;
+  /* width: 160px; */
 }
 .yhw_purInfoTxtBottom span {
   font-size: 16px;
   line-height: 21px;
-  width: 90px;
+  width: 65%;
+  min-width: 90px;
   display: block;
 }
 .yhw_purInfoTxtBottom b {
   font-size: 17px;
   line-height: 22px;
+  width: 55%;
+  min-width: 75px;
   display: block;
 }
 .yhw_purInfoStat {
   margin-bottom: 2px;
+}
+/* ******************************************************* */
+/* CSS 반응형 */
+@media screen and (max-width: 621px) {  /* 화면의 너비가 최대 621px (621px 미만) */
+  @media screen and (min-width: 425px) {  /* 이면서 최소 425px 이상일 때 */
+    .yhw_purInfoTxtBottom span {
+      min-width: 50px;
+      width: 50px;
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .yhw_purInfoBox {
+    flex-direction: column;
+  }
 }

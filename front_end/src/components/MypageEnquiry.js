@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../styled/Enquiry.css';
+import '../../styled/MypageEnquiry.css';
+import QuestSide from '../QuestSide';
+import Header from '../Header';
+import Footer from '../Footer';
 
 function Enquiry() {
   const [enquiries, setEnquiries] = useState([]);
@@ -41,10 +44,18 @@ function Enquiry() {
   };
 
   return (
+    <>
+    <Header />
+
     <div className='jyh-table'>
-      <p className='jyh-tb-title'>문의 내용</p>
-      <table className='jyh-enquiry-table'>
-        <tbody>
+      {/* 사이드 바 넣는 곳 */}
+      <div className="qna-page-sidebar">
+        <QuestSide />
+      </div>
+      <div className="jyh-main-table">
+       <p className='jyh-tb-title'>문의 내용</p>
+       <table className='jyh-enquiry-table'>
+         <tbody>
           {enquiries.map(enquiry => (
             <React.Fragment key={enquiry.boardKey}>
               <tr>
@@ -69,10 +80,15 @@ function Enquiry() {
                 </tr>
               )}
             </React.Fragment>
-          ))}
-        </tbody>
-      </table>
+           ))}
+          </tbody>
+        </table>
+      </div>
+
     </div>
+
+    <Footer />
+    </>
   );
 }
 

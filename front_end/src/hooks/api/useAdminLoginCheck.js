@@ -1,34 +1,35 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const useLoginCheck = () => {
-  const [userData, setUserData] = useState({
+const useAdminLoginCheck = () => {
+  const [adminUserData, setAdminUserData] = useState({
     userid: "",
     userpwd: "",
   });
   const navigate = useNavigate();
-  const loginCheck = async () => {
+  const adminloginCheck = async () => {
     try {
-      const res = await fetch("/api/loginCheck", {
+      const res = await fetch("/api/adminloginCheck", {
         method: "POST",
-        body: JSON.stringify(userData),
+        body: JSON.stringify(adminUserData),
         credentials: "include",
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
 
+      alert(data);
       console.log(data);
       if (res.status === 200) {
-        navigate("/");
+        navigate("/Admin");
       } else {
-        setUserData({ userid: "", userpwd: "" });
+        setAdminUserData({ userid: "", userpwd: "" });
       }
     } catch (err) {
       console.log(err);
     }
   };
 
-  return { userData, setUserData, loginCheck };
+  return { adminUserData, setAdminUserData, adminloginCheck };
 };
 
-export default useLoginCheck;
+export default useAdminLoginCheck;
