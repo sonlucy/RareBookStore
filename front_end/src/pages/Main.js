@@ -17,32 +17,6 @@ const recentBooks = [
   { title: "Book 9", image: "img/book.png" },
   { title: "Book 10", image: "img/book.png" },
 ];
-const checkSession = async () => {
-  try {
-    const response = await fetch("/api/checkSession", {
-      method: "GET",
-      credentials: "include", // 쿠키를 전송하기 위해 credentials 옵션을 include로 설정합니다.
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log("세션 상태 확인 결과:", data);
-      if (data.loggedIn) {
-        console.log("사용자가 로그인 중입니다.");
-        // 로그인 중인 경우 해당 사용자 정보를 이용하여 로그인 상태를 처리합니다.
-      } else {
-        console.log("사용자가 로그아웃 상태입니다.");
-        // 로그아웃 상태인 경우 처리합니다.
-      }
-    } else {
-      console.error("세션 상태 확인 실패:", response.statusText);
-      // 요청이 실패한 경우 처리합니다.
-    }
-  } catch (error) {
-    console.error("세션 상태 확인 실패:", error.message);
-    // 예외가 발생한 경우 처리합니다.
-  }
-};
 
 
 function Main() {
