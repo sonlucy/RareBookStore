@@ -69,7 +69,7 @@ const Header = ({ isLoggedIn }) => {
             </dt>
             <dt>
               {isLoggedIn ? (
-                <div className="sbk-menu-item" onClick={handleLogout}>
+                <div className="sbk-menu-item" style={{ cursor: 'pointer' }} onClick={handleLogout}>
                   로그아웃
                 </div>
               ) : (
