@@ -37,7 +37,7 @@ const PurchaseHistory = () => {
                 <li>
                   <PurInfoBox />
                   <div className="yhw_purHistBtns">
-                    <button>구매 후기 작성</button> {/* 후기 작성 완료 시 버튼 비활성화 기능 추가할 예정 */}
+                    <button onClick={handleClick}>구매 후기 작성</button> {/* 후기 작성 완료 시 버튼 비활성화 기능 추가할 예정 */}
                   </div>
                 </li>
                 <li>
