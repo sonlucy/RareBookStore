@@ -40,6 +40,7 @@ function QuestionForm() {
 
     return (
         <>
+            <div className="height-container">
         <Header/>
 
             {/* 윤하님 코드와 안섞음 .. DB 연결 안되있음 .. */}
@@ -84,7 +85,7 @@ function QuestionForm() {
                 </div>
             </div>
         </div>
-
+</div>
         <Footer/>
         </>
     

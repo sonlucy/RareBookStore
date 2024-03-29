@@ -37,7 +37,8 @@ function RegRequest() {
   };
 
   return (
-    <div className="App">
+    <>
+      <div className="height-container">
       <Header />
       <div style={{ display: 'flex' }}>
         <MyPageSide />
@@ -58,8 +59,9 @@ function RegRequest() {
           {selectedTab !== '진행중' && <PurchaseReqListEnd requests={filteredRequests} />}
         </div>
       </div>
-      <Footer />
     </div>
+      <Footer />
+      </>
   );
 }
 

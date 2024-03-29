@@ -7,14 +7,16 @@ import BookSaleBid from '../components/BookSaleBid';
 
 function SellBook(props) {
     return (
-        <>
+    <>
+    <div className="height-container">
         <Header />
         <div>
             <SellBookInfo></SellBookInfo>
             <BookSaleBid></BookSaleBid>
         </div>
+        </div>
         <Footer />
-        </>
+    </>
     );
 }
 

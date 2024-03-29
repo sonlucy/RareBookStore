@@ -55,7 +55,8 @@ const SignUpMail = () => {
   };
 
   return (
-    <>
+      <>
+      <div className="height-container">
       <Header />
       <div className="yhw_container">
         <form className="yhw_signForm">
@@ -168,6 +169,7 @@ const SignUpMail = () => {
             </button>
           </div>
         </form>
+      </div>
       </div>
       <Footer />
     </>
