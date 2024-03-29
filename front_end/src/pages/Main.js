@@ -1,4 +1,4 @@
-// import { BrowserRouter as Router } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Title from "../components/Title";
@@ -18,10 +18,57 @@ const recentBooks = [
   { title: "Book 10", image: "img/book.png" },
 ];
 
+
 function Main() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    checkSession(); // 페이지 로드 시 세션 확인
+  }, []);
+
+  function checkGoogleLoginStatus() {
+    // 세션 스토리지 확인
+    const userId = sessionStorage.getItem('id');
+    return userId !== null; // id가 존재하면 true로 반환
+  }
+
+  const checkSession = async () => {
+    try {
+      const response = await fetch("/api/checkSession", {
+        method: "GET",
+        credentials: "include", // 쿠키를 전송하기 위해 credentials 옵션을 include로 설정합니다.
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("세션 상태 확인 결과:", data);
+        if (data.loggedIn) {
+          console.log("사용자가 로그인 중입니다.");
+          // 로그인 중인 경우 해당 사용자 정보를 이용하여 로그인 상태를 처리합니다.
+          setIsLoggedIn(true);
+        } else {
+          console.log("사용자가 로그아웃 상태입니다.");
+          // 로그아웃 상태인 경우 처리합니다.
+          setIsLoggedIn(false);
+        }
+      } else {
+        console.error("세션 상태 확인 실패:", response.statusText);
+        // 요청이 실패한 경우 처리합니다.
+        setIsLoggedIn(false); 
+        setIsLoggedIn(checkGoogleLoginStatus());
+      }
+    } catch (error) {
+      console.error("세션 상태 확인 실패:", error.message);
+      // 예외가 발생한 경우 처리합니다.
+      setIsLoggedIn(false); 
+      setIsLoggedIn(checkGoogleLoginStatus());
+    }
+  };
+
   return (
     <div className="App">
-      <Header />
+      <Header isLoggedIn={isLoggedIn} />
       <Title />
       <RecentBooks books={recentBooks} titleText="최근 구매 희망 도서" />
       <RecentBooks books={recentBooks} titleText="최근 판매 도서" />
