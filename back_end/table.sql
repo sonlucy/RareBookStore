@@ -8,7 +8,7 @@ CREATE TABLE `customers` (
     `nickname` VARCHAR(15) NOT NULL,
     `age` INT(3) NULL,
     `gender` CHAR NULL,
-    `contact` INT(11) NULL COMMENT '구매희망도서 등록시 사용',
+    `contact` VARCHAR(20) NULL COMMENT '구매희망도서 등록시 사용',
     `grade` INT(2) NULL DEFAULT NULL,
     `point` INT(3) NULL DEFAULT 0 COMMENT '평균값(1등급:4~5점/2등급:3~4/3등급:2~3/4등급:1~2/5등급:0~1)'
 );
@@ -32,7 +32,7 @@ CREATE TABLE `buyerBook` (
     `itemTitle` VARCHAR(30) NOT NULL,
     `author` VARCHAR(20) NOT NULL,
     `publisher` VARCHAR(20) NOT NULL,
-    `expiry` INT NOT NULL,
+    `expiry` INT(10) NOT NULL,
     `aucStatus` INT NOT NULL DEFAULT 0 COMMENT '낙찰(1)//진행중(2)/기한만료(3)/취소(삭제)',
     FOREIGN KEY (`custKey`) REFERENCES `customers` (`custKey`)
 );
@@ -71,7 +71,7 @@ CREATE TABLE `orders` (
 CREATE TABLE `enquiry` (
     `boardKey` INT AUTO_INCREMENT PRIMARY KEY,
     `custKey` INT NOT NULL,
-    `date` INT NOT NULL COMMENT '질문:자동으로 들어오는 값 NULL or NOT NULL?',
+    `date` VARCHAR(50) NOT NULL COMMENT '질문:자동으로 들어오는 값 NULL or NOT NULL?',
     `boardTitle` VARCHAR(100) NOT NULL,
     `Enquiry` VARCHAR(400) NOT NULL,
     FOREIGN KEY (`custKey`) REFERENCES `customers` (`custKey`)
@@ -103,7 +103,7 @@ CREATE TABLE `reply` (
     `replayKey` INT AUTO_INCREMENT PRIMARY KEY,
     `boardKey` INT NOT NULL,
     `adminKey` INT NOT NULL,
-    `date` INT NOT NULL,
+    `date` VARCHAR(50) NOT NULL,
     `reply` VARCHAR(400) NOT NULL,
     FOREIGN KEY (`boardKey`) REFERENCES `enquiry` (`boardKey`),
     FOREIGN KEY (`adminKey`) REFERENCES `admin` (`adminKey`)
