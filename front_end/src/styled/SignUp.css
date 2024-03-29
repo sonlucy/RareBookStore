@@ -20,7 +20,7 @@
   display: block;
   width: 30%;
   min-width: 60px;
-  margin: 0 10px;
+  margin: -1px 10px 0 10px;
   font-weight: bold;
   align-items: flex-end;
 }
@@ -28,10 +28,30 @@
   display: block;
   width: 55%;
   height: 40px;
-  border: 1px solid lightgray;
+  border: 1px solid #D2D2D2;
   border-radius: 5px;
   padding: 5px 10px;
   box-sizing: border-box;
+}
+.yhw_signMailPWInputTit { /* Mail 가입 시 패스워드확인 input 태그 왼쪽 글씨 */
+  margin-top: -30px;
+}
+.yhw_signMailPWInputBox { /* Mail 가입 시 패스워드 input & p 태그 감싸는 div 태그 */
+  width: 65%;
+}
+.yhw_signMailPWInputBox > input {
+  display: block;
+  width: 85%;
+  height: 40px;
+  border: 1px solid #D2D2D2;
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+.yhw_signMailPWInputBox > p {
+  margin-bottom: 0;
+  font-size: 13px;
+  color: #707070;
 }
 input.yhw_AgeInput {   /* 나이 입력 input 태그 CSS */
   display: block;
@@ -52,14 +72,14 @@ input.yhw_AgeInput {   /* 나이 입력 input 태그 CSS */
   height: 36px;
   margin-right: 10px;
   background-color: white;
-  border: lightgray 1px solid;
+  border: #D2D2D2 1px solid;
   border-radius: 5px;
 }
 .yhw_signGenderBtns > button:hover {
-  background-color: lightgray;
+  background-color: #D2D2D2;
 }
 .yhw_signGenderBtns > button:active {
-  background-color: lightgray;  
+  background-color: #D2D2D2;  
 }
 .yhw_signUpBtnBox {   /* 회원가입 버튼 감싸는 div 태그 CSS */
   text-align: center;
@@ -92,14 +112,31 @@ input.yhw_AgeInput {   /* 나이 입력 input 태그 CSS */
   .yhw_signInputBox > input {
     width: 45%;
   }
+  .yhw_signMailPWInputBox > input {
+    width: 70%;
+  }
 }
 @media screen and (max-width: 621px) {
   .yhw_signInputBox > input {
     width: 30%;
   }
+  .yhw_signMailPWInputBox > input {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 491px) {
+  .yhw_signMailPWInputTit {
+    margin-top: -55px;
+  }
 }
 @media screen and (max-width: 425px) {
   .yhw_signInputBox > input {
     width: 20%;
+  }
+  .yhw_signMailPWInputTit {
+    margin-top: -50px;
+  }
+  .yhw_signMailPWInputBox > input {
+    width: 35%;
   }
 }
