@@ -20,6 +20,7 @@ const useLoginCheck = () => {
       console.log(data);
       if (res.status === 200) {
         navigate("/");
+        window.location.reload(); // 페이지 리로드
       } else {
         setUserData({ userid: "", userpwd: "" });
       }

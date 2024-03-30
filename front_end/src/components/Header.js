@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import "../styled/Header.css";
 import { FaSearch } from "react-icons/fa";
 import useLogOut from "../hooks/api/useLogOut";
+import { LoginContext } from "./LoginContext";
 
-const Header = ({ isLoggedIn }) => {
+
+const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate(); // useNavigate 훅
   const location = useLocation();
   const { logout } = useLogOut(); // 로그아웃 훅 사용
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext); // LoginContext에서 isLoggedIn 가져오기
 
   const handleItemClick = (event) => {
     const items = document.querySelectorAll(".sbk-menu-item");
