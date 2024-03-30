@@ -1,5 +1,6 @@
 import "./styled/App.css";
 import { Routes, Route } from "react-router-dom";
+import { LoginProvider } from "./components/LoginContext";
 import Address from "./pages/Address";
 import BuyDetail from "./pages/BuyDetail";
 import CategoryBookList from "./pages/CategoryBookLIst";
@@ -19,10 +20,13 @@ import SellerRank from "./pages/SellerRank";
 import QuestionForm from "./pages/QuestionForm";
 import AdminLogin from "./pages/AdminLogin";
 import Profile from "./pages/Profile";
+import PurchaseReview from "./pages/PurchaseReview";
+
 
 function App() {
   return (
     <div className="App">
+      <LoginProvider>
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="Address" element={<Address />}></Route>
@@ -43,7 +47,11 @@ function App() {
         <Route path="SellerRank" element={<SellerRank />}></Route>
         <Route path="QuestionForm" element={<QuestionForm />}></Route>
         <Route path="Profile" element={<Profile />}></Route>
+        <Route path="PurchaseReview" element={<PurchaseReview />}></Route>
+
       </Routes>
+      </LoginProvider>
+
     </div>
   );
 }
