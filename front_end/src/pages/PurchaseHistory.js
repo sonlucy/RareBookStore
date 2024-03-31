@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styled/PurchaseHistory.css";
 import Header from "../components/Header";
 import MyPageSide from "../components/MypageSide";
@@ -8,6 +8,13 @@ import PurInfoBox from "../components/PurInfoBox";
 import Footer from "../components/Footer";
 
 const PurchaseHistory = () => {
+  const navigate = useNavigate(); // 구매후기작성 버튼 클릭 시 구매후기작성 페이지로 이동
+
+  const handleClick = () => {
+    navigate('/PurchaseReview');
+    window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
+  };
+
   return (
     <>
       <div className="height-container">
@@ -30,23 +37,24 @@ const PurchaseHistory = () => {
                 <li>
                   <PurInfoBox />
                   <div className="yhw_purHistBtns">
-                    <button>구매 후기 작성</button> {/* 후기 작성 완료 시 버튼 비활성화 기능 추가할 예정 */}
+                    <button onClick={handleClick}>구매 후기 작성</button> {/* 후기 작성 완료 시 버튼 비활성화 기능 추가할 예정 */}
                   </div>
                 </li>
                 <li>
                   <PurInfoBox />
                   <div className="yhw_purHistBtns">
-                    <button>구매 후기 작성</button> {/* 후기 작성 완료 시 버튼 비활성화 기능 추가할 예정 */}
+                    <button onClick={handleClick}>구매 후기 작성</button> {/* 후기 작성 완료 시 버튼 비활성화 기능 추가할 예정 */}
                   </div>
                 </li>
-              </ul>
-              {/* <ul>
-                {purchaseData.map((purchase) => (
-                  <li key={purchase.id}>
-                    {purchase.productName} - {purchase.price}
+                {/* {filteredProducts.map((productInfo, index) => (
+                  <li key={index}>
+                    <PurInfoBox productInfo={productInfo} />
+                    <div className="yhw_purHistBtns">
+                      <button onClick={() => handleClick(productInfo)}>구매 후기 작성</button>
+                    </div>
                   </li>
-                ))}
-              </ul> */}
+                ))} */}
+              </ul>
             </div>
           </div>
         </div>

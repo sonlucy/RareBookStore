@@ -96,8 +96,8 @@ const SignUpMail = () => {
             </button>
           </div>
           <div className="yhw_signInputBox">
-            <span className="yhw_signInputTit">비밀번호</span>
-            <div className="yhw_signMailPWInputBox">
+            <span className="yhw_signInputTit yhw_signMailPWInputTit">비밀번호</span>
+            <div className="yhw_signMailCheckMsgBox">
               <input
                 type="password"
                 name="userpwd"
@@ -114,9 +114,9 @@ const SignUpMail = () => {
               </p>
             </div>
           </div>
-          <div className="yhw_signInputBox">
-            <span className="yhw_signInputTit">비밀번호 확인</span>
-            <div className="yhw_signMailPWInputBox">
+          <div className="yhw_signInputBox">            
+            <span className="yhw_signInputTit yhw_signMailPWInputTit">비밀번호 확인</span>
+            <div className="yhw_signMailCheckMsgBox">
               <input value={checkPassword} onChange={handleConfirmPasswordChange} type="password" placeholder="비밀번호 확인" required />
               <p className="yhw_passwordCheckMsg" style={{ color: match === true ? 'green' : 'red' }}>
                 {match && match === true ? '비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.'}
@@ -124,14 +124,19 @@ const SignUpMail = () => {
             </div>
           </div>
           <div className="yhw_signInputBox">
-            <span className="yhw_signInputTit">이메일</span>
-            <input
-              type="text"
-              name="email"
-              placeholder="이메일"
-              value={userData.email}
-              onChange={handleChange}
-            />
+            <span className="yhw_signInputTit yhw_signMailPWInputTit">이메일</span>
+            <div className="yhw_signMailCheckMsgBox">
+              <input
+                type="text"
+                name="email"
+                placeholder="이메일"
+                value={userData.email}
+                onChange={handleChange}
+              />
+              <p className="yhw_passwordCheckMsg" style={{ color: isValidEmail ? 'green' : 'red' }}>
+                {isValidEmail ? '유효한 이메일입니다.' : '유효하지 않은 이메일입니다.'}
+              </p>
+            </div>
           </div>
           <div className="yhw_signInputBox">
             <span className="yhw_signInputTit">닉네임</span>
