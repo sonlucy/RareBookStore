@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 // 커스텀 훅스
-import useLogOut from "../hooks/api/useLogOut";
+// import useLogOut from "../hooks/api/useLogOut";
 import useLoginWithGoogle from "../hooks/api/useLoginWithGoogle";
 const CenteredContainer = styled.div`
   display: flex;
@@ -93,7 +93,6 @@ const IdContainer = styled(NavLink)`
 `;
 
 function SNSLogin(props) {
-  const { logout } = useLogOut(); // Use the custom hook
   const { login } = useLoginWithGoogle();
 
   return (
@@ -111,10 +110,10 @@ function SNSLogin(props) {
               <GoogleLogoImage />
               <span>구글로 시작하기</span>
             </GoogleContainer>
-            <GoogleContainer onClick={logout}>
+            {/* <GoogleContainer onClick={logout}>
               <GoogleLogoImage />
               <span>로그아웃</span>
-            </GoogleContainer>
+            </GoogleContainer> */}
             <IdContainer to="/IDPWLogin">
               <span>아이디/비밀번호</span>
             </IdContainer>

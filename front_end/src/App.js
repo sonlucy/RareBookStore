@@ -19,6 +19,7 @@ import SellerRank from "./pages/SellerRank";
 import QuestionForm from "./pages/QuestionForm";
 import AdminLogin from "./pages/AdminLogin";
 import Profile from "./pages/Profile";
+import PurchaseReview from "./pages/PurchaseReview";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="SellerRank" element={<SellerRank />}></Route>
         <Route path="QuestionForm" element={<QuestionForm />}></Route>
         <Route path="Profile" element={<Profile />}></Route>
+        <Route path="PurchaseReview" element={<PurchaseReview />}></Route>
       </Routes>
     </div>
   );
