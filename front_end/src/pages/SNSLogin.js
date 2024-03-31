@@ -96,7 +96,8 @@ function SNSLogin(props) {
   const { login } = useLoginWithGoogle();
 
   return (
-    <div>
+    <>
+      <div className="height-container">
       <Header />
       <CenteredContainer>
         <SNSLoginContainer>
@@ -120,8 +121,9 @@ function SNSLogin(props) {
           </LoginContainer>
         </SNSLoginContainer>
       </CenteredContainer>
-      <Footer />
     </div>
+      <Footer />
+      </>
   );
 }
 

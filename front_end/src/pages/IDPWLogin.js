@@ -99,6 +99,7 @@ const IDPWLogin = () => {
 
   return (
     <>
+      <div className="height-container">
       <Header />
       <Container>
         <LoginForm onSubmit={handleLogin}>
@@ -130,6 +131,7 @@ const IDPWLogin = () => {
           </AdditionalLinks>
         </LoginForm>
       </Container>
+      </div>
       <Footer />
     </>
   );

@@ -8,6 +8,7 @@ import MainPurchaseHistory from '../components/MainPurchaseHistory';
 function MypageView() {
   return (
     <>
+      <div className="height-container">
     <Header />
 
     <div className="cyj_content_area my-page-content">
@@ -61,7 +62,7 @@ function MypageView() {
         </div>
       </div>
     </div>
-    
+    </div>
     <Footer />
     </>
   );
