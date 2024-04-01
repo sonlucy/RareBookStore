@@ -15,6 +15,8 @@ const BannerContainer = styled.div`
     height: 5vw;
     border: 1px black solid;
     margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 `;
 
 function PurchaseBanner({ selectedBanner }) {
