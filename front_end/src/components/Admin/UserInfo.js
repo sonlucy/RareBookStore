@@ -1,6 +1,6 @@
-import '../../styled/Admin.css';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import "../../styled/Admin.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function UserInfo() {
   const [customers, setCustomers] = useState([]);
@@ -11,17 +11,18 @@ function UserInfo() {
 
   const fetchCustomers = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/customers');
+      const response = await axios.get("http://localhost:3001/customers");
       setCustomers(response.data);
+      console.log(response.data);
     } catch (error) {
-      console.error('Error fetching customers:', error);
+      console.error("Error fetching customers:", error);
     }
   };
 
   return (
-    <div className='jyh-table'>
-      <p className='jyh-tb-title'>회원 정보</p>
-      <table className='jyh-userinfo-table'>
+    <div className="jyh-table">
+      <p className="jyh-tb-title">회원 정보</p>
+      <table className="jyh-userinfo-table">
         <thead>
           <tr>
             <th>번호</th>
@@ -32,7 +33,7 @@ function UserInfo() {
           </tr>
         </thead>
         <tbody>
-          {customers.map(customer => (
+          {customers.map((customer) => (
             <tr key={customer.custKey}>
               <td>{customer.custKey}</td>
               <td>{customer.userid}</td>
@@ -45,6 +46,6 @@ function UserInfo() {
       </table>
     </div>
   );
-};
+}
 
 export default UserInfo;
