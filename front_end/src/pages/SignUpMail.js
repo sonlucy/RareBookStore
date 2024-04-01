@@ -17,6 +17,7 @@ const SignUpMail = () => {
   const { selectedGender, handleGenderButtonClick } = useGenderSelection(); // useGenderSelection 훅 사용
   const [password, setPassword] = useState('');           // password와 checkPassword가 일치하는지 확인하기 위해 사용
   const [checkPassword, setCheckPassword] = useState(''); // password와 checkPassword가 일치하는지 확인하기 위해 사용
+  const [isValidEmail, setIsValidEmail] = useState(true); // 이메일 유효성 검사 확인용
 
   //============== 비밀번호 유효성 검사 ==============//
   const pwValidatioCheck =
