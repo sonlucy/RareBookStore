@@ -42,7 +42,7 @@ const setGradeForSellerInfoList = (sellerInfoList) => {
 
 const sellerInfoListWithGrade = setGradeForSellerInfoList(sellerInfoList);
 
-function SellerRank() {
+function Rank() {
   return (
     <>
       <div className="height-container">
@@ -64,4 +64,4 @@ function SellerRank() {
   );
 }
 
-export default SellerRank;
+export default Rank;
