@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styled/BookStateCategory.css';
+import "../styled/PurchaseHistory.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PurchaseReqForm from '../components/PurchaseReqForm';
@@ -10,6 +11,7 @@ import MyPageSide from '../components/MypageSide';
 import BookSell from '../components/BookSell';
 import { buyerBookData } from '../asset/buyerBook';
 
+
 function RegRequest() {
   const [selectedTab, setSelectedTab] = useState('진행중');
   const [filteredRequests, setFilteredRequests] = useState([]);
@@ -17,7 +19,7 @@ function RegRequest() {
   useEffect(() => {
     setSelectedTab('진행중');
     filterRequests('진행중');
-  }, []); 
+  }, []);
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
@@ -37,31 +39,43 @@ function RegRequest() {
   };
 
   return (
-    <>
-      <div className="height-container">
+    <div className="App">
+
+
       <Header />
-      <div style={{ display: 'flex' }}>
-        <MyPageSide />
-        <div className="sbk-container">
-          <div className='sbk-purchase-request-form-title'>
-            <h1>구매 희망 도서 등록</h1>
-            <hr className='sbk-purchase-request-form-hr' />
+
+      <div className="yhw_container">
+        <div className="yhw_purHistCont">
+          <div className="yhw_MypageSideAdd">
+            <MyPageSide />
           </div>
-          <PurchaseReqForm />
-          <div className='sbk-purchase-request-form-title'>
-            <h1>구매 희망 도서 신청내역</h1>
+          <div className="yhw_purHistMainCont">
+            <div className='sbk-purchase-request-form-title'>
+              <h1>구매 희망 도서 등록</h1>
+              <hr className='sbk-purchase-request-form-hr' />
+            </div>
+            <PurchaseReqForm />
+            
+
+              <div className='sbk-purchase-request-form-title'>
+                <h1>구매 희망 도서 신청내역</h1>
+                
+              </div>
+
+              <BookSell onSelect={handleTabChange} requests={buyerBookData} />{/*  */}
+              <div className='sbk-purchase-request-form-title'>
+                <h3 className='sbk-purchase-request-form-item-quantity'>상품 전체 &nbsp;{filteredRequests.length}</h3>
+              </div>
+              {selectedTab === '진행중' && <PurchaseReqListOngoing requests={filteredRequests} />}
+              {selectedTab !== '진행중' && <PurchaseReqListEnd requests={filteredRequests} />}
+            
           </div>
-          <BookSell onSelect={handleTabChange} requests={buyerBookData} />{/*  */}
-          <div className='sbk-purchase-request-form-title'>
-            <h3 className='sbk-purchase-request-form-item-quantity'>상품 전체 &nbsp;{filteredRequests.length}</h3>
-          </div>
-          {selectedTab === '진행중' && <PurchaseReqListOngoing requests={filteredRequests} />}
-          {selectedTab !== '진행중' && <PurchaseReqListEnd requests={filteredRequests} />}
         </div>
       </div>
-    </div>
+
       <Footer />
-      </>
+
+    </div>
   );
 }
 

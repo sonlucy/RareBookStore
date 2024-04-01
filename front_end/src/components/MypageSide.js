@@ -38,7 +38,7 @@ function MyPageSide() {
               </Link>
             </li>
             <li className="menu_item">
-              <Link to="/my/seller-tier" className="menu_link">
+              <Link to="/sellerRank" className="menu_link">
                 판매자 등급
               </Link>
             </li>
