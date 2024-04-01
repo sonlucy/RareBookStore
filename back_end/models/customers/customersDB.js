@@ -13,11 +13,12 @@ exports.getAllCustomers = () => {
 };
 
 // 특정 회원 조회 (Read)
+
 exports.getCustomerById = (custKey) => {
   return new Promise((resolve, reject) => {
     db.query(
       "SELECT * FROM customers WHERE custKey = ?",
-      custKey,
+      [custKey],
       (err, result) => {
         if (err) reject(err);
         else resolve(result[0]); // Assuming only one user is returned

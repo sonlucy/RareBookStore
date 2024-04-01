@@ -181,7 +181,7 @@ exports.loginCheck = async (req, res) => {
 exports.checkSession = (req, res) => {
   const userID = req.session.user.custKey; //세션값 받아오는방법
   // const userID = req.session.user.custKey;
-  console.log(userID);
+  // console.log(userID);
   if (userID) {
     res.send({ loggedIn: true, loginUser: userID });
   } else {
