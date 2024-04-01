@@ -51,7 +51,8 @@ const SignUpEasy = () => {
   };
 
   return (
-    <>
+      <>
+      <div className="height-container">
       <Header />
       <div className="yhw_container">
         <form className="yhw_signForm" onSubmit={handleSubmit}>
@@ -134,6 +135,7 @@ const SignUpEasy = () => {
             <button type="submit">회원가입</button>
           </div>
         </form>
+      </div>
       </div>
       <Footer />
     </>

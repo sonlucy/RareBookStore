@@ -38,13 +38,13 @@ const sellerInfoListWithGrade = setGradeForSellerInfoList(sellerInfoList);
 
 function SellerInfoPage() {
   return (
-    <div className="App">
+    <>
+    <div className="height-container">
       <Header />
-
       <SellerInfo sellerInfoList={sellerInfoListWithGrade} />
-
-      <Footer />
     </div>
+      <Footer />
+    </>
   );
 }
 

@@ -2,8 +2,8 @@
 .sbk-container {
   margin: 0 auto;
   padding-top: 2vw;
-  width: 70%;
-  
+  width: 80%;
+  margin: 0;
 }
 .sbk-purchase-request-form {
   display: flex;
@@ -52,7 +52,7 @@ height: 4.5rem;
   height: 42px;
   font-size: 1rem;
   padding-left: 10px;
-  width: 760px; /*  */
+  width: 730px; /*  */
 }
 
 .sbk-error-container {

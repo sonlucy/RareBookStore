@@ -1,5 +1,6 @@
 import "./styled/App.css";
 import { Routes, Route } from "react-router-dom";
+import { LoginProvider } from "./components/LoginContext";
 import Address from "./pages/Address";
 import BuyDetail from "./pages/BuyDetail";
 import CategoryBookList from "./pages/CategoryBookLIst";
@@ -19,31 +20,35 @@ import SellerRank from "./pages/SellerRank";
 import QuestionForm from "./pages/QuestionForm";
 import AdminLogin from "./pages/AdminLogin";
 import Profile from "./pages/Profile";
+import PurchaseReview from "./pages/PurchaseReview";
 
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Main />}></Route>
-        <Route path="Address" element={<Address />}></Route>
-        <Route path="BuyDetail" element={<BuyDetail />}></Route>
-        <Route path="CategoryBookList" element={<CategoryBookList />}></Route>
-        <Route path="IDPWLogin" element={<IDPWLogin />}></Route>
-        <Route path="AdminLogin" element={<AdminLogin />}></Route>
-        <Route path="Mypage" element={<Mypage />}></Route>
-        <Route path="Purchase" element={<Purchase />}></Route>
-        <Route path="PurchaseHistory" element={<PurchaseHistory />}></Route>
-        <Route path="RegRequest" element={<RegRequest />}></Route>
-        <Route path="SalesHistory" element={<SalesHistory />}></Route>
-        <Route path="SellerInfoPage" element={<SellerInfoPage />}></Route>
-        <Route path="SignUpEasy" element={<SignUpEasy />}></Route>
-        <Route path="SignUpMail" element={<SignUpMail />}></Route>
-        <Route path="SNSLogin" element={<SNSLogin />}></Route>
-        <Route path="Admin" element={<Admin />}></Route>
-        <Route path="SellerRank" element={<SellerRank />}></Route>
-        <Route path="QuestionForm" element={<QuestionForm />}></Route>
-        <Route path="Profile" element={<Profile />}></Route>
-      </Routes>
+      <LoginProvider>
+        <Routes>
+          <Route path="/" element={<Main />}></Route>
+          <Route path="Address" element={<Address />}></Route>
+          <Route path="BuyDetail" element={<BuyDetail />}></Route>
+          <Route path="CategoryBookList" element={<CategoryBookList />}></Route>
+          <Route path="IDPWLogin" element={<IDPWLogin />}></Route>
+          <Route path="AdminLogin" element={<AdminLogin />}></Route>
+          <Route path="Mypage" element={<Mypage />}></Route>
+          <Route path="Purchase" element={<Purchase />}></Route>
+          <Route path="PurchaseHistory" element={<PurchaseHistory />}></Route>
+          <Route path="RegRequest" element={<RegRequest />}></Route>
+          <Route path="SalesHistory" element={<SalesHistory />}></Route>
+          <Route path="SellerInfoPage" element={<SellerInfoPage />}></Route>
+          <Route path="SignUpEasy" element={<SignUpEasy />}></Route>
+          <Route path="SignUpMail" element={<SignUpMail />}></Route>
+          <Route path="SNSLogin" element={<SNSLogin />}></Route>
+          <Route path="Admin" element={<Admin />}></Route>
+          <Route path="SellerRank" element={<SellerRank />}></Route>
+          <Route path="QuestionForm" element={<QuestionForm />}></Route>
+          <Route path="Profile" element={<Profile />}></Route>
+          <Route path="PurchaseReview" element={<PurchaseReview />}></Route>
+        </Routes>
+      </LoginProvider>
     </div>
   );
 }

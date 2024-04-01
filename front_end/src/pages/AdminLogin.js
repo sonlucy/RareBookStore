@@ -100,6 +100,7 @@ const AdminLogin = () => {
 
   return (
     <>
+      <div className="height-container">
       <Header />
       <Container>
         <LoginForm onSubmit={handleLogin}>
@@ -131,6 +132,7 @@ const AdminLogin = () => {
           </AdditionalLinks> */}
         </LoginForm>
       </Container>
+      </div>
       <Footer />
     </>
   );

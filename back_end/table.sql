@@ -1,4 +1,5 @@
 CREATE DATABASE bookDB;
+USE DATABASE bookDB;
 
 CREATE TABLE `customers` (
     `custKey` INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,7 +9,7 @@ CREATE TABLE `customers` (
     `nickname` VARCHAR(15) NOT NULL,
     `age` INT(3) NULL,
     `gender` CHAR NULL,
-    `contact` VARCHAR(15) NOT NULL COMMENT '구매희망도서 등록시에 사용',
+    `contact` VARCHAR(15) NULL COMMENT '구매희망도서 등록시에 사용',
     `grade` INT(2) NULL DEFAULT NULL,
     `point` DECIMAL(3,1) NULL DEFAULT 0 COMMENT '평균값(1등급:4~5점/2등급:3~4/3등급:2~3/4등급:1~2/5등급:0~1), 소수점 한자리까지 표시'
 );
