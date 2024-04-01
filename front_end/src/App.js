@@ -21,6 +21,8 @@ import QuestionForm from "./pages/QuestionForm";
 import AdminLogin from "./pages/AdminLogin";
 import Profile from "./pages/Profile";
 import PurchaseReview from "./pages/PurchaseReview";
+import SellBook from "./pages/SellBook"
+import XNotFound from "./pages/XNotFound";
 
 function App() {
   return (
@@ -47,6 +49,9 @@ function App() {
           <Route path="QuestionForm" element={<QuestionForm />}></Route>
           <Route path="Profile" element={<Profile />}></Route>
           <Route path="PurchaseReview" element={<PurchaseReview />}></Route>
+          <Route path="SellBook" element={<SellBook />}></Route>
+
+          <Route path="*" element={<XNotFound />}></Route>  {/* Not Found 페이지 */}          
         </Routes>
       </LoginProvider>
     </div>
