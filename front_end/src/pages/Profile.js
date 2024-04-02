@@ -17,7 +17,7 @@ const Profile = () => {
         `http://localhost:3001/customers/${loginUser}`
       );
       setUser(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error fetching customers:", error);
     }
