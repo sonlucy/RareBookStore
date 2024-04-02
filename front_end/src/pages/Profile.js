@@ -268,67 +268,6 @@ const Profile = () => {
                             </div>
                           </form>
                         </div>
-
-                        // <div className="lcm-addr-container">
-                        //   <form>
-                        //     <div>
-                        //       <label>받는분</label>
-                        //       <input
-                        //         type="text"
-                        //         name="name"
-                        //         placeholder="받는사람"
-                        //         value={userAddr.name}
-                        //         onChange={handleChange}
-                        //       />
-                        //     </div>
-                        //     <div>
-                        //       <label>연락처: </label>
-                        //       <input
-                        //         type="text"
-                        //         name="tel"
-                        //         placeholder="연락처"
-                        //         value={userAddr.tel}
-                        //         onChange={handleChange}
-                        //       />
-                        //     </div>
-                        //     <div>
-                        //       <label>우편번호: </label>
-                        //       <input
-                        //         type="text"
-                        //         name="postcode"
-                        //         placeholder="우편번호"
-                        //         value={userAddr.postcode}
-                        //         onChange={handleChange}
-                        //       />
-                        //     </div>
-                        //     <div>
-                        //       <input
-                        //         type="text"
-                        //         name="addr"
-                        //         placeholder="주소"
-                        //         value={userAddr.addr}
-                        //         onChange={handleChange}
-                        //       />
-                        //     </div>
-                        //     <div>
-                        //       <input
-                        //         type="text"
-                        //         name="addrDetail"
-                        //         placeholder="상세주소"
-                        //         value={userAddr.addrDetail}
-                        //         onChange={handleChange}
-                        //       />
-                        //     </div>
-                        //     <div className="lcm_purHistBtns">
-                        //       <span>
-                        //         <button onClick={submitBtn}>저장</button>
-                        //         <button onClick={() => setModalOpen(false)}>
-                        //           취소
-                        //         </button>
-                        //       </span>
-                        //     </div>
-                        //   </form>
-                        // </div>
                       )}
                     </li>
                   </ul>
