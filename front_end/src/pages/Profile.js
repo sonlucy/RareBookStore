@@ -6,10 +6,12 @@ import MyPageSide from "../components/MypageSide";
 import Footer from "../components/Footer";
 import { LoginContext } from "../components/LoginContext";
 import axios from "axios";
+
 const Profile = () => {
-  const { loginUser } = useContext(LoginContext); // isLoggedIn 값 가져오기
-  // 로그인 및 로그아웃 이벤트 발생 시에도 세션 체크
+  const { loginUser } = useContext(LoginContext);
   const [modalOpen, setModalOpen] = useState(false);
+  const [editMode, setEditMode] = useState(false); // New state to handle edit mode
+  const [editAddress, setEditAddress] = useState(null); // New state to store address being edited
   const [user, setUser] = useState([]);
   const [userAddr, setUserAddr] = useState({
     custKey: loginUser,
@@ -32,7 +34,6 @@ const Profile = () => {
         `http://localhost:3001/customers/${loginUser}`
       );
       setUser(response.data);
-      // console.log(response.data);
     } catch (error) {
       console.error("Error fetching customers:", error);
     }
@@ -43,48 +44,66 @@ const Profile = () => {
       const response = await axios.get(
         `http://localhost:3001/address/${loginUser}`
       );
-      // console.log(response.data);
       setGetAddr(response.data);
     } catch (error) {
       console.error("고객의 주소를 가져올수 없습니다.", error);
     }
   };
 
-  const deleteAddr = async (e) => {
-    // e.preventDefault();
+  const deleteAddr = async (addrKey) => {
     try {
-      await axios.delete(`http://localhost:3001/address/${e}`);
+      await axios.delete(`http://localhost:3001/address/${addrKey}`);
       getCustomer();
     } catch (error) {
       console.error("주소를 삭제를 실패하였습니다.", error);
     }
   };
 
+  const editAddr = (address) => {
+    setEditAddress(address);
+    setUserAddr(address); // Populate the form fields with the data of the selected address
+    setEditMode(true); // Set edit mode to true
+    setModalOpen(true);
+  };
+
   useEffect(() => {
     getCustomer();
-    // getCustomerAddr();
   }, []);
+
   useEffect(() => {
     getCustomerAddr();
   }, [user, userAddr]);
 
   const submitBtn = async (event) => {
     event.preventDefault();
+    // Check if any of the required fields are empty
+    if (
+      !userAddr.name ||
+      !userAddr.tel ||
+      !userAddr.postcode ||
+      !userAddr.addr ||
+      !userAddr.addrDetail
+    ) {
+      alert("모든 입력란을 채워주세요.");
+      return;
+    }
     try {
-      const response = await axios.post(
-        `http://localhost:3001/address`,
-        userAddr
-      );
-      if (response.status === 200) {
-        setUserAddr((prevUserAddr) => ({
-          ...prevUserAddr,
-          name: "",
-          tel: "",
-          postcode: "",
-          addr: "",
-          addrDetail: "",
-        }));
+      if (editMode) {
+        await axios.put(
+          `http://localhost:3001/address/${editAddress.addrKey}`,
+          userAddr
+        );
+        setEditMode(false);
+      } else {
+        await axios.post(`http://localhost:3001/address`, userAddr);
       }
+      setUserAddr({
+        name: "",
+        tel: "",
+        postcode: "",
+        addr: "",
+        addrDetail: "",
+      });
       setModalOpen(false);
     } catch (error) {
       console.error("주소 보내기 에러남", error);
@@ -95,7 +114,6 @@ const Profile = () => {
     <>
       <div className="height-container">
         <Header />
-
         <div className="yhw_container">
           <div className="yhw_purHistCont">
             <div className="yhw_MypageSideAdd">
@@ -114,7 +132,6 @@ const Profile = () => {
                     </li>
                   </ul>
                 </div>
-
                 <div className="lcm_purHistContentsBox">
                   <div className="lcm_purHistTopCont">
                     <b>개인 정보</b>
@@ -128,15 +145,11 @@ const Profile = () => {
                       </div>
                     </li>
                     <h4>배송지</h4>
-
                     <li>
                       {getAddr.length > 0 && (
                         <div className="lcm-addInfo-contarinter">
                           {getAddr.map((address, i) => (
                             <div key={i}>
-                              {" "}
-                              {/* Add a unique key for each div */}
-                              <div>AddressKey: {address.addrKey}</div>
                               <div>이름: {address.name}</div>
                               <div>휴대폰 번호: {address.tel}</div>
                               <div>
@@ -144,7 +157,9 @@ const Profile = () => {
                               </div>
                               <div className="lcm_purHistBtns">
                                 <span>
-                                  <button>수정</button>
+                                  <button onClick={() => editAddr(address)}>
+                                    수정
+                                  </button>
                                   <button
                                     onClick={() => deleteAddr(address.addrKey)}
                                   >
@@ -157,9 +172,7 @@ const Profile = () => {
                         </div>
                       )}
                     </li>
-
                     <li>
-                      <div></div>
                       <div className="lcm_purHistBtns">
                         <button onClick={() => setModalOpen(true)}>
                           + 새 배송지 추가
@@ -168,70 +181,84 @@ const Profile = () => {
                     </li>
                     <li style={{ borderBottom: "none" }}>
                       {modalOpen && (
-                        <div className="lcm-addr-contrainer">
+                        <div className="lcm-addr-container">
                           <form>
-                            <div>
-                              {/* <label htmlFor="content">받는사람:</label> */}
-                              <input
-                                type="text"
-                                name="name"
-                                placeholder="받는사람"
-                                value={userAddr.name}
-                                onChange={(e) => {
-                                  handleChange(e);
-                                }}
-                              />
-                            </div>
-                            <div>
-                              {/* <label htmlFor="content">연락처:</label> */}
-                              <input
-                                type="text"
-                                name="tel"
-                                placeholder="연락처"
-                                value={userAddr.tel}
-                                onChange={(e) => {
-                                  handleChange(e);
-                                }}
-                              />
-                            </div>
-                            <div>
-                              {/* <label htmlFor="content">우편번호:</label> */}
-                              <input
-                                type="text"
-                                name="postcode"
-                                placeholder="우편번호"
-                                value={userAddr.postcode}
-                                onChange={(e) => {
-                                  handleChange(e);
-                                }}
-                              />
-                            </div>
-                            <div>
-                              {/* <label htmlFor="content">주소:</label> */}
-                              <input
-                                type="text"
-                                name="addr"
-                                placeholder="주소"
-                                value={userAddr.addr}
-                                onChange={(e) => {
-                                  handleChange(e);
-                                }}
-                              />
-                            </div>
-                            <div>
-                              {/* <label htmlFor="content">상세주소:</label> */}
-                              <input
-                                type="text"
-                                name="addrDetail"
-                                placeholder="상세주소"
-                                value={userAddr.addrDetail}
-                                onChange={(e) => {
-                                  handleChange(e);
-                                }}
-                              />
-                            </div>
+                            <table>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <label>받는분</label>
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      name="name"
+                                      placeholder="받는사람"
+                                      value={userAddr.name}
+                                      onChange={handleChange}
+                                      required
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <label>연락처: </label>
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      name="tel"
+                                      placeholder="연락처"
+                                      value={userAddr.tel}
+                                      onChange={handleChange}
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <label>우편번호: </label>
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      name="postcode"
+                                      placeholder="우편번호"
+                                      value={userAddr.postcode}
+                                      onChange={handleChange}
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <label>주소: </label>
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      name="addr"
+                                      placeholder="주소"
+                                      value={userAddr.addr}
+                                      onChange={handleChange}
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <label>상세주소: </label>
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      name="addrDetail"
+                                      placeholder="상세주소"
+                                      value={userAddr.addrDetail}
+                                      onChange={handleChange}
+                                    />
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
                             <div className="lcm_purHistBtns">
-                              {/* <button>+ 새 배송지 추가</button> */}
                               <span>
                                 <button onClick={submitBtn}>저장</button>
                                 <button onClick={() => setModalOpen(false)}>
@@ -241,6 +268,67 @@ const Profile = () => {
                             </div>
                           </form>
                         </div>
+
+                        // <div className="lcm-addr-container">
+                        //   <form>
+                        //     <div>
+                        //       <label>받는분</label>
+                        //       <input
+                        //         type="text"
+                        //         name="name"
+                        //         placeholder="받는사람"
+                        //         value={userAddr.name}
+                        //         onChange={handleChange}
+                        //       />
+                        //     </div>
+                        //     <div>
+                        //       <label>연락처: </label>
+                        //       <input
+                        //         type="text"
+                        //         name="tel"
+                        //         placeholder="연락처"
+                        //         value={userAddr.tel}
+                        //         onChange={handleChange}
+                        //       />
+                        //     </div>
+                        //     <div>
+                        //       <label>우편번호: </label>
+                        //       <input
+                        //         type="text"
+                        //         name="postcode"
+                        //         placeholder="우편번호"
+                        //         value={userAddr.postcode}
+                        //         onChange={handleChange}
+                        //       />
+                        //     </div>
+                        //     <div>
+                        //       <input
+                        //         type="text"
+                        //         name="addr"
+                        //         placeholder="주소"
+                        //         value={userAddr.addr}
+                        //         onChange={handleChange}
+                        //       />
+                        //     </div>
+                        //     <div>
+                        //       <input
+                        //         type="text"
+                        //         name="addrDetail"
+                        //         placeholder="상세주소"
+                        //         value={userAddr.addrDetail}
+                        //         onChange={handleChange}
+                        //       />
+                        //     </div>
+                        //     <div className="lcm_purHistBtns">
+                        //       <span>
+                        //         <button onClick={submitBtn}>저장</button>
+                        //         <button onClick={() => setModalOpen(false)}>
+                        //           취소
+                        //         </button>
+                        //       </span>
+                        //     </div>
+                        //   </form>
+                        // </div>
                       )}
                     </li>
                   </ul>
@@ -256,3 +344,259 @@ const Profile = () => {
 };
 
 export default Profile;
+
+// import React, { useEffect, useState, useContext } from "react";
+// import "../styled/Profile.css";
+// import "../styled/PurchaseHistory.css";
+// import Header from "../components/Header";
+// import MyPageSide from "../components/MypageSide";
+// import Footer from "../components/Footer";
+// import { LoginContext } from "../components/LoginContext";
+// import axios from "axios";
+// const Profile = () => {
+//   const { loginUser } = useContext(LoginContext); // isLoggedIn 값 가져오기
+//   // 로그인 및 로그아웃 이벤트 발생 시에도 세션 체크
+//   const [modalOpen, setModalOpen] = useState(false);
+//   const [user, setUser] = useState([]);
+//   const [userAddr, setUserAddr] = useState({
+//     custKey: loginUser,
+//     name: "",
+//     tel: "",
+//     postcode: "",
+//     addr: "",
+//     addrDetail: "",
+//   });
+//   const [getAddr, setGetAddr] = useState([]);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setUserAddr({ ...userAddr, [name]: value });
+//   };
+
+//   const getCustomer = async () => {
+//     try {
+//       const response = await axios.get(
+//         `http://localhost:3001/customers/${loginUser}`
+//       );
+//       setUser(response.data);
+//       // console.log(response.data);
+//     } catch (error) {
+//       console.error("Error fetching customers:", error);
+//     }
+//   };
+
+//   const getCustomerAddr = async () => {
+//     try {
+//       const response = await axios.get(
+//         `http://localhost:3001/address/${loginUser}`
+//       );
+//       // console.log(response.data);
+//       setGetAddr(response.data);
+//     } catch (error) {
+//       console.error("고객의 주소를 가져올수 없습니다.", error);
+//     }
+//   };
+
+//   const deleteAddr = async (e) => {
+//     // e.preventDefault();
+//     try {
+//       await axios.delete(`http://localhost:3001/address/${e}`);
+//       getCustomer();
+//     } catch (error) {
+//       console.error("주소를 삭제를 실패하였습니다.", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getCustomer();
+//     // getCustomerAddr();
+//   }, []);
+//   useEffect(() => {
+//     getCustomerAddr();
+//   }, [user, userAddr]);
+
+//   const submitBtn = async (event) => {
+//     event.preventDefault();
+//     try {
+//       const response = await axios.post(
+//         `http://localhost:3001/address`,
+//         userAddr
+//       );
+//       if (response.status === 200) {
+//         setUserAddr((prevUserAddr) => ({
+//           ...prevUserAddr,
+//           name: "",
+//           tel: "",
+//           postcode: "",
+//           addr: "",
+//           addrDetail: "",
+//         }));
+//       }
+//       setModalOpen(false);
+//     } catch (error) {
+//       console.error("주소 보내기 에러남", error);
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div className="height-container">
+//         <Header />
+
+//         <div className="yhw_container">
+//           <div className="yhw_purHistCont">
+//             <div className="yhw_MypageSideAdd">
+//               <MyPageSide />
+//             </div>
+//             <div className="yhw_purHistMainCont">
+//               <div className="lcm_purHistMainCont">
+//                 <div className="lcm_purHistTopCont">
+//                   <b>로그인 정보</b>
+//                 </div>
+//                 <div className="lcm_purHistContentsBox">
+//                   <ul className="lcm_purHistLists">
+//                     <h4>아이디</h4>
+//                     <li>
+//                       <div>{user.userid}</div>
+//                     </li>
+//                   </ul>
+//                 </div>
+
+//                 <div className="lcm_purHistContentsBox">
+//                   <div className="lcm_purHistTopCont">
+//                     <b>개인 정보</b>
+//                   </div>
+//                   <ul className="lcm_purHistLists">
+//                     <h4>휴대폰 번호</h4>
+//                     <li>
+//                       <div>{user.contact}</div>
+//                       <div className="lcm_purHistBtns">
+//                         <button>변경</button>
+//                       </div>
+//                     </li>
+//                     <h4>배송지</h4>
+
+//                     <li>
+//                       {getAddr.length > 0 && (
+//                         <div className="lcm-addInfo-contarinter">
+//                           {getAddr.map((address, i) => (
+//                             <div key={i}>
+//                               {/* <div>AddressKey: {address.addrKey}</div> */}
+//                               <div>이름: {address.name}</div>
+//                               <div>휴대폰 번호: {address.tel}</div>
+//                               <div>
+//                                 {`주소: [${address.postcode}] ${address.addr} ${address.addrDetail}`}
+//                               </div>
+//                               <div className="lcm_purHistBtns">
+//                                 <span>
+//                                   <button>수정</button>
+//                                   <button
+//                                     onClick={() => deleteAddr(address.addrKey)}
+//                                   >
+//                                     삭제
+//                                   </button>
+//                                 </span>
+//                               </div>
+//                             </div>
+//                           ))}
+//                         </div>
+//                       )}
+//                     </li>
+
+//                     <li>
+//                       <div className="lcm_purHistBtns">
+//                         <button onClick={() => setModalOpen(true)}>
+//                           + 새 배송지 추가
+//                         </button>
+//                       </div>
+//                     </li>
+//                     <li style={{ borderBottom: "none" }}>
+//                       {modalOpen && (
+//                         <div className="lcm-addr-container">
+//                           <form>
+//                             <div>
+//                               {/* <label htmlFor="content">받는사람:</label> */}
+//                               <input
+//                                 type="text"
+//                                 name="name"
+//                                 placeholder="받는사람"
+//                                 value={userAddr.name}
+//                                 onChange={(e) => {
+//                                   handleChange(e);
+//                                 }}
+//                               />
+//                             </div>
+//                             <div>
+//                               {/* <label htmlFor="content">연락처:</label> */}
+//                               <input
+//                                 type="text"
+//                                 name="tel"
+//                                 placeholder="연락처"
+//                                 value={userAddr.tel}
+//                                 onChange={(e) => {
+//                                   handleChange(e);
+//                                 }}
+//                               />
+//                             </div>
+//                             <div>
+//                               {/* <label htmlFor="content">우편번호:</label> */}
+//                               <input
+//                                 type="text"
+//                                 name="postcode"
+//                                 placeholder="우편번호"
+//                                 value={userAddr.postcode}
+//                                 onChange={(e) => {
+//                                   handleChange(e);
+//                                 }}
+//                               />
+//                             </div>
+//                             <div>
+//                               {/* <label htmlFor="content">주소:</label> */}
+//                               <input
+//                                 type="text"
+//                                 name="addr"
+//                                 placeholder="주소"
+//                                 value={userAddr.addr}
+//                                 onChange={(e) => {
+//                                   handleChange(e);
+//                                 }}
+//                               />
+//                             </div>
+//                             <div>
+//                               {/* <label htmlFor="content">상세주소:</label> */}
+//                               <input
+//                                 type="text"
+//                                 name="addrDetail"
+//                                 placeholder="상세주소"
+//                                 value={userAddr.addrDetail}
+//                                 onChange={(e) => {
+//                                   handleChange(e);
+//                                 }}
+//                               />
+//                             </div>
+//                             <div className="lcm_purHistBtns">
+//                               {/* <button>+ 새 배송지 추가</button> */}
+//                               <span>
+//                                 <button onClick={submitBtn}>저장</button>
+//                                 <button onClick={() => setModalOpen(false)}>
+//                                   취소
+//                                 </button>
+//                               </span>
+//                             </div>
+//                           </form>
+//                         </div>
+//                       )}
+//                     </li>
+//                   </ul>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//       <Footer />
+//     </>
+//   );
+// };
+
+// export default Profile;
