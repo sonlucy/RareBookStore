@@ -33,12 +33,12 @@ function MyPageSide() {
           <ul className="snb_menu">
             {/* href 부분 이름 다 기획안 보고 수정하기 */}
             <li className="menu_item">
-              <Link to="/my/profile" className="menu_link">
+              <Link to="/profile" className="menu_link">
                 로그인 정보
               </Link>
             </li>
             <li className="menu_item">
-              <Link to="/my/seller-tier" className="menu_link">
+              <Link to="/Rank" className="menu_link">
                 판매자 등급
               </Link>
             </li>

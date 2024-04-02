@@ -42,20 +42,19 @@
 @media screen and (max-width: 621px) {
   .yhw_dateInquiryBox {
     max-width: 200px;
-  }
-  .yhw_dateInquiryInputs {
+    margin-left: 0;
     flex-direction: column;
   }
   .yhw_dateInquiryBox > button {
-    margin-top: 5vh;
+    margin: 0 auto;
   }
 }
 @media screen and (max-width: 425px) {
   .yhw_dateInquiryBox {
     flex-direction: column;
-    max-width: 130px;
+    /* max-width: 130px; */
   }
   .yhw_dateInquiryBox > button {
-    margin-top: 1vh;
+    margin-top: -3vh;
   }
 }
