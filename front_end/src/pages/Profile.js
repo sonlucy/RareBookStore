@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import "../styled/Profile.css";
 import "../styled/PurchaseHistory.css";
 import Header from "../components/Header";
