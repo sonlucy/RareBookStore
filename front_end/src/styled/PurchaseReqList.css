@@ -1,3 +1,4 @@
+/* jyh 변경 */
 /* PurchaseReqList.css */
 .sbk-purchase-req-card {
   display: flex;
@@ -82,6 +83,8 @@ background-color: #ab705c;
   margin: 1vw;
 
 }
+
+
 .sbk-main-container {
   margin-bottom: 2.5rem;
 }
@@ -107,7 +110,7 @@ background-color: #ab705c;
   margin-inline-start: 9rem;
   width: 100px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 930px) {
 /*   .sbk-book-image {
     width: 120px;
   } */
@@ -133,7 +136,7 @@ background-color: #ab705c;
     padding: 0.25rem 0.5rem;
     font-size: 0.625rem;
     width: 7rem;
-    height: 2.5rem;
+    height: 2.2rem;
     margin-top: 0.5rem;
   }
 
@@ -148,12 +151,60 @@ background-color: #ab705c;
 
   .sbk-main-container {
     margin-top: 1vw;
-    margin-bottom: 10vw;
+    margin-bottom: 8vw;
   }
   
 }
 
-@media screen and (max-width: 425px) {
+
+
+@media screen and (max-width: 768px) {
+  .sbk-button-container {
+    position: relative;
+    right: auto;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+.sbk-purchase-req-card {
+  display: flex;
+  flex-wrap: wrap; /* 넘치는 요소들을 다음 줄로 이동하도록 설정 */
+}
+
+.sbk-book-image,
+.sbk-text-container {
+  flex: 0 0 auto; /* 유연한 크기를 가지지 않도록 설정 */
+}
+
+.sbk-button-container {
+  flex: 1 1 100%; /* 자식 요소 중 나머지 공간을 모두 차지하도록 설정 */
+  order: 1; /* 화면이 작아질 때 버튼을 마지막으로 배치하기 위해 순서를 조정합니다. */
+  display: flex;
+  flex-direction: row; 
+  right: 0;
+}
+.sbk-status-button,
+.sbk-cancel-button {
+  margin-right: 0.5rem;
+  width: 100%;
+}
+}
+@media screen and (max-width: 498px) {
+  .sbk-button-container {
+    flex-direction: column;
+    right: 0;
+  }
+
+  .sbk-status-button,
+  .sbk-cancel-button {
+    margin-right: 0.5rem;
+    width: 100%;
+  }
+}
+
+/* @media screen and (max-width: 425px) {
   .sbk-book-image {
     width: 80px;
     height: 130px;
@@ -191,3 +242,4 @@ background-color: #ab705c;
   font-size: 0.5rem;
 }
 }
+ */
