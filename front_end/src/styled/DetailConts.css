@@ -96,6 +96,12 @@
   .yhw_detailContsRBtns button {
     width: 45%;
   }
+  .yhw_detailContsRBtns button:first-child:active { /* 큰 데스크톱을 제외한 모든 기기에서 해당 버튼 눌렸을 때 active 효과 주기 */
+    background-color: #ab705c;
+  }
+  .yhw_detailContsRBtns button:last-child:active { /* 큰 데스크톱을 제외한 모든 기기에서 해당 버튼 눌렸을 때 active 효과 주기 */
+    background-color: #cbcbcb;
+  }
 }
 @media screen and (max-width: 768px) {
   .yhw_detailContsBox {
