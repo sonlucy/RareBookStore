@@ -106,6 +106,12 @@ input.yhw_AgeInput {   /* 나이 입력 input 태그 CSS */
   font-weight: medium;
   margin-left: 5px;
 }
+.yhw_signUpBtnBox > button:hover {
+  background-color: #ab705c;
+}
+.yhw_dupCheckBtn:hover {
+  background-color: #ab705c;
+}
 /* ******************************************************* */
 /* CSS 반응형 */
 @media screen and (max-width: 1440px) {  /* 화면의 너비가 최대 1440px 일 때 (1440px 미만) */
@@ -114,6 +120,12 @@ input.yhw_AgeInput {   /* 나이 입력 input 태그 CSS */
   }
   .yhw_signMailCheckMsgBox > input {
     width: 70%;
+  }
+  .yhw_signUpBtnBox > button:active { /* 큰 데스크톱을 제외한 모든 기기에서 해당 버튼 눌렸을 때 active 효과 주기 */
+    background-color: #ab705c;
+  }
+  .yhw_dupCheckBtn:active { /* 큰 데스크톱을 제외한 모든 기기에서 해당 버튼 눌렸을 때 active 효과 주기 */
+    background-color: #ab705c;
   }
 }
 @media screen and (max-width: 621px) {

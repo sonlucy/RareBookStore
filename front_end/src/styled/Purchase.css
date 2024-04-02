@@ -65,6 +65,9 @@
     width: 80%;
     padding: 0 3vw;
   }
+  .yhw_purBtn:active { /* 큰 데스크톱을 제외한 모든 기기에서 해당 버튼 눌렸을 때 active 효과 주기 */
+    background-color: #ab705c;
+  }
 }
 @media screen and (max-width: 621px) {
   .yhw_purchaseCont {

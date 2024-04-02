@@ -14,7 +14,6 @@ const ReviewCreateContainer = styled.div`
     align-items: center;
     width: 875px;
     height: 325px;
-    border: 1px black solid;
     position: relative;
 `;
 
@@ -91,6 +90,10 @@ const ReviewSaveButton = styled.button`
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
+    cursor: pointer;
+
+    &:hover {
+        background-color: #ab705c;
 `;
 function ReviewCreate(props) {
     const [selectedStatus, setSelectedStatus] = useState(null);
