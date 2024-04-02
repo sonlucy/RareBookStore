@@ -1,11 +1,12 @@
 // LoginContext.js
 
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from "react";
 
 export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginUser, setLoginUser] = useState();
 
   // 로그인 및 로그아웃 이벤트 발생 시에도 세션 체크
   const checkSession = async () => {
@@ -18,6 +19,7 @@ export const LoginProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setIsLoggedIn(data.loggedIn);
+        setLoginUser(data.loginUser);
       } else {
         console.error("세션 상태 확인 실패:", response.statusText);
         setIsLoggedIn(checkGoogleLoginStatus());
@@ -30,16 +32,17 @@ export const LoginProvider = ({ children }) => {
 
   useEffect(() => {
     checkSession();
-    
   }, [isLoggedIn]); // isLoggedIn 상태가 변경될 때마다 세션 체크
 
   const checkGoogleLoginStatus = () => {
-    const userId = sessionStorage.getItem('id');
+    const userId = sessionStorage.getItem("id");
     return userId !== null;
   };
 
   return (
-    <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <LoginContext.Provider
+      value={{ isLoggedIn, setIsLoggedIn, loginUser, setLoginUser }}
+    >
       {children}
     </LoginContext.Provider>
   );

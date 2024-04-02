@@ -22,7 +22,7 @@ CREATE TABLE `address` (
     `postcode` VARCHAR(6) NOT NULL,
     `addr` VARCHAR(300) NOT NULL,
     `addrDetail` VARCHAR(100) NOT NULL,
-    `default` CHAR NULL DEFAULT 'N',
+    `defaultAddr` CHAR NULL DEFAULT 'N',
     PRIMARY KEY (`addrKey`, `custKey`),
     FOREIGN KEY (`custKey`) REFERENCES `customers` (`custKey`)
 );

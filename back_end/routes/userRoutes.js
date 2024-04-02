@@ -42,76 +42,76 @@ router.delete("/deleteAddress/:addrKey", address.deleteAddress);
 
 // ======================= 도서 희망 구매 ==========================//
 // 구매 희망 도서 생성
-router.post("/buyerBooks", buyerBook.createBuyerBook);
+router.post("/createBuyerBook", buyerBook.createBuyerBook);
 // 모든 구매 희망 도서 조회
-router.get("/buyerBooks", buyerBook.getAllBuyerBooks);
+router.get("/getAllBuyerBooks", buyerBook.getAllBuyerBooks);
 // 특정 사용자의 구매 희망 도서 조회
-router.get("/buyerBooks/:custKey", buyerBook.getBuyerBooksByUser);
+router.get("/getBuyerBooksByUser/:custKey", buyerBook.getBuyerBooksByUser);
 // 구매 희망 도서 정보 업데이트
-router.put("/buyerBooks/:itemBuyKey", buyerBook.updateBuyerBook);
+router.put("/updateBuyerBook/:itemBuyKey", buyerBook.updateBuyerBook);
 // 구매 희망 도서 정보 삭제
-router.delete("/buyerBooks/:itemBuyKey", buyerBook.deleteBuyerBook);
+router.delete("/deleteBuyerBook/:itemBuyKey", buyerBook.deleteBuyerBook);
 // ======================= 도서 희망 구매 ==========================//
 
 // ======================= 유저 ==========================//
 // 모든 고객 조회
-router.get("/customers", customersDB.getAllCustomers);
+router.get("/getAllCustomers", customersDB.getAllCustomers);
 // 특정 고객의 정보 조회
-router.get("/customers/:custKey", customersDB.getCustomerById);
+router.get("/getCustomerById/:custKey", customersDB.getCustomerById);
 // 고객 정보 업데이트
-router.put("/customers/:custKey", customersDB.updateCustomer);
+router.put("/updateCustomer/:custKey", customersDB.updateCustomer);
 // ======================= 유저 ==========================//
 
 // ======================= 문의 ==========================//
 // 문의 생성
-router.post("/enquiries", enquiry.createEnquiry);
+router.post("/createEnquiry", enquiry.createEnquiry);
 // 모든 문의 조회
-router.get("/enquiries", enquiry.getAllEnquiries);
+router.get("/getAllEnquiries", enquiry.getAllEnquiries);
 // 특정 사용자의 모든 문의 조회
-router.get("/enquiries/:custKey", enquiry.getUserEnquiries);
+router.get("/getUserEnquiries/:custKey", enquiry.getUserEnquiries);
 // 문의 업데이트
-router.put("/enquiries/:boardKey", enquiry.updateEnquiry);
+router.put("/updateEnquiry/:boardKey", enquiry.updateEnquiry);
 // 문의 삭제
-router.delete("/enquiries/:boardKey", enquiry.deleteEnquiry);
+router.delete("/deleteEnquiry/:boardKey", enquiry.deleteEnquiry);
 // ======================= 문의 ==========================//
 
 // ======================= 주문 ==========================//
 // 주문 생성
-router.post("/orders", orders.createOrder);
+router.post("/createOrder", orders.createOrder);
 // 모든 주문 조회
-router.get("/orders", orders.getAllOrders);
+router.get("/getAllOrders", orders.getAllOrders);
 // 특정 사용자의 모든 주문 조회
-router.get("/orders/:custKey", orders.getUserOrders);
+router.get("/getUserOrders/:custKey", orders.getUserOrders);
 // 주문 업데이트
-router.put("/orders/:itemKey", orders.updateOrder);
+router.put("/updateOrder/:itemKey", orders.updateOrder);
 // 주문 삭제
-router.delete("/orders/:itemKey", orders.deleteOrder);
+router.delete("/deleteOrder/:itemKey", orders.deleteOrder);
 // ======================= 주문 ==========================//
 
 // ======================= 리뷰 ==========================//
 // 리뷰 생성
-router.post("/reviews", review.createReview);
+router.post("/createReview", review.createReview);
 // 모든 리뷰 조회
-router.get("/reviews", review.getAllReviews);
+router.get("/getAllReviews", review.getAllReviews);
 // 특정 사용자의 모든 리뷰 조회
-router.get("/reviews/:custKey", review.getUserReviews);
+router.get("/getUserReviews/:custKey", review.getUserReviews);
 // 리뷰 업데이트
-router.put("/reviews/:reviewKey", review.updateReview);
+router.put("/updateReview/:reviewKey", review.updateReview);
 // 리뷰 삭제
-router.delete("/reviews/:reviewKey", review.deleteReview);
+router.delete("/deleteReview/:reviewKey", review.deleteReview);
 // ======================= 리뷰 ==========================//
 
 // ======================= 판매도서 ==========================//
 // 책 판매 정보 생성
-router.post("/SellerBook", SellerBook.createSellerBook);
+router.post("/createSellerBook", SellerBook.createSellerBook);
 // 모든 책 판매 정보 조회
-router.get("/SellerBook", SellerBook.getAllSellerBooks);
+router.get("/getAllSellerBooks", SellerBook.getAllSellerBooks);
 // 특정 사용자의 판매 정보 조회
-router.get("/SellerBook/:custKey", SellerBook.getSellerBooksByUser);
+router.get("/getSellerBooksByUser/:custKey", SellerBook.getSellerBooksByUser);
 // 책 판매 정보 업데이트
-router.put("/SellerBook/:itemSellKey", SellerBook.updateSellerBook);
+router.put("/updateSellerBook/:itemSellKey", SellerBook.updateSellerBook);
 // 책 판매 정보 삭제
-router.delete("/SellerBook/:itemSellKey", SellerBook.deleteSellerBook);
+router.delete("/deleteSellerBook/:itemSellKey", SellerBook.deleteSellerBook);
 // ======================= 판매도서 ==========================//
 
 module.exports = router;
