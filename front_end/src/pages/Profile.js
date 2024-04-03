@@ -172,6 +172,11 @@ const Profile = () => {
                         <div className="lcm-addInfo-contarinter">
                           {getAddr.map((address, i) => (
                             <div key={i}>
+                              {address.defaultAddr === "Y" && (
+                                <div style={{ color: "#BC6F36" }}>
+                                  기본주소지
+                                </div>
+                              )}
                               <div>이름: {address.name}</div>
                               <div>휴대폰 번호: {address.tel}</div>
                               <div>
@@ -214,7 +219,6 @@ const Profile = () => {
                                 onChange={handleChange}
                               />
                             </div>
-
                             <div className="lcm-addFormInputBox">
                               <label>연락처: </label>
                               <input
@@ -225,7 +229,6 @@ const Profile = () => {
                                 onChange={handleChange}
                               />
                             </div>
-
                             <div className="lcm-addFormInputBox">
                               <label>우편번호: </label>
                               <input
@@ -236,7 +239,6 @@ const Profile = () => {
                                 onChange={handleChange}
                               />
                             </div>
-
                             <div className="lcm-addFormInputBox">
                               <label>주소: </label>
                               <input
@@ -258,13 +260,19 @@ const Profile = () => {
                                 onChange={handleChange}
                               />
                             </div>
-                            <input
-                              type="checkbox"
-                              checked={userAddr.defaultAddr === "Y"} // Check if the address is the default address
-                              onChange={handleDefaultAddrChange} // Handle checkbox change
-                            />
-                            <label>기본 배송지로 설정</label>
-
+                            {!getAddr.some(
+                              (address) => address.defaultAddr === "Y"
+                            ) || userAddr.defaultAddr === "Y" ? (
+                              <>
+                                {/* 주소가 이미 기본 주소로 설정되어 있지 않은 경우나 현재 주소가 이미 기본 주소로 설정된 경우 */}
+                                <input
+                                  type="checkbox"
+                                  checked={userAddr.defaultAddr === "Y"} // 주소가 기본 주소로 설정되었는지 확인
+                                  onChange={handleDefaultAddrChange} // 체크박스 변경을 처리하는 함수
+                                />
+                                <label>기본 배송지로 설정</label>
+                              </>
+                            ) : null}
                             <div className="lcm_purHistBtns">
                               <span>
                                 <button onClick={submitBtn}>저장</button>
