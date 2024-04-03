@@ -149,15 +149,9 @@ END;
 
 
 /* --------------------------------------------------------------------- */
+/* INSERT INTO SellerBook (itemBuyKey, custKey, sellerKey, damage, price)
+VALUES (4, 4, 4, 0, 15000); */
 
-
-INSERT INTO buyerBook (custKey, itemTitle, author, publisher, itemImg, expiry, aucStatus)
-VALUES (4, 'Book Title', 'Author Name', 'Publisher Name', 'image.jpg', 30, 2);
-
-INSERT INTO SellerBook (itemBuyKey, custKey, sellerKey, damage, price)
-VALUES (4, 4, 4, 0, 15000);
-
-SELECT * FROM buyerBook WHERE custKey = 4;
 
 ALTER TABLE buyerBook
 MODIFY COLUMN aucStatus INT DEFAULT 2,
