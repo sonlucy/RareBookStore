@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
+import axios from "axios";
 import "../styled/FormView.css";
 import "../styled/PurchaseHistory.css";
 import QuestSide from "../components/QuestSide";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { LoginContext } from "../components/LoginContext";
 
 function QuestionItem({ question, index }) {
   const [showContent, setShowContent] = useState(false);
@@ -29,16 +31,31 @@ function QuestionForm() {
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { loginUser } = useContext(LoginContext); // 사용자의 custKey
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newQuestion = {
       title: title,
       content: content,
+      custKey: loginUser.custKey,
     };
+
     setQuestions([...questions, newQuestion]);
     setTitle("");
     setContent("");
+
+
+    try {
+      // 문의 서버 전송
+      await axios.post('http://localhost:3001/enquiries', newQuestion);
+      console.log(loginUser.custKey);
+      // 전송 후 상태 초기화
+      setTitle("");
+      setContent("");
+    } catch (error) {
+      console.error('Error submitting enquiry:', error);
+    }
   };
 
   return (

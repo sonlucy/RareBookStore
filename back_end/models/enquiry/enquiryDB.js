@@ -3,10 +3,10 @@ const db = require("../../database/db");
 // 문의 생성 (Create)
 exports.createEnquiry = (enquiryData) => {
   return new Promise((resolve, reject) => {
-    const { custKey, dateEnquiry, boardTitle, Enquiry } = enquiryData;
+    const { custKey,  boardTitle, Enquiry } = enquiryData;
     db.query(
-      "INSERT INTO enquiry (custKey, dateEnquiry, boardTitle, Enquiry) VALUES (?, ?, ?, ?)",
-      [custKey, dateEnquiry, boardTitle, Enquiry],
+      "INSERT INTO enquiry (custKey,  boardTitle, Enquiry) VALUES (?, ?, ?)",
+      [custKey, boardTitle, Enquiry],
       (err, result) => {
         if (err) reject(err);
         else resolve(result);

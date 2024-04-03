@@ -171,6 +171,7 @@ exports.loginCheck = async (req, res) => {
     res.status(200).json({
       message: "로그인 성공",
       user: req.session.user.custKey, // 세션에 저장된 사용자 정보를 응답으로 반환
+      custKey: req.session.user.custKey // 본인 custKey 반환
     });
   } catch (err) {
     console.error(err);

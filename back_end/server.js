@@ -377,14 +377,15 @@ app.delete("/address/:addrKey", (req, res) => {
 // ========================= enquiry ================================//
 // 문의 추가
 app.post("/enquiries", (req, res) => {
-  const { custKey, dateEnquiry, boardTitle, enquiry } = req.body;
+  const { custKey, boardTitle, Enquiry } = req.body;
   const sql =
-    "INSERT INTO enquiry (custKey, dateEnquiry, boardTitle, Enquiry) VALUES (?, ?, ?, ?)";
+    "INSERT INTO enquiry (custKey, boardTitle, Enquiry) VALUES (?, ?, ?)";
   conn.query(
     sql,
-    [custKey, dateEnquiry, boardTitle, enquiry],
+    [custKey, boardTitle, Enquiry],
     (error, result) => {
       if (error) return res.json(error);
+      console.log(custKey, boardTitle, Enquiry)
       return res.json({
         message: "문의가 추가되었습니다.",
         id: result.insertId,
@@ -564,7 +565,7 @@ app.post("/reviews", (req, res) => {
 });
 
 // 모든 리뷰 조회
-app.get("/review", (req, res) => {
+app.get("/reviews", (req, res) => {
   const sql = "select * from review";
   conn.query(sql, (error, data) => {
     if (error) return res.json(error);
