@@ -62,14 +62,22 @@ const Profile = () => {
   };
 
   const editAddr = (address) => {
-    setEditAddress(address);
-    setUserAddr(address); // Populate the form fields with the data of the selected address
+    setEditAddress(address); // 수정하기위해 잠시 값을 저장하는 state
+    setUserAddr(address); // 수정한 값을 userAddr에 저장
     setEditMode(true); // Set edit mode to true
     setModalOpen(true);
   };
   const cancelBtn = () => {
     setModalOpen(false);
-    setUserAddr("");
+    setEditMode(false);
+    setUserAddr({
+      custKey: loginUser,
+      name: "",
+      tel: "",
+      postcode: "",
+      addr: "",
+      addrDetail: "",
+    });
   };
 
   useEffect(() => {
@@ -104,6 +112,7 @@ const Profile = () => {
         await axios.post(`http://localhost:3001/address`, userAddr);
       }
       setUserAddr({
+        custKey: loginUser,
         name: "",
         tel: "",
         postcode: "",
