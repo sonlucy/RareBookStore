@@ -178,7 +178,7 @@ const Profile = () => {
                               <div>
                                 {`주소: [${address.postcode}] ${address.addr} ${address.addrDetail}`}
                               </div>
-                              <div className="lcm_purHistBtns">
+                              <div className="lcm_purHistBtns lcm_purHist2Btns">
                                 <span>
                                   <button onClick={() => editAddr(address)}>
                                     수정
@@ -210,25 +210,25 @@ const Profile = () => {
                               <input
                                 type="text"
                                 name="name"
-                                placeholder="받는사람"
+                                placeholder="이름"
                                 value={userAddr.name}
                                 onChange={handleChange}
                               />
                             </div>
 
                             <div className="lcm-addFormInputBox">
-                              <label>연락처: </label>
+                              <label>연락처</label>
                               <input
                                 type="text"
                                 name="tel"
-                                placeholder="연락처"
+                                placeholder="01012345678"
                                 value={userAddr.tel}
                                 onChange={handleChange}
                               />
                             </div>
 
                             <div className="lcm-addFormInputBox">
-                              <label>우편번호: </label>
+                              <label>우편번호</label>
                               <input
                                 type="text"
                                 name="postcode"
@@ -239,7 +239,7 @@ const Profile = () => {
                             </div>
 
                             <div className="lcm-addFormInputBox">
-                              <label>주소: </label>
+                              <label>주소</label>
                               <input
                                 type="text"
                                 name="addr"
@@ -249,7 +249,7 @@ const Profile = () => {
                               />
                             </div>
                             <div className="lcm-addFormInputBox">
-                              <label>상세주소: </label>
+                              <label>상세주소</label>
 
                               <input
                                 type="text"
@@ -265,8 +265,7 @@ const Profile = () => {
                               onChange={handleDefaultAddrChange} // Handle checkbox change
                             />
                             <label>기본 배송지로 설정</label>
-
-                            <div className="lcm_purHistBtns">
+                            <div className="lcm_purHistBtns lcm_purHist2Btns">
                               <span>
                                 <button onClick={submitBtn}>저장</button>
                                 <button onClick={cancelBtn}>취소</button>
