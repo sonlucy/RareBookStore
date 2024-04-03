@@ -7,6 +7,7 @@ import MyPageSide from "../components/MypageSide";
 import Footer from "../components/Footer";
 import { LoginContext } from "../components/LoginContext";
 import axios from "axios";
+import DestForm from "../components/DestForm";
 
 const Profile = () => {
   const { loginUser } = useContext(LoginContext);
@@ -122,8 +123,10 @@ const Profile = () => {
             </div>
             <div className="yhw_purHistMainCont">
               <div className="lcm_purHistMainCont">
-                <div className="lcm_purHistTopCont">
-                  <b>로그인 정보</b>
+                <div className="lcm_purHistTopTitle">
+                  <div>
+                    <b>로그인 정보</b>
+                  </div>
                 </div>
                 <div className="lcm_purHistContentsBox">
                   <ul className="lcm_purHistLists">
@@ -134,9 +137,6 @@ const Profile = () => {
                   </ul>
                 </div>
                 <div className="lcm_purHistContentsBox">
-                  <div className="lcm_purHistTopCont">
-                    <b>개인 정보</b>
-                  </div>
                   <ul className="lcm_purHistLists">
                     <h4>휴대폰 번호</h4>
                     <li>
@@ -172,93 +172,72 @@ const Profile = () => {
                           ))}
                         </div>
                       )}
-                    </li>
-                    <li>
                       <div className="lcm_purHistBtns">
-                        <button onClick={() => setModalOpen(true)}>
-                          + 새 배송지 추가
+                        <button onClick={() => setModalOpen(!modalOpen)}>
+                          {modalOpen ? "- 새 배송지 추가" : "+ 새 배송지 추가"}
                         </button>
                       </div>
                     </li>
+
                     <li style={{ borderBottom: "none" }}>
                       {modalOpen && (
                         <div className="lcm-addr-container">
                           <form>
-                            <table>
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    <label>받는분</label>
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      name="name"
-                                      placeholder="받는사람"
-                                      value={userAddr.name}
-                                      onChange={handleChange}
-                                      required
-                                    />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <label>연락처: </label>
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      name="tel"
-                                      placeholder="연락처"
-                                      value={userAddr.tel}
-                                      onChange={handleChange}
-                                    />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <label>우편번호: </label>
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      name="postcode"
-                                      placeholder="우편번호"
-                                      value={userAddr.postcode}
-                                      onChange={handleChange}
-                                    />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <label>주소: </label>
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      name="addr"
-                                      placeholder="주소"
-                                      value={userAddr.addr}
-                                      onChange={handleChange}
-                                    />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <label>상세주소: </label>
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      name="addrDetail"
-                                      placeholder="상세주소"
-                                      value={userAddr.addrDetail}
-                                      onChange={handleChange}
-                                    />
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
+                            <div className="lcm-addFormInputBox">
+                              <label>받는 사람</label>
+                              <input
+                                type="text"
+                                name="name"
+                                placeholder="받는사람"
+                                value={userAddr.name}
+                                onChange={handleChange}
+                              />
+                            </div>
+
+                            <div className="lcm-addFormInputBox">
+                              <label>연락처: </label>
+                              <input
+                                type="text"
+                                name="tel"
+                                placeholder="연락처"
+                                value={userAddr.tel}
+                                onChange={handleChange}
+                              />
+                            </div>
+
+                            <div className="lcm-addFormInputBox">
+                              <label>우편번호: </label>
+                              <input
+                                type="text"
+                                name="postcode"
+                                placeholder="우편번호"
+                                value={userAddr.postcode}
+                                onChange={handleChange}
+                              />
+                            </div>
+
+                            <div className="lcm-addFormInputBox">
+                              <label>주소: </label>
+                              <input
+                                type="text"
+                                name="addr"
+                                placeholder="주소"
+                                value={userAddr.addr}
+                                onChange={handleChange}
+                              />
+                            </div>
+                            <div className="lcm-addFormInputBox">
+                              <label>상세주소: </label>
+
+                              <input
+                                type="text"
+                                name="addrDetail"
+                                placeholder="상세주소"
+                                value={userAddr.addrDetail}
+                                onChange={handleChange}
+                              />
+                            </div>
+
                             <div className="lcm_purHistBtns">
                               <span>
                                 <button onClick={submitBtn}>저장</button>
@@ -284,3 +263,78 @@ const Profile = () => {
 };
 
 export default Profile;
+
+//  <table>
+//    <tbody>
+//      <tr>
+//        <td>
+//          <label>받는 사람</label>
+//        </td>
+//        <td>
+//          <input
+//            type="text"
+//            name="name"
+//            placeholder="받는사람"
+//            value={userAddr.name}
+//            onChange={handleChange}
+//          />
+//        </td>
+//      </tr>
+//      <tr>
+//        <td>
+//          <label>연락처: </label>
+//        </td>
+//        <td>
+//          <input
+//            type="text"
+//            name="tel"
+//            placeholder="연락처"
+//            value={userAddr.tel}
+//            onChange={handleChange}
+//          />
+//        </td>
+//      </tr>
+//      <tr>
+//        <td>
+//          <label>우편번호: </label>
+//        </td>
+//        <td>
+//          <input
+//            type="text"
+//            name="postcode"
+//            placeholder="우편번호"
+//            value={userAddr.postcode}
+//            onChange={handleChange}
+//          />
+//        </td>
+//      </tr>
+//      <tr>
+//        <td>
+//          <label>주소: </label>
+//        </td>
+//        <td>
+//          <input
+//            type="text"
+//            name="addr"
+//            placeholder="주소"
+//            value={userAddr.addr}
+//            onChange={handleChange}
+//          />
+//        </td>
+//      </tr>
+//      <tr>
+//        <td>
+//          <label>상세주소: </label>
+//        </td>
+//        <td>
+//          <input
+//            type="text"
+//            name="addrDetail"
+//            placeholder="상세주소"
+//            value={userAddr.addrDetail}
+//            onChange={handleChange}
+//          />
+//        </td>
+//      </tr>
+//    </tbody>
+//  </table>;
