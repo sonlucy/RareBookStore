@@ -1,9 +1,6 @@
-// PurchaseReqForm.js
-
 import React, { useState } from 'react';
 import '../styled/PurchaseReqForm.css';
 import axios from 'axios';
-import { LoginContext } from "../components/LoginContext";
 
 const InputField = ({ label, name, value, placeholder, onChange, error }) => {
   return (

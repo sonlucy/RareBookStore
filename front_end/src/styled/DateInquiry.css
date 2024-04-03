@@ -37,8 +37,16 @@
   color: white;
   padding-bottom: 4px;
 }
+.yhw_dateInquiryBox > button:hover {
+  background-color: #626262;
+}
 /* ******************************************************* */
 /* CSS 반응형 */
+@media screen and (max-width: 1440px) {
+  .yhw_dateInquiryBox > button:active { /* 큰 데스크톱을 제외한 모든 기기에서 해당 버튼 눌렸을 때 active 효과 주기 */
+    background-color: #626262;
+  }
+}
 @media screen and (max-width: 621px) {
   .yhw_dateInquiryBox {
     max-width: 200px;
