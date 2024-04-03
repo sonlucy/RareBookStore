@@ -129,12 +129,12 @@ app.put("/updateCustomers/:custKey", (req, res) => {
 // ========================= buyers ================================//
 // 책 구매 희망 추가
 app.post("/buyerbook", (req, res) => {
-  const { custKey, itemTitle, author, publisher, expiry } = req.body;
+  const { custKey, itemTitle, author, publisher, itemImg, expiry } = req.body;
   const sql =
-    "INSERT INTO buyerBook (custKey, itemTitle, author, publisher, expiry) VALUES (?, ?, ?, ?, ?)";
+    "INSERT INTO buyerBook (custKey, itemTitle, author, publisher, itemImg, expiry) VALUES (?, ?, ?, ?, ?, ?)";
   conn.query(
     sql,
-    [custKey, itemTitle, author, publisher, expiry],
+    [custKey, itemTitle, author, publisher, itemImg, expiry],
     (error, result) => {
       if (error) return res.json(error);
       return res.json({
@@ -166,7 +166,7 @@ app.get("/buyerbook/:custKey", (req, res) => {
       if (results.length === 0) {
         res.status(404).json({ error: "Customer not found" });
       } else {
-        res.json(results); // 모든 고객 정보 반환
+        res.json(results[0]); // 첫 번째 고객 정보 반환
       }
     }
   });

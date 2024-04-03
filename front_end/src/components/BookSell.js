@@ -11,9 +11,7 @@ function BookSell({ onSelect, requests }) {
     setSelectedTab('진행중'); 
     updateCounts(); 
   }, []); 
-  useEffect(() => {
-    updateCounts();
-  }, [requests]);
+
   const updateCounts = () => {
     const ongoing = requests.filter(request => request.aucStatus === 2).length;
     const bidding = requests.filter(request => request.aucStatus === 1).length;
