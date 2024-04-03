@@ -6,7 +6,6 @@ import Header from "../components/Header";
 import MyPageSide from "../components/MypageSide";
 import Footer from "../components/Footer";
 import { LoginContext } from "../components/LoginContext";
-import DefDestCheck from "../components/DefDestCheck";
 import axios from "axios";
 
 const Profile = () => {
