@@ -66,6 +66,10 @@ const Profile = () => {
     setEditMode(true); // Set edit mode to true
     setModalOpen(true);
   };
+  const cancelBtn = () => {
+    setModalOpen(false);
+    setUserAddr("");
+  };
 
   useEffect(() => {
     getCustomer();
@@ -240,9 +244,7 @@ const Profile = () => {
                             <div className="lcm_purHistBtns">
                               <span>
                                 <button onClick={submitBtn}>저장</button>
-                                <button onClick={() => setModalOpen(false)}>
-                                  취소
-                                </button>
+                                <button onClick={cancelBtn}>취소</button>
                               </span>
                             </div>
                           </form>
@@ -262,78 +264,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-//  <table>
-//    <tbody>
-//      <tr>
-//        <td>
-//          <label>받는 사람</label>
-//        </td>
-//        <td>
-//          <input
-//            type="text"
-//            name="name"
-//            placeholder="받는사람"
-//            value={userAddr.name}
-//            onChange={handleChange}
-//          />
-//        </td>
-//      </tr>
-//      <tr>
-//        <td>
-//          <label>연락처: </label>
-//        </td>
-//        <td>
-//          <input
-//            type="text"
-//            name="tel"
-//            placeholder="연락처"
-//            value={userAddr.tel}
-//            onChange={handleChange}
-//          />
-//        </td>
-//      </tr>
-//      <tr>
-//        <td>
-//          <label>우편번호: </label>
-//        </td>
-//        <td>
-//          <input
-//            type="text"
-//            name="postcode"
-//            placeholder="우편번호"
-//            value={userAddr.postcode}
-//            onChange={handleChange}
-//          />
-//        </td>
-//      </tr>
-//      <tr>
-//        <td>
-//          <label>주소: </label>
-//        </td>
-//        <td>
-//          <input
-//            type="text"
-//            name="addr"
-//            placeholder="주소"
-//            value={userAddr.addr}
-//            onChange={handleChange}
-//          />
-//        </td>
-//      </tr>
-//      <tr>
-//        <td>
-//          <label>상세주소: </label>
-//        </td>
-//        <td>
-//          <input
-//            type="text"
-//            name="addrDetail"
-//            placeholder="상세주소"
-//            value={userAddr.addrDetail}
-//            onChange={handleChange}
-//          />
-//        </td>
-//      </tr>
-//    </tbody>
-//  </table>;
