@@ -6,8 +6,8 @@ import Header from "../components/Header";
 import MyPageSide from "../components/MypageSide";
 import Footer from "../components/Footer";
 import { LoginContext } from "../components/LoginContext";
+import DefDestCheck from "../components/DefDestCheck";
 import axios from "axios";
-import DestForm from "../components/DestForm";
 
 const Profile = () => {
   const { loginUser } = useContext(LoginContext);
@@ -22,8 +22,10 @@ const Profile = () => {
     postcode: "",
     addr: "",
     addrDetail: "",
+    defaultAddr: "",
   });
   const [getAddr, setGetAddr] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -77,6 +79,7 @@ const Profile = () => {
       postcode: "",
       addr: "",
       addrDetail: "",
+      defaultAddr: "",
     });
   };
 
@@ -118,11 +121,17 @@ const Profile = () => {
         postcode: "",
         addr: "",
         addrDetail: "",
+        defaultAddr: "",
       });
       setModalOpen(false);
     } catch (error) {
       console.error("주소 보내기 에러남", error);
     }
+  };
+
+  const handleDefaultAddrChange = (e) => {
+    const { checked } = e.target;
+    setUserAddr({ ...userAddr, defaultAddr: checked ? "Y" : "N" });
   };
 
   return (
@@ -250,6 +259,12 @@ const Profile = () => {
                                 onChange={handleChange}
                               />
                             </div>
+                            <input
+                              type="checkbox"
+                              checked={userAddr.defaultAddr === "Y"} // Check if the address is the default address
+                              onChange={handleDefaultAddrChange} // Handle checkbox change
+                            />
+                            <label>기본 배송지로 설정</label>
 
                             <div className="lcm_purHistBtns">
                               <span>
