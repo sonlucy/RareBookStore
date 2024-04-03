@@ -130,6 +130,20 @@ const Profile = () => {
   const handleDefaultAddrChange = (e) => {
     const { checked } = e.target;
     setUserAddr({ ...userAddr, defaultAddr: checked ? "Y" : "N" });
+
+    if (checked) {
+      // 새로운 주소를 기본 주소로 설정할 때 기존의 기본 주소를 해제합니다.
+      const defaultAddress = getAddr.find(
+        (address) => address.defaultAddr === "Y"
+      );
+      if (defaultAddress) {
+        const updatedAddress = { ...defaultAddress, defaultAddr: "N" };
+        axios.put(
+          `http://localhost:3001/address/${defaultAddress.addrKey}`,
+          updatedAddress
+        );
+      }
+    }
   };
 
   return (
@@ -259,20 +273,14 @@ const Profile = () => {
                                 onChange={handleChange}
                               />
                             </div>
-                            {!getAddr.some(
-                              (address) => address.defaultAddr === "Y"
-                            ) || userAddr.defaultAddr === "Y" ? (
-                              <>
-                                {/* 주소가 이미 기본 주소로 설정되어 있지 않은 경우나 현재 주소가 이미 기본 주소로 설정된 경우 */}
-                                <input
-                                  type="checkbox"
-                                  checked={userAddr.defaultAddr === "Y"} // 주소가 기본 주소로 설정되었는지 확인
-                                  onChange={handleDefaultAddrChange} // 체크박스 변경을 처리하는 함수
-                                />
-                                <label>기본 배송지로 설정</label>
-                              </>
-                            ) : null}
-                            <div className="lcm_purHistBtns">
+                            <input
+                              type="checkbox"
+                              checked={userAddr.defaultAddr === "Y"} // 주소가 기본 주소로 설정되었는지 확인
+                              onChange={handleDefaultAddrChange} // 체크박스 변경을 처리하는 함수
+                            />
+                            <label>기본 배송지로 설정</label>
+
+                            <div className="lcm_purHistBtns lcm_purHist2Btns">
                               <span>
                                 <button onClick={submitBtn}>저장</button>
                                 <button onClick={cancelBtn}>취소</button>
