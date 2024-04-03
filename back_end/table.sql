@@ -156,3 +156,14 @@ BEGIN
         SET NEW.dateReply = CURDATE();
     END IF;
 END;
+
+
+/* --------------------------------------------------------------------- */
+/* INSERT INTO SellerBook (itemBuyKey, custKey, sellerKey, damage, price)
+VALUES (4, 4, 4, 0, 15000); */
+
+
+ALTER TABLE buyerBook
+MODIFY COLUMN aucStatus INT DEFAULT 2,
+MODIFY COLUMN itemImg VARCHAR(255) DEFAULT 'img/book.png';
+
