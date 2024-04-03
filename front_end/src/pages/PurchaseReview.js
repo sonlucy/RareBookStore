@@ -1,18 +1,31 @@
 import React from 'react';
-import styled from 'styled-components';
 import PurchaseBanner from '../components/PurchaseBanner';
-import ReviewCreate from './ReviewCreate';
+import ReviewCreate from '../components/ReviewCreate';
 import Header from '../components/Header';
+import MyPageSide from '../components/MypageSide';
 import Footer from '../components/Footer';
 
 function PurchaseReview(props) {
     return (
-        <div>
-            <Header />
-            <PurchaseBanner />
-            <ReviewCreate />
+        <>
+            <div className="height-container">
+                <Header />
+                <div className="yhw_container">
+                    <div className="yhw_purHistCont">
+                        <div className="yhw_MypageSideAdd">
+                            <MyPageSide />
+                        </div>
+                        <div className="yhw_purHistMainCont">
+                            <div>
+                                <PurchaseBanner />
+                                <ReviewCreate />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <Footer />
-        </div>
+        </>
     );
 }
 
