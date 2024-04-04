@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const CenteredContainer = styled.div`
     display: flex;
@@ -18,7 +19,7 @@ const BookInfoContainer = styled.div`
 const BookImage = styled.div`
     width: 122px;
     height: 183px;
-    background-image: url('/book.jpg');
+    background-image: url('/book.jpg'); // 나중에 변경할 수 있음
 `;
 
 const BookInfo = styled.div`
@@ -27,17 +28,45 @@ const BookInfo = styled.div`
     height: 183px;
 `;
 
+const TitleSpan = styled.div`
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 3px;
+`;
+
+const InfoSpan = styled.div`
+    font-size: 15px;
+    font-weight: medium;
+`;
 
 function SellBookInfo(props) {
+    const [buyerBooks, setBuyerBooks] = useState([]);
+
+    useEffect(() => {
+        fetchBuyerBooks();
+    }, []);
+
+    const fetchBuyerBooks = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/buyerbook');
+            setBuyerBooks(response.data);
+        } catch (error) {
+            console.error('Error fetching buyer books:', error);
+        }
+    };
+
     return (
         <div>
             <CenteredContainer>
                 <BookInfoContainer>
                     <BookImage></BookImage>
                     <BookInfo>
-                    <span>폴링인 폴</span>
-                    <br />
-                    <span>모건하우절 | 문학동네</span>
+                        {buyerBooks.map(book => (
+                            <div key={book.itemBuyKey}>
+                                <TitleSpan>{book.itemTitle}</TitleSpan>
+                                <InfoSpan>{book.author} | {book.publisher}</InfoSpan>
+                            </div>
+                        ))}
                     </BookInfo>
                 </BookInfoContainer>
             </CenteredContainer>
@@ -46,4 +75,3 @@ function SellBookInfo(props) {
 }
 
 export default SellBookInfo;
-

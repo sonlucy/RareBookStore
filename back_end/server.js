@@ -166,7 +166,7 @@ app.get("/buyerbook/:custKey", (req, res) => {
       if (results.length === 0) {
         res.status(404).json({ error: "Customer not found" });
       } else {
-        res.json(results[0]); // 첫 번째 고객 정보 반환
+        res.json(results);
       }
     }
   });
@@ -377,26 +377,33 @@ app.delete("/address/:addrKey", (req, res) => {
 // ========================= enquiry ================================//
 // 문의 추가
 app.post("/enquiries", (req, res) => {
-  const { custKey, dateEnquiry, boardTitle, enquiry } = req.body;
+  const { custKey, boardTitle, Enquiry } = req.body;
   const sql =
-    "INSERT INTO enquiry (custKey, dateEnquiry, boardTitle, Enquiry) VALUES (?, ?, ?, ?)";
-  conn.query(
-    sql,
-    [custKey, dateEnquiry, boardTitle, enquiry],
-    (error, result) => {
-      if (error) return res.json(error);
-      return res.json({
-        message: "문의가 추가되었습니다.",
-        id: result.insertId,
-      });
-    }
-  );
+    "INSERT INTO enquiry (custKey, boardTitle, Enquiry) VALUES (?, ?, ?)";
+  conn.query(sql, [custKey, boardTitle, Enquiry], (error, result) => {
+    if (error) return res.json(error);
+    console.log(custKey, boardTitle, Enquiry);
+    return res.json({
+      message: "문의가 추가되었습니다.",
+      id: result.insertId,
+    });
+  });
 });
 
 // 모든 문의 조회
 app.get("/enquiries", (req, res) => {
   const sql = "select * from enquiry";
   conn.query(sql, (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
+
+// 특정 고객 문의 조회
+app.get("/enquiries/:custKey", (req, res) => {
+  const custKey = req.params.custKey;
+  const sql = "SELECT * FROM enquiry WHERE custKey = ?";
+  conn.query(sql, [custKey], (error, data) => {
     if (error) return res.json(error);
     return res.json(data);
   });
@@ -489,7 +496,7 @@ app.get("/orders", (req, res) => {
 });
 
 // 날짜별 주문 요약
-app.get('/orders/summary', (req, res) => {
+app.get("/orders/summary", (req, res) => {
   const sql = `
     SELECT
       DATE_FORMAT(dateBuy, '%Y-%m-%d') AS date,
@@ -514,7 +521,7 @@ app.get("/orders/customer/:custKey", (req, res) => {
   const custKey = req.params.custKey;
   const sql = "SELECT * FROM orders WHERE custKey = ?";
   conn.query(sql, [custKey], (error, data) => {
-    if (error) return res.json(error);  
+    if (error) return res.json(error);
     return res.json(data);
   });
 });
@@ -564,7 +571,7 @@ app.post("/reviews", (req, res) => {
 });
 
 // 모든 리뷰 조회
-app.get("/review", (req, res) => {
+app.get("/reviews", (req, res) => {
   const sql = "select * from review";
   conn.query(sql, (error, data) => {
     if (error) return res.json(error);
@@ -621,7 +628,7 @@ app.delete("/reviews/:reviewKey", (req, res) => {
 app.post("/reply", (req, res) => {
   const { boardKey, reply } = req.body;
   const adminKey = 1; // 관리자키 임의로 1로 지정
-  
+
   // reply 테이블에 새로운 답글을 추가
   const sql = `INSERT INTO reply (boardKey, adminKey, reply) VALUES (?, ?, ?)`;
   conn.query(sql, [boardKey, adminKey, reply], (error, results) => {

@@ -5,31 +5,28 @@ const CenteredContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 `;
 
 const BannerContainer = styled.div`
     display: flex;
     justify-content: left;
     align-items: center;
-    width: 70vw;
-    height: 50px;
-    margin: auto;
-    margin-top: 20px;
+    /* width: 70vw; */
+    width: 100%;
+    /* height: 5vw; */
+    /* margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px; */
 `;
 
-const StyledH3 = styled.h3`
-    margin-left: 50px;
-`;
-
-
-function PurchaseBanner({ selectedBanner }) {
+// function PurchaseBanner({ selectedBanner }) {
+function PurchaseBanner() {
     return (
         <CenteredContainer>
             <BannerContainer>
-                <StyledH3>
-                    구매후기 남기기
-                    {selectedBanner}
-                </StyledH3>
+                <b style={{fontSize:"20px", fontWeight:"bolder"}}>구매 후기 남기기</b>
+                {/* {selectedBanner} */}
             </BannerContainer>
         </CenteredContainer>
     );

@@ -11,8 +11,8 @@ import axios from "axios";
 const Profile = () => {
   const { loginUser } = useContext(LoginContext);
   const [modalOpen, setModalOpen] = useState(false);
-  const [editMode, setEditMode] = useState(false); // New state to handle edit mode
-  const [editAddress, setEditAddress] = useState(null); // New state to store address being edited
+  const [editMode, setEditMode] = useState(false); // 수정모드를 위한 state
+  const [editAddress, setEditAddress] = useState(null); // 수정된 주소를 저장하기 위한 state
   const [user, setUser] = useState([]);
   const [userAddr, setUserAddr] = useState({
     custKey: loginUser,
@@ -24,7 +24,7 @@ const Profile = () => {
     defaultAddr: "",
   });
   const [getAddr, setGetAddr] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
+  const [defaultAddrChanged, setDefaultAddrChanged] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,8 +65,8 @@ const Profile = () => {
   const editAddr = (address) => {
     setEditAddress(address); // 수정하기위해 잠시 값을 저장하는 state
     setUserAddr(address); // 수정한 값을 userAddr에 저장
-    setEditMode(true); // Set edit mode to true
-    setModalOpen(true);
+    setEditMode(true); // 수정모드 state true 설정
+    setModalOpen(true); // 모달창 보여주기
   };
   const cancelBtn = () => {
     setModalOpen(false);
@@ -92,7 +92,7 @@ const Profile = () => {
 
   const submitBtn = async (event) => {
     event.preventDefault();
-    // Check if any of the required fields are empty
+    // 모든 입력창 채웠는지 확인
     if (
       !userAddr.name ||
       !userAddr.tel ||
@@ -113,6 +113,19 @@ const Profile = () => {
       } else {
         await axios.post(`http://localhost:3001/address`, userAddr);
       }
+      if (defaultAddrChanged) {
+        const defaultAddress = getAddr.find(
+          (address) => address.defaultAddr === "Y"
+        );
+        if (defaultAddress) {
+          const updatedAddress = { ...defaultAddress, defaultAddr: "N" };
+          await axios.put(
+            `http://localhost:3001/address/${defaultAddress.addrKey}`,
+            updatedAddress
+          );
+        }
+        setDefaultAddrChanged(false); // 업데이트 후 기본주소지 상태값 false로 설정
+      }
       setUserAddr({
         custKey: loginUser,
         name: "",
@@ -131,20 +144,7 @@ const Profile = () => {
   const handleDefaultAddrChange = (e) => {
     const { checked } = e.target;
     setUserAddr({ ...userAddr, defaultAddr: checked ? "Y" : "N" });
-
-    if (checked) {
-      // 새로운 주소를 기본 주소로 설정할 때 기존의 기본 주소를 해제합니다.
-      const defaultAddress = getAddr.find(
-        (address) => address.defaultAddr === "Y"
-      );
-      if (defaultAddress) {
-        const updatedAddress = { ...defaultAddress, defaultAddr: "N" };
-        axios.put(
-          `http://localhost:3001/address/${defaultAddress.addrKey}`,
-          updatedAddress
-        );
-      }
-    }
+    setDefaultAddrChanged(true); //기본 배송지 변경 시 defaultAddrChanged를 true로 설정
   };
 
   return (
