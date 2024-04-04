@@ -12,7 +12,6 @@ const PurchaseHistory = () => {
 
   const handleClick = () => {
     navigate('/Mypage/PurchaseReview');
-    window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
   };
 
   return (
