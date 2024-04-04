@@ -23,9 +23,10 @@ const BookImage = styled.div`
 `;
 
 const BookInfo = styled.div`
-    text-align: center;
+    text-align: left;
     width: 176px;
     height: 183px;
+    margin-left: 10px;
 `;
 
 const TitleSpan = styled.div`
