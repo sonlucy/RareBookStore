@@ -91,25 +91,28 @@ function QuestionForm() {
                 {" "}
                 {/* h1부터 끝까지 div로 묶어줌 */}
                 <h2 className="qna_main_title">QnA</h2>
-                <form onSubmit={handleSubmit}>
-                  <label htmlFor="title">문의 제목:</label>
-                  <input
-                    type="text"
-                    id="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    className="input-field"
-                    placeholder="제목을 입력하세요"
-                  />
-                  <br />
-                  <label htmlFor="content">문의 내용:</label>
-                  <textarea
-                    id="content"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    className="input-field-view"
-                    placeholder="내용을 입력하세요"
-                  />
+                <form onSubmit={handleSubmit} className="cyj_QNAformBox">
+                  <div className="cyj_QNAlableNinput">
+                    <label htmlFor="title">문의 제목</label>
+                    <input
+                      type="text"
+                      id="title"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      className="input-field"
+                      placeholder="제목을 입력하세요"
+                    />
+                  </div>
+                  <div className="cyj_QNAlableNinput">
+                    <label htmlFor="content">문의 내용</label>
+                    <textarea
+                      id="content"
+                      value={content}
+                      onChange={(e) => setContent(e.target.value)}
+                      className="input-field-view"
+                      placeholder="내용을 입력하세요"
+                    />
+                  </div>
                   <br />
                   <button type="submit" className="submit-button">
                     등록하기
