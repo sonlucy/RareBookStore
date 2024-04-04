@@ -1,38 +1,29 @@
-.lcm_purHistCont {
-  width: 100%;
-  display: flex;
-}
-.lcm_MypageSideAdd {
-  width: 25%;
-  min-width: 170px;
-}
-
 .lcm_purHistMainCont {
-  width: 80%;
+  width: 100%;
   /* min-width: 350px; */
   padding: 0;
 }
 .lcm_purHistTopTitle {
   height: 30px;
-  width: 85%;
-  font-size: 25px;
+  width: 100%;
 }
 .lcm_purHistTopTitle > div {
-  padding-bottom: 5px;
-  border-bottom: solid #e2e2e2;
+  width: 100%;
+  /* padding-bottom: 5px; */
+  /* border-bottom: 2px solid #e2e2e2; */
 }
 
-.lcm_purHistTopCont {
+/* .lcm_purHistTopCont {
   width: 100%;
 }
 .lcm_purHistTopCont > b {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
-}
+} */
 .lcm_purHistContentsBox {
   /* 해당 날짜, 구매내역 리스트 감싸는 div 태그 CSS */
-  width: 85%;
-  margin: 0;
+  width: 90%;
+  margin: 30px 0 0 0;
   /* margin-left: 2vw; */
 }
 .lcm_purHistContentsDate {
@@ -45,6 +36,12 @@
   width: 100%;
   list-style: none;
   padding: 0;
+  margin: 0;
+}
+.lcm_purHistLists h4 {
+  font-size: 14px;
+  color: #828282;
+  margin-bottom: 10px;
 }
 .lcm_purHistLists > li {
   /* PurInfoBox 컴포넌트랑 구매후기작성 버튼 감싸는 li 태그 CSS */
@@ -52,52 +49,59 @@
   display: flex;
   justify-content: space-between;
   border-bottom: #e2e2e2 1px solid;
-  padding-bottom: 50px;
-  margin-bottom: 50px;
   font-size: 17px;
   font-weight: 500;
+  margin-bottom: 25px;
+}
+.lcm_purHistListsFetchData {
+  height: 35px;
 }
 
 .lcm_purHistBtns {
-  width: 130px;
+  width: fit-content;
   margin-right: 30px;
+  margin-bottom: 35px;
 }
 .lcm_purHistBtns > span > button {
-  width: 47%;
-  margin-left: 3%;
+  width: 80px;
+  margin-left: 10px;
   height: 35px;
   background-color: #c87e66;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
   font-size: 15px;
-  margin-bottom: 15px;
 }
 .lcm_purHistBtns > span > button:hover {
   background-color: #ab705c;
 }
 .lcm_purHistBtns > button {
-  width: 100%;
-  height: 35px;
-  background-color: #c87e66;
-  color: white;
+  background-color: #C87E66;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
+  /* margin-top: 1rem; */
   font-weight: bold;
-  font-size: 15px;
-  margin-bottom: 10px;
+  font-size: 0.9375rem; 
+  width: 9.75rem; /* 156px; */
+  height: 2.875rem; /* 46px; */
 }
 .lcm_purHistBtns > button:hover {
   background-color: #ab705c;
 }
-.lcm-addInfo-contarinter > div > div {
+.lcm-addInfo-contarinter > div {  /* 수정&삭제, 저장&취소 버튼 CSS */
+  margin-bottom: 35px;
+}
+.lcm-addInfo-contarinter > div > div {  /* 배송지 모든 CSS (기본배송지, 이름, 휴대폰번호, 주소, 버튼 두 개) */
   margin-bottom: 10px;
 }
 
 .lcm-addr-container {
+  padding-top: 40px;
   width: 80%;
 }
 .lcm-addFormInputBox {

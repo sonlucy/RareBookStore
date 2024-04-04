@@ -11,8 +11,7 @@ const PurchaseHistory = () => {
   const navigate = useNavigate(); // 구매후기작성 버튼 클릭 시 구매후기작성 페이지로 이동
 
   const handleClick = () => {
-    navigate('/PurchaseReview');
-    window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
+    navigate('/Mypage/PurchaseReview');
   };
 
   return (

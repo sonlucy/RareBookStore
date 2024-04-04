@@ -66,7 +66,8 @@ function RegRequest() {
             <div className="yhw_purHistMainCont">
               <div className='sbk-purchase-request-form-title'>
                 <h1>구매 희망 도서 등록</h1>
-                <hr className='sbk-purchase-request-form-hr' />
+                <hr style={{border: "0", height: "1px", backgroundColor: "black"}} />
+                {/* <hr className='sbk-purchase-request-form-hr' /> */}
               </div>
               <PurchaseReqForm loginUser={loginUser} />
 

@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+
 
 const CenteredContainer = styled.div`
   display: flex;
@@ -17,26 +19,27 @@ const BookInfoContainer = styled.div`
 `;
 
 const BookImage = styled.div`
-  width: 122px;
-  height: 183px;
-  background-image: url("/book.jpg"); // 나중에 변경할 수 있음
+    width: 122px;
+    height: 183px;
+    background-image: url('/book.jpg'); // 나중에 변경할 수 있음
 `;
 
 const BookInfo = styled.div`
-  text-align: center;
-  width: 176px;
-  height: 183px;
+    text-align: left;
+    width: 176px;
+    height: 183px;
+    margin-left: 10px;
 `;
 
 const TitleSpan = styled.div`
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 3px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 3px;
 `;
 
 const InfoSpan = styled.div`
-  font-size: 15px;
-  font-weight: medium;
+    font-size: 15px;
+    font-weight: medium;
 `;
 
 function SellBookInfo({ itemBuyKey }) {

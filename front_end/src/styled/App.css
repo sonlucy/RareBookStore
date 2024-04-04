@@ -15,7 +15,17 @@
 @media screen and (max-width: 1440px) {  /* 화면의 너비가 최대 1440px 일 때 */
   div.yhw_container {
     width: 90%;
-    margin: 0 7vw;
+    margin: 0 4vw;
+  }
+}
+@media screen and (max-width: 1000px) {
+  div.yhw_container {
+    margin: 0 2vw;
+  }
+}
+@media screen and (max-width: 621px) {
+  div.yhw_container {
+    margin: 0;
   }
 }
 button {
