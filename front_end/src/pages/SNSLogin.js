@@ -10,19 +10,7 @@ const CenteredContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
-  @media screen and (max-width: 1000px) {
-    height: 45vh;
-  }
-  @media screen and (max-width: 880px) {
-    height: 40vh;
-  }
-  @media screen and (max-width: 768px) {
-    height: 35vh;
-  }
-  @media screen and (max-width: 425px) {
-    height: 33vh;
-  }
+  height: 600px;
 `;
 
 const SNSLoginContainer = styled.div`
@@ -31,7 +19,7 @@ const SNSLoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   /* width: 650px; */
-  width: 60%;
+  width: 58%;
   height: 100%;
   min-height: 180px;
   /* height: 450px; */
@@ -41,31 +29,12 @@ const SNSLoginContainer = styled.div`
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  /* width: 385px; */
-  width: 40%;
-  height: 43%;
+  width: 400px;
+  height: 45%;
   min-height: 176px;
   margin: 0;
-  @media screen and (max-width: 1440px) {
-    width: 50%;
-  }
-  @media screen and (max-width: 1240px) {
-    width: 60%;
-  }
-  @media screen and (max-width: 1000px) {
-    width: 70%;
-    height: 48%;
-  }
-  @media screen and (max-width: 880px) {
-    width: 80%;
-    height: 53%;
-  }
-  @media screen and (max-width: 768px) {
-    width: 85%;
-    height: 60%;
-  }
   @media screen and (max-width: 621px) {
     width: 90%;
     height: 65%;
@@ -77,12 +46,19 @@ const LoginContainer = styled.div`
   }
 `;
 
-// const LogoImage = styled.div`
-//   width: 165px;
-//   height: 42px;
-//   background-image: url("/Logo.png");
-//   margin: 50px;
-// `;
+const LogoImageBox = styled.div`
+  width: 400px;
+  padding: 50px 0 40px 0;
+  margin-bottom: 40px;
+  border-bottom: #EBEBEB 2px solid;
+`;
+
+const LogoImage = styled.div`
+  width: 165px;
+  height: 42px;
+  background-image: url("/Logo.png");
+  margin: 0 auto;
+`;
 
 const KakaoLogoImage = styled.div`
   width: 21px;
@@ -110,6 +86,7 @@ const KakaoContainer = styled.div`
   height: 52px;
   background-color: #ffde00;
   border-radius: 10px;
+  margin-bottom: 20px;
   cursor: pointer;
   &:hover {
     background-color: #d8c64b;
@@ -130,6 +107,7 @@ const GoogleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
   /* width: 384px; */
   width: 100%;
   height: 52px;
@@ -192,7 +170,9 @@ function SNSLogin(props) {
       <Header />
       <CenteredContainer>
         <SNSLoginContainer>
-          {/* <LogoImage></LogoImage> */}
+          <LogoImageBox>
+            <LogoImage />
+          </LogoImageBox>
           <LoginContainer>
             <KakaoContainer>
               <KakaoLogoImage />
