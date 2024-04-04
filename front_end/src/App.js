@@ -47,7 +47,7 @@ function App() {
           <Route path="Admin" element={<Admin />}></Route>
           <Route path="QuestionForm" element={<QuestionForm />}></Route>
           <Route path="/Mypage/Profile" element={<Profile />}></Route>
-          <Route path="PurchaseReview" element={<PurchaseReview />}></Route>
+          <Route path="/Mypage/PurchaseReview" element={<PurchaseReview />}></Route>
           <Route path="SellBook" element={<SellBook />}></Route>
           <Route path="/Mypage/Rank" element={<Rank />}></Route>
           <Route path="*" element={<XNotFound />}></Route>  {/* Not Found 페이지 */}          
