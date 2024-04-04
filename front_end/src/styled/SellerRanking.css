@@ -6,12 +6,16 @@
   padding-left: 2rem;
 }
 
-.sbk-seller-info-grade, .sbk-seller-info-reviews {
+/* .sbk-seller-info-grade, .sbk-seller-info-reviews { */
+.sbk-seller-info-grade:not(:last-child) {
   margin-bottom: 7rem;
 }
 
 .jyh-sellerRank-Container {
   padding: 0;
+  margin: 0;
+  width: 97%;
+  margin-left: 3%;
 }
 
 .jyh-seller-info-container {
