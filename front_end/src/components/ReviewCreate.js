@@ -26,9 +26,10 @@ const BookImage = styled.div`
     /* width: 128px; */
     width: 40%;
     /* height: 192px; */
-    height: 60%;
+    height: 70%;
     background-image: url("/book.jpg");
     background-size: contain;
+    background-repeat: no-repeat;
 `;
 
 const BookInfoContainer = styled.div`
@@ -67,13 +68,13 @@ const RadioButtonLabel = styled.label`
     border-radius: 5px;
     margin-right: 5px;
     cursor: pointer;
-    background-color: ${({ isSelected }) => (isSelected ? '#007bff' : '#fff')};
+    background-color: ${({ isSelected }) => (isSelected ? '#C87E66' : '#fff')};
     color: ${({ isSelected }) => (isSelected ? '#fff' : '#000')};
     font-size: 14px;
 
     &:hover {
-        background-color: ${({ isSelected }) => (isSelected ? '#0056b3' : '#f0f0f0')};
-        color: ${({ isSelected }) => (isSelected ? '#fff' : '#000')};
+        background-color: ${({ isSelected }) => (isSelected ? '#C87E66' : '#d88e75')};
+        color: ${({ isSelected }) => (isSelected ? '#fff' : '#fff')};
     }
 `;
 
@@ -111,16 +112,17 @@ const ReviewTextWrite = styled.textarea`
 `;
 
 const ReviewSaveButton = styled.button`
-    width: 109px;
-    height: 39px;
     background-color: #C87E66;
-    color: white;
-    border-radius: 5px;
+    color: #fff;
     border: none;
-    font-size: 15px;
-    font-weight: bold;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 0.9375rem; 
+    width: 9.75rem; /* 156px; */
+    height: 2.875rem; /* 46px; */
 
     &:hover {
         background-color: #ab705c;
