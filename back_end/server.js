@@ -166,7 +166,7 @@ app.get("/buyerbook/:custKey", (req, res) => {
       if (results.length === 0) {
         res.status(404).json({ error: "Customer not found" });
       } else {
-        res.json(results); 
+        res.json(results[0]); // 첫 번째 고객 정보 반환
       }
     }
   });

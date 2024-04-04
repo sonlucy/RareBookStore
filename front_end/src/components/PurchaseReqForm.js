@@ -145,4 +145,4 @@ const PurchaseReqForm = ({ loginUser }) => {
   );
 };
 
-export default PurchaseReqForm;
+export default PurchaseReqForm
