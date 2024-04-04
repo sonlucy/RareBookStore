@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // ============== Style component ============== //
 const CenteredContainer = styled.div`
@@ -62,22 +63,26 @@ const SellButton = styled.button`
   margin-right: 46px;
   margin-top: 9px;
 `;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
 // ============== Style component ============== //
 
-function ProductList(props) {
+function ProductList({ bookList }) {
   return (
     <CenteredContainer>
       <ProductListContainer>
         <ProductImage></ProductImage>
         <ProductInfoContainer>
           <ProductInfo>
-            <span>{props.bookList.itemTitle}</span>
+            <span>{bookList.itemTitle}</span>
             <br />
             <span>
-              {props.bookList.author} | {props.bookList.publisher}
+              {bookList.author} | {bookList.publisher}
             </span>
 
-            <span>{props.bookList.nickname}</span>
+            <span>{bookList.nickname}</span>
           </ProductInfo>
 
           <PriceTable>
@@ -102,7 +107,10 @@ function ProductList(props) {
             </tbody>
           </PriceTable>
         </ProductInfoContainer>
-        <SellButton>판매하기</SellButton>
+        {/* <SellButton to="/SellBook">판매하기</SellButton> */}
+        <StyledLink to={`/SellBook/${bookList.itemBuyKey}`}>
+          <SellButton>판매하기</SellButton>
+        </StyledLink>
       </ProductListContainer>
     </CenteredContainer>
   );
