@@ -37,8 +37,16 @@
 }
 .yhw_detailContsLBottom {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   height: 60px;
+}
+.yhw_detailContsLBottom > span {
+  margin-right: 10px;
+  font-size: 16px;
+}
+.yhw_detailContsLBottom > b {
+  font-size: 17px;
+  line-height: 25px;
 }
 .yhw_detailContsState {
   color: #828282;
