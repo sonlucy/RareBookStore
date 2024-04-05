@@ -6,18 +6,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
-// 계산 로직 수정 필요
 const calculateGrade = (point) => {
-  if (point >= 4) {
+  if (point >= 4.5) {
     return "1";
-  } else if (point >= 3) {
+  } else if (point >= 3.5) {
     return "2";
-  } else if (point >= 2) {
+  } else if (point >= 2.5) {
     return "3";
-  } else if (point >= 1) {
-    return "4"
+  } else if (point >= 1.5) {
+    return "4";
   } else {
-    return "0"
+    return "5";
   }
 };
 
@@ -26,31 +25,93 @@ function SellerInfoPage() {
   const location = useLocation();
 
   useEffect(() => {
-    // useLocation 훅을 통해 전달된 상태 읽어오기
     const custKey = location.state.custKey;
     if (custKey) {
-      // custKey가 존재하는 경우에만 데이터를 가져오도록 처리
       axios.get(`http://localhost:3001/customers/${custKey}`)
         .then(response => {
           const customer = response.data;
-          console.log(customer)
-          const point = customer.point;
-          const grade = calculateGrade(point);
+
+
+          // 판매자 정보 설정
           const sellerData = {
             sellerName: customer.nickname,
-            grade: grade,
-            point: customer.point,
-
-            reviews: [], /* reviews 테이블에서 */
-            itemSellKeys: [], /* sellerbook 테이블에서 */
+            grade: customer.grade, 
+            point: customer.point, 
+            reviews: [], // 리뷰 정보를 가져올 배열
+            itemSellKeys: [], // 판매자가 판매하고 있는 상품 키를 가져올 배열
           };
-          setSellerInfo([sellerData]);
+
+          // 판매 희망 책 조회
+          axios.get(`http://localhost:3001/sellerbook/seller/${custKey}`)
+            .then(sellerBookResponse => {
+              const sellerBooks = sellerBookResponse.data;
+              const itemSellKeys = sellerBooks.map(book => book.itemSellKey);
+              sellerData.itemSellKeys = itemSellKeys; // 판매자가 판매하고 있는 상품 키 저장
+
+              // 리뷰 가져오기
+              axios.get(`http://localhost:3001/reviews/seller/${custKey}`)
+                .then(reviewsResponse => {
+                  const reviews = reviewsResponse.data;
+                  //console.log(reviews)
+                  const totalSatisfaction = reviews.reduce((sum, review) => sum + review.satisfaction, 0);
+                  const totalRepurchase = reviews.reduce((sum, review) => sum + review.repurchase, 0);
+                  //console.log(totalSatisfaction, totalRepurchase)
+                  const avgSatisfaction = totalSatisfaction / reviews.length;
+                  const avgRepurchase = totalRepurchase / reviews.length;
+                  const point = ((avgSatisfaction + avgRepurchase) / 2).toFixed(1); // 소수점 한자리까지 반올림
+                  //console.log(point)
+                  // sellerData.point = point;
+                  const grade = calculateGrade(point);
+
+                  const handleUpdate = () => {
+                    axios.put(`http://localhost:3001/updateCustomerPoint/${custKey}`, { grade, point })
+                      .then(response => {
+                        console.log('업데이트 성공:', response.data); // 업데이트 성공 시 메시지 출력
+                      })
+                      .catch(error => {
+                        console.error('업데이트 실패:', error);
+                      });
+                  };
+
+
+                  const promises = reviews.map(review => {
+                    // 리뷰 작성자의 닉네임 가져오기
+                    return axios.get(`http://localhost:3001/customers/${review.custKey}`)
+                      .then(customerResponse => {
+                        const customer = customerResponse.data;
+                        return {
+                          buyerName: customer.nickname,
+                          review: review.review
+                        };
+                      })
+                      .catch(error => {
+                        console.error('Error fetching reviewer info:', error);
+                        return null;
+                      });
+                  });
+                  // 모든 프로미스가 완료될 때까지 기다린 후에 판매자 정보 업데이트
+                  Promise.all(promises)
+                    .then(reviewers => {
+                      handleUpdate();
+                      sellerData.reviews = reviewers; // 리뷰내용, 리뷰어 닉네임
+                      setSellerInfo([sellerData]); // 판매자 정보 업데이트
+                    });
+                })
+                .catch(error => {
+                  console.error('reviews ERR:', error);
+                });
+            })
+            .catch(error => {
+              console.error('seller books ERR:', error);
+            });
+
         })
         .catch(error => {
-          console.error('Error fetching seller info:', error);
+          console.error('seller info ERR:', error);
         });
     }
-  }, [location.state.custKey]); // 상태 변경 시 재렌더링
+  }, [location.state.custKey]); // 상태 변경 할때마다 렌더링
+
   return (
     <>
       <div className="height-container">
