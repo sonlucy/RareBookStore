@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 // ============== Style component ============== //
@@ -127,6 +128,10 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
 `;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
 // ============== Style component ============== //
 
 function ProductList({ bookList }) {
@@ -177,9 +182,9 @@ function ProductList({ bookList }) {
             <ProductInfoCell isPrice>8,500원</ProductInfoCell>
           </ProductInfoRow>
           <ProductInfoTable>
-
           </ProductInfoTable>
         </ProductInfoContainer>
+        {/* <SellButton to="/SellBook">판매하기</SellButton> */}
         <StyledLink to={`/SellBook/${bookList.itemBuyKey}`}>
           <SellButton>판매하기</SellButton>
         </StyledLink>

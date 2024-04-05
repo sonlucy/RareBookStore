@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
+
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import axios from "axios";
+
 
 const CenteredContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 `;
 
 const BookInfoContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 610px;
-    height: 183px;
+  display: flex;
+  flex-direction: row;
+  width: 610px;
+  height: 183px;
 `;
 
 const BookImage = styled.div`
@@ -40,39 +42,39 @@ const InfoSpan = styled.div`
     font-weight: medium;
 `;
 
-function SellBookInfo(props) {
-    const [buyerBooks, setBuyerBooks] = useState([]);
+function SellBookInfo({ itemBuyKey }) {
+  const [buyerBooks, setBuyerBooks] = useState([]);
 
-    useEffect(() => {
-        fetchBuyerBooks();
-    }, []);
+  useEffect(() => {
+    fetchBuyerBooks();
+  }, []);
 
-    const fetchBuyerBooks = async () => {
-        try {
-            const response = await axios.get('http://localhost:3001/buyerbook');
-            setBuyerBooks(response.data);
-        } catch (error) {
-            console.error('Error fetching buyer books:', error);
-        }
-    };
+  const fetchBuyerBooks = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/buyerbook/item/${itemBuyKey}`
+      );
+      setBuyerBooks(response.data[0]);
+    } catch (error) {
+      console.error("Error fetching buyer books:", error);
+    }
+  };
 
-    return (
-        <div>
-            <CenteredContainer>
-                <BookInfoContainer>
-                    <BookImage></BookImage>
-                    <BookInfo>
-                        {buyerBooks.map(book => (
-                            <div key={book.itemBuyKey}>
-                                <TitleSpan>{book.itemTitle}</TitleSpan>
-                                <InfoSpan>{book.author} | {book.publisher}</InfoSpan>
-                            </div>
-                        ))}
-                    </BookInfo>
-                </BookInfoContainer>
-            </CenteredContainer>
-        </div>
-    );
+  return (
+    <div>
+      <CenteredContainer>
+        <BookInfoContainer>
+          <BookImage></BookImage>
+          <BookInfo>
+            <TitleSpan>{buyerBooks.itemTitle}</TitleSpan>
+            <InfoSpan>
+              {buyerBooks.author} | {buyerBooks.publisher}
+            </InfoSpan>
+          </BookInfo>
+        </BookInfoContainer>
+      </CenteredContainer>
+    </div>
+  );
 }
 
 export default SellBookInfo;
