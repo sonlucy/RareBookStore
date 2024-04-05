@@ -660,6 +660,15 @@ app.delete("/reply/:replyKey", (req, res) => {
   });
 });
 
+//모든 답글 가져오기
+app.get("/reply", (req, res) => {
+  const sql = "select * from reply";
+  conn.query(sql, (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
+
 // ========================= reply ================================//
 
 app.listen(port, () => {
