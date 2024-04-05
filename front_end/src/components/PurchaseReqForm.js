@@ -22,12 +22,13 @@ const InputField = ({ label, name, value, placeholder, onChange, error }) => {
   );
 };
 
-const PurchaseReqForm = ({ loginUser }) => {
+const PurchaseReqForm = ({ selectedBook, loginUser }) => {
   //console.log(loginUser);
   const [formValues, setFormValues] = useState({
-    bookTitle: '',
-    author: '',
-    publisher: ''
+    bookTitle: selectedBook ? selectedBook.title :  '',
+    author: selectedBook ? selectedBook.author : '',
+    publisher: selectedBook ? selectedBook.publisher : '',
+    itemImg: selectedBook ? selectedBook.image : ''
   });
   const [errors, setErrors] = useState({}); // 입력 필드 에러 상태관리
   const [deadline, setDeadline] = useState(''); // 입찰 마감 기한 상태관리
@@ -74,7 +75,7 @@ const PurchaseReqForm = ({ loginUser }) => {
         itemTitle: formValues.bookTitle,
         author: formValues.author,
         publisher: formValues.publisher,
-        itemImg: 'img/book.png', // 임의 이미지
+        itemImg: formValues.itemImg, // 선택된 도서의 이미지
         expiry: deadline,
       };
 

@@ -50,7 +50,7 @@ function App() {
           <Route path="/Mypage/PurchaseReview" element={<PurchaseReview />}></Route>
           <Route path="SellBook" element={<SellBook />}></Route>
           <Route path="/Mypage/Rank" element={<Rank />}></Route>
-          <Route path="*" element={<XNotFound />}></Route>  {/* Not Found 페이지 */}        
+          <Route path="*" element={<XNotFound />}></Route>  {/* Not Found 페이지 */}    
         </Routes>
       </LoginProvider>
     </div>
