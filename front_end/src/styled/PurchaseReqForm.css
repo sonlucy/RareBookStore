@@ -12,8 +12,8 @@
   padding: 1rem; /*  */
   /* max-width: 1200px; */
   min-height: 25rem;/*  */
-/*   width: 80vh; */
-width: 80%;
+  /*   width: 80vh; */
+  width: 90%;
   margin-bottom: 6rem;
 }
 
@@ -29,8 +29,9 @@ width: 80%;
   border-style: #eee;
 }
 .sbk-form-fields-container {
-  min-height: 20rem;
+  /* min-height: 20rem; */
   /* max-height: auto; */
+  min-height: 370px;
 }
 
 .sbk-form-item {
@@ -38,7 +39,8 @@ height: 4.5rem;
 /*   display: flex; */
 /*   flex-direction: row; */
   align-items: center;
-  margin-bottom: 1.4rem;
+  /* margin-bottom: 1.4rem; */
+  margin-bottom: 5px;
 }
 
 .sbk-label {
@@ -94,7 +96,8 @@ height: 4.5rem;
  */
 .sbk-deadline-selection {
   display: flex;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
+  margin-top: 5px;
   flex-direction: row;
   align-items: center;
 }
@@ -132,6 +135,35 @@ height: 4.5rem;
   color: #8f4101;
 }
 
+/* yhw 추가 */
+.yhw_purReqDropDown { /* 카테고리 dropdown */
+  height: 50px;
+  margin-bottom: 20px;
+}
+.yhw_notLastLabel { /* dropDown&input 왼쪽 글씨 */
+  width: 70px;
+  display: inline-block;
+  text-align: right;
+}
+.yhw_purReqDropDown > select {
+  width: 170px;
+  height: 40px;
+  flex-grow: 1;
+  border-radius: 7px;
+  border: 1px solid #d2d2d2;
+  font-size: 0.938rem;
+  padding-left: 7px;
+  /* color: #676767; */
+}
+.yhw_purReqDropDown > select option:first-child {
+  color: #a4a4a4;
+}
+.yhw_purReqDropDown > select option:not(:first-child) {
+  color: #828282;
+}
+.yhw_lastLabel {  /* 입찰 마감 기한 글씨*/
+  margin-left: 25px;
+}
 
 
 
@@ -170,12 +202,12 @@ height: 4.5rem;
     font-size: 1rem;
   }
 
-
   .sbk-submit-button {
     font-size: 0.7rem;
     width: 126px;
     height: 36px;
-
+    align-self: flex-start;/* 왼쪽에 배치 (yhw 추가) */
+    margin-left: 18%;
   }
   .sbk-deadline-option {
     width: 40vw;
@@ -220,6 +252,9 @@ height: 4.5rem;
   .sbk-label {
     font-size: 0.8rem;
   }
+  .sbk-submit-button {  /* (yhw 추가) */
+    margin-left: 12%;
+  }
   .sbk-deadline-option {
     font-size: 0.8rem;
 
@@ -239,6 +274,9 @@ height: 4.5rem;
   .sbk-label {
    /*  font-size: 0.7rem; */
   }
+  .sbk-submit-button {  /* (yhw 추가) */
+    margin-left: 3%;
+  }
   .sbk-deadline-option {
     /* font-size: 0.7rem; */
     width: 9rem;
@@ -254,7 +292,6 @@ height: 4.5rem;
   .sbk-form-fields-container {
     min-height: 25rem;
   }
-
 
 }
 
