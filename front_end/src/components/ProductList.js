@@ -43,65 +43,82 @@ const ProductInfoRow = styled.tr`
 `;
 
 const ProductInfoCell = styled.td`
-
-  ${({ isTitle }) => isTitle && `
+  ${({ isTitle }) =>
+    isTitle &&
+    `
     font-size: 20px;
     font-weight: bold;
     padding-bottom: 5px;
   `}
 
-${({ isAuthor }) => isAuthor && `
+  ${({ isAuthor }) =>
+    isAuthor &&
+    `
     font-size: 15px;
     font-weight: medium;
   `}
 
-${({ isPublisher }) => isPublisher && `
+${({ isPublisher }) =>
+    isPublisher &&
+    `
     font-size: 15px;
     font-weight: medium;
   `}
 
-${({ isNickname }) => isNickname && `
+${({ isNickname }) =>
+    isNickname &&
+    `
     font-size: 15px;
     font-weight: medium;
     color: #c87e66;
   `}
 
-${({ isDeadlinetext }) => isDeadlinetext && `
+${({ isDeadlinetext }) =>
+    isDeadlinetext &&
+    `
     font-size: 15px;
     font-weight: bold;
     color: #eb217c;
   `}
 
-${({ isDeadline }) => isDeadline && `
+${({ isDeadline }) =>
+    isDeadline &&
+    `
     font-size: 16px;
     font-weight: regular;
   `}
 
-${({ isStatus }) => isStatus && `
+${({ isStatus }) =>
+    isStatus &&
+    `
     font-size: 14px;
     font-weight: regular;
     color: #828282;
     margin-right: 50px;
   `}
 
-${({ isMinimum }) => isMinimum && `
+${({ isMinimum }) =>
+    isMinimum &&
+    `
     font-size: 15px;
     font-weight: bold;
     color: #eb217c;
   `}
 
-${({ isGrade }) => isGrade && `
+${({ isGrade }) =>
+    isGrade &&
+    `
     font-size: 15px;
     font-weight: regular;
   `}
 
-${({ isPrice }) => isPrice && `
+${({ isPrice }) =>
+    isPrice &&
+    `
     font-size: 15px;
     font-weight: regular;
     margin-right: 50px;
   `}
-
-
 `;
 
 const SellButton = styled.button`
@@ -128,10 +145,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
 `;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-`;
+
 // ============== Style component ============== //
 
 function ProductList({ bookList }) {
@@ -148,10 +162,14 @@ function ProductList({ bookList }) {
               <ProductInfoRow>
                 <ProductInfoCell isAuthor>{bookList.author}</ProductInfoCell>
                 <Divider>|</Divider>
-                <ProductInfoCell isPublisher>{bookList.publisher}</ProductInfoCell>
+                <ProductInfoCell isPublisher>
+                  {bookList.publisher}
+                </ProductInfoCell>
               </ProductInfoRow>
               <ProductInfoRow>
-                <ProductInfoCell isNickname>{bookList.nickname}</ProductInfoCell>
+                <ProductInfoCell isNickname>
+                  {bookList.nickname}
+                </ProductInfoCell>
               </ProductInfoRow>
             </tbody>
           </ProductInfoTable>
@@ -181,8 +199,7 @@ function ProductList({ bookList }) {
             <ProductInfoCell isGrade>중</ProductInfoCell>
             <ProductInfoCell isPrice>8,500원</ProductInfoCell>
           </ProductInfoRow>
-          <ProductInfoTable>
-          </ProductInfoTable>
+          <ProductInfoTable></ProductInfoTable>
         </ProductInfoContainer>
         {/* <SellButton to="/SellBook">판매하기</SellButton> */}
         <StyledLink to={`/SellBook/${bookList.itemBuyKey}`}>
