@@ -53,14 +53,15 @@ function SellerInfoPage() {
                 .then(reviewsResponse => {
                   const reviews = reviewsResponse.data;
                   //console.log(reviews)
-                  const totalSatisfaction = reviews.reduce((sum, review) => sum + review.satisfaction, 0);
-                  const totalRepurchase = reviews.reduce((sum, review) => sum + review.repurchase, 0);
-                  //console.log(totalSatisfaction, totalRepurchase)
-                  const avgSatisfaction = totalSatisfaction / reviews.length;
-                  const avgRepurchase = totalRepurchase / reviews.length;
-                  const point = ((avgSatisfaction + avgRepurchase) / 2).toFixed(1); // 소수점 한자리까지 반올림
+                  let point = 0;
+                  if (reviews.length > 0) {
+                    const totalSatisfaction = reviews.reduce((sum, review) => sum + review.satisfaction, 0);
+                    const totalRepurchase = reviews.reduce((sum, review) => sum + review.repurchase, 0);
+                    const avgSatisfaction = totalSatisfaction / reviews.length;
+                    const avgRepurchase = totalRepurchase / reviews.length;
+                    point = ((avgSatisfaction + avgRepurchase) / 2).toFixed(1); // 소수점 한자리까지
+                  }
                   //console.log(point)
-                  // sellerData.point = point;
                   const grade = calculateGrade(point);
 
                   const handleUpdate = () => {
