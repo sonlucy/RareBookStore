@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import '../styled/PurchaseReqForm.css';
 import axios from 'axios';
-import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
-import { Form, Select } from 'antd';
 
 const InputField = ({ label, name, value, placeholder, onChange, error }) => {
   return (
