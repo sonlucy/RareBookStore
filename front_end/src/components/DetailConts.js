@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styled/DetailConts.css";
 import SellerRanking from "../components/SellerRanking";
