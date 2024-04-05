@@ -65,6 +65,46 @@ app.get("/customers/:custKey", (req, res) => {
     }
   });
 });
+
+// 특정회원 point, grade 업데이트
+app.put("/updateCustomerPoint/:custKey", (req, res) => {
+  const custKey = req.params.custKey;
+  const updatedCustomerData = req.body;
+
+  const {
+    grade,
+    point,
+  } = updatedCustomerData;
+
+  const sql = `
+    UPDATE customers
+    SET
+        grade = ?,
+        point = ?
+    WHERE custKey = ?
+  `;
+
+  conn.query(
+    sql,
+    [
+      grade,
+      point,
+      custKey,
+    ],
+    (error, result) => {
+      if (error) {
+        console.error("Error updating customer:", error);
+        res.status(500).json({ error: "Internal server error" });
+      } else {
+        if (result.affectedRows === 0) {
+          res.status(404).json({ error: "Customer not found" });
+        } else {
+          res.json({ message: "Customer updated successfully" });
+        }
+      }
+    }
+  );
+});
 //특정 회원 업데이트
 app.put("/updateCustomers/:custKey", (req, res) => {
   const custKey = req.params.custKey;
@@ -159,23 +199,6 @@ app.get("/buyerbook/:custKey", (req, res) => {
   const custKey = req.params.custKey;
   const sql = `SELECT * FROM buyerbook WHERE custKey = ${custKey}`;
   conn.query(sql, (error, results) => {
-    if (error) {
-      console.error("Error fetching customer:", error);
-      res.status(500).json({ error: "Internal server error" });
-    } else {
-      if (results.length === 0) {
-        res.status(404).json({ error: "Customer not found" });
-      } else {
-        res.json(results);
-      }
-    }
-  });
-});
-// 특정 구매 희망 도서 조회 (Read)
-app.get("/buyerbook/item/:itemBuyKey", (req, res) => {
-  const itemBuyKey = req.params.itemBuyKey;
-  const sql = `SELECT * FROM buyerbook WHERE itemBuyKey = ?`;
-  conn.query(sql, [itemBuyKey], (error, results) => {
     if (error) {
       console.error("Error fetching customer:", error);
       res.status(500).json({ error: "Internal server error" });
