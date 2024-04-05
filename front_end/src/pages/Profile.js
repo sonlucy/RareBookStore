@@ -160,14 +160,16 @@ const Profile = () => {
               <div className="lcm_purHistMainCont">
                 <div className="lcm_purHistTopTitle">
                   <div>
-                    <b>로그인 정보</b>
+                    <h1>로그인 정보</h1>
+                    <hr style={{border: "0", height: "1px", backgroundColor: "black"}} />
                   </div>
                 </div>
                 <div className="lcm_purHistContentsBox">
+                  <b style={{fontSize: "16px"}}>내 계정</b>
                   <ul className="lcm_purHistLists">
                     <h4>아이디</h4>
                     <li>
-                      <div>{user.userid}</div>
+                      <div className="lcm_purHistListsFetchData">{user.userid}</div>
                     </li>
                   </ul>
                 </div>
@@ -187,7 +189,7 @@ const Profile = () => {
                           {getAddr.map((address, i) => (
                             <div key={i}>
                               {address.defaultAddr === "Y" && (
-                                <div style={{ color: "#BC6F36" }}>
+                                <div style={{ color: "#828282", backgroundColor: "#EDEDED", width: "fit-content", padding: "5px 15px", fontSize: "13px" }}>
                                   기본주소지
                                 </div>
                               )}

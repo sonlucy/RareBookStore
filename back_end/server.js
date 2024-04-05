@@ -65,6 +65,46 @@ app.get("/customers/:custKey", (req, res) => {
     }
   });
 });
+
+// 특정회원 point, grade 업데이트
+app.put("/updateCustomerPoint/:custKey", (req, res) => {
+  const custKey = req.params.custKey;
+  const updatedCustomerData = req.body;
+
+  const {
+    grade,
+    point,
+  } = updatedCustomerData;
+
+  const sql = `
+    UPDATE customers
+    SET
+        grade = ?,
+        point = ?
+    WHERE custKey = ?
+  `;
+
+  conn.query(
+    sql,
+    [
+      grade,
+      point,
+      custKey,
+    ],
+    (error, result) => {
+      if (error) {
+        console.error("Error updating customer:", error);
+        res.status(500).json({ error: "Internal server error" });
+      } else {
+        if (result.affectedRows === 0) {
+          res.status(404).json({ error: "Customer not found" });
+        } else {
+          res.json({ message: "Customer updated successfully" });
+        }
+      }
+    }
+  );
+});
 //특정 회원 업데이트
 app.put("/updateCustomers/:custKey", (req, res) => {
   const custKey = req.params.custKey;

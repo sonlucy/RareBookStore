@@ -115,11 +115,11 @@ function QuestionForm() {
               <div className="Qna_home">
                 {/* Q&A 섹션 제목 */}
                 <h2 className="qna_main_title">QnA</h2>
-                {/* 질문 작성 폼 */}
+
                 <form onSubmit={handleSubmit} className="cyj_QNAformBox">
                   <div className="cyj_QNAlableNinput">
                     <label htmlFor="title">문의 제목</label>
-                    {/* 질문 제목 입력 필드 */}
+
                     <input
                       type="text"
                       id="title"
@@ -132,6 +132,7 @@ function QuestionForm() {
                   <div className="cyj_QNAlableNinput">
                     <label htmlFor="content">문의 내용</label>
                     {/* 질문 내용 입력 필드 */}
+
                     <textarea
                       id="content"
                       value={content}

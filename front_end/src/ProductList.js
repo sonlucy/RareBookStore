@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 // ============== Style component ============== //
 const CenteredContainer = styled.div`
   display: flex;
@@ -62,27 +61,34 @@ const SellButton = styled.button`
   margin-left: auto;
   margin-right: 46px;
   margin-top: 9px;
-`;
-const StyledLink = styled(Link)`
   text-decoration: none;
-  color: inherit;
+  font-size: 0.9375rem;
 `;
 // ============== Style component ============== //
 
-function ProductList({ bookList }) {
+function ProductList(props) {
+  const navigate = useNavigate();
+  const convey = () => {
+    navigate('/SellerInfoPage', {
+      state: {
+        custKey: props.bookList.custKey
+      }
+    });
+  };
+
   return (
     <CenteredContainer>
       <ProductListContainer>
         <ProductImage></ProductImage>
         <ProductInfoContainer>
           <ProductInfo>
-            <span>{bookList.itemTitle}</span>
+            <span>{props.bookList.itemTitle}</span>
             <br />
             <span>
-              {bookList.author} | {bookList.publisher}
+              {props.bookList.author} | {props.bookList.publisher}
             </span>
 
-            <span>{bookList.nickname}</span>
+            <span onClick={convey}>{props.bookList.nickname}</span>
           </ProductInfo>
 
           <PriceTable>
@@ -107,10 +113,7 @@ function ProductList({ bookList }) {
             </tbody>
           </PriceTable>
         </ProductInfoContainer>
-        {/* <SellButton to="/SellBook">판매하기</SellButton> */}
-        <StyledLink to={`/SellBook/${bookList.itemBuyKey}`}>
-          <SellButton>판매하기</SellButton>
-        </StyledLink>
+        <SellButton to="/SellBook">판매하기</SellButton>
       </ProductListContainer>
     </CenteredContainer>
   );
