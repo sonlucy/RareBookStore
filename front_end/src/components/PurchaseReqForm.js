@@ -74,7 +74,7 @@ const PurchaseReqForm = ({ loginUser }) => {
         itemTitle: formValues.bookTitle,
         author: formValues.author,
         publisher: formValues.publisher,
-        itemImg: 'img/book.png', // 임의 이미지
+        itemImg: '../img/book.png', // 임의 이미지
         expiry: deadline,
       };
 
