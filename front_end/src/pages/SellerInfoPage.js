@@ -1,48 +1,62 @@
-// import { BrowserRouter as Router } from 'react-router-dom';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styled/SellerInfo.css";
 import SellerInfo from "../components/SellerInfo";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
-const sellerInfoList = [
-  {
-    sellerName: "아기돌고래",
-    /*     grade: "2", */
-    point: 4.2,
-    reviews: [
-      { buyerName: "아기돌고래", review: "상품 좋았습니다^^" },
-      { buyerName: "아기판다", review: "깨끗하고 좋았습니다!" },
-    ],
-    itemSellKeys: [123, 456, 789, 111, 222, 333, 444, 555, 666, 777, 888, 999],
-  },
-];
-
+// 계산 로직 수정 필요
 const calculateGrade = (point) => {
-  if (point >= 4.5) {
+  if (point >= 4) {
     return "1";
-  } else if (point >= 4) {
+  } else if (point >= 3) {
     return "2";
-  } else {
+  } else if (point >= 2) {
     return "3";
+  } else if (point >= 1) {
+    return "4"
+  } else {
+    return "0"
   }
 };
-const setGradeForSellerInfoList = (sellerInfoList) => {
-  /* 등급 붙여주기 */
-  return sellerInfoList.map((sellerInfo) => ({
-    ...sellerInfo,
-    grade: calculateGrade(sellerInfo.point),
-  }));
-};
-
-const sellerInfoListWithGrade = setGradeForSellerInfoList(sellerInfoList);
 
 function SellerInfoPage() {
+  const [sellerInfo, setSellerInfo] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    // useLocation 훅을 통해 전달된 상태 읽어오기
+    const custKey = location.state.custKey;
+    if (custKey) {
+      // custKey가 존재하는 경우에만 데이터를 가져오도록 처리
+      axios.get(`http://localhost:3001/customers/${custKey}`)
+        .then(response => {
+          const customer = response.data;
+          console.log(customer)
+          const point = customer.point;
+          const grade = calculateGrade(point);
+          const sellerData = {
+            sellerName: customer.nickname,
+            grade: grade,
+            point: customer.point,
+
+            reviews: [], /* reviews 테이블에서 */
+            itemSellKeys: [], /* sellerbook 테이블에서 */
+          };
+          setSellerInfo([sellerData]);
+        })
+        .catch(error => {
+          console.error('Error fetching seller info:', error);
+        });
+    }
+  }, [location.state.custKey]); // 상태 변경 시 재렌더링
   return (
     <>
-    <div className="height-container">
-      <Header />
-      <SellerInfo sellerInfoList={sellerInfoListWithGrade} />
-    </div>
+      <div className="height-container">
+        <Header />
+        <SellerInfo sellerInfoList={sellerInfo} />
+      </div>
       <Footer />
     </>
   );
