@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 // ============== Style component ============== //
 const CenteredContainer = styled.div`
   display: flex;
@@ -149,6 +149,15 @@ const StyledLink = styled(Link)`
 // ============== Style component ============== //
 
 function ProductList({ bookList }) {
+  const navigate = useNavigate();
+  const convey = () => {
+    navigate('/SellerInfoPage', {
+      state: {
+        custKey: bookList.custKey
+      }
+    });
+  };
+
   return (
     <CenteredContainer>
       <ProductListContainer>
@@ -167,7 +176,7 @@ function ProductList({ bookList }) {
                 </ProductInfoCell>
               </ProductInfoRow>
               <ProductInfoRow>
-                <ProductInfoCell isNickname>
+                <ProductInfoCell style={{ cursor: "pointer" }} onClick={convey} isNickname>
                   {bookList.nickname}
                 </ProductInfoCell>
               </ProductInfoRow>
