@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styled/PurchaseReqForm.css';
 import axios from 'axios';
 
@@ -40,6 +40,15 @@ const PurchaseReqForm = ({ selectedBook, loginUser }) => {
   };
   // 선택 상자의 값이 변경되지 않은 경우에만 회색으로 스타일을 적용합니다.
   const selectStyle = !selectedOption ? { color: '#a4a4a4' } : {};
+
+  useEffect(()=>{
+    setFormValues({
+    bookTitle: selectedBook ? selectedBook.title :  '',
+    author: selectedBook ? selectedBook.author : '',
+    publisher: selectedBook ? selectedBook.publisher : '',
+    itemImg: selectedBook ? selectedBook.image : ''
+  })
+  },[selectedBook])
 
   const handleChange = (e) => {
     const { name, value } = e.target;

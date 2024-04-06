@@ -29,7 +29,7 @@ function UserInfo() {
             <th>아이디</th>
             <th>닉네임</th>
             <th>이메일</th>
-            <th>연락처</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -39,7 +39,7 @@ function UserInfo() {
               <td>{customer.userid}</td>
               <td>{customer.nickname}</td>
               <td>{customer.email}</td>
-              <td>{customer.contact}</td>
+              
             </tr>
           ))}
         </tbody>

@@ -18,7 +18,7 @@ function BookSearch({ onSelectBook }) {
                 query: query, // 검색어
             });
 
-            const encodedQuery = encodeURIComponent(query); // 한글 검색어를 UTF-8 형식으로 인코딩
+            const encodedQuery = query; // 한글 검색어를 UTF-8 형식으로 인코딩
             const response = await axios.get(`/Mypage/search/book?query=${encodedQuery}`);
             setSearchResults(response.data.items);
         } catch (error) {
@@ -34,6 +34,7 @@ function BookSearch({ onSelectBook }) {
 
     const handleBookSelect = (item) => {
         onSelectBook(item);
+        console.log("seletedItem : ", item)
     };
 
     // 현재 페이지에 해당하는 도서 목록 반환
@@ -97,13 +98,15 @@ function BookSearch({ onSelectBook }) {
 
             <div className='jyh-bookSearchResult'>
                 {getCurrentPageItems().map((item, index) => (
-                    <div key={index} onClick={() => handleBookSelect(item)}>
+                    <div key={index} onClick={() => handleBookSelect(item)} style={{cursor:"pointer"}}>
                         <div className='jyh-bookSearch-box'>
                             <img className='jyh-bookSearch-img' src={item.image}></img>
                             <div className='jyh-bookSerch-contents'>
+                                <div>
                                 <p className='jyh-bookSearch-title'>
                                     {highlightSearchKeyword(item.title)}
                                 </p>
+                                </div>
                                 <p className='jyh-bookSearch-author'>저자: {item.author}</p>
                                 <p className='jyh-bookSearch-publisher'>출판사: {item.publisher}</p>
                             </div>

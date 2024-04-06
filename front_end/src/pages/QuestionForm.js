@@ -31,7 +31,7 @@ function QuestionItem({ question, replies, index }) {
           <p>{question.Enquiry}</p>
           {/* 해당 질문에 대한 답변을 매핑하여 표시 */}
           {replies.map((reply) => (
-            <div key={reply.replayKey}>
+            <div key={reply.replyKey}>
               {/* 답변 라벨과 내용을 표시 */}
               <p>답변: {reply.reply}</p>
             </div>

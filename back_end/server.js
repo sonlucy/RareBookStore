@@ -456,9 +456,17 @@ app.post("/enquiries", (req, res) => {
   });
 });
 
-// 모든 문의 조회
+// 모든 문의 조회 -- 문의 시간 format
 app.get("/enquiries", (req, res) => {
-  const sql = "select * from enquiry";
+  const sql = `
+  select 
+  DATE_FORMAT(dateEnquiry, '%Y-%m-%d') AS date,
+  boardKey,
+  custKey,
+  boardTitle,
+  Enquiry
+  from enquiry
+  `;
   conn.query(sql, (error, data) => {
     if (error) return res.json(error);
     return res.json(data);
@@ -707,6 +715,8 @@ app.post("/reply", (req, res) => {
   });
 });
 
+
+
 app.delete("/reply/:replyKey", (req, res) => {
   const replyKey = req.params.replyKey;
 
@@ -735,6 +745,16 @@ app.get("/reply", (req, res) => {
   });
 });
 
+// 해당 문의에 대한 답글
+app.get("/reply/:boardKey", (req, res) => {
+  const boardKey = req.params.boardKey;
+  const sql = "SELECT * FROM review WHERE boardKey = ?";
+  conn.query(sql, [boardKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
+
 // ========================= reply ================================//
 
 // ========================= bookSearch ==========================//
@@ -743,17 +763,17 @@ const client_id = process.env.Client_ID;
 const client_secret = process.env.Client_Secret;
 app.get('/Mypage/search/book', async function (req, res) {
   try {
-    console.log('Received request from client:', req)
+    console.log('Received request from client:', req.query)
 
-    const api_url = 'https://openapi.naver.com/v1/search/book';
-    const query = encodeURIComponent(req.query.query);
+    const api_url = 'https://openapi.naver.com/v1/search/book?query=' +  encodeURIComponent(req.query.query);
+    console.log("api_url",api_url)
     const display = req.query.display || 100; // 100개 정렬
 
     const response = await axios.get(api_url, {
       params: {
-        query,
         display,
       },
+
       headers: {
         'X-Naver-Client-Id': client_id,
         'X-Naver-Client-Secret': client_secret

@@ -20,6 +20,7 @@ function RegRequest() {
   const [buyerBookData, setBuyerBookData] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null); // 선택된 도서 정보 상태
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
