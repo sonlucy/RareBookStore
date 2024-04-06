@@ -50,7 +50,8 @@ router.get("/getBuyerBooksByUser/:custKey", buyerBook.getBuyerBooksByUser);
 // 구매 희망 도서 정보 업데이트
 router.put("/updateBuyerBook/:itemBuyKey", buyerBook.updateBuyerBook);
 // 구매 희망 도서 정보 삭제
-router.delete("/deleteBuyerBook/:itemBuyKey", buyerBook.deleteBuyerBook);
+router.delete("/deleteBuyerBook/:itemBuyKey", buyerBook.deleteBuyerBook)
+
 // ======================= 도서 희망 구매 ==========================//
 
 // ======================= 유저 ==========================//
