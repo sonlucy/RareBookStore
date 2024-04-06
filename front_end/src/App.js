@@ -56,8 +56,8 @@ function App() {
           ></Route>
           <Route path="SellBook/:itemBuyKey" element={<SellBook />}></Route>
           <Route path="/Mypage/Rank" element={<Rank />}></Route>
-          <Route path="*" element={<XNotFound />}></Route>{" "}
-          {/* Not Found 페이지 */}
+          <Route path="*" element={<XNotFound />}></Route>  {/* Not Found 페이지 */}    
+
         </Routes>
       </LoginProvider>
     </div>

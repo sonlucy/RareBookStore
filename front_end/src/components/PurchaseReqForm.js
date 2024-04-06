@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styled/PurchaseReqForm.css';
 import axios from 'axios';
 
@@ -22,12 +22,13 @@ const InputField = ({ label, name, value, placeholder, onChange, error }) => {
   );
 };
 
-const PurchaseReqForm = ({ loginUser }) => {
+const PurchaseReqForm = ({ selectedBook, loginUser }) => {
   //console.log(loginUser);
   const [formValues, setFormValues] = useState({
-    bookTitle: '',
-    author: '',
-    publisher: ''
+    bookTitle: selectedBook ? selectedBook.title :  '',
+    author: selectedBook ? selectedBook.author : '',
+    publisher: selectedBook ? selectedBook.publisher : '',
+    itemImg: selectedBook ? selectedBook.image : ''
   });
   const [errors, setErrors] = useState({}); // 입력 필드 에러 상태관리
   const [deadline, setDeadline] = useState(''); // 입찰 마감 기한 상태관리
@@ -39,6 +40,15 @@ const PurchaseReqForm = ({ loginUser }) => {
   };
   // 선택 상자의 값이 변경되지 않은 경우에만 회색으로 스타일을 적용합니다.
   const selectStyle = !selectedOption ? { color: '#a4a4a4' } : {};
+
+  useEffect(()=>{
+    setFormValues({
+    bookTitle: selectedBook ? selectedBook.title :  '',
+    author: selectedBook ? selectedBook.author : '',
+    publisher: selectedBook ? selectedBook.publisher : '',
+    itemImg: selectedBook ? selectedBook.image : ''
+  })
+  },[selectedBook])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -81,7 +91,7 @@ const PurchaseReqForm = ({ loginUser }) => {
         itemTitle: formValues.bookTitle,
         author: formValues.author,
         publisher: formValues.publisher,
-        itemImg: '../img/book.png', // 임의 이미지
+        itemImg: formValues.itemImg, // 선택된 도서의 이미지
         expiry: deadline,
       };
 

@@ -9,6 +9,9 @@ const { error } = require("console");
 const userRoutes = require("./routes/userRoutes");
 const conn = require("./database/db.js");
 const port = 3001; //포트번호 설정
+const axios = require('axios');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+require("dotenv").config();
 
 app.use(express.json());
 app.use(
@@ -34,6 +37,23 @@ app.use(
     },
   })
 );
+
+// Proxy 설정
+
+module.exports = (app) => {
+  app.use(
+    createProxyMiddleware('/v1/search/book.json', {
+      target: 'https://openapi.naver.com',
+      changeOrigin: true,
+    }),
+  );
+  app.use(
+    createProxyMiddleware('/api', {
+      target: 'http://127.0.0.1:3000/',
+      changeOrigin: true,
+    }),
+  );
+};
 
 // user 라우트 연결
 app.use("/api", userRoutes);
@@ -736,6 +756,39 @@ app.get("/reply/:boardKey", (req, res) => {
 });
 
 // ========================= reply ================================//
+
+// ========================= bookSearch ==========================//
+
+const client_id = process.env.Client_ID;
+const client_secret = process.env.Client_Secret;
+app.get('/Mypage/search/book', async function (req, res) {
+  try {
+    console.log('Received request from client:', req.query)
+
+    const api_url = 'https://openapi.naver.com/v1/search/book?query=' +  encodeURIComponent(req.query.query);
+    console.log("api_url",api_url)
+    const display = req.query.display || 100; // 100개 정렬
+
+    const response = await axios.get(api_url, {
+      params: {
+        display,
+      },
+
+      headers: {
+        'X-Naver-Client-Id': client_id,
+        'X-Naver-Client-Secret': client_secret
+      }
+    });
+
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).end();
+  }
+});
+
+
+// ========================= bookSearch ==========================//
 
 app.listen(port, () => {
   console.log(` ${port}번 포트에서 서버 실행중`);

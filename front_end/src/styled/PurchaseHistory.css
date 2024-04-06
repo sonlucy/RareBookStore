@@ -77,6 +77,18 @@
 .yhw_purHistBtns > button:hover {
   background-color: #ab705c;
 }
+
+.jyh-button {
+  color: #C87E66;
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.jyh-button::after {
+  content: '>';
+  margin-left: 5px; /* 원하는 간격으로 조정 */
+}
 /* ******************************************************* */
 /* CSS 반응형 */
 @media screen and (max-width: 1440px) {  /* 화면의 너비가 최대 1440px 일 때 (1440px 미만) */
