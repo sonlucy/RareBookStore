@@ -66,3 +66,4 @@ const PurInfoBox = () => {
 };
 
 export default PurInfoBox;
+
