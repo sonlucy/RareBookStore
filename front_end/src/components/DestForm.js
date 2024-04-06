@@ -56,7 +56,7 @@ const DestForm = ({ isChecked }) => { // 페이지파일(= Purchase.js)에 있�
     <form className="yhw_destForm">
       {/* 주소 목록 출력 */}
       {getAddr.length > 0 ? (
-        getAddr.map((address, i) => (
+        getAddr.map((address, i) => (address.defaultAddr === 'Y' ? (
           <div key={i}>
             <div className="yhw_destFormInputBox">
               <label>받는 사람</label>
@@ -104,8 +104,9 @@ const DestForm = ({ isChecked }) => { // 페이지파일(= Purchase.js)에 있�
               </div>
             </div>
           </div>
-        ))
-      ) : (
+        ) : null
+      ))
+    ) : (
         <>
           <div className="yhw_destFormInputBox">
             <label>받는 사람</label>

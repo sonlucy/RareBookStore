@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styled/PurchaseReqList.css';
+import axios from 'axios';
 
 const formatDate = (dateString) => {
   const dateStringAsStr = dateString.toString(); // int -> string
@@ -13,6 +14,20 @@ const formatDate = (dateString) => {
 
 
 const PurchaseReqListOngoing = ({ requests }) => {
+  const [ongoingRequests, setOngoingRequests] = useState(requests);
+  const handleCancel = (itemBuyKey) => {
+    axios.delete(`http://localhost:3001/buyerbook/${itemBuyKey}`)
+      .then(response => {
+        const updatedRequests = ongoingRequests.filter(request => request.itemBuyKey !== itemBuyKey);
+        setOngoingRequests(updatedRequests);
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('상품 취소 에러:', error);
+      });
+  };
+
+
   return (
     <div>
       {requests.map((request, index) => (
@@ -43,8 +58,8 @@ const PurchaseReqListOngoing = ({ requests }) => {
 
 
           <div className="sbk-button-container">
-            <button className="sbk-status-button">현황 보기</button>
-            <button className="sbk-cancel-button">상품등록 취소</button>
+            <button className="sbk-status-button">현황 보기</button> {/* 연결 필요 */}
+            <button onClick={() => handleCancel(request.itemBuyKey)} className="sbk-cancel-button">상품등록 취소</button>
           </div>
         </div>
       ))}

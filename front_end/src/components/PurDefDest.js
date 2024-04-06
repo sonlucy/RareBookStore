@@ -38,7 +38,10 @@ const PurDefDest = () => {
       const response = await axios.get(
         `http://localhost:3001/address/${loginUser}`
       );
-      setGetAddr(response.data);
+      const filteredDefAddr = response.data.filter(
+        address => address.defaultAddr === 'Y'
+      );
+      setGetAddr(filteredDefAddr);
     } catch (error) {
       console.error("고객의 주소를 가져올수 없습니다.", error);
     }

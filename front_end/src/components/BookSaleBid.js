@@ -66,6 +66,15 @@ const AgreeContainer = styled.div`
     align-items: center;
 `;
 
+const LabelTitle = styled.div`
+    font-size: 18px;
+    font-weight: bold;
+`;
+
+const PStyle = styled.p`
+    margin-left: 10px;
+`;
+
 function BookSaleBid(props) {
     const [selectedConditions, setSelectedConditions] = useState([]);
     const [agreedToTerms, setAgreedToTerms] = useState(false);
@@ -87,7 +96,9 @@ function BookSaleBid(props) {
     const handleSellBookClick = () => {
         if (agreedToTerms) {
             alert("판매 입찰이 성공적으로 제출되었습니다.");
-            navigate('/MyPage');
+            navigate('/MyPage/SalesHistory');
+            // 판매 완료 도서를 판매내역에 쌓이게 하는 로직 추가 필요
+            
         } else {
             alert("판매 입찰 주의사항에 동의해주세요!");
         }
@@ -99,11 +110,11 @@ function BookSaleBid(props) {
                 <BidContainer>
                     <HopePriceContainer>
                         <HopePrice>
-                            <Label>판매희망가</Label>
+                            <LabelTitle>판매희망가</LabelTitle>
                             <PriceInputBox type="number" placeholder="금액을 입력하세요" />
                         </HopePrice>
                         <HopePrice>
-                            <Label>도서 상태</Label>
+                            <LabelTitle>도서 상태</LabelTitle>
                             <ConditionContainer>
                                 <ConditionItem>
                                     <input
@@ -141,12 +152,12 @@ function BookSaleBid(props) {
                             </ConditionContainer>
                         </HopePrice>
                         <HopePrice>
-                            <Label>판매 입찰 주의사항</Label>
-                            <p>선택한 도서의 결함 상태에 따라 도서 상태 등급이 정해집니다.<br />도서 상태 등급은 판매 입찰 후마이페이지 &gt; 판매하기 &gt; 현황보기에서 확인하실 수 있습니다.<br />구매 희망자가 설정한 입찰 마감 기한 내에 구매가 이루어지지 않으면 옥션은 기각됩니다.</p>
+                            <LabelTitle>판매 입찰 주의사항</LabelTitle>
+                            <PStyle>선택한 도서의 결함 상태에 따라 도서 상태 등급이 정해집니다.<br />도서 상태 등급은 판매 입찰 후마이페이지 &gt; 판매하기 &gt; 현황보기에서 확인하실 수 있습니다.<br />구매 희망자가 설정한 입찰 마감 기한 내에 구매가 이루어지지 않으면 옥션은 기각됩니다.</PStyle>
                         </HopePrice>
                         <AgreeContainer>
                             <input type="checkbox" id="agreeTerms" checked={agreedToTerms} onChange={handleAgree} />
-                            <Label htmlFor="agreeTerms">(필수)동의하기</Label>
+                            <LabelTitle htmlFor="agreeTerms">(필수)동의하기</LabelTitle>
                         </AgreeContainer>
                         <FlexContainer>
                             <SellBookButton onClick={handleSellBookClick}>판매 입찰하기</SellBookButton>

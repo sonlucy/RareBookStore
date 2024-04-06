@@ -89,7 +89,7 @@ const CategoryBookList = (props) => {
       <PurchaseRequestContainer>
         <PurchaseRequest>
           <Title>구매 희망 상품 등록</Title>
-          <Button href="/RegRequest">상품 등록 요청</Button>
+          <Button href="/Mypage/RegRequest">상품 등록 요청</Button>
         </PurchaseRequest>
       </PurchaseRequestContainer>
       <CategoryBanner />
