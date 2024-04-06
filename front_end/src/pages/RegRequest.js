@@ -9,7 +9,7 @@ import PurchaseReqListOngoing from '../components/PurchaseReqListOngoing';
 import PurchaseReqListEnd from '../components/PurchaseReqListEnd';
 import MyPageSide from '../components/MypageSide';
 import BookSell from '../components/BookSell';
-import BookSearch from '../components/BookSearch';
+import BookSearch from '../components/bookSearch';
 import { LoginContext } from "../components/LoginContext";
 import axios from 'axios';
 
