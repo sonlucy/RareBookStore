@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+// import { Link } from 'react-router-dom';
 import '../styled/BookStateCategory.css';
 import "../styled/PurchaseHistory.css";
 import Header from '../components/Header';
@@ -8,6 +9,7 @@ import PurchaseReqListOngoing from '../components/PurchaseReqListOngoing';
 import PurchaseReqListEnd from '../components/PurchaseReqListEnd';
 import MyPageSide from '../components/MypageSide';
 import BookSell from '../components/BookSell';
+import BookSearch from '../components/bookSearch';
 import { LoginContext } from "../components/LoginContext";
 import axios from 'axios';
 
@@ -16,6 +18,8 @@ function RegRequest() {
   const [filteredRequests, setFilteredRequests] = useState([]);
   const [selectedTab, setSelectedTab] = useState('진행중');
   const [buyerBookData, setBuyerBookData] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(null); // 선택된 도서 정보 상태
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,10 +70,15 @@ function RegRequest() {
             <div className="yhw_purHistMainCont">
               <div className='sbk-purchase-request-form-title'>
                 <h1>구매 희망 도서 등록</h1>
-                <hr style={{border: "0", height: "1px", backgroundColor: "black"}} />
+                <hr style={{ border: "0", height: "1px", backgroundColor: "black", marginBottom: "30px" }} />
                 {/* <hr className='sbk-purchase-request-form-hr' /> */}
+
               </div>
-              <PurchaseReqForm loginUser={loginUser} />
+
+
+              {/* <Link to="/BookSearchPage" className='jyh-button'>구매 희망 도서 검색하기 </Link> */}
+              <BookSearch onSelectBook={setSelectedBook}/>
+              <PurchaseReqForm selectedBook={selectedBook} loginUser={loginUser} />
 
 
 
