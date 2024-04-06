@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const PurInfoBox = () => {
   const [bookData, setBookData] = useState({
+    itemImg: '',
     itemTitle: '',
     author: '',
     publisher: '',
@@ -21,6 +22,7 @@ const PurInfoBox = () => {
       const data = response.data[0];
       const sellerNickname = await getSellerNickname(data.custKey);
       setBookData({
+        itemImg: data.itemImg,
         itemTitle: data.itemTitle,
         author: data.author,
         publisher: data.publisher,
@@ -44,7 +46,7 @@ const PurInfoBox = () => {
   return (
     <div className="yhw_purInfoBox">
       <Link to="/detail">
-        <img src="https://via.placeholder.com/150x200" alt="상품이미지" />
+        <img src={bookData.itemImg} alt="상품이미지" />
       </Link>
       <div className="yhw_purInfoTxt">
         <div className="yhw_purInfoTxtTop">
