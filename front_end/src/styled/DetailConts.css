@@ -37,8 +37,16 @@
 }
 .yhw_detailContsLBottom {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   height: 60px;
+}
+.yhw_detailContsLBottom > span {
+  margin-right: 10px;
+  font-size: 16px;
+}
+.yhw_detailContsLBottom > b {
+  font-size: 17px;
+  line-height: 25px;
 }
 .yhw_detailContsState {
   color: #828282;
@@ -48,18 +56,21 @@
 .yhw_detailContsRBtns {
   display: flex;
   flex-direction: column;
-  width: 15%;
+  width: fit-content;
   min-width: 120px;
   height: 160px;
   /* margin-right: 20px; */
 }
 .yhw_detailContsRBtns button {
-  font-size: 13px;
-  font-weight: 900;
-  height: 35px;
+  /* margin-bottom: 1rem; */
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9375rem; 
+  width: 9.75rem; /* 156px; */
+  height: 2.875rem; /* 46px; */
 }
 .yhw_detailContsRBtns button:first-child {
   background-color: #C87E66;
