@@ -19,24 +19,24 @@ const PurInfoBox = () => {
     try {
       const response = await axios.get('http://localhost:3001/buyerbook');
       const data = response.data[0];
-      const sellerId = await getSellerId(data.custKey);
+      const sellerNickname = await getSellerNickname(data.custKey);
       setBookData({
         itemTitle: data.itemTitle,
         author: data.author,
         publisher: data.publisher,
-        seller: sellerId
+        seller: sellerNickname
       });
     } catch (error) {
       console.error('Error fetching book data:', error);
     }
   };
 
-  const getSellerId = async (custKey) => {
+  const getSellerNickname = async (custKey) => {
     try {
       const response = await axios.get(`http://localhost:3001/customers/${custKey}`);
-      return response.data.userid;
+      return response.data.nickname;
     } catch (error) {
-      console.error('Error fetching seller id:', error);
+      console.error('Error fetching seller nickname:', error);
       return '';
     }
   };
