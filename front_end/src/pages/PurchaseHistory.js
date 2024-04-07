@@ -39,20 +39,6 @@ const PurchaseHistory = () => {
                     <button onClick={handleClick}>구매 후기 작성</button> {/* 후기 작성 완료 시 버튼 비활성화 기능 추가할 예정 */}
                   </div>
                 </li>
-                <li>
-                  <PurInfoBox />
-                  <div className="yhw_purHistBtns">
-                    <button onClick={handleClick}>구매 후기 작성</button> {/* 후기 작성 완료 시 버튼 비활성화 기능 추가할 예정 */}
-                  </div>
-                </li>
-                {/* {filteredProducts.map((productInfo, index) => (
-                  <li key={index}>
-                    <PurInfoBox productInfo={productInfo} />
-                    <div className="yhw_purHistBtns">
-                      <button onClick={() => handleClick(productInfo)}>구매 후기 작성</button>
-                    </div>
-                  </li>
-                ))} */}
               </ul>
             </div>
           </div>
