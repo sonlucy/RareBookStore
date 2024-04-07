@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 // ============== Style component ============== //
 const CenteredContainer = styled.div`
@@ -20,9 +20,10 @@ const ProductListContainer = styled.div`
 `;
 
 const ProductImage = styled.div`
-  width: 177px;
+  width: 220px;
   height: 268px;
-  background: url("/book.jpg");
+  background: url(${(props) => props.bookImg});
+  background-size: cover;
   margin: 0 36px 29px;
 `;
 
@@ -150,7 +151,7 @@ const StyledLink = styled(Link)`
 const SilverLine = styled.div`
   width: 1050px;
   height: 1px;
-  background-color: #E2E2E2;
+  background-color: #e2e2e2;
   margin-top: 27px;
   margin-bottom: 20px;
 `;
@@ -158,12 +159,13 @@ const SilverLine = styled.div`
 // ============== Style component ============== //
 
 function ProductList({ bookList }) {
+  const bookImg = bookList.itemImg;
   const navigate = useNavigate();
   const convey = () => {
-    navigate('/SellerInfoPage', {
+    navigate("/SellerInfoPage", {
       state: {
-        custKey: bookList.custKey
-      }
+        custKey: bookList.custKey,
+      },
     });
   };
 
@@ -171,12 +173,14 @@ function ProductList({ bookList }) {
     <CenteredContainer>
       <div>
         <ProductListContainer>
-          <ProductImage></ProductImage>
+          <ProductImage bookImg={bookImg}></ProductImage>
           <ProductInfoContainer>
             <ProductInfoTable>
               <tbody>
                 <ProductInfoRow>
-                  <ProductInfoCell isTitle>{bookList.itemTitle}</ProductInfoCell>
+                  <ProductInfoCell isTitle>
+                    {bookList.itemTitle}
+                  </ProductInfoCell>
                 </ProductInfoRow>
                 <ProductInfoRow>
                   <ProductInfoCell isAuthor>{bookList.author}</ProductInfoCell>
@@ -186,7 +190,11 @@ function ProductList({ bookList }) {
                   </ProductInfoCell>
                 </ProductInfoRow>
                 <ProductInfoRow>
-                  <ProductInfoCell style={{ cursor: "pointer" }} onClick={convey} isNickname>
+                  <ProductInfoCell
+                    style={{ cursor: "pointer" }}
+                    onClick={convey}
+                    isNickname
+                  >
                     {bookList.nickname}
                   </ProductInfoCell>
                 </ProductInfoRow>
@@ -195,7 +203,9 @@ function ProductList({ bookList }) {
             <ProductInfoTable>
               <tbody>
                 <ProductInfoRow>
-                  <ProductInfoCell isDeadlinetext>입찰 마감 기한</ProductInfoCell>
+                  <ProductInfoCell isDeadlinetext>
+                    입찰 마감 기한
+                  </ProductInfoCell>
                 </ProductInfoRow>
                 <ProductInfoRow>
                   <ProductInfoCell isDeadline>날짜</ProductInfoCell>

@@ -5,7 +5,6 @@ import { FaSearch } from "react-icons/fa";
 import useLogOut from "../hooks/api/useLogOut";
 import { LoginContext } from "./LoginContext";
 
-
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate(); // useNavigate 훅
@@ -26,19 +25,24 @@ const Header = () => {
   const handleSearchSubmit = () => {
     if (searchTerm.trim() !== "") {
       /* ${window.location.origin} */
-      if (location.pathname === "/") { // 메인 페이지인 경우
+      if (location.pathname === "/") {
+        // 메인 페이지인 경우
         navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
-      } else { // 다른 페이지인 경우
-        navigate(`${location.pathname}/search?q=${encodeURIComponent(searchTerm)}`);
+      } else {
+        // 다른 페이지인 경우
+        navigate(
+          `${location.pathname}/search?q=${encodeURIComponent(searchTerm)}`
+        );
       }
     }
   };
 
   const handleEnterKeyDown = (event) => {
-    if (event.key === "Enter") { // 엔터 키를 눌렀을 때
+    if (event.key === "Enter") {
+      // 엔터 키를 눌렀을 때
       handleSearchSubmit(); // 검색 실행
     }
-  }
+  };
 
   const handleLogout = () => {
     logout(); // 로그아웃 함수 호출
@@ -72,7 +76,11 @@ const Header = () => {
             </dt>
             <dt>
               {isLoggedIn ? (
-                <div className="sbk-menu-item" style={{ cursor: 'pointer' }} onClick={handleLogout}>
+                <div
+                  className="sbk-menu-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleLogout}
+                >
                   로그아웃
                 </div>
               ) : (
@@ -91,13 +99,6 @@ const Header = () => {
 
         <div className="sbk-menu-container">
           <div className="sbk-logo-wrapper">
-            {/*             <a href="/" className="sbk-logo-link">
-              <img
-                className="sbk-logo-image"
-                alt="로고이미지"
-                src="img/logo.png"
-              />
-            </a> */}
             <NavLink to="/" className="sbk-logo-link">
               <img
                 className="sbk-logo-image"
@@ -117,7 +118,9 @@ const Header = () => {
               onChange={handleSearchChange}
               onKeyDown={handleEnterKeyDown}
             />
-            <button className="sbk-search-button" onClick={handleSearchSubmit}>검색</button>
+            <button className="sbk-search-button" onClick={handleSearchSubmit}>
+              검색
+            </button>
           </div>
         </div>
 
@@ -126,7 +129,7 @@ const Header = () => {
             <dt>
               <NavLink
                 // to="/economics"
-                to="/CategoryBookList"
+                to="/CategoryBookList/economics"
                 className="sbk-menu-item"
                 activeClassName="active"
                 onClick={handleItemClick}
@@ -137,7 +140,7 @@ const Header = () => {
             <dt>
               <NavLink
                 // to="/novels"
-                to="/CategoryBookList"
+                to="/CategoryBookList/novels"
                 className="sbk-menu-item"
                 activeClassName="active"
                 onClick={handleItemClick}
@@ -148,7 +151,7 @@ const Header = () => {
             <dt>
               <NavLink
                 // to="/comics"
-                to="/CategoryBookList"
+                to="/CategoryBookList/comics"
                 className="sbk-menu-item"
                 activeClassName="active"
                 onClick={handleItemClick}
@@ -159,7 +162,7 @@ const Header = () => {
             <dt>
               <NavLink
                 // to="/arts"
-                to="/CategoryBookList"
+                to="/CategoryBookList/arts"
                 className="sbk-menu-item"
                 activeClassName="active"
                 onClick={handleItemClick}
@@ -170,7 +173,7 @@ const Header = () => {
             <dt>
               <NavLink
                 // to="/science"
-                to="/CategoryBookList"
+                to="/CategoryBookList/science"
                 className="sbk-menu-item"
                 activeClassName="active"
                 onClick={handleItemClick}
@@ -181,7 +184,7 @@ const Header = () => {
             <dt>
               <NavLink
                 // to="/essays"
-                to="/CategoryBookList"
+                to="/CategoryBookList/essays"
                 className="sbk-menu-item"
                 activeClassName="active"
                 onClick={handleItemClick}
