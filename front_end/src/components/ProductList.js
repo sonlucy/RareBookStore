@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 // ============== Style component ============== //
 const CenteredContainer = styled.div`
   display: flex;
@@ -15,6 +15,7 @@ const ProductListContainer = styled.div`
   height: 300px;
   display: flex;
   flex-direction: row;
+  position: relative;
 `;
 
 const ProductImage = styled.div`
@@ -27,85 +28,187 @@ const ProductImage = styled.div`
 const ProductInfoContainer = styled.div`
   margin: 0px;
   display: flex;
-  flex-wrap: wrap;
-  width: 170px;
-  height: 300px;
-  text-align: left;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
-const ProductInfo = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  height: 100px;
-  justify-content: left;
-  align-items: flex-start;
-`;
-
-const PriceTable = styled.table`
+const ProductInfoTable = styled.table`
   width: 100%;
-  height: 100px;
+  margin-bottom: 20px;
+`;
+
+const ProductInfoRow = styled.tr`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-  align-items: flex-end;
+  justify-content: space-between;
+`;
+
+const ProductInfoCell = styled.td`
+  ${({ isTitle }) =>
+    isTitle &&
+    `
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 5px;
+  `}
+
+  ${({ isAuthor }) =>
+    isAuthor &&
+    `
+    font-size: 15px;
+    font-weight: medium;
+  `}
+
+${({ isPublisher }) =>
+    isPublisher &&
+    `
+    font-size: 15px;
+    font-weight: medium;
+  `}
+
+${({ isNickname }) =>
+    isNickname &&
+    `
+    font-size: 15px;
+    font-weight: medium;
+    color: #c87e66;
+  `}
+
+${({ isDeadlinetext }) =>
+    isDeadlinetext &&
+    `
+    font-size: 15px;
+    font-weight: bold;
+    color: #eb217c;
+  `}
+
+${({ isDeadline }) =>
+    isDeadline &&
+    `
+    font-size: 16px;
+    font-weight: regular;
+  `}
+
+${({ isStatus }) =>
+    isStatus &&
+    `
+    font-size: 14px;
+    font-weight: regular;
+    color: #828282;
+    margin-right: 50px;
+  `}
+
+${({ isMinimum }) =>
+    isMinimum &&
+    `
+    font-size: 15px;
+    font-weight: bold;
+    color: #eb217c;
+  `}
+
+${({ isGrade }) =>
+    isGrade &&
+    `
+    font-size: 15px;
+    font-weight: regular;
+  `}
+
+${({ isPrice }) =>
+    isPrice &&
+    `
+    font-size: 15px;
+    font-weight: regular;
+    margin-right: 50px;
+  `}
 `;
 
 const SellButton = styled.button`
   width: 160px;
   height: 50px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 4px;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9375rem;
   color: white;
   background-color: #c87e66;
-  margin-left: auto;
-  margin-right: 46px;
-  margin-top: 9px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
 `;
+
+const Divider = styled.span`
+  margin: 0 5px;
+`;
+
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
 `;
+
 // ============== Style component ============== //
 
 function ProductList({ bookList }) {
+  const navigate = useNavigate();
+  const convey = () => {
+    navigate('/SellerInfoPage', {
+      state: {
+        custKey: bookList.custKey
+      }
+    });
+  };
+
   return (
     <CenteredContainer>
       <ProductListContainer>
         <ProductImage></ProductImage>
         <ProductInfoContainer>
-          <ProductInfo>
-            <span>{bookList.itemTitle}</span>
-            <br />
-            <span>
-              {bookList.author} | {bookList.publisher}
-            </span>
-
-            <span>{bookList.nickname}</span>
-          </ProductInfo>
-
-          <PriceTable>
-            <thead>
-              <tr>
-                <th>등급별최저가</th>
-              </tr>
-            </thead>
+          <ProductInfoTable>
             <tbody>
-              <tr>
-                <td>최상</td>
-                <td>12000</td>
-              </tr>
-              <tr>
-                <td>상</td>
-                <td>12000</td>
-              </tr>
-              <tr>
-                <td>중</td>
-                <td>12000</td>
-              </tr>
+              <ProductInfoRow>
+                <ProductInfoCell isTitle>{bookList.itemTitle}</ProductInfoCell>
+              </ProductInfoRow>
+              <ProductInfoRow>
+                <ProductInfoCell isAuthor>{bookList.author}</ProductInfoCell>
+                <Divider>|</Divider>
+                <ProductInfoCell isPublisher>
+                  {bookList.publisher}
+                </ProductInfoCell>
+              </ProductInfoRow>
+              <ProductInfoRow>
+                <ProductInfoCell style={{ cursor: "pointer" }} onClick={convey} isNickname>
+                  {bookList.nickname}
+                </ProductInfoCell>
+              </ProductInfoRow>
             </tbody>
-          </PriceTable>
+          </ProductInfoTable>
+          <ProductInfoTable>
+            <tbody>
+              <ProductInfoRow>
+                <ProductInfoCell isDeadlinetext>입찰 마감 기한</ProductInfoCell>
+              </ProductInfoRow>
+              <ProductInfoRow>
+                <ProductInfoCell isDeadline>날짜</ProductInfoCell>
+                <ProductInfoCell isStatus>진행중</ProductInfoCell>
+              </ProductInfoRow>
+            </tbody>
+          </ProductInfoTable>
+          <ProductInfoRow>
+            <ProductInfoCell isMinimum>등급별 최저가</ProductInfoCell>
+          </ProductInfoRow>
+          <ProductInfoRow>
+            <ProductInfoCell isGrade>최상</ProductInfoCell>
+            <ProductInfoCell isPrice>12,000원</ProductInfoCell>
+          </ProductInfoRow>
+          <ProductInfoRow>
+            <ProductInfoCell isGrade>상</ProductInfoCell>
+            <ProductInfoCell isPrice>10,000원</ProductInfoCell>
+          </ProductInfoRow>
+          <ProductInfoRow>
+            <ProductInfoCell isGrade>중</ProductInfoCell>
+            <ProductInfoCell isPrice>8,500원</ProductInfoCell>
+          </ProductInfoRow>
+          <ProductInfoTable></ProductInfoTable>
         </ProductInfoContainer>
         {/* <SellButton to="/SellBook">판매하기</SellButton> */}
         <StyledLink to={`/SellBook/${bookList.itemBuyKey}`}>

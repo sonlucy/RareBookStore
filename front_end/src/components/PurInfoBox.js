@@ -10,7 +10,8 @@ const PurInfoBox = () => {
     itemTitle: '',
     author: '',
     publisher: '',
-    seller: ''
+    seller: '',
+    sellerKey: '',
   });
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const PurInfoBox = () => {
       }
     });
   };
-  console.log(bookData)
+
   return (
     <div className="yhw_purInfoBox">
       <Link to="/detail">
@@ -78,4 +79,3 @@ const PurInfoBox = () => {
 };
 
 export default PurInfoBox;
-

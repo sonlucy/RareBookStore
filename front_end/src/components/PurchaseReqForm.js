@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styled/PurchaseReqForm.css';
 import axios from 'axios';
 
 const InputField = ({ label, name, value, placeholder, onChange, error }) => {
   return (
     <div className="sbk-form-item">
-      <label className="sbk-label" htmlFor={name}>{label}</label>
+      <label className="sbk-label yhw_notLastLabel" htmlFor={name}>{label}</label>
       <input
         type="text"
         id={name}
@@ -22,16 +22,33 @@ const InputField = ({ label, name, value, placeholder, onChange, error }) => {
   );
 };
 
-const PurchaseReqForm = ({ loginUser }) => {
+const PurchaseReqForm = ({ selectedBook, loginUser }) => {
   //console.log(loginUser);
   const [formValues, setFormValues] = useState({
-    bookTitle: '',
-    author: '',
-    publisher: ''
+    bookTitle: selectedBook ? selectedBook.title :  '',
+    author: selectedBook ? selectedBook.author : '',
+    publisher: selectedBook ? selectedBook.publisher : '',
+    itemImg: selectedBook ? selectedBook.image : ''
   });
   const [errors, setErrors] = useState({}); // 입력 필드 에러 상태관리
   const [deadline, setDeadline] = useState(''); // 입찰 마감 기한 상태관리
   const [isFormFilled, setIsFormFilled] = useState(false); // 입력 폼이 모두 채워졌는지 여부 상태관리
+  const [selectedOption, setSelectedOption] = useState(''); // 카테고리 선택 상태관리
+
+  const handleSelect = (value) => { // 선택한 카테고리 값 
+    setSelectedOption(value);
+  };
+  // 선택 상자의 값이 변경되지 않은 경우에만 회색으로 스타일을 적용합니다.
+  const selectStyle = !selectedOption ? { color: '#a4a4a4' } : {};
+
+  useEffect(()=>{
+    setFormValues({
+    bookTitle: selectedBook ? selectedBook.title :  '',
+    author: selectedBook ? selectedBook.author : '',
+    publisher: selectedBook ? selectedBook.publisher : '',
+    itemImg: selectedBook ? selectedBook.image : ''
+  })
+  },[selectedBook])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -74,7 +91,7 @@ const PurchaseReqForm = ({ loginUser }) => {
         itemTitle: formValues.bookTitle,
         author: formValues.author,
         publisher: formValues.publisher,
-        itemImg: '../img/book.png', // 임의 이미지
+        itemImg: formValues.itemImg, // 선택된 도서의 이미지
         expiry: deadline,
       };
 
@@ -92,6 +109,26 @@ const PurchaseReqForm = ({ loginUser }) => {
     <div className="sbk-container">
       <form className="sbk-purchase-request-form" onSubmit={handleSubmit}>
         <div className='sbk-form-fields-container'>
+          <div className='yhw_purReqDropDown'>
+            <span className="sbk-label yhw_notLastLabel">카테고리</span>
+            <select
+              value={selectedOption}
+              onChange={(e) => handleSelect(e.target.value)}
+              style={selectStyle} // 선택하세요 일 때 글자색 스타일을 적용합니다.
+            >
+              <option value="" disabled>선택하세요</option>
+              <option value="economics">경제/경영</option>
+              <option value="novels">소설/시/희곡</option>
+              <option value="comics">만화</option>
+              <option value="arts">예체능</option>
+              <option value="science">과학</option>
+              <option value="essays">에세이</option>
+            </select>
+            <div className="sbk-error-container">
+              {/* {error && <span className="sbk-error-message">* {label}을(를) 입력하세요.</span>} */}
+              {selectedOption === "" && <span className="sbk-error-message">* 카테고리를 입력하세요.</span>}
+            </div>
+          </div>
           <InputField
             label="책 제목"
             name="bookTitle"
@@ -117,7 +154,7 @@ const PurchaseReqForm = ({ loginUser }) => {
             error={errors.publisher}
           />
           <div className="sbk-deadline-selection">
-            <label className="sbk-label" htmlFor="">입찰 마감기한</label>
+            <label className="sbk-label yhw_lastLabel" htmlFor="">입찰 마감기한</label>
             <div className="sbk-deadline-options-container">
               {[1, 7, 30, 60].map((days) => (
                 <label className="sbk-deadline-option" key={days}>
@@ -145,4 +182,4 @@ const PurchaseReqForm = ({ loginUser }) => {
   );
 };
 
-export default PurchaseReqForm;
+export default PurchaseReqForm

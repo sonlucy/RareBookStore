@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import SellBookInfo from "../components/SellBookInfo";
 import BookSaleBid from "../components/BookSaleBid";
 
-function SellBook(props) {
+function SellBook() {
   const { itemBuyKey } = useParams();
   return (
     <>

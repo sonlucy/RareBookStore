@@ -139,7 +139,7 @@ CREATE TABLE `review` (
 );
 
 CREATE TABLE `reply` (
-    `replayKey` INT AUTO_INCREMENT PRIMARY KEY,
+    `replyKey` INT AUTO_INCREMENT PRIMARY KEY,
     `boardKey` INT NOT NULL,
     `adminKey` INT NOT NULL,
     `dateReply` DATE NOT NULL,
