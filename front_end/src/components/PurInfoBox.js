@@ -63,7 +63,7 @@ const PurInfoBox = () => {
         <div className="yhw_purInfoTxtTop">
           <b>{bookData.itemTitle}</b>
           <span className="yhw_purInfoWriterPub">{bookData.author} | {bookData.publisher}</span>
-          <span className="yhw_purInfoSeller" onClick={convey}>판매자: {bookData.seller}</span>
+          <span className="yhw_purInfoSeller" title="판매자 정보 보기" onClick={convey}>판매자: {bookData.seller}</span>
         </div>
         <div className="yhw_purInfoTxtBottom">
           <div className="yhw_purInfoStat">
