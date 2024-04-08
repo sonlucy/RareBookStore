@@ -343,6 +343,15 @@ app.get("/sellerbook/seller/:sellerKey", (req, res) => {
     return res.json(data);
   });
 });
+// 특정 itemBuyKey를 통한 조회
+app.get("/sellerbook/item/:itemBuyKey", (req, res) => {
+  const itemBuyKey = req.params.itemBuyKey;
+  const sql = "SELECT * FROM SellerBook WHERE itemBuyKey = ?";
+  conn.query(sql, [itemBuyKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
 
 // 특정 구매자의 구매 희망 책에 대한 판매 희망 책 조회
 app.get("/sellerbook/buyer/:custKey", (req, res) => {
