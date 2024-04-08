@@ -363,6 +363,24 @@ app.get("/sellerbook/buyer/:custKey", (req, res) => {
   });
 });
 
+// 판매 희망 책 조회
+app.get("/sellerbook/orders/:itemSellKey", (req, res) => {
+  const sellerKey = req.params.itemSellKey;
+  const sql = "SELECT * FROM SellerBook WHERE itemSellKey = ?";
+  conn.query(sql, [sellerKey], (error, results) => {
+if (error) {
+      console.error("Error fetching customer:", error);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      if (results.length === 0) {
+        res.status(404).json({ error: "Customer not found" });
+      } else {
+        res.json(results);
+      }
+    }
+  });
+});
+
 // 판매 희망 책 수정
 app.put("/sellerbook/:itemSellKey", (req, res) => {
   const itemSellKey = req.params.itemSellKey;
