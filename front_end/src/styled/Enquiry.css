@@ -39,3 +39,22 @@
 .jyh-enquiry-res{
   margin-top: 5px;
 }
+
+.jyh-replyDate {
+  color: gray;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.jyh-reply-hr {
+  margin: 8px 0;
+  border: 1px solid #e7e7e7;
+}
+
+.jyh-reply-container {
+  background-color: #f9f9f9;
+}
+
+.jyh-reply-box {
+  padding: 10px 10px 0 10px;
+}

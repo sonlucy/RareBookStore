@@ -774,7 +774,18 @@ app.get("/reply", (req, res) => {
 // 해당 문의에 대한 답글
 app.get("/reply/:boardKey", (req, res) => {
   const boardKey = req.params.boardKey;
-  const sql = "SELECT * FROM review WHERE boardKey = ?";
+  const sql = `
+  select 
+  DATE_FORMAT(dateReply, '%Y-%m-%d') AS date,
+  replyKey,
+  boardKey,
+  adminKey,
+  reply
+  from reply
+  where
+  boardKey = ?
+  `;
+  // const sql = "SELECT * FROM reply WHERE boardKey = ?";
   conn.query(sql, [boardKey], (error, data) => {
     if (error) return res.json(error);
     return res.json(data);
