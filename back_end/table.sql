@@ -30,7 +30,7 @@ CREATE TABLE `address` (
 CREATE TABLE `buyerBook` (
     `itemBuyKey` INT AUTO_INCREMENT PRIMARY KEY COMMENT 'PK(구매희망도서)',
     `custKey` INT NOT NULL COMMENT '구매자',
-    `itemTitle` VARCHAR(30) NOT NULL,
+    `itemTitle` VARCHAR(255) NOT NULL,
     `author` VARCHAR(20) NOT NULL,
     `publisher` VARCHAR(20) NOT NULL,
     `itemImg` VARCHAR(600) NULL COMMENT 'NOT NULL 값이지만 테스트를 위해 NULL로 설정 -- 추후 변경',
