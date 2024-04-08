@@ -170,3 +170,11 @@ ALTER TABLE buyerBook
 MODIFY COLUMN aucStatus INT DEFAULT 2,
 MODIFY COLUMN itemImg VARCHAR(255) DEFAULT 'img/book.png';
 
+
+-- 외래키 제약조건 추가 // 나중에 테이블 다시 깔끔하게 만들어서 CASCADE 속성 추가하면 좋을 것 같습니다
+ALTER TABLE SellerBook
+ADD CONSTRAINT fk_seller_order 
+FOREIGN KEY (itemSellKey) REFERENCES orders (itemSellKey) ON DELETE CASCADE; --삭제 시 참조하고 있는 orders테이블의 것도 삭제
+ALTER TABLE `orders`
+ADD CONSTRAINT `orders_itemSellKey_fk` 
+FOREIGN KEY (`itemSellKey`) REFERENCES `sellerbook` (`itemSellKey`) ON DELETE CASCADE;
