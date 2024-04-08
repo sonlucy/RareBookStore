@@ -60,9 +60,7 @@ margin-top: 0.5rem;
   width: 9.75rem; /* 156px; */
   height: 2.875rem; /* 46px; */
 }
-.sbk-cancel-button {
-  cursor: not-allowed;
-}
+
 .sbk-status-button:hover {
 background-color: #ab705c;
 
@@ -73,6 +71,9 @@ background-color: #ab705c;
   color: #000000;
 }
 
+.sbk-cancel-button:hover {
+  background-color: #dadada;
+}
 
 .sbk-button-container {
   position: absolute;
