@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../styled/DetailTop.css";
 
 const DetailTop = ({ bookInfo }) => {
@@ -10,9 +11,9 @@ const DetailTop = ({ bookInfo }) => {
         <img src={bookInfo.itemImg} alt="상품이미지" />
         <div className="yhw_detailTopProdInfoTxt">
           <div className="yhw_detailTopProdInfoTop">
-            <b>{bookInfo.itemTitle}</b>
-            <span>{bookInfo.author} | {bookInfo.publisher}</span>
-            <span className="yhw_detailTopBuyer">구매자 {bookInfo.buyerNickname}</span>
+            <b>{bookInfo.itemTitle}도서명</b>
+            <span>{bookInfo.author}저자</span>
+            {/* <span className="yhw_detailTopBuyer">구매자 {loginUser}</span> */}
           </div>
           <div className="yhw_detailTopProdInfoBottom">
             <span className="yhw_detailTopDeadline">입찰 마감 기한</span>

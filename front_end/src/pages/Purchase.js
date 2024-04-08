@@ -39,7 +39,7 @@ const Purchase = () => {
         <div className="yhw_purTopBorderBottom">
           <div className="yhw_purTopCont">
             <b>구매하기</b>
-            <PurInfoBox bookData={bookData}/>
+            <PurInfoBox />
           </div>
         </div>
         <div className="yhw_purDefDestCont">
