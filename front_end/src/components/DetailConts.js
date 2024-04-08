@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styled/DetailConts.css";
 import SellerRanking from "../components/SellerRanking";
+import axios from "axios";
 
 const DetailConts = ({ productInfo, bookInfo }) => {
   const { price, sellerKey, damage } = productInfo; //판매자 정보 가져오기
@@ -19,6 +20,20 @@ const DetailConts = ({ productInfo, bookInfo }) => {
     navigate(`/Purchase/${productInfo.itemSellKey}`); // itemSellKey 값 받아서 이동.
     window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
   };
+  const getSellerNickname = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/customers/${sellerKey}`
+      );
+      console.log(response.data.nickname);
+      setSellerNickname(response.data.nickname);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getSellerNickname();
+  }, [sellerKey]);
 
   return (
     <div className="yhw_detailContsBox">
@@ -28,7 +43,7 @@ const DetailConts = ({ productInfo, bookInfo }) => {
           <div className="yhw_detailContsLTop">
             <b>{price}원</b>
             <span className="yhw_detailContsSeller">
-              판매자 : {sellerKey}
+              판매자 : {sellerNickname}
               {/* 판매자 {seller} &#40;등급 {grade}&#41; */}
             </span>
           </div>
