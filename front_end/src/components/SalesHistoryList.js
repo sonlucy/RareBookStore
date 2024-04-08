@@ -61,7 +61,7 @@ const SalesHistoryList = ({ requests }) => {
 
           <div className="sbk-button-container">
             {request.status === 2 ? ( /* 낙찰 상태면 낙찰 버튼 */
-              <button className="sbk-cancel-button">낙찰</button>
+              <button className="sbk-cancel-button" style={{ cursor: 'not-allowed' }}>낙찰</button>
               ) : (
                 <button className="sbk-status-button" onClick={() => handleCancelSellBook(request.itemId)}>판매 입찰 취소</button> 
                 )}
