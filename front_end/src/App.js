@@ -39,7 +39,7 @@ function App() {
           <Route path="IDPWLogin" element={<IDPWLogin />}></Route>
           <Route path="AdminLogin" element={<AdminLogin />}></Route>
           <Route path="Mypage" element={<Mypage />}></Route>
-          <Route path="Purchase" element={<Purchase />}></Route>
+          <Route path="/Purchase/:itemBuyKey" element={<Purchase />}></Route>
           <Route
             path="/Mypage/PurchaseHistory"
             element={<PurchaseHistory />}
