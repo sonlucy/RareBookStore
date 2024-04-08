@@ -83,7 +83,8 @@ function BookSearch({ onSelectBook }) {
 
     return (
         <div>
-            <div className="sbk-search-container">
+            <p className='jyh-bookSearch-info'>도서를 검색하여 구매를 희망하는 도서를 클릭 후 아래 폼을 마저 채워주세요</p>
+            <div className="jyh-search-container">
                 <FaSearch className="sbk-search-icon" />
                 <input
                     type="text"

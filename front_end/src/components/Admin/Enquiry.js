@@ -9,6 +9,7 @@ function Enquiry() {
     fetchEnquiries();
   }, []);
 
+  // 문의사항 가져오기
   const fetchEnquiries = async () => {
     try {
       const response = await axios.get('http://localhost:3001/enquiries'); 
@@ -18,6 +19,7 @@ function Enquiry() {
     }
   };
 
+  // 문의사항 보여주기
   const [showReplies, setShowReplies] = useState({});
 
   const toggleReplies = (id) => {
@@ -27,13 +29,14 @@ function Enquiry() {
     });
   };
 
+  // 답글 보내기
   const handleReplySubmit = async (boardKey, replyText) => {
     try {
       await axios.post('http://localhost:3001/reply', {
         boardKey: boardKey,
         reply: replyText
       });
-      console.log(`문의 ${boardKey}에 대한 답글을 성공적으로 전송했습니다.`);
+      alert(`문의 ${boardKey}에 대한 답글을 성공적으로 전송했습니다.`);
       // 답글 전송 후 재요청하여 최신 데이터로 갱신
       fetchEnquiries();
     } catch (error) {
@@ -41,15 +44,6 @@ function Enquiry() {
     }
   };
 
-  const fetchReplies = async (boardKey) => {
-    try {
-      const response = await axios.get(`http://localhost:3001/reply/${boardKey}`);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching replies:', error);
-      return [];
-    }
-  };
 
   return (
     <div className='jyh-table'>
@@ -89,7 +83,7 @@ function Enquiry() {
   );
 }
 
-// QuestionReplies 컴포넌트는 boardKey를 받아 해당 문의에 대한 답변을 표시합니다.
+// boardKey를 받아 해당 문의에 대한 답변 표시
 function QuestionReplies({ boardKey }) {
   const [replies, setReplies] = useState([]);
 
@@ -97,6 +91,7 @@ function QuestionReplies({ boardKey }) {
     fetchReplies();
   }, [boardKey]);
 
+  // 답글 가져오기
   const fetchReplies = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/reply/${boardKey}`);
@@ -108,12 +103,14 @@ function QuestionReplies({ boardKey }) {
   };
 
   return (
-    <div>
+    <div className='jyh-reply-container'>
       {/* 답변을 매핑하여 표시 */}
       {Array.isArray(replies) && replies.length > 0 ? (
         replies.map((reply) => (
-          <div key={reply.replyKey}>
+          <div className='jyh-reply-box' key={reply.replyKey}>
             <p>{reply.reply}</p>
+            <p className='jyh-replyDate'>{reply.date}</p>
+            <hr className='jyh-reply-hr'></hr>
           </div>
         ))
       ) : (

@@ -115,6 +115,22 @@ const PurchaseReqForm = ({ selectedBook, loginUser }) => {
     }
   };
 
+  // 입찰 마감기한 label 클릭 시 배경색 변경
+  const handleLabelClick = (e) => {
+    const label = e.currentTarget; // 클릭된 라벨 요소
+
+    // 선택된 라벨의 클래스에 'selected' 클래스 추가
+    label.classList.add('selected');
+    
+    // 기존에 선택된 라벨에서 'selected' 클래스 제거
+    const labels = document.querySelectorAll('.sbk-deadline-option');
+    labels.forEach(l => {
+      if (l !== label) {
+        l.classList.remove('selected');
+      }
+    });
+  };
+
   return (
     <div className="sbk-container">
       <form className="sbk-purchase-request-form" onSubmit={handleSubmit}>
@@ -175,7 +191,7 @@ const PurchaseReqForm = ({ selectedBook, loginUser }) => {
             </label>
             <div className="sbk-deadline-options-container">
               {[1, 7, 30, 60].map((days) => (
-                <label className="sbk-deadline-option" key={days}>
+                <label className="sbk-deadline-option" key={days} onClick={handleLabelClick}>
                   <input
                     type="radio"
                     id={`${days}Days`}

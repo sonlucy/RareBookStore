@@ -6,6 +6,10 @@
   padding: 2.3rem;
 }
 
+.jyh-bookSearch-box:hover {
+  background-color: #f0f0f0;
+}
+
 .jyh-bookSearch-img {
   width: 100px;
   display: inline-block;
@@ -21,6 +25,12 @@
   line-height: 18px;
 }
 
+.jyh-bookSearch-info {
+  margin-left: 7%;
+  font-weight: 600;
+  color: #BC6F37;
+}
+
 .sbk-search-container {
   display: flex;
   align-items: center;
@@ -28,7 +38,18 @@
   border-radius: 8px;
   padding: 0.2vw;
   margin: 1rem 3vw;
-  position: relative; /* 검색 버튼 위치 조정을 위해 부모 요소를 상대적으로 설정 */
+  position: relative;
+}
+
+.jyh-search-container {
+  display: flex;
+  align-items: center;
+  border: 3px solid #eee;
+  border-radius: 8px;
+  padding: 0.2vw;
+  margin: 1rem 3vw;
+  position: relative;
+  width: 80%;
 }
 
 .sbk-search-icon {
@@ -53,8 +74,8 @@
   padding: 0.8rem 1rem;
   cursor: pointer;
   font-size: 0.8rem;
-  position: absolute; /* 절대 위치 지정 */
-  right: 8px; /* 오른쪽으로 8px만큼 떨어진 위치 */
-  top: 50%; /* 상단으로 50% 이동 */
-  transform: translateY(-50%); /* 상단으로 이동한 후 세로 방향으로 -50% 이동하여 중앙 정렬 */
+  position: absolute; 
+  right: 8px; 
+  top: 50%; 
+  transform: translateY(-50%); 
 }

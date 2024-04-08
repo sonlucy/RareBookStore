@@ -25,6 +25,19 @@ exports.getAllReply = () => {
   });
 };
 
+// 해당 문의에 대한 답글 조회 (Read)
+exports.getReplyByBoardKey = (boardKey) => {
+  return new Promise((resolve, reject) => {
+    db.query(
+      "SELECT * FROM reply WHERE boardKey = ?",
+      [boardKey],
+      (err, result) => {
+        if (err) reject(err);
+        else resolve(result);
+      }
+    );
+  });
+};
 
 // 답글 업데이트 (Update)
 // exports.updateReply = (replyKey, updatedReplyData) => {
