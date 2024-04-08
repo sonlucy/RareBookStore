@@ -4,7 +4,8 @@ import "../styled/DetailConts.css";
 import SellerRanking from "../components/SellerRanking";
 
 const DetailConts = ({ productInfo, bookInfo }) => {
-  const { price, sellerKey, damage } = productInfo; //판매자 정보 가져오기
+  // const { price, sellerKey, damage } = productInfo; //판매자 정보 가져오기
+  const { price, damage } = productInfo; //판매자 정보 가져오기(수정) ==> (yhw) sellerbook 테이블이 추가가 안 돼서 이렇게 해도 닉네임을 받아오는지 확인을 못했습니다. 확인 부탁드립니다.
   const [showModal, setShowModal] = useState(false); // 판매자 정보 보기 modal - useState
 
   const toggleModal = () => {
@@ -27,7 +28,8 @@ const DetailConts = ({ productInfo, bookInfo }) => {
           <div className="yhw_detailContsLTop">
             <b>{price}원</b>
             <span className="yhw_detailContsSeller">
-              판매자 : {sellerKey}
+              {/* 판매자 : {sellerKey} */}
+              판매자 : {bookInfo.sellerNickname}
               {/* 판매자 {seller} &#40;등급 {grade}&#41; */}
             </span>
           </div>

@@ -1,18 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styled/PurInfoBox.css";
-import usePurInfoData from "../hooks/api/usePurInfoData"; // usePurInfoData 훅 임포트
 
-const PurInfoBox = () => {
-  // usePurInfoData 훅을 호출하여 bookData 상태와 데이터 가져오는 로직 사용
-  const { bookData, fetchBookData } = usePurInfoData();
-
-  // 컴포넌트 마운트 시 데이터 가져오기
-  useEffect(() => {
-    fetchBookData();
-  }, [fetchBookData]);
-
+const PurInfoBox = ({ bookData }) => {  // 구매하기페이지(Purchase)와 구매내역페이지(PurchaseHistory)에서 사용됨
   const navigate = useNavigate();
+
   const convey = () => {
     navigate("/SellerInfoPage", {
       //판매자 정보 페이지로 이동

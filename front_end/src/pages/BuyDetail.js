@@ -17,41 +17,46 @@ const BuyDetail = () => {
   const { itemBuyKey } = useParams();
   const [bookInfo, setBookInfo] = useState([]);
   const [sellerInfo, setSellerInfo] = useState([]);
-  const [sellerNickname, setSellerNickname] = useState([]);
+
   // 특정 구매희망 도서 가져오기
   const getBookInfo = async () => {
     try {
       const response = await axios.get(
         `http://localhost:3001/buyerbook/item/${itemBuyKey}`
       );
-      setBookInfo(response.data[0]);
+      const bookData = response.data[0];
+    
+      // 판매자 정보 가져오기
+      const sellerResponse = await axios.get(`http://localhost:3001/sellerbook/item/${itemBuyKey}`);
+      const sellerKey = sellerResponse.data.sellerKey;
+      const sellerNickname = await getSellerNickname(sellerKey);  // 판매자 닉네임 가져오기
+      sellerResponse.data.sellerNickname = sellerNickname;
+      
+      // 구매자 정보 가져오기
+      const buyerResponse = await axios.get(`http://localhost:3001/customers/${bookData.custKey}`);
+      const buyerNickname = buyerResponse.data.nickname;
+
+      // 구매자 닉네임과 판매자 닉네임을 bookData에 추가
+      bookData.buyerNickname = buyerNickname;
+      bookData.sellerNickname = sellerResponse.data.sellerNickname;
+      
+      // setBookInfo(response.data[0]);
+      setBookInfo(bookData);
     } catch (error) {
       console.error("Error fetching customers:", error);
     }
   };
-  // 특정 도서 판매자 정보 가져오기
-  const getSeller = async () => {
+  
+  // 판매자 닉네임 가져오기
+  const getSellerNickname = async (custKey) => {
     try {
-      const response = await axios.get(
-        `http://localhost:3001/sellerbook/item/${itemBuyKey}`
-      );
-
-      setSellerInfo(response.data);
+      const response = await axios.get(`http://localhost:3001/customers/${custKey}`);
+      return response.data.nickname;
     } catch (error) {
-      console.error(error);
+      console.error('Error fetching seller nickname:', error);
+      return '';
     }
   };
-  // const getSellerNickname = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:3001//customers/${sellerInfo.sellerKey}`
-  //     );
-  //     console.log(response.data);
-  //     setSellerNickname(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   // 초기 렌더링 시 최상 상태에 해당하는 상품 필터링
   useEffect(() => {
@@ -85,6 +90,26 @@ const BuyDetail = () => {
     console.log(filtered, "필터된 데이터");
   };
 
+  // 카테고리명에 따른 문자열 출력
+  const getCategoryName = (category) => {
+    switch (category) {
+      case "economics":
+        return "경제/경영";
+      case "novels":
+        return "소설/시/희곡";
+      case "comics":
+        return "만화";
+      case "arts":
+        return "예체능";
+      case "science":
+        return "과학";
+      case "essays":
+        return "에세이";
+      default:
+        return "-";
+    }
+  };
+
   return (
     <>
       <div className="height-container">
@@ -105,13 +130,13 @@ const BuyDetail = () => {
                   <VscChevronRight />
                 </span>
                 <Link to="/">
-                  <span>{bookInfo.category}</span>
+                  <span>{getCategoryName(bookInfo.category)}</span>
                 </Link>
                 <span>
                   <VscChevronRight />
                 </span>
                 <Link to="/">
-                  <span>{bookInfo.itemTitle}책제목</span>
+                  <span>{bookInfo.itemTitle}</span>
                 </Link>
               </div>
               <DetailTop bookInfo={bookInfo} />
