@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styled/PurInfoBox.css";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const PurInfoBox = () => {
   const [bookData, setBookData] = useState({
@@ -9,7 +10,8 @@ const PurInfoBox = () => {
     itemTitle: '',
     author: '',
     publisher: '',
-    seller: ''
+    seller: '',
+    sellerKey: '',
   });
 
   useEffect(() => {
@@ -26,7 +28,8 @@ const PurInfoBox = () => {
         itemTitle: data.itemTitle,
         author: data.author,
         publisher: data.publisher,
-        seller: sellerNickname
+        seller: sellerNickname,
+        sellerKey: data.custKey //판매자의 custKey 추가
       });
     } catch (error) {
       console.error('Error fetching book data:', error);
@@ -42,6 +45,14 @@ const PurInfoBox = () => {
       return '';
     }
   };
+  const navigate = useNavigate();
+  const convey = () => { 
+    navigate('/SellerInfoPage', { //판매자 정보 페이지로 이동
+      state: {
+        custKey: bookData.sellerKey
+      }
+    });
+  };
 
   return (
     <div className="yhw_purInfoBox">
@@ -52,7 +63,7 @@ const PurInfoBox = () => {
         <div className="yhw_purInfoTxtTop">
           <b>{bookData.itemTitle}</b>
           <span className="yhw_purInfoWriterPub">{bookData.author} | {bookData.publisher}</span>
-          <span className="yhw_purInfoSeller">판매자: {bookData.seller}</span>
+          <span className="yhw_purInfoSeller" title="판매자 정보 보기" onClick={convey}>판매자: {bookData.seller}</span>
         </div>
         <div className="yhw_purInfoTxtBottom">
           <div className="yhw_purInfoStat">
@@ -68,4 +79,3 @@ const PurInfoBox = () => {
 };
 
 export default PurInfoBox;
-

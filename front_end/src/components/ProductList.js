@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
 // ============== Style component ============== //
 const CenteredContainer = styled.div`
   display: flex;
@@ -19,9 +20,10 @@ const ProductListContainer = styled.div`
 `;
 
 const ProductImage = styled.div`
-  width: 177px;
+  width: 220px;
   height: 268px;
-  background: url("/book.jpg");
+  background: url(${(props) => props.bookImg});
+  background-size: cover;
   margin: 0 36px 29px;
 `;
 
@@ -146,75 +148,94 @@ const StyledLink = styled(Link)`
   color: inherit;
 `;
 
+const SilverLine = styled.div`
+  width: 1050px;
+  height: 1px;
+  background-color: #e2e2e2;
+  margin-top: 27px;
+  margin-bottom: 20px;
+`;
+
 // ============== Style component ============== //
 
 function ProductList({ bookList }) {
+  const bookImg = bookList.itemImg;
   const navigate = useNavigate();
   const convey = () => {
-    navigate('/SellerInfoPage', {
+    navigate("/SellerInfoPage", {
       state: {
-        custKey: bookList.custKey
-      }
+        custKey: bookList.custKey,
+      },
     });
   };
 
   return (
     <CenteredContainer>
-      <ProductListContainer>
-        <ProductImage></ProductImage>
-        <ProductInfoContainer>
-          <ProductInfoTable>
-            <tbody>
-              <ProductInfoRow>
-                <ProductInfoCell isTitle>{bookList.itemTitle}</ProductInfoCell>
-              </ProductInfoRow>
-              <ProductInfoRow>
-                <ProductInfoCell isAuthor>{bookList.author}</ProductInfoCell>
-                <Divider>|</Divider>
-                <ProductInfoCell isPublisher>
-                  {bookList.publisher}
-                </ProductInfoCell>
-              </ProductInfoRow>
-              <ProductInfoRow>
-                <ProductInfoCell style={{ cursor: "pointer" }} onClick={convey} isNickname>
-                  {bookList.nickname}
-                </ProductInfoCell>
-              </ProductInfoRow>
-            </tbody>
-          </ProductInfoTable>
-          <ProductInfoTable>
-            <tbody>
-              <ProductInfoRow>
-                <ProductInfoCell isDeadlinetext>입찰 마감 기한</ProductInfoCell>
-              </ProductInfoRow>
-              <ProductInfoRow>
-                <ProductInfoCell isDeadline>날짜</ProductInfoCell>
-                <ProductInfoCell isStatus>진행중</ProductInfoCell>
-              </ProductInfoRow>
-            </tbody>
-          </ProductInfoTable>
-          <ProductInfoRow>
-            <ProductInfoCell isMinimum>등급별 최저가</ProductInfoCell>
-          </ProductInfoRow>
-          <ProductInfoRow>
-            <ProductInfoCell isGrade>최상</ProductInfoCell>
-            <ProductInfoCell isPrice>12,000원</ProductInfoCell>
-          </ProductInfoRow>
-          <ProductInfoRow>
-            <ProductInfoCell isGrade>상</ProductInfoCell>
-            <ProductInfoCell isPrice>10,000원</ProductInfoCell>
-          </ProductInfoRow>
-          <ProductInfoRow>
-            <ProductInfoCell isGrade>중</ProductInfoCell>
-            <ProductInfoCell isPrice>8,500원</ProductInfoCell>
-          </ProductInfoRow>
-          <ProductInfoTable></ProductInfoTable>
-        </ProductInfoContainer>
-        {/* <SellButton to="/SellBook">판매하기</SellButton> */}
-        <StyledLink to={`/SellBook/${bookList.itemBuyKey}`}>
-          <SellButton>판매하기</SellButton>
-        </StyledLink>
-      </ProductListContainer>
+      <div>
+        <ProductListContainer>
+          <ProductImage bookImg={bookImg}></ProductImage>
+          <ProductInfoContainer>
+            <ProductInfoTable>
+              <tbody>
+                <ProductInfoRow>
+                  <ProductInfoCell isTitle>
+                    {bookList.itemTitle}
+                  </ProductInfoCell>
+                </ProductInfoRow>
+                <ProductInfoRow>
+                  <ProductInfoCell isAuthor>{bookList.author}</ProductInfoCell>
+                  <Divider>|</Divider>
+                  <ProductInfoCell isPublisher>
+                    {bookList.publisher}
+                  </ProductInfoCell>
+                </ProductInfoRow>
+                <ProductInfoRow>
+                  <ProductInfoCell
+                    style={{ cursor: "pointer" }}
+                    onClick={convey}
+                    isNickname
+                  >
+                    {bookList.nickname}
+                  </ProductInfoCell>
+                </ProductInfoRow>
+              </tbody>
+            </ProductInfoTable>
+            <ProductInfoTable>
+              <tbody>
+                <ProductInfoRow>
+                  <ProductInfoCell isDeadlinetext>
+                    입찰 마감 기한
+                  </ProductInfoCell>
+                </ProductInfoRow>
+                <ProductInfoRow>
+                  <ProductInfoCell isDeadline>날짜</ProductInfoCell>
+                  <ProductInfoCell isStatus>진행중</ProductInfoCell>
+                </ProductInfoRow>
+              </tbody>
+            </ProductInfoTable>
+            <ProductInfoRow>
+              <ProductInfoCell isMinimum>등급별 최저가</ProductInfoCell>
+            </ProductInfoRow>
+            <ProductInfoRow>
+              <ProductInfoCell isGrade>최상</ProductInfoCell>
+              <ProductInfoCell isPrice>12,000원</ProductInfoCell>
+            </ProductInfoRow>
+            <ProductInfoRow>
+              <ProductInfoCell isGrade>상</ProductInfoCell>
+              <ProductInfoCell isPrice>10,000원</ProductInfoCell>
+            </ProductInfoRow>
+            <ProductInfoRow>
+              <ProductInfoCell isGrade>중</ProductInfoCell>
+              <ProductInfoCell isPrice>8,500원</ProductInfoCell>
+            </ProductInfoRow>
+            <ProductInfoTable></ProductInfoTable>
+          </ProductInfoContainer>
+          <StyledLink to={`/SellBook/${bookList.itemBuyKey}`}>
+            <SellButton>판매하기</SellButton>
+          </StyledLink>
+        </ProductListContainer>
+        <SilverLine />
+      </div>
     </CenteredContainer>
   );
 }

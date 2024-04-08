@@ -1,8 +1,6 @@
-
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-
 
 const CenteredContainer = styled.div`
   display: flex;
@@ -19,31 +17,33 @@ const BookInfoContainer = styled.div`
 `;
 
 const BookImage = styled.div`
-    width: 122px;
-    height: 183px;
-    background-image: url('/book.jpg'); // 나중에 변경할 수 있음
+  width: 146px;
+  height: 183px;
+  background-size: cover;
+  background-image: url(${(props) => props.bookImg}); // 나중에 변경할 수 있음
 `;
 
 const BookInfo = styled.div`
-    text-align: left;
-    width: 176px;
-    height: 183px;
-    margin-left: 10px;
+  text-align: left;
+  width: 176px;
+  height: 183px;
+  margin-left: 10px;
 `;
 
 const TitleSpan = styled.div`
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 3px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 3px;
 `;
 
 const InfoSpan = styled.div`
-    font-size: 15px;
-    font-weight: medium;
+  font-size: 15px;
+  font-weight: medium;
 `;
 
 function SellBookInfo({ itemBuyKey }) {
   const [buyerBooks, setBuyerBooks] = useState([]);
+  const bookImg = buyerBooks.itemImg;
 
   useEffect(() => {
     fetchBuyerBooks();
@@ -64,7 +64,7 @@ function SellBookInfo({ itemBuyKey }) {
     <div>
       <CenteredContainer>
         <BookInfoContainer>
-          <BookImage></BookImage>
+          <BookImage bookImg={bookImg}></BookImage>
           <BookInfo>
             <TitleSpan>{buyerBooks.itemTitle}</TitleSpan>
             <InfoSpan>
