@@ -38,6 +38,9 @@ CREATE TABLE `buyerBook` (
     `aucStatus` INT NOT NULL DEFAULT 0 COMMENT '낙찰(1)//진행중(2)/기한만료(3)/취소(삭제)',
     FOREIGN KEY (`custKey`) REFERENCES `customers` (`custKey`)
 );
+ALTER TABLE `buyerBook`
+ADD COLUMN `category` VARCHAR(20) NOT NULL;
+
 
 ALTER TABLE `buyerbook` ADD COLUMN dateBuyerBook DATE NOT NULL;
 -- date에 자동으로 오늘 날짜로 채우기

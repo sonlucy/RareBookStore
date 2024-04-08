@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 // ============== Style component ============== //
 const PurchaseRequestContainer = styled.div`
@@ -21,7 +22,7 @@ const PurchaseRequest = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;
-  padding: 6vw;
+  padding: 0 6vw; // 카테고리 링크를 가려서 padding 크기 수정.
   margin: 0;
 `;
 
@@ -45,12 +46,16 @@ const Button = styled.a`
   text-decoration: none;
 `;
 // ============== Style component ============== //
-const CategoryBookList = (props) => {
+const CategoryBookList = () => {
+  // 카테고리이름 가져오기
   const [bookList, setBookList] = useState([]);
+  const { category } = useParams();
 
   const getBuyBookList = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/buyerbook`);
+      const response = await axios.get(
+        `http://localhost:3001/buyerbook/category/${category}`
+      );
       const data = response.data;
       const updatedBookList = await getUserNicknames(data);
       setBookList(updatedBookList);
@@ -81,7 +86,7 @@ const CategoryBookList = (props) => {
 
   useEffect(() => {
     getBuyBookList();
-  }, []);
+  }, [category]);
 
   return (
     <div>

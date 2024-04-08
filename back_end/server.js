@@ -9,8 +9,8 @@ const { error } = require("console");
 const userRoutes = require("./routes/userRoutes");
 const conn = require("./database/db.js");
 const port = 3001; //포트번호 설정
-const axios = require('axios');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const axios = require("axios");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 require("dotenv").config();
 
 app.use(express.json());
@@ -42,16 +42,16 @@ app.use(
 
 module.exports = (app) => {
   app.use(
-    createProxyMiddleware('/v1/search/book.json', {
-      target: 'https://openapi.naver.com',
+    createProxyMiddleware("/v1/search/book.json", {
+      target: "https://openapi.naver.com",
       changeOrigin: true,
-    }),
+    })
   );
   app.use(
-    createProxyMiddleware('/api', {
-      target: 'http://127.0.0.1:3000/',
+    createProxyMiddleware("/api", {
+      target: "http://127.0.0.1:3000/",
       changeOrigin: true,
-    }),
+    })
   );
 };
 
@@ -178,12 +178,13 @@ app.put("/updateCustomers/:custKey", (req, res) => {
 // ========================= buyers ================================//
 // 책 구매 희망 추가
 app.post("/buyerbook", (req, res) => {
-  const { custKey, itemTitle, author, publisher, itemImg, expiry } = req.body;
+  const { custKey, itemTitle, author, publisher, itemImg, expiry, category } =
+    req.body;
   const sql =
-    "INSERT INTO buyerBook (custKey, itemTitle, author, publisher, itemImg, expiry) VALUES (?, ?, ?, ?, ?, ?)";
+    "INSERT INTO buyerBook (custKey, itemTitle, author, publisher, itemImg, expiry,category) VALUES (?,?, ?, ?, ?, ?, ?)";
   conn.query(
     sql,
-    [custKey, itemTitle, author, publisher, itemImg, expiry],
+    [custKey, itemTitle, author, publisher, itemImg, expiry, category],
     (error, result) => {
       if (error) return res.json(error);
       return res.json({
@@ -220,6 +221,24 @@ app.get("/buyerbook/:custKey", (req, res) => {
     }
   });
 });
+// 카테고리별 구매 희망 도서 조회 (Read)
+app.get("/buyerbook/category/:category", (req, res) => {
+  const category = req.params.category;
+  const sql = `SELECT * FROM buyerbook WHERE category = ? `;
+  conn.query(sql, [category], (error, results) => {
+    if (error) {
+      console.error("Error fetching customer:", error);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      if (results.length === 0) {
+        res.status(404).json({ error: "Customer not found" });
+      } else {
+        res.json(results);
+      }
+    }
+  });
+});
+
 // 특정 구매 희망 도서 조회 (Read)
 app.get("/buyerbook/item/:itemBuyKey", (req, res) => {
   const itemBuyKey = req.params.itemBuyKey;
@@ -242,10 +261,19 @@ app.put("/buyerbook/:itemBuyKey", (req, res) => {
   const itemBuyKey = req.params.itemBuyKey;
   const { itemTitle, author, publisher, itemImg, expiry, aucStatus } = req.body;
   const sql =
-    "UPDATE buyerBook SET itemTitle = ?, author = ?, publisher = ?, itemImg = ?, expiry = ?, aucStatus = ? WHERE itemBuyKey = ?";
+    "UPDATE buyerBook SET itemTitle = ?, author = ?, publisher = ?, itemImg = ?, expiry = ?, aucStatus = ?, category = ? WHERE itemBuyKey = ?";
   conn.query(
     sql,
-    [itemTitle, author, publisher, itemImg, expiry, aucStatus, itemBuyKey],
+    [
+      itemTitle,
+      author,
+      publisher,
+      itemImg,
+      expiry,
+      aucStatus,
+      itemBuyKey,
+      category,
+    ],
     (error, result) => {
       if (error) return res.json(error);
       if (result.affectedRows === 0) {
@@ -715,8 +743,6 @@ app.post("/reply", (req, res) => {
   });
 });
 
-
-
 app.delete("/reply/:replyKey", (req, res) => {
   const replyKey = req.params.replyKey;
 
@@ -761,12 +787,14 @@ app.get("/reply/:boardKey", (req, res) => {
 
 const client_id = process.env.Client_ID;
 const client_secret = process.env.Client_Secret;
-app.get('/Mypage/search/book', async function (req, res) {
+app.get("/Mypage/search/book", async function (req, res) {
   try {
-    console.log('Received request from client:', req.query)
+    console.log("Received request from client:", req.query);
 
-    const api_url = 'https://openapi.naver.com/v1/search/book?query=' +  encodeURIComponent(req.query.query);
-    console.log("api_url",api_url)
+    const api_url =
+      "https://openapi.naver.com/v1/search/book?query=" +
+      encodeURIComponent(req.query.query);
+    console.log("api_url", api_url);
     const display = req.query.display || 100; // 100개 정렬
 
     const response = await axios.get(api_url, {
@@ -775,9 +803,9 @@ app.get('/Mypage/search/book', async function (req, res) {
       },
 
       headers: {
-        'X-Naver-Client-Id': client_id,
-        'X-Naver-Client-Secret': client_secret
-      }
+        "X-Naver-Client-Id": client_id,
+        "X-Naver-Client-Secret": client_secret,
+      },
     });
 
     res.status(200).json(response.data);
@@ -786,7 +814,6 @@ app.get('/Mypage/search/book', async function (req, res) {
     res.status(500).end();
   }
 });
-
 
 // ========================= bookSearch ==========================//
 

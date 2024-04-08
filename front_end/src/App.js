@@ -32,7 +32,10 @@ function App() {
           <Route path="/" element={<Main />}></Route>
           <Route path="Address" element={<Address />}></Route>
           <Route path="BuyDetail" element={<BuyDetail />}></Route>
-          <Route path="CategoryBookList" element={<CategoryBookList />}></Route>
+          <Route
+            path="CategoryBookList/:category"
+            element={<CategoryBookList />}
+          ></Route>
           <Route path="IDPWLogin" element={<IDPWLogin />}></Route>
           <Route path="AdminLogin" element={<AdminLogin />}></Route>
           <Route path="Mypage" element={<Mypage />}></Route>
@@ -56,8 +59,8 @@ function App() {
           ></Route>
           <Route path="SellBook/:itemBuyKey" element={<SellBook />}></Route>
           <Route path="/Mypage/Rank" element={<Rank />}></Route>
-          <Route path="*" element={<XNotFound />}></Route>  {/* Not Found 페이지 */}    
-
+          <Route path="*" element={<XNotFound />}></Route>{" "}
+          {/* Not Found 페이지 */}
         </Routes>
       </LoginProvider>
     </div>
