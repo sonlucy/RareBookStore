@@ -1,23 +1,24 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styled/PurInfoBox.css";
-import usePurInfoData from '../hooks/api/usePurInfoData'; // usePurInfoData 훅 임포트
+import usePurInfoData from "../hooks/api/usePurInfoData"; // usePurInfoData 훅 임포트
 
 const PurInfoBox = () => {
   // usePurInfoData 훅을 호출하여 bookData 상태와 데이터 가져오는 로직 사용
   const { bookData, fetchBookData } = usePurInfoData();
-  
+
   // 컴포넌트 마운트 시 데이터 가져오기
   useEffect(() => {
     fetchBookData();
   }, [fetchBookData]);
 
   const navigate = useNavigate();
-  const convey = () => { 
-    navigate('/SellerInfoPage', { //판매자 정보 페이지로 이동
+  const convey = () => {
+    navigate("/SellerInfoPage", {
+      //판매자 정보 페이지로 이동
       state: {
-        custKey: bookData.sellerKey
-      }
+        custKey: bookData.sellerKey,
+      },
     });
   };
   // console.log(bookData)
@@ -30,15 +31,25 @@ const PurInfoBox = () => {
       <div className="yhw_purInfoTxt">
         <div className="yhw_purInfoTxtTop">
           <b>{bookData.itemTitle}</b>
-          <span className="yhw_purInfoWriterPub">{bookData.author} | {bookData.publisher}</span>
-          <span className="yhw_purInfoSeller" title="판매자 정보 보기" onClick={convey}>판매자: {bookData.seller}</span>
+          <span className="yhw_purInfoWriterPub">
+            {bookData.author} | {bookData.publisher}
+          </span>
+          <span
+            className="yhw_purInfoSeller"
+            title="판매자 정보 보기"
+            onClick={convey}
+          >
+            판매자: {bookData.seller}
+          </span>
         </div>
         <div className="yhw_purInfoTxtBottom">
           <div className="yhw_purInfoStat">
-            <span>상태 등급</span><b>최상</b>
+            <span>상태 등급</span>
+            <b>최상</b>
           </div>
           <div className="yhw_purInfoPrice">
-            <span>판매 입찰가</span><b>12,000원</b>
+            <span>판매 입찰가</span>
+            <b>12,000원</b>
           </div>
         </div>
       </div>
