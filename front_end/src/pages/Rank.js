@@ -9,7 +9,12 @@ import "../styled/PurchaseHistory.css";
 import "../styled/SellerRanking.css";
 
 const calculateGrade = (point) => {
-  if (point >= 4.5) {
+  if (point == 0.0) {
+    return (<span>
+      <span>새내기</span>
+      <span className='jyh-starter'>책 거래를 시작해보세요!</span>
+      </span>)
+  } else if (point >= 4.5) {
     return "1";
   } else if (point >= 3.5) {
     return "2";
