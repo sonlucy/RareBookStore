@@ -136,6 +136,9 @@ height: 4.5rem;
 }
 
 /* yhw 추가 */
+.sbk-deadline-option.selected { /* 입찰 마감기한 클릭한 날짜에 배경색 지정 */
+  background-color: #d5d5d5;
+}
 .yhw_purReqDropDown { /* 카테고리 dropdown */
   height: 50px;
   margin-bottom: 20px;
