@@ -80,15 +80,19 @@
  }
 
  .question-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    text-align: left;
     background-color: #C87E66;
     color: white;
     padding: 10px;
     cursor: pointer;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+ }
+ .question-number {
+   margin-right: 1.2rem;
  }
 
  .question-title {
@@ -98,13 +102,14 @@
  }
 
  .question-content {
-    text-align: center;
+    /* text-align: center; */
     padding: 10px;
     background-color: #f0f0f0;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    font-family: 'Gulim', sans-serif;
+    /* font-family: 'Gulim', sans-serif; */
  }
+
 
 /* yhw 수정-추가 */
 .cyj_QNAformBox {
