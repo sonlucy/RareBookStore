@@ -4,8 +4,6 @@ import '../styled/PurchaseReqList.css';
 import axios from 'axios';
 
 const formatDate = (dateString) => {
-  const navigate = useNavigate(); // 현황보기 버튼 클릭 시 BuyDetail 페이지로 이동
-  
   const dateStringAsStr = dateString.toString(); // int -> string
 
   const year = dateStringAsStr.slice(0, 4);
@@ -17,6 +15,8 @@ const formatDate = (dateString) => {
 
 
 const PurchaseReqListOngoing = ({ requests }) => {
+  const navigate = useNavigate(); // 현황보기 버튼 클릭 시 BuyDetail 페이지로 이동
+  
   const [ongoingRequests, setOngoingRequests] = useState(requests);
   const handleCancel = (itemBuyKey) => {
     axios.delete(`http://localhost:3001/buyerbook/${itemBuyKey}`)
