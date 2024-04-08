@@ -6,7 +6,8 @@ import SellerRanking from "../components/SellerRanking";
 const DetailConts = ({ productInfo, bookInfo }) => {
   const { price, sellerKey, damage } = productInfo; //판매자 정보 가져오기
   const [showModal, setShowModal] = useState(false); // 판매자 정보 보기 modal - useState
-
+  const [sellerNickname, setSellerNickname] = useState();
+  console.log(productInfo, "productInfo 데이터");
   const toggleModal = () => {
     // 판매자 정보 보기 버튼 클릭 시 모달창 띄우기
     setShowModal(!showModal);
@@ -15,7 +16,7 @@ const DetailConts = ({ productInfo, bookInfo }) => {
   const navigate = useNavigate(); // 구매후기작성 버튼 클릭 시 구매후기작성 페이지로 이동
 
   const handlePurBtnClick = () => {
-    navigate("/Purchase/");
+    navigate(`/Purchase/${productInfo.itemSellKey}`); // itemSellKey 값 받아서 이동.
     window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
   };
 
