@@ -8,7 +8,6 @@ import StateCategory from "../components/StateCategory";
 import DropDownSort from "../components/DropDownSort";
 import DetailConts from "../components/DetailConts";
 import Footer from "../components/Footer";
-import { productInfosData } from "../asset/productInfosData";
 import axios from "axios";
 
 const BuyDetail = () => {
@@ -17,7 +16,8 @@ const BuyDetail = () => {
   const { itemBuyKey } = useParams();
   const [bookInfo, setBookInfo] = useState([]);
   const [sellerInfo, setSellerInfo] = useState([]);
-  const [sellerNickname, setSellerNickname] = useState([]);
+  const [buyerNickname, setBuyerNickname] = useState();
+
   // 특정 구매희망 도서 가져오기
   const getBookInfo = async () => {
     try {
@@ -41,24 +41,28 @@ const BuyDetail = () => {
       console.error(error);
     }
   };
-  // const getSellerNickname = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:3001//customers/${sellerInfo.sellerKey}`
-  //     );
-  //     console.log(response.data);
-  //     setSellerNickname(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+
+  const getBuyerNickname = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/customers/${bookInfo.custKey}`
+      );
+
+      setBuyerNickname(response.data.nickname);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // 초기 렌더링 시 최상 상태에 해당하는 상품 필터링
   useEffect(() => {
     getBookInfo();
     getSeller();
   }, []);
+
   useEffect(() => {
+    // console.log(bookInfo.custKey, "bookinfo 데이터입니다.");
+    getBuyerNickname();
     handleStateChange("최상");
   }, [sellerInfo]);
 
@@ -84,7 +88,25 @@ const BuyDetail = () => {
     setFilteredProducts(filtered); // 필터링된 상품 업데이트
     console.log(filtered, "필터된 데이터");
   };
-
+  // 카테고리명에 따른 문자열 출력
+  const getCategoryName = (category) => {
+    switch (category) {
+      case "economics":
+        return "경제/경영";
+      case "novels":
+        return "소설/시/희곡";
+      case "comics":
+        return "만화";
+      case "arts":
+        return "예체능";
+      case "science":
+        return "과학";
+      case "essays":
+        return "에세이";
+      default:
+        return "-";
+    }
+  };
   return (
     <>
       <div className="height-container">
@@ -105,7 +127,7 @@ const BuyDetail = () => {
                   <VscChevronRight />
                 </span>
                 <Link to="/">
-                  <span>{bookInfo.category}</span>
+                  <span>{getCategoryName(bookInfo.category)}</span>
                 </Link>
                 <span>
                   <VscChevronRight />
@@ -114,7 +136,7 @@ const BuyDetail = () => {
                   <span>{bookInfo.itemTitle}책제목</span>
                 </Link>
               </div>
-              <DetailTop bookInfo={bookInfo} />
+              <DetailTop bookInfo={bookInfo} buyerNickname={buyerNickname} />
             </div>
             <br />
             <div className="yhw_deailStatCatBox">
