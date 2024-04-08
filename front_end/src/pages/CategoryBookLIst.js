@@ -97,7 +97,7 @@ const CategoryBookList = () => {
           <Button href="/Mypage/RegRequest">상품 등록 요청</Button>
         </PurchaseRequest>
       </PurchaseRequestContainer>
-      <CategoryBanner />
+      <CategoryBanner category={category} />
       {bookList.map((book, index) => (
         <ProductList key={index} bookList={book} />
       ))}
