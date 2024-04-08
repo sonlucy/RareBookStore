@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styled/PurchaseHistory.css";
 import Header from "../components/Header";
@@ -6,16 +6,30 @@ import MyPageSide from "../components/MypageSide";
 import DateInquiry from "../components/DateInquiry";
 import PurInfoBox from "../components/PurInfoBox";
 import Footer from "../components/Footer";
-import usePurInfoData from '../hooks/api/usePurInfoData'; // usePurInfoData 훅 임포트
+import { LoginContext } from "../components/LoginContext";
+import axios from 'axios';
 
 const PurchaseHistory = () => {
-  // usePurInfoData 훅을 호출하여 bookData 상태와 데이터 가져오는 로직 사용
-  const { bookData, fetchBookData } = usePurInfoData();
+  const { isLoggedIn, loginUser } = useContext(LoginContext);
+  const [filteredPurLists, setFilteredPurLists] = useState([]); // aucStatus가 1인(=낙찰된) 요소들만 필터링하여 새로운 배열을 생성 후 저장
 
-  // 컴포넌트 마운트 시 데이터 가져오기
   useEffect(() => {
-    fetchBookData();
-  }, [fetchBookData]);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/buyerbook/${loginUser}`);
+        const buyerbooks = response.data;
+        console.log("사용자의 데이터", buyerbooks);
+        const filteredBuyerbooks = buyerbooks.filter(request => request.aucStatus === 1); // 여기서는 aucStatus가 1인 book 정보를 가져와서 PurInfoBox에 넘겨줌
+        setFilteredPurLists(filteredBuyerbooks);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if (isLoggedIn) {
+      fetchData();
+    }
+  }, [isLoggedIn, loginUser]);
 
   const navigate = useNavigate(); // 구매후기작성 버튼 클릭 시 구매후기작성 페이지로 이동
 
@@ -42,14 +56,14 @@ const PurchaseHistory = () => {
               <span className="yhw_purHistContentsDate">{/* 해당 날짜 표시 */}2024-03-15</span>
               {/* 구매 정보 표시 */}
               <ul className="yhw_purHistLists">
-                <li>
-                  {bookData.itemImg && ( // bookData가 설정되었는지를 확인
-                    <PurInfoBox bookInfos={bookData} />
-                  )}
-                  <div className="yhw_purHistBtns">
-                    <button onClick={handleClick}>구매 후기 작성</button> {/* 후기 작성 완료 시 버튼 비활성화 기능 추가할 예정 */}
-                  </div>
-                </li>
+                {filteredPurLists.map((filteredPurList, index) => (
+                  <li key={index}>
+                    <PurInfoBox bookData={filteredPurList} />
+                    <div className="yhw_purHistBtns">
+                      <button onClick={handleClick}>구매 후기 작성</button>
+                    </div>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
