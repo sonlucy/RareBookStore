@@ -1,9 +1,18 @@
 
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import '../styled/PurchaseReqList.css';
 
 
 const SalesHistoryList = ({ requests }) => {
+  const navigate = useNavigate(); // 현황보기 버튼 클릭 시 BuyDetail 페이지로 이동
+  
+  // 현황보기 버튼 클릭 시 해당 도서 BuyDetail로 이동하는 함수
+  const handleStatusButtonClick = (itemBuyKey) => {
+    navigate(`/BuyDetail/${itemBuyKey}`);
+    window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
+  };
+
   return (
     <div>
       {requests.map((request, index) => (
@@ -40,7 +49,7 @@ const SalesHistoryList = ({ requests }) => {
               ) : (
                 <button className="sbk-status-button">판매 입찰 취소</button> 
                 )}
-            <button className="sbk-status-button">현황 보기</button> {/*  */}
+            <button className="sbk-status-button" onClick={() => handleStatusButtonClick(request.itemBuyKey)}>현황 보기</button> {/*  */}
           </div>
         </div>
       ))}
