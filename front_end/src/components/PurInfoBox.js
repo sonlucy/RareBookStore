@@ -1,50 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styled/PurInfoBox.css";
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import usePurInfoData from '../hooks/api/usePurInfoData'; // usePurInfoData 훅 임포트
 
 const PurInfoBox = () => {
-  const [bookData, setBookData] = useState({
-    itemImg: '',
-    itemTitle: '',
-    author: '',
-    publisher: '',
-    seller: '',
-    sellerKey: '',
-  });
-
+  // usePurInfoData 훅을 호출하여 bookData 상태와 데이터 가져오는 로직 사용
+  const { bookData, fetchBookData } = usePurInfoData();
+  
+  // 컴포넌트 마운트 시 데이터 가져오기
   useEffect(() => {
     fetchBookData();
-  }, []);
+  }, [fetchBookData]);
 
-  const fetchBookData = async () => {
-    try {
-      const response = await axios.get('http://localhost:3001/buyerbook');
-      const data = response.data[0];
-      const sellerNickname = await getSellerNickname(data.custKey);
-      setBookData({
-        itemImg: data.itemImg,
-        itemTitle: data.itemTitle,
-        author: data.author,
-        publisher: data.publisher,
-        seller: sellerNickname,
-        sellerKey: data.custKey //판매자의 custKey 추가
-      });
-    } catch (error) {
-      console.error('Error fetching book data:', error);
-    }
-  };
-
-  const getSellerNickname = async (custKey) => {
-    try {
-      const response = await axios.get(`http://localhost:3001/customers/${custKey}`);
-      return response.data.nickname;
-    } catch (error) {
-      console.error('Error fetching seller nickname:', error);
-      return '';
-    }
-  };
   const navigate = useNavigate();
   const convey = () => { 
     navigate('/SellerInfoPage', { //판매자 정보 페이지로 이동
@@ -53,6 +20,7 @@ const PurInfoBox = () => {
       }
     });
   };
+  // console.log(bookData)
 
   return (
     <div className="yhw_purInfoBox">
