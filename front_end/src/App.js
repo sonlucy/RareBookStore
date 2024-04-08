@@ -27,6 +27,7 @@ import Rank from "./pages/Rank";
 function App() {
   return (
     <div className="App">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"></link>
       <LoginProvider>
         <Routes>
           <Route path="/" element={<Main />}></Route>
