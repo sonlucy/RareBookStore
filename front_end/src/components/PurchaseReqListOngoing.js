@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import '../styled/PurchaseReqList.css';
 import axios from 'axios';
 
@@ -14,6 +15,8 @@ const formatDate = (dateString) => {
 
 
 const PurchaseReqListOngoing = ({ requests }) => {
+  const navigate = useNavigate(); // 현황보기 버튼 클릭 시 BuyDetail 페이지로 이동
+  
   const [ongoingRequests, setOngoingRequests] = useState(requests);
   const handleCancel = (itemBuyKey) => {
     axios.delete(`http://localhost:3001/buyerbook/${itemBuyKey}`)
@@ -27,6 +30,11 @@ const PurchaseReqListOngoing = ({ requests }) => {
       });
   };
 
+  // 현황보기 버튼 클릭 시 해당 도서 BuyDetail로 이동하는 함수
+  const handleStatusButtonClick = (itemBuyKey) => {
+    navigate(`/BuyDetail/${itemBuyKey}`);
+    window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
+  };
 
   return (
     <div>
@@ -58,7 +66,7 @@ const PurchaseReqListOngoing = ({ requests }) => {
 
 
           <div className="sbk-button-container">
-            <button className="sbk-status-button">현황 보기</button> {/* 연결 필요 */}
+            <button className="sbk-status-button" onClick={() => handleStatusButtonClick(request.itemBuyKey)}>현황 보기</button>
             <button onClick={() => handleCancel(request.itemBuyKey)} className="sbk-cancel-button">상품등록 취소</button>
           </div>
         </div>
