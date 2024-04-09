@@ -16,7 +16,7 @@ const BuyDetail = () => {
   const { itemBuyKey } = useParams();
   const [bookInfo, setBookInfo] = useState([]);
   const [sellerInfo, setSellerInfo] = useState([]);
-  const [buyerNickname, setBuyerNickname] = useState();
+  // const [buyerNickname, setBuyerNickname] = useState();
 
   // 특정 구매희망 도서 가져오기
   const getBookInfo = async () => {
@@ -24,6 +24,14 @@ const BuyDetail = () => {
       const response = await axios.get(
         `http://localhost:3001/buyerbook/item/${itemBuyKey}`
       );
+      const bookData = response.data[0];
+
+      // 구매자 정보 가져오기
+      const buyerResponse = await axios.get(`http://localhost:3001/customers/${bookData.custKey}`);
+      const buyerNickname = buyerResponse.data.nickname;
+      // 구매자 닉네임을 bookData에 추가 (bookData = response.data[0];)
+      bookData.buyerNickname = buyerNickname;
+
       setBookInfo(response.data[0]);
     } catch (error) {
       console.error("Error fetching customers:", error);
@@ -42,17 +50,18 @@ const BuyDetail = () => {
     }
   };
 
-  const getBuyerNickname = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/customers/${bookInfo.custKey}`
-      );
+  // getBookInfo() 에서 구매자 닉네임 가져옴
+  // const getBuyerNickname = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:3001/customers/${bookInfo.custKey}`
+  //     );
 
-      setBuyerNickname(response.data.nickname);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     setBuyerNickname(response.data.nickname);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   // 초기 렌더링 시 최상 상태에 해당하는 상품 필터링
   useEffect(() => {
@@ -62,7 +71,7 @@ const BuyDetail = () => {
 
   useEffect(() => {
     // console.log(bookInfo.custKey, "bookinfo 데이터입니다.");
-    getBuyerNickname();
+    // getBuyerNickname();
     handleStateChange("최상");
   }, [sellerInfo]);
 
@@ -136,7 +145,7 @@ const BuyDetail = () => {
                   <span>{bookInfo.itemTitle}책제목</span>
                 </Link>
               </div>
-              <DetailTop bookInfo={bookInfo} buyerNickname={buyerNickname} />
+              <DetailTop bookInfo={bookInfo} /> {/* bookInfo에 구매자 닉네임 정보 포함됨 */}
             </div>
             <br />
             <div className="yhw_deailStatCatBox">
