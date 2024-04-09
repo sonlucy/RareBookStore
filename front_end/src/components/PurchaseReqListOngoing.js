@@ -51,7 +51,12 @@ const PurchaseReqListOngoing = ({ requests }) => {
             <div className='sbk-book-status'>
               <dl className='sbk-book-status-dl'>
                 <dt className='sbk-book-status-dt'>도서상태</dt>
-                <dd className='sbk-book-status-dd'>{request.damage}</dd>
+                <dd className='sbk-book-status-dd'>
+                  {request.damage == 0 ? '최상'
+                  : request.damage == 1 ? '상'
+                  : request.damage >= 2 ? '중'
+                  : '-'}
+                </dd>
               </dl>
               <dl className='sbk-book-status-dl'>
                 <dt className='sbk-book-status-dt'>입찰가</dt>
