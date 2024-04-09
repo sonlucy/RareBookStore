@@ -858,3 +858,23 @@ app.get("/Mypage/search/book", async function (req, res) {
 app.listen(port, () => {
   console.log(` ${port}번 포트에서 서버 실행중`);
 });
+
+// ====================== 기한 넘으면 기한 만료 상태로 바꿔주는 동작 =====================//
+const cron = require('node-cron');
+
+//cron.schedule('*/1 * * * *', async () => { // 동작 확인 위해 매분 실행되게 설정한 부분
+cron.schedule('0 0 * * *', async () => {  // 매일 0시에 실행되도록
+try {
+    // 현재 날짜 가져오기
+    const currentDate = new Date();
+
+    // 현재 날짜보다 expiry가 이전인 buyerbook의 aucStatus를 3으로 업데이트
+    await conn.query(
+      'UPDATE buyerbook SET aucStatus = 3 WHERE STR_TO_DATE(expiry, \'%Y%m%d\') < CURRENT_DATE()'
+    );
+
+    console.log('Expiry 업데이트 완료');
+  } catch (error) {
+    console.error('Expiry 업데이트 중 오류 발생:', error);
+  }
+});
