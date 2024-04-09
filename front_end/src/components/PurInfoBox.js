@@ -11,7 +11,7 @@ import "../styled/PurInfoBox.css";
 //   useEffect(() => {
 //     fetchBookData();
 //   }, [fetchBookData]);
-const PurInfoBox = ({ bookData }) => {
+const PurInfoBox = ({ bookData, orderBookData }) => {
   // 구매하기페이지(Purchase)와 구매내역페이지(PurchaseHistory)에서 사용됨
 
   const navigate = useNavigate();

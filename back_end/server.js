@@ -353,6 +353,18 @@ app.get("/sellerbook/item/:itemBuyKey", (req, res) => {
   });
 });
 
+// 특정 itemSellKey 와 itemBuyKey를 모두 만족하는 값 조회
+app.get("/sellerbook/sellbuy/:itemSellKey/:itemBuyKey", (req, res) => {
+  const itemSellKey = req.params.itemSellKey;
+  const itemBuyKey = req.params.itemBuyKey;
+  const sql =
+    "SELECT * FROM SellerBook WHERE itemSellKey = ? AND itemBuyKey = ?";
+  conn.query(sql, [itemSellKey, itemBuyKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
+
 // 특정 구매자의 구매 희망 책에 대한 판매 희망 책 조회
 app.get("/sellerbook/buyer/:custKey", (req, res) => {
   const custKey = req.params.custKey;
@@ -368,7 +380,7 @@ app.get("/sellerbook/orders/:itemSellKey", (req, res) => {
   const sellerKey = req.params.itemSellKey;
   const sql = "SELECT * FROM SellerBook WHERE itemSellKey = ?";
   conn.query(sql, [sellerKey], (error, results) => {
-if (error) {
+    if (error) {
       console.error("Error fetching customer:", error);
       res.status(500).json({ error: "Internal server error" });
     } else {
@@ -664,6 +676,15 @@ app.get("/orders/seller/:sellerKey", (req, res) => {
     return res.json(data);
   });
 });
+// 특정 판매희망도서 주문 조회
+app.get("/orders/sellkey/:itemSellKey", (req, res) => {
+  const itemSellKey = req.params.itemSellKey;
+  const sql = "SELECT * FROM orders WHERE itemSellKey = ?";
+  conn.query(sql, [itemSellKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
 
 // 주문 삭제
 app.delete("/orders/:itemKey", (req, res) => {
@@ -676,6 +697,36 @@ app.delete("/orders/:itemKey", (req, res) => {
     }
     return res.json({ message: "주문이 삭제되었습니다.", id: itemKey });
   });
+});
+
+const getOrdersByCustomer = (custKey) => {
+  return new Promise((resolve, reject) => {
+    const sql = `
+      SELECT orders.*, SellerBook.sellerKey
+      FROM orders
+      JOIN SellerBook ON orders.itemSellKey = SellerBook.itemSellKey
+      WHERE orders.custKey = ?
+    `;
+    conn.query(sql, [custKey], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
+// 특정 구매자의 주문 조회
+app.get("/orders/customer/:custKey", async (req, res) => {
+  const custKey = req.params.custKey;
+  try {
+    const orders = await getOrdersByCustomer(custKey);
+    res.json(orders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // ========================= order ================================//

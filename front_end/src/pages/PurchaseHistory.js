@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useRouteError } from "react-router-dom";
 import "../styled/PurchaseHistory.css";
 import Header from "../components/Header";
 import MyPageSide from "../components/MypageSide";
@@ -13,7 +13,8 @@ import axios from "axios";
 const PurchaseHistory = () => {
   const { isLoggedIn, loginUser } = useContext(LoginContext);
   const [filteredPurLists, setFilteredPurLists] = useState([]); // aucStatus가 1인(=낙찰된) 요소들만 필터링하여 새로운 배열을 생성 후 저장
-
+  const [selectedBook, setSelectedBook] = useState([]);
+  const [orderBookData, setOrderBookData] = useState([]);
   // 컴포넌트 마운트 시 데이터 가져오기
   useEffect(() => {
     const fetchData = async () => {
@@ -36,11 +37,28 @@ const PurchaseHistory = () => {
       fetchData();
     }
   }, [isLoggedIn, loginUser]);
-
+  useEffect(() => {
+    orderData();
+  }, []);
+  console.log(filteredPurLists, "필터된 데이터");
   const navigate = useNavigate(); // 구매후기작성 버튼 클릭 시 구매후기작성 페이지로 이동
 
-  const handleClick = () => {
-    navigate("/Mypage/PurchaseReview");
+  const orderData = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/orders/customer/${loginUser}`
+      );
+      const orderByCustomer = response.data;
+      console.log("주문한 사용자 정보", orderByCustomer);
+      setOrderBookData(orderByCustomer);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  const handleClick = (index) => {
+    const selectedBookKey = filteredPurLists[index].itemBuyKey; //클릭시 해당 책의 itemBuyKey를 URL에 저장해서 후기 페이지로 넘어감
+    setSelectedBook(selectedBookKey);
+    navigate(`/Mypage/PurchaseReview/${selectedBookKey}`);
   };
 
   return (
@@ -68,7 +86,9 @@ const PurchaseHistory = () => {
                     <li key={index}>
                       <PurInfoBox bookData={filteredPurList} />
                       <div className="yhw_purHistBtns">
-                        <button onClick={handleClick}>구매 후기 작성</button>
+                        <button onClick={() => handleClick(index)}>
+                          구매 후기 작성
+                        </button>
                       </div>
                     </li>
                   ))}
