@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import "../styled/DetailTop.css";
-import axios from "axios";
 
-const DetailTop = ({ bookInfo, buyerNickname }) => {
+const DetailTop = ({ bookInfo }) => {
   return (
     <div className="yhw_detailTopProdBox">
       {" "}
@@ -16,8 +14,8 @@ const DetailTop = ({ bookInfo, buyerNickname }) => {
             <span>
               {bookInfo.author} | {bookInfo.publisher}
             </span>
-            <span className="yhw_detailTopBuyer">구매자 {buyerNickname}</span>
-            {/* <span className="yhw_detailTopBuyer">구매자 {loginUser}</span> */}
+            <span className="yhw_detailTopBuyer">구매자 {bookInfo.buyerNickname}</span>
+            {/* bookInfo.buyerNickname으로 구매자 닉네임 가져옴 */}
           </div>
           <div className="yhw_detailTopProdInfoBottom">
             <span className="yhw_detailTopDeadline">입찰 마감 기한</span>
