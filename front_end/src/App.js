@@ -27,7 +27,10 @@ import Rank from "./pages/Rank";
 function App() {
   return (
     <div className="App">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"></link>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+      ></link>
       <LoginProvider>
         <Routes>
           <Route path="/" element={<Main />}></Route>
@@ -55,7 +58,7 @@ function App() {
           <Route path="QuestionForm" element={<QuestionForm />}></Route>
           <Route path="/Mypage/Profile" element={<Profile />}></Route>
           <Route
-            path="/Mypage/PurchaseReview"
+            path="/Mypage/PurchaseReview/:itemKey"
             element={<PurchaseReview />}
           ></Route>
           <Route path="SellBook/:itemBuyKey" element={<SellBook />}></Route>
