@@ -21,7 +21,7 @@ const PurchaseHistory = () => {
   const [selectedBook, setSelectedBook] = useState([]);
   // 주문한 도서 정보 상태 저장
   const [orderBookData, setOrderBookData] = useState([]);
-  const [reviews, setReview] = useState({});
+  // const [reviews, setReview] = useState({});
 
   // 컴포넌트 마운트 시 데이터 가져오기
   useEffect(() => {
@@ -92,9 +92,6 @@ const PurchaseHistory = () => {
                 <DateInquiry /> {/* 날짜 조회 컴포넌트 일단 대충 만들어둠 */}
               </div>
               <div className="yhw_purHistContentsBox">
-                <span className="yhw_purHistContentsDate">
-                  {/* 해당 날짜 표시 */}2024-03-15
-                </span>
                 {/* 구매 정보 표시 */}
                 <ul className="yhw_purHistLists">
                   {filteredPurLists.map((filteredPurList, index) => (

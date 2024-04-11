@@ -12,7 +12,7 @@ const PurInfoBox = ({ bookData, orderBookData }) => {
 
   //========== 리뷰값 가져오기 =========//
   const Reviews = useGetReviews(itemKey); //리뷰값 가져오기
-  console.log(Reviews);
+  // console.log(Reviews);
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -57,13 +57,12 @@ const PurInfoBox = ({ bookData, orderBookData }) => {
           </span>
         </div>
         <div className="yhw_purInfoTxtBottom">
-          {/* <div className="yhw_purInfoStat">
-            <span>상태 등급</span>
-            <b>{bookDamage}</b>
-          </div> */}
+          <div className="yhw_purInfoStat">
+            <span>구매 날짜</span>
+            <b>{orderBookData.dateBuy.substring(0, 10)}</b>
+          </div>
           <div className="yhw_purInfoPrice">
             <span>판매 입찰가</span>
-
             <b>{orderBookData.price}원</b>
           </div>
         </div>
