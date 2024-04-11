@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
   }, [location.pathname]); // path 바낄때마다 실행
-  
+
   return (
     <div className="App">
       <link
@@ -49,7 +49,7 @@ function App() {
           <Route path="IDPWLogin" element={<IDPWLogin />}></Route>
           <Route path="AdminLogin" element={<AdminLogin />}></Route>
           <Route path="Mypage" element={<Mypage />}></Route>
-          <Route path="/Purchase/:itemBuyKey" element={<Purchase />}></Route>
+          <Route path="/Purchase/:itemSellKey" element={<Purchase />}></Route>
           <Route
             path="/Mypage/PurchaseHistory"
             element={<PurchaseHistory />}

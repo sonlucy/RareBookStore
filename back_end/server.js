@@ -286,6 +286,21 @@ app.put("/buyerbook/:itemBuyKey", (req, res) => {
     }
   );
 });
+app.put("/buyerbook/aucStatus/:itemBuyKey", (req, res) => {
+  const itemBuyKey = req.params.itemBuyKey;
+  const { aucStatus } = req.body;
+  const sql = "UPDATE buyerBook SET aucStatus = ? WHERE itemBuyKey = ?";
+  conn.query(sql, [aucStatus, itemBuyKey], (error, result) => {
+    if (error) return res.json(error);
+    if (result.affectedRows === 0) {
+      return res.json({ message: "해당 책 구매 희망이 없습니다." });
+    }
+    return res.json({
+      message: "aucStatus가 수정되었습니다.",
+      id: itemBuyKey,
+    });
+  });
+});
 
 // 책 구매 희망 삭제
 app.delete("/buyerbook/:itemBuyKey", (req, res) => {
