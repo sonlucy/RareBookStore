@@ -6,15 +6,24 @@ import axios from "axios";
 
 const DetailConts = ({ productInfo, bookInfo }) => {
   const { price, sellerKey, damage } = productInfo; //판매자 정보 가져오기
-  const [showModal, setShowModal] = useState(false); // 판매자 정보 보기 modal - useState
+  //const [showModal, setShowModal] = useState(false); // 판매자 정보 보기 modal - useState
   const [sellerNickname, setSellerNickname] = useState();
   console.log(productInfo, "productInfo 데이터");
-  const toggleModal = () => {
+/*   const toggleModal = () => {
     // 판매자 정보 보기 버튼 클릭 시 모달창 띄우기
     setShowModal(!showModal);
-  };
+  }; */
 
   const navigate = useNavigate(); // 구매후기작성 버튼 클릭 시 구매후기작성 페이지로 이동
+  
+  const convey = () => {
+    navigate("/SellerInfoPage", {
+      //판매자 정보 페이지로 이동
+      state: {
+        custKey: productInfo.sellerKey,
+      },
+    });
+  };
 
   const handlePurBtnClick = () => {
     navigate(`/Purchase/${productInfo.itemSellKey}`); // itemSellKey 값 받아서 이동.
@@ -67,7 +76,7 @@ const DetailConts = ({ productInfo, bookInfo }) => {
       </div>
       <div className="yhw_detailContsRBtns">
         <button onClick={handlePurBtnClick}>구매하기</button>
-        <button onClick={toggleModal}>판매자 정보 보기</button>
+        <button onClick={convey}>판매자 정보 보기</button>
         {/* 판매자 정보 보기 클릭 시 판매자 점수 정보 화면에 출력 ==> 구현중
         {showModal && (
           <div className="modal-content" style={{backgroundColor:"rgba(0, 0, 0, 0.3);"}}>
