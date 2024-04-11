@@ -6,13 +6,13 @@ import axios from "axios";
 
 const DetailConts = ({ productInfo, bookInfo }) => {
   const { price, sellerKey, damage } = productInfo; //판매자 정보 가져오기
-  //const [showModal, setShowModal] = useState(false); // 판매자 정보 보기 modal - useState
+  const [showModal, setShowModal] = useState(false); // 판매자 정보 보기 modal - useState
   const [sellerNickname, setSellerNickname] = useState();
   console.log(productInfo, "productInfo 데이터");
-/*   const toggleModal = () => {
+  const toggleModal = () => {
     // 판매자 정보 보기 버튼 클릭 시 모달창 띄우기
     setShowModal(!showModal);
-  }; */
+  };
 
   const navigate = useNavigate(); // 구매후기작성 버튼 클릭 시 구매후기작성 페이지로 이동
   
@@ -51,7 +51,7 @@ const DetailConts = ({ productInfo, bookInfo }) => {
         <div className="yhw_detailContsLTxt">
           <div className="yhw_detailContsLTop">
             <b>{price}원</b>
-            <span className="yhw_detailContsSeller">
+            <span className="yhw_detailContsSeller" title="판매자 정보 보기" onClick={convey}>
               판매자 : {sellerNickname}
               {/* 판매자 {seller} &#40;등급 {grade}&#41; */}
             </span>
@@ -76,7 +76,7 @@ const DetailConts = ({ productInfo, bookInfo }) => {
       </div>
       <div className="yhw_detailContsRBtns">
         <button onClick={handlePurBtnClick}>구매하기</button>
-        <button onClick={convey}>판매자 정보 보기</button>
+        <button onClick={toggleModal}>판매자 정보 보기</button>
         {/* 판매자 정보 보기 클릭 시 판매자 점수 정보 화면에 출력 ==> 구현중
         {showModal && (
           <div className="modal-content" style={{backgroundColor:"rgba(0, 0, 0, 0.3);"}}>

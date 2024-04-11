@@ -34,6 +34,7 @@
 .yhw_detailContsSeller {
   color: #C87E66;
   margin-top: 10px;
+  cursor: pointer;
 }
 .yhw_detailContsLBottom {
   display: flex;
