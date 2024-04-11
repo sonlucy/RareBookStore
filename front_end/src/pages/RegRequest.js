@@ -92,10 +92,7 @@ function RegRequest() {
                 <h3 className='sbk-purchase-request-form-item-quantity'>상품 전체 &nbsp;{filteredRequests.length}</h3>
               </div>
               {selectedTab === '진행중' && <PurchaseReqListOngoing requests={filteredRequests} />}
-              {selectedTab === '낙찰' && <PurchaseReqListEnd requests={filteredRequests} />}
-              {selectedTab === '기한만료' && <PurchaseReqListEnd requests={filteredRequests} />}
-              {selectedTab !== '진행중' && selectedTab !== '낙찰' && selectedTab !== '기한만료' && <PurchaseReqListEnd requests={filteredRequests} />}
-
+              {(selectedTab === '낙찰' || selectedTab === '기한만료') && <PurchaseReqListEnd requests={filteredRequests} />}
             </div>
           </div>
         </div>
