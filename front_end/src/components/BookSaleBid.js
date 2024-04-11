@@ -1,7 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { LoginContext } from "../components/LoginContext";
+import useGetBuyerInfo from "../hooks/api/useGetBuyerInfo";
+
 import axios from "axios";
 
 const FlexContainer = styled.div`
@@ -77,40 +78,23 @@ const PStyle = styled.p`
   margin-left: 10px;
 `;
 
-function BookSaleBid(props) {
+function BookSaleBid({ itemBuyKey, loginUser, isLoggedIn }) {
   const [selectedConditions, setSelectedConditions] = useState([]);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [price, setsellerPrice] = useState("");
   const navigate = useNavigate();
-  const { isLoggedIn, loginUser } = useContext(LoginContext);
-
-  // 로그인 정보 가져오는 곳
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/customers/${loginUser}`
-        );
-        const users = response.data;
-        console.log("사용자의 데이터", users);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    if (isLoggedIn && loginUser) {
-      fetchData();
-    }
-  }, [isLoggedIn, loginUser]);
+  const buyerCustKey = useGetBuyerInfo(itemBuyKey);
 
   const handleConditionChange = (event) => {
     const value = event.target.value;
-    if (selectedConditions.includes(value)) {
+    const isChecked = event.target.checked;
+
+    if (isChecked) {
+      setSelectedConditions([...selectedConditions, value]);
+    } else {
       setSelectedConditions(
         selectedConditions.filter((item) => item !== value)
       );
-    } else {
-      setSelectedConditions([...selectedConditions, value]);
     }
   };
 
@@ -120,11 +104,18 @@ function BookSaleBid(props) {
 
   // 입력한 정보 가져오는 곳
   const handleSellBookClick = async () => {
+    if (!price) {
+      alert("가격을 설정해주세요.");
+      return; // 가격이 설정되지 않았으면 함수를 여기서 종료합니다.
+    }
+
     if (agreedToTerms) {
       try {
         const sellerBookData = {
-          custKey: loginUser,
-          damage: selectedConditions.join(", "),
+          itemBuyKey: itemBuyKey,
+          custKey: buyerCustKey,
+          sellerKey: loginUser,
+          damage: selectedConditions.length,
           price: price,
         };
 
