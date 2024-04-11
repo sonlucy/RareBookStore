@@ -55,7 +55,8 @@ function SalesHistory() {
             // status는 orders테이블에서 
             status: order ? order.status : 1,/* orders 테이블에 없으면 1을 디폴트값으로 */
 
-            itemId: sellerBook.itemSellKey
+            itemId: sellerBook.itemSellKey,
+            itemBuyKey: sellerBook.itemBuyKey
           };
         });
 
