@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+// import useGetReviews from "../hooks/api/useGetReviews";
 
 const ContentContainer = styled.div`
   width: 100%;
@@ -140,18 +142,6 @@ function ReviewCreate({ purLists, filteredSellerData }) {
   const { damage, price, sellerKey, custKey, itemSellKey } =
     filteredSellerData[0][0];
 
-  //   const getItemKey = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:3001/orders/sellkey/${itemSellKey}`
-  //       );
-  //       const itemKeyNumber = response.data;
-  //       setItemKey(itemKeyNumber[0].itemKey);
-  //       console.log(itemKeyNumber[0]);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
   useEffect(() => {
     const getItemKey = async () => {
       try {
@@ -194,8 +184,15 @@ function ReviewCreate({ purLists, filteredSellerData }) {
 
     console.log(desireValue);
   };
+
+  const navigate = useNavigate();
   const handleReviewSave = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
+
+    if (!selectedStatus || !selectedDesire || !reviewText) {
+      alert("후기를 작성하고 등급을 선택해주세요."); // Display error message
+      return; // Exit the function early
+    }
 
     const custReview = {
       itemKey: itemKey,
@@ -213,6 +210,10 @@ function ReviewCreate({ purLists, filteredSellerData }) {
       setSelectedStatus(null);
       setSelectedDesire(null);
       setReviewText("");
+      // Show success message
+      alert("후기를 성공적으로 남겼습니다.");
+      // Redirect to "/" page
+      navigate("/");
     } catch (error) {
       console.error("Error submitting review:", error);
     }
