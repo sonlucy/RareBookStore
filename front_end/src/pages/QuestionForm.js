@@ -29,6 +29,7 @@ function QuestionItem({ question, replies, index }) {
         <div className="question-content">
           {/* 질문 내용을 표시 */}
           <p>{question.Enquiry}</p>
+          <hr></hr>
           {/* 해당 질문에 대한 답변을 매핑하여 표시 */}
           {replies.map((reply) => (
             <div key={reply.replyKey}>

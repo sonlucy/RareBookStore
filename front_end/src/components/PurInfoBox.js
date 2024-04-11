@@ -1,28 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styled/PurInfoBox.css";
-import usePurInfoData from "../hooks/api/usePurInfoData"; // usePurInfoData 훅 임포트
+import useSellerNickname from "../hooks/api/useSellerNickname";
+import useGetReviews from "../hooks/api/useGetReviews";
 
-const PurInfoBox = () => {
-  // usePurInfoData 훅을 호출하여 bookData 상태와 데이터 가져오는 로직 사용
-  const { bookData, fetchBookData } = usePurInfoData();
+const PurInfoBox = ({ bookData, orderBookData }) => {
+  // orderBookData가 존재하고 유효한 경우에만 판매자 닉네임을 가져오도록 설정
+  const sellerKey = orderBookData ? orderBookData.sellerKey : null;
+  const sellerNickName = useSellerNickname(sellerKey);
+  const itemKey = orderBookData ? orderBookData.itemKey : null;
 
-  // 컴포넌트 마운트 시 데이터 가져오기
+  //========== 리뷰값 가져오기 =========//
+  const Reviews = useGetReviews(itemKey); //리뷰값 가져오기
+  // console.log(Reviews);
+
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetchBookData();
-  }, [fetchBookData]);
+    // orderBookData가 비어 있지 않으면 로딩 상태를 false로 변경
+    if (orderBookData) {
+      setLoading(false);
+    }
+  }, [orderBookData]);
 
   const navigate = useNavigate();
+
   const convey = () => {
     navigate("/SellerInfoPage", {
       //판매자 정보 페이지로 이동
       state: {
-        custKey: bookData.sellerKey,
+        custKey: orderBookData.sellerKey,
       },
     });
   };
-  // console.log(bookData)
+  // console.log(orderBookData, "전달받은 orderBookData");
 
+  if (loading) {
+    return null; // 로딩 중에는 아무것도 렌더링하지 않음
+  }
   return (
     <div className="yhw_purInfoBox">
       <Link to="/detail">
@@ -39,17 +53,17 @@ const PurInfoBox = () => {
             title="판매자 정보 보기"
             onClick={convey}
           >
-            판매자: {bookData.seller}
+            판매자: {sellerNickName}
           </span>
         </div>
         <div className="yhw_purInfoTxtBottom">
           <div className="yhw_purInfoStat">
-            <span>상태 등급</span>
-            <b>최상</b>
+            <span>구매 날짜</span>
+            <b>{orderBookData.dateBuy.substring(0, 10)}</b>
           </div>
           <div className="yhw_purInfoPrice">
             <span>판매 입찰가</span>
-            <b>12,000원</b>
+            <b>{orderBookData.price}원</b>
           </div>
         </div>
       </div>

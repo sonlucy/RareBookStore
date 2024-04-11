@@ -343,6 +343,27 @@ app.get("/sellerbook/seller/:sellerKey", (req, res) => {
     return res.json(data);
   });
 });
+// 특정 itemBuyKey를 통한 조회
+app.get("/sellerbook/item/:itemBuyKey", (req, res) => {
+  const itemBuyKey = req.params.itemBuyKey;
+  const sql = "SELECT * FROM SellerBook WHERE itemBuyKey = ?";
+  conn.query(sql, [itemBuyKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
+
+// 특정 itemSellKey 와 itemBuyKey를 모두 만족하는 값 조회
+app.get("/sellerbook/sellbuy/:itemSellKey/:itemBuyKey", (req, res) => {
+  const itemSellKey = req.params.itemSellKey;
+  const itemBuyKey = req.params.itemBuyKey;
+  const sql =
+    "SELECT * FROM SellerBook WHERE itemSellKey = ? AND itemBuyKey = ?";
+  conn.query(sql, [itemSellKey, itemBuyKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
 
 // 특정 구매자의 구매 희망 책에 대한 판매 희망 책 조회
 app.get("/sellerbook/buyer/:custKey", (req, res) => {
@@ -351,6 +372,24 @@ app.get("/sellerbook/buyer/:custKey", (req, res) => {
   conn.query(sql, [custKey], (error, data) => {
     if (error) return res.json(error);
     return res.json(data);
+  });
+});
+
+// 판매 희망 책 조회
+app.get("/sellerbook/orders/:itemSellKey", (req, res) => {
+  const sellerKey = req.params.itemSellKey;
+  const sql = "SELECT * FROM SellerBook WHERE itemSellKey = ?";
+  conn.query(sql, [sellerKey], (error, results) => {
+    if (error) {
+      console.error("Error fetching customer:", error);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      if (results.length === 0) {
+        res.status(404).json({ error: "Customer not found" });
+      } else {
+        res.json(results);
+      }
+    }
   });
 });
 
@@ -637,6 +676,15 @@ app.get("/orders/seller/:sellerKey", (req, res) => {
     return res.json(data);
   });
 });
+// 특정 판매희망도서 주문 조회
+app.get("/orders/sellkey/:itemSellKey", (req, res) => {
+  const itemSellKey = req.params.itemSellKey;
+  const sql = "SELECT * FROM orders WHERE itemSellKey = ?";
+  conn.query(sql, [itemSellKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
 
 // 주문 삭제
 app.delete("/orders/:itemKey", (req, res) => {
@@ -649,6 +697,36 @@ app.delete("/orders/:itemKey", (req, res) => {
     }
     return res.json({ message: "주문이 삭제되었습니다.", id: itemKey });
   });
+});
+
+const getOrdersByCustomer = (custKey) => {
+  return new Promise((resolve, reject) => {
+    const sql = `
+      SELECT orders.*, SellerBook.sellerKey
+      FROM orders
+      JOIN SellerBook ON orders.itemSellKey = SellerBook.itemSellKey
+      WHERE orders.custKey = ?
+    `;
+    conn.query(sql, [custKey], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
+// 특정 구매자의 주문 조회
+app.get("/orders/customer/:custKey", async (req, res) => {
+  const custKey = req.params.custKey;
+  try {
+    const orders = await getOrdersByCustomer(custKey);
+    res.json(orders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // ========================= order ================================//
@@ -830,4 +908,25 @@ app.get("/Mypage/search/book", async function (req, res) {
 
 app.listen(port, () => {
   console.log(` ${port}번 포트에서 서버 실행중`);
+});
+
+// ====================== 기한 넘으면 기한 만료 상태로 바꿔주는 동작 =====================//
+const cron = require("node-cron");
+
+//cron.schedule('*/1 * * * *', async () => { // 동작 확인 위해 매분 실행되게 설정한 부분
+cron.schedule("0 0 * * *", async () => {
+  // 매일 0시에 실행되도록
+  try {
+    // 현재 날짜 가져오기
+    const currentDate = new Date();
+
+    // 현재 날짜보다 expiry가 이전인 buyerbook의 aucStatus를 3으로 업데이트
+    await conn.query(
+      "UPDATE buyerbook SET aucStatus = 3 WHERE STR_TO_DATE(expiry, '%Y%m%d') < CURRENT_DATE()"
+    );
+
+    console.log("Expiry 업데이트 완료");
+  } catch (error) {
+    console.error("Expiry 업데이트 중 오류 발생:", error);
+  }
 });

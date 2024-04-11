@@ -1,5 +1,6 @@
 import "./styled/App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { LoginProvider } from "./components/LoginContext";
 import Address from "./pages/Address";
 import BuyDetail from "./pages/BuyDetail";
@@ -25,14 +26,22 @@ import XNotFound from "./pages/XNotFound";
 import Rank from "./pages/Rank";
 
 function App() {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
+  }, [location.pathname]); // path 바낄때마다 실행
+  
   return (
     <div className="App">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"></link>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+      ></link>
       <LoginProvider>
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="Address" element={<Address />}></Route>
-          <Route path="BuyDetail" element={<BuyDetail />}></Route>
+          <Route path="BuyDetail/:itemBuyKey" element={<BuyDetail />}></Route>
           <Route
             path="CategoryBookList/:category"
             element={<CategoryBookList />}
@@ -55,7 +64,7 @@ function App() {
           <Route path="QuestionForm" element={<QuestionForm />}></Route>
           <Route path="/Mypage/Profile" element={<Profile />}></Route>
           <Route
-            path="/Mypage/PurchaseReview"
+            path="/Mypage/PurchaseReview/:itemKey"
             element={<PurchaseReview />}
           ></Route>
           <Route path="SellBook/:itemBuyKey" element={<SellBook />}></Route>
