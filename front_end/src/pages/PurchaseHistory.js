@@ -100,10 +100,17 @@ const PurchaseHistory = () => {
                         bookData={filteredPurList}
                         orderBookData={orderBookData[index]} // 주문한 도서 정보 전달
                       />
-                      <div className="yhw_purHistBtns">
+                      {/* <div className="yhw_purHistBtns">
                         <button onClick={() => handleClick(index)}>
                           구매 후기 작성
                         </button>
+                      </div> */}
+                      <div className="yhw_purHistBtns">
+                        {orderBookData.length > 0 && (
+                          <button onClick={() => handleClick(index)}>
+                            구매 후기 작성
+                          </button>
+                        )}
                       </div>
                     </li>
                   ))}
