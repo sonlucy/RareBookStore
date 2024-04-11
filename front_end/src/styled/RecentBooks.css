@@ -47,6 +47,10 @@
   width: 200px;
   height: auto;
   object-fit: cover;
+  border-radius: 7px;
+  box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  transform: perspective(1500px) rotateX(-5deg) rotateY(15deg) scale(0.95);
 }
 .sbk-BookCard h3 {
     font-size: 0.9375rem;/*  15px; */
@@ -109,3 +113,17 @@
     font-size: 14px;
   }
 }
+.sbk-SliderContainer:hover .sbk-BookCardContainer {
+  transform: translateX(calc(-100% + 100px)); /* 슬라이더를 오른쪽으로 이동 */
+}
+
+.sbk-SliderContainer:hover .sbk-NextButton + .sbk-BookCardContainer {
+  transform: translateX(calc(100% - 100px)); /* 슬라이더를 왼쪽으로 이동 */
+}
+
+
+.sbk-BookCard:hover img {
+  transform: perspective(1500px) rotateX(0deg) rotateY(0deg) scale(1);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
