@@ -3,16 +3,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import '../styled/PurchaseReqList.css';
 import axios from 'axios';
-
-const formatDate = (dateString) => {
-  const dateStringAsStr = dateString.toString(); // int -> string
-
-  const year = dateStringAsStr.slice(0, 4);
-  const month = dateStringAsStr.slice(4, 6);
-  const day = dateStringAsStr.slice(6, 8);
-
-  return `${year}-${month}-${day}`;
-};
+import { formatDate } from '../hooks/useFormatDate';
 
 const SalesHistoryList = ({ requests }) => {
 

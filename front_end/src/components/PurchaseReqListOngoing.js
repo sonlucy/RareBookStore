@@ -2,17 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import '../styled/PurchaseReqList.css';
 import axios from 'axios';
-
-const formatDate = (dateString) => {
-  const dateStringAsStr = dateString.toString(); // int -> string
-
-  const year = dateStringAsStr.slice(0, 4);
-  const month = dateStringAsStr.slice(4, 6);
-  const day = dateStringAsStr.slice(6, 8);
-
-  return `${year}-${month}-${day}`;
-};
-
+import { formatDate } from '../hooks/useFormatDate';
 
 const PurchaseReqListOngoing = ({ requests }) => {
   const navigate = useNavigate(); // 현황보기 버튼 클릭 시 BuyDetail 페이지로 이동
@@ -51,7 +41,12 @@ const PurchaseReqListOngoing = ({ requests }) => {
             <div className='sbk-book-status'>
               <dl className='sbk-book-status-dl'>
                 <dt className='sbk-book-status-dt'>도서상태</dt>
-                <dd className='sbk-book-status-dd'>{request.damage}</dd>
+                <dd className='sbk-book-status-dd'>
+                  {request.damage == 0 ? '최상'
+                  : request.damage == 1 ? '상'
+                  : request.damage >= 2 ? '중'
+                  : '-'}
+                </dd>
               </dl>
               <dl className='sbk-book-status-dl'>
                 <dt className='sbk-book-status-dt'>입찰가</dt>
