@@ -17,15 +17,15 @@
   border-radius: 8px;
   margin: 1vw;
 
-  width: 127px;
-  height: 187px;
+  width: 150px;
+  height: 210px;
   max-width: 170px; 
 /*   max-height: 250px; */
   margin: 1.5vw 2vw;
 }
 
 .sbk-text-container {
-  width: 10rem;
+  width: 30rem;
   text-align: left;
   margin: 1.5vw 2vw;
 }
@@ -110,14 +110,32 @@ background-color: #ab705c;
   margin-inline-start: 9rem;
   width: 100px;
 }
+
+.sbk_purHistContentsDate {
+  font-size: 1rem;
+  font-weight: 600;
+  /* background-color: hsla(0, 94%, 68%, 0.466); */
+}
+@media screen and (max-width: 2000px) {
+  .sbk-text-container {
+    width: 20rem;
+  }
+}
+@media screen and (max-width: 1650px) {
+  .sbk-text-container {
+    width: 10rem;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .sbk-text-container {
+    width: 18vw;
+  }
+}
 @media screen and (max-width: 930px) {
 /*   .sbk-book-image {
     width: 120px;
   } */
 
-  .sbk-text-container {
-    width: 7rem;
-  }
 
   .sbk-book-title {
     font-size: 1rem;
@@ -171,11 +189,16 @@ background-color: #ab705c;
 .sbk-purchase-req-card {
   display: flex;
   flex-wrap: wrap; /* 넘치는 요소들을 다음 줄로 이동하도록 설정 */
+  justify-content: center;
+    margin: 0 auto;
 }
 
 .sbk-book-image,
 .sbk-text-container {
   flex: 0 0 auto; /* 유연한 크기를 가지지 않도록 설정 */
+  width: 70%;
+  height: auto;
+/*   margin: 0 auto; */
 }
 
 .sbk-button-container {
@@ -184,11 +207,13 @@ background-color: #ab705c;
   display: flex;
   flex-direction: row; 
   right: 0;
+    justify-content: center;
+    margin: 0 auto;
 }
 .sbk-status-button,
 .sbk-cancel-button {
   margin-right: 0.5rem;
-  width: 100%;
+/*   width: 100%; */
 }
 }
 @media screen and (max-width: 498px) {
@@ -201,6 +226,14 @@ background-color: #ab705c;
   .sbk-cancel-button {
     margin-right: 0.5rem;
     width: 100%;
+  }
+
+  .sbk-book-image,
+  .sbk-text-container {
+    flex: 0 0 auto;
+    /* 유연한 크기를 가지지 않도록 설정 */
+    width: 90%;
+    height: auto;
   }
 }
 
