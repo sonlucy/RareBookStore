@@ -1,5 +1,6 @@
 import "./styled/App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { LoginProvider } from "./components/LoginContext";
 import Address from "./pages/Address";
 import BuyDetail from "./pages/BuyDetail";
@@ -25,6 +26,11 @@ import XNotFound from "./pages/XNotFound";
 import Rank from "./pages/Rank";
 
 function App() {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
+  }, [location.pathname]); // path 바낄때마다 실행
+  
   return (
     <div className="App">
       <link
