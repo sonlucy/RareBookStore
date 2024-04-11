@@ -4,6 +4,16 @@ import { useNavigate } from "react-router-dom";
 import '../styled/PurchaseReqList.css';
 import axios from 'axios';
 
+const formatDate = (dateString) => {
+  const dateStringAsStr = dateString.toString(); // int -> string
+
+  const year = dateStringAsStr.slice(0, 4);
+  const month = dateStringAsStr.slice(4, 6);
+  const day = dateStringAsStr.slice(6, 8);
+
+  return `${year}-${month}-${day}`;
+};
+
 const SalesHistoryList = ({ requests }) => {
 
   const navigate = useNavigate(); // 현황보기 버튼 클릭 시 BuyDetail 페이지로 이동
@@ -32,7 +42,11 @@ const SalesHistoryList = ({ requests }) => {
   return (
     <div>
       {requests.map((request, index) => (
-        <div className="sbk-purchase-req-card" key={index}>
+        <div className="sbk_sellHistContentsBox" key={index}>
+        <span className="sbk_purHistContentsDate">
+          {new Date(request.dateEnroll).toLocaleDateString()}{/* 판매희망을 등록한 날짜 */}
+        </span>
+        <div className="sbk-purchase-req-card">
 {/*           <div className='sbk-list-inner-container'>
           </div> */}
           <img className="sbk-book-image" src={request.itemImg} alt={request.itemTitle} />
@@ -54,7 +68,7 @@ const SalesHistoryList = ({ requests }) => {
               </dl>
               <dl className='sbk-book-status-dl'>
                 <dt className='sbk-book-status-dt'>입찰만료기한</dt>
-                <dd className='sbk-book-status-dd' style={{ color: '#EB217C' }}>{request.expiry}</dd>
+                <dd className='sbk-book-status-dd' style={{ color: '#EB217C' }}>{formatDate(request.expiry)}</dd>
               </dl>
             </div>
           </div>
@@ -68,6 +82,7 @@ const SalesHistoryList = ({ requests }) => {
               <button className="sbk-status-button" onClick={() => handleStatusButtonClick(request.itemBuyKey)}>현황 보기</button> {/* */}
           </div>
         </div>
+      </div>
       ))}
     </div>
   );
