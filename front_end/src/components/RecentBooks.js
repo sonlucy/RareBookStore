@@ -7,6 +7,36 @@ const RecentBooks = ({ books, titleText }) => {
   const containerRef = useRef(null);
   const [startIndex, setStartIndex] = useState(0);
   const [cardWidth, setCardWidth] = useState(0);
+  const [intervalId, setIntervalId] = useState(null);
+const [hoverAreaWidth, setHoverAreaWidth] = useState(100); // 초기값 설정
+
+useEffect(() => {
+  // 화면 크기가 변경될 때마다 hoverAreaWidth를 업데이트
+  const updateHoverAreaWidth = () => {
+    const screenWidth = window.innerWidth;
+    // 화면 크기에 따라 hover 영역의 너비를 동적으로 설정
+    if (screenWidth <= 425) {
+      setHoverAreaWidth(50); 
+    } else if (screenWidth <= 768) {
+      setHoverAreaWidth(100);
+    } else if (screenWidth <= 1440) {
+      setHoverAreaWidth(180); 
+    } else {
+      setHoverAreaWidth(300); 
+    }
+  };
+
+  // 컴포넌트가 마운트될 때 한 번 실행
+  updateHoverAreaWidth();
+
+  // 화면 크기 변경 이벤트 리스너 등록
+  window.addEventListener('resize', updateHoverAreaWidth);
+
+  // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+  return () => {
+    window.removeEventListener('resize', updateHoverAreaWidth);
+  };
+}, []);
 
   useEffect(() => {
     // 컴포넌트가 마운트될 때 도서 카드의 너비를 측정하여 상태로 저장
@@ -39,6 +69,44 @@ const RecentBooks = ({ books, titleText }) => {
     setStartIndex(nextIndex);
   };
 
+
+const handleMouseHover = (event) => {
+  const containerRect = containerRef.current.getBoundingClientRect();
+  const containerWidth = containerRef.current.clientWidth;
+  const mousePositionX = event.clientX - containerRect.left;
+  //const hoverAreaWidth = 100;
+  const visibleCount = Math.floor(containerRef.current.clientWidth / cardWidth);
+
+  // 마우스가 왼쪽 영역에 있는지 확인
+  const isLeftHover = mousePositionX <= hoverAreaWidth;
+  // 마우스가 오른쪽 영역에 있는지 확인
+  const isRightHover = mousePositionX >= containerWidth - hoverAreaWidth;
+
+  // 이전에 설정된 타이머가 있다면 취소
+  if (intervalId) {
+    clearTimeout(intervalId);
+  }
+
+  // 일정 시간 후에 호버 상태를 확인하고 인덱스 업데이트
+  const newIntervalId = setTimeout(() => {
+    if (isLeftHover) {
+      // 왼쪽 영역에 호버한 경우
+      const prevIndex = Math.max(startIndex - 1, 0);
+      setStartIndex(prevIndex);
+    } else if (isRightHover) {
+      // 오른쪽 영역에 호버한 경우
+      const nextIndex = Math.min(startIndex + 1, books.length - visibleCount);
+      setStartIndex(nextIndex);
+    }
+  }, 50); 
+
+  // 새로운 타이머 ID 저장
+  setIntervalId(newIntervalId);
+};
+
+
+
+
   const handlePrev = () => {
     const visibleCount = Math.floor(containerRef.current.clientWidth / cardWidth);
     const prevIndex = Math.max(startIndex - 1, 0);
@@ -53,7 +121,9 @@ const RecentBooks = ({ books, titleText }) => {
       <Link to="/booklist" className='sbk-BookListLink'>
         <h2>{titleText}  <FaChevronRight /></h2>  {/* 클릭하면 도서리스트 페이지로 이동 */}
       </Link>
-      <div className="sbk-SliderContainer" ref={containerRef}>
+      <div className="sbk-SliderContainer" onMouseMove={(event) => handleMouseHover(event)} ref={containerRef}>
+
+
         <button className="sbk-PrevButton" onClick={handlePrev} disabled={isPrevDisabled}>
           <span className="sbk-Icon">
             <FaChevronLeft />
@@ -72,6 +142,7 @@ const RecentBooks = ({ books, titleText }) => {
             <FaChevronRight />
           </span>
         </button>
+
       </div>
     </div >
   );
