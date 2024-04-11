@@ -28,7 +28,7 @@ const PurInfoBox = ({ bookData, orderBookData }) => {
     navigate("/SellerInfoPage", {
       //판매자 정보 페이지로 이동
       state: {
-        custKey: bookData.sellerKey,
+        custKey: orderBookData.sellerKey,
       },
     });
   };
