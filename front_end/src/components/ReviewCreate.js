@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 // import useGetReviews from "../hooks/api/useGetReviews";
+import useSellerNickname from "../hooks/api/useSellerNickname";
 
 const ContentContainer = styled.div`
   width: 100%;
@@ -138,9 +139,9 @@ function ReviewCreate({ purLists, filteredSellerData }) {
   const [selectedDesire, setSelectedDesire] = useState(null);
   const [reviewText, setReviewText] = useState("");
   const [itemKey, setItemKey] = useState("");
-
   const { damage, price, sellerKey, custKey, itemSellKey } =
     filteredSellerData[0][0];
+  const sellerNickname = useSellerNickname(sellerKey);
 
   useEffect(() => {
     const getItemKey = async () => {
@@ -243,7 +244,7 @@ function ReviewCreate({ purLists, filteredSellerData }) {
                   color: "#C87E66",
                 }}
               >
-                판매자 custKey: {sellerKey}
+                판매자: {sellerNickname}
               </span>
               <span style={{ fontSize: "16px", fontWeight: "medium" }}>
                 상태 등급{" "}

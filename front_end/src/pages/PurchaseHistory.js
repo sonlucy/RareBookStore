@@ -6,13 +6,12 @@ import MyPageSide from "../components/MypageSide";
 import DateInquiry from "../components/DateInquiry";
 import PurInfoBox from "../components/PurInfoBox";
 import Footer from "../components/Footer";
-import usePurInfoData from "../hooks/api/usePurInfoData"; // usePurInfoData 훅 임포트
+// import usePurInfoData from "../hooks/api/usePurInfoData"; // usePurInfoData 훅 임포트
 import useGetReviews from "../hooks/api/useGetReviews";
 import { LoginContext } from "../components/LoginContext";
 import axios from "axios";
 
 const PurchaseHistory = () => {
-  const { bookData, fetchBookData } = usePurInfoData();
   // 사용자 로그인 상태 및 정보 가져오기
   const { isLoggedIn, loginUser } = useContext(LoginContext);
   // 구매 내역 필터링 및 상태 저장
@@ -100,11 +99,7 @@ const PurchaseHistory = () => {
                         bookData={filteredPurList}
                         orderBookData={orderBookData[index]} // 주문한 도서 정보 전달
                       />
-                      {/* <div className="yhw_purHistBtns">
-                        <button onClick={() => handleClick(index)}>
-                          구매 후기 작성
-                        </button>
-                      </div> */}
+
                       <div className="yhw_purHistBtns">
                         {orderBookData.length > 0 && (
                           <button onClick={() => handleClick(index)}>

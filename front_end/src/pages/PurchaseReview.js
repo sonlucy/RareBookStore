@@ -8,7 +8,7 @@ import { LoginContext } from "../components/LoginContext";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-function PurchaseReview(props) {
+function PurchaseReview() {
   const { loginUser, isLoggedIn } = useContext(LoginContext);
   const [BookOrderData, setBookOrderData] = useState([]);
   const [purLists, setPurLists] = useState([]);
