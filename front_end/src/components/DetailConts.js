@@ -15,6 +15,15 @@ const DetailConts = ({ productInfo, bookInfo }) => {
   };
 
   const navigate = useNavigate(); // 구매후기작성 버튼 클릭 시 구매후기작성 페이지로 이동
+  
+  const convey = () => {
+    navigate("/SellerInfoPage", {
+      //판매자 정보 페이지로 이동
+      state: {
+        custKey: productInfo.sellerKey,
+      },
+    });
+  };
 
   const handlePurBtnClick = () => {
     navigate(`/Purchase/${productInfo.itemSellKey}`); // itemSellKey 값 받아서 이동.
@@ -42,7 +51,7 @@ const DetailConts = ({ productInfo, bookInfo }) => {
         <div className="yhw_detailContsLTxt">
           <div className="yhw_detailContsLTop">
             <b>{price}원</b>
-            <span className="yhw_detailContsSeller">
+            <span className="yhw_detailContsSeller" title="판매자 정보 보기" onClick={convey}>
               판매자 : {sellerNickname}
               {/* 판매자 {seller} &#40;등급 {grade}&#41; */}
             </span>
