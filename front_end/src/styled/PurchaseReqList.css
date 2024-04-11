@@ -114,8 +114,8 @@ background-color: #ab705c;
 .sbk_purHistContentsDate {
   font-size: 1rem;
   font-weight: 600;
-  /* background-color: hsla(0, 94%, 68%, 0.466); */
 }
+
 @media screen and (max-width: 2000px) {
   .sbk-text-container {
     width: 20rem;
@@ -131,6 +131,7 @@ background-color: #ab705c;
     width: 18vw;
   }
 }
+
 @media screen and (max-width: 930px) {
 /*   .sbk-book-image {
     width: 120px;

@@ -56,6 +56,7 @@ function SalesHistory() {
             status: order ? order.status : 1,/* orders 테이블에 없으면 1을 디폴트값으로 */
 
             itemId: sellerBook.itemSellKey,
+            dateEnroll: sellerBook.dateEnroll,
             itemBuyKey: sellerBook.itemBuyKey
           };
         });
