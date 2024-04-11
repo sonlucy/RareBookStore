@@ -4,8 +4,9 @@ import "../styled/PurchaseHistory.css";
 import Header from "../components/Header";
 import MyPageSide from "../components/MypageSide";
 import DateInquiry from "../components/DateInquiry";
-import PurHistInfoBox from "../components/PurInfoBox";
+import PurInfoBox from "../components/PurInfoBox";
 import Footer from "../components/Footer";
+// import usePurInfoData from "../hooks/api/usePurInfoData"; // usePurInfoData 훅 임포트
 import useGetReviews from "../hooks/api/useGetReviews";
 import { LoginContext } from "../components/LoginContext";
 import axios from "axios";
@@ -94,7 +95,7 @@ const PurchaseHistory = () => {
                 <ul className="yhw_purHistLists">
                   {filteredPurLists.map((filteredPurList, index) => (
                     <li key={index}>
-                      <PurHistInfoBox
+                      <PurInfoBox
                         bookData={filteredPurList}
                         orderBookData={orderBookData[index]} // 주문한 도서 정보 전달
                       />
