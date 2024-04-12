@@ -191,8 +191,8 @@ function ReviewCreate({ purLists, filteredSellerData }) {
     e.preventDefault(); // Prevent default form submission behavior
 
     if (!selectedStatus || !selectedDesire || !reviewText) {
-      alert("후기를 작성하고 등급을 선택해주세요."); // Display error message
-      return; // Exit the function early
+      alert("후기를 작성하고 등급을 선택해주세요.");
+      return;
     }
 
     const custReview = {
@@ -206,14 +206,13 @@ function ReviewCreate({ purLists, filteredSellerData }) {
 
     try {
       // Send a POST request to save the review data
+      // 리뷰 저장하기 위해 POST 요청
       await axios.post("http://localhost:3001/reviews", custReview);
-      // Clear the input fields after successful submission
+      // Post요청 성공후 값 초기화
       setSelectedStatus(null);
       setSelectedDesire(null);
       setReviewText("");
-      // Show success message
       alert("후기를 성공적으로 남겼습니다.");
-      // Redirect to "/" page
       navigate("/");
     } catch (error) {
       console.error("Error submitting review:", error);
@@ -258,7 +257,6 @@ function ReviewCreate({ purLists, filteredSellerData }) {
             <RadioButtonContainer>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <LableComponent>상태 만족도</LableComponent>
-                {/* <label style={{ marginRight: `5px`, fontSize:'15px', fontWeight:'bold', width:'100px', textAlign:'right' }}>상태 만족도</label> */}
                 <RadioButtonLabel
                   isSelected={selectedStatus === "1"}
                   onClick={() => handleStatusChange("1")}
@@ -299,7 +297,6 @@ function ReviewCreate({ purLists, filteredSellerData }) {
             <RadioButtonContainer>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <LableComponent>재거래 희망</LableComponent>
-                {/* <label style={{ marginRight: `5px`, fontSize:'15px', fontWeight:'bold', width:'100px', textAlign:'right' }}>재거래 희망</label> */}
                 <RadioButtonLabel
                   isSelected={selectedDesire === 4}
                   onClick={() => handleDesireChange("yes")}
@@ -317,7 +314,6 @@ function ReviewCreate({ purLists, filteredSellerData }) {
             </RadioButtonContainer>
             <ReviewTextWriteContainer>
               <LableComponent htmlFor="reviewText">후기</LableComponent>
-              {/* <label htmlFor="reviewText" style={{ fontSize:'15px', fontWeight:'bold', width:'100px', textAlign:'right' }}>후기</label> */}
               <ReviewTextWrite
                 id="reviewText"
                 placeholder="후기를 작성해주세요..."
