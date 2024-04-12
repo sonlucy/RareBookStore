@@ -23,19 +23,17 @@ const Header = () => {
   };
 
   const handleSearchSubmit = () => {
-    if (searchTerm.trim() !== "") {
+    if (searchTerm.trim().length >= 2) {
       /* ${window.location.origin} */
-      if (location.pathname === "/") {
-        // 메인 페이지인 경우
-        //navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
-        navigate(`CategoryBookList/search?q=${encodeURIComponent(searchTerm)}`);
-      } else {
-        // 다른 페이지인 경우
-        navigate(`${location.pathname}/search?q=${encodeURIComponent(searchTerm)}`);
-        //navigate(`CategoryBookList/search?q=${encodeURIComponent(searchTerm)}`);
-      }
-      
+    if (location.pathname === "/CategoryBookList/") { // 특정 카테고리에 있을 경우
+      navigate(`/CategoryBookList/search?q=${encodeURIComponent(searchTerm)}`);
+    } else { //다른 모든 페이지의 경우, 검색 시 전체 카테고리에서 검색되도록
+      navigate(`/CategoryBookList/all/search?q=${encodeURIComponent(searchTerm)}`);
+    }
+
       window.location.reload();
+    } else {
+    alert("두 글자 이상 입력해주세요.");
     }
   };
 
@@ -128,6 +126,16 @@ const Header = () => {
 
         <div className="sbk-nav-container">
           <dl>
+            <dt>
+              <NavLink
+                to="/CategoryBookList/all"
+                className="sbk-menu-item"
+                activeClassName="active"
+                onClick={handleItemClick}
+              >
+                전체
+              </NavLink>
+            </dt>
             <dt>
               <NavLink
                 // to="/economics"

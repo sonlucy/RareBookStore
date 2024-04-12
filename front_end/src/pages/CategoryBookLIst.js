@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { serverURL } from "../config";
 
 // ============== Style component ============== //
 const PurchaseRequestContainer = styled.div`
@@ -49,20 +50,28 @@ const Button = styled.a`
 
 
 const CategoryBookList = () => {
-  // 카테고리이름 가져오기
   const [bookList, setBookList] = useState([]);
-  const { category, search } = useParams();
+  const { category, search } = useParams();  //URL에서 파라미터 가져오기 위함
 
 const getBuyBookList = async () => {
   try {
-    const response = await axios.get(
-      `http://localhost:3001/buyerbook/category/${category}`
-    );
+    let response;
+    if (category!=='all') {
+      // 특정 카테고리가 있는 경우
+      response = await axios.get(
+        `${serverURL}/buyerbook/category/${category}`
+      );
+    } else {
+      // 카테고리가 모든 도서인 경우 (all)
+      response = await axios.get(`${serverURL}/buyerbook`);
+    }
     const data = response.data;
     const updatedBookList = await getUserNicknames(data);
+    //console.log(updatedBookList, 'updatedBookList')
 
     // URL에서 검색어 가져오기
     const queryString = window.location.search;
+    console.log(queryString, "queryString")
     const urlParams = new URLSearchParams(queryString);
     const searchQuery = urlParams.get('q');
     console.log("검색어:", searchQuery);
@@ -83,12 +92,13 @@ const getBuyBookList = async () => {
 };
 
 
+
   const getUserNicknames = async (data) => {
     try {
       const custKeys = data.map((user) => user.custKey);
       const responses = await Promise.all(
         custKeys.map((custKey) =>
-          axios.get(`http://localhost:3001/customers/${custKey}`)
+          axios.get(`${serverURL}/customers/${custKey}`)
         )
       );
       const nickNames = responses.map((response) => response.data.nickname);
