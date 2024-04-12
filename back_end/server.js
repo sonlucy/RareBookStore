@@ -86,6 +86,24 @@ app.get("/customers/:custKey", (req, res) => {
   });
 });
 
+// customer테이블의 userid가 userId인 행의 custKey 조회
+app.get("/customers/userInfo/:userid", (req, res) => {
+  const userid = req.params.userid;
+  const sql = `SELECT custKey FROM customers WHERE userid = ${userid}`;
+  conn.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error fetching customer:", error);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      if (results.length === 0) {
+        res.status(404).json({ error: "Customer not found" });
+      } else {
+        res.json(results[0]); // 첫 번째 고객 정보 반환
+      }
+    }
+  });
+});
+
 // 특정회원 point, grade 업데이트
 app.put("/updateCustomerPoint/:custKey", (req, res) => {
   const custKey = req.params.custKey;
