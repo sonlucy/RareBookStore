@@ -18,6 +18,7 @@ function SalesHistory() {
       try {
         const responsebuyerbooks = await axios.get(`http://localhost:3001/buyerbook`);
         const allbuyerbooks = responsebuyerbooks.data; // 모든 구매 희망 도서
+        console.log('모든구매희망도서',allbuyerbooks)
 
         const responseSeller = await axios.get(`http://localhost:3001/sellerbook/seller/${loginUser}`); //특정 판매자의 판매 희망 책 조회
         const sellerBooks = responseSeller.data;
@@ -25,9 +26,19 @@ function SalesHistory() {
         const responseOrders = await axios.get(`http://localhost:3001/orders/seller/${loginUser}`); // 판매자의 key
         const orders  = responseOrders.data;
         
+        //const responseSeller = await axios.get(`http://localhost:3001/buyerbook/${loginUser}`);
+        
+        //console.log("셀러책",sellerBooks);
+        //console.log("셀러오더", orders);
+        //console.log("판매자의 itembuyey",sellerBooks.itemBuyKey)
+        
         const salesHistoryData = sellerBooks.map(sellerBook => {
+          const order = orders.find(order => order.itemSellKey === sellerBook.itemSellKey);
+          //console.log('오더의 itemSellKey',order.itemSellKey, "셀러의 itemSellKey", sellerBook.itemSellKey)
+          
           // 모든 구매 희망 도서에서, itemBuyKey 같은 것만 출력
           const matchingBuyerBook = allbuyerbooks.find(buyerBook => buyerBook.itemBuyKey === sellerBook.itemBuyKey);
+          // 판매 기록의 각 항목 구성
           return {
             
             // itemImg, itemTitle, author, publisher, expiry는 buyerbook 테이블에서(itemBuyKey로)
@@ -42,7 +53,7 @@ function SalesHistory() {
             price: sellerBook.price,
             
             // status는 orders테이블에서 
-            status: orders.status,
+            status: order ? order.status : 1,/* orders 테이블에 없으면 1을 디폴트값으로 */
 
             itemId: sellerBook.itemSellKey,
             dateEnroll: sellerBook.dateEnroll,
@@ -51,6 +62,7 @@ function SalesHistory() {
         });
 
         setSalesHistory(salesHistoryData);
+        console.log("최종전달배열", salesHistoryData)
 
 
       } catch (error) {
