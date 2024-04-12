@@ -4,8 +4,9 @@ import "../styled/PurchaseHistory.css";
 import Header from "../components/Header";
 import MyPageSide from "../components/MypageSide";
 import DateInquiry from "../components/DateInquiry";
-import PurHistInfoBox from "../components/PurInfoBox";
+import PurInfoBox from "../components/PurInfoBox";
 import Footer from "../components/Footer";
+// import usePurInfoData from "../hooks/api/usePurInfoData"; // usePurInfoData 훅 임포트
 import useGetReviews from "../hooks/api/useGetReviews";
 import { LoginContext } from "../components/LoginContext";
 import axios from "axios";
@@ -68,11 +69,10 @@ const PurchaseHistory = () => {
   };
   // 후기 작성 버튼 클릭 시 처리 함수
   const handleClick = (index) => {
-    // //클릭시 해당 책의 itemBuyKey를 URL에 저장해서 후기 페이지로 넘어감
+    //클릭시 해당 책의 itemBuyKey를 URL에 저장해서 후기 페이지로 넘어감
     const selectedBookKey = filteredPurLists[index].itemBuyKey;
     setSelectedBook(selectedBookKey);
-    // navigate(`/Mypage/PurchaseReview/${selectedBookKey}`);
-    navigate(`/Mypage/PurchaseReview/${selectedBookKey}}`);
+    navigate(`/Mypage/PurchaseReview/${selectedBookKey}`);
   };
 
   return (
@@ -95,17 +95,17 @@ const PurchaseHistory = () => {
                 <ul className="yhw_purHistLists">
                   {filteredPurLists.map((filteredPurList, index) => (
                     <li key={index}>
-                      <PurHistInfoBox
+                      <PurInfoBox
                         bookData={filteredPurList}
                         orderBookData={orderBookData[index]} // 주문한 도서 정보 전달
                       />
 
                       <div className="yhw_purHistBtns">
-                        {/* {orderBookData.length > 0 && ( */}
+                        {orderBookData.length > 0 && (
                           <button onClick={() => handleClick(index)}>
                             구매 후기 작성
                           </button>
-                        {/* )} */}
+                        )}
                       </div>
                     </li>
                   ))}

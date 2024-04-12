@@ -1,23 +1,62 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../styled/DestForm.css";
 // import { defShippingData } from "../asset/defShippingData";  // TestData 폴더에 저장된 기본 배송지 정보를 가져옴
-import useUserAddr from "../hooks/api/useUserAddr"; // usePurInfoData 훅 임포트
+import { LoginContext } from "../components/LoginContext";
+import axios from "axios";
 
 const DestForm = ({ isChecked }) => { // 페이지파일(= Purchase.js)에 있는 isChecked를 props로 받아옴
-  const { userAddr, setUserAddr, getAddr, setGetAddr } = useUserAddr();  // useUserAddr 훅 사용
+  const { loginUser } = useContext(LoginContext);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserAddr({ ...userAddr, [name]: value });
   };
+  const [user, setUser] = useState([]);
+  const [userAddr, setUserAddr] = useState({
+    custKey: loginUser,
+    name: "",
+    tel: "",
+    postcode: "",
+    addr: "",
+    addrDetail: "",
+  });
+  const [getAddr, setGetAddr] = useState([]);
+
+  const getCustomer = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/customers/${loginUser}`
+      );
+      setUser(response.data);
+    } catch (error) {
+      console.error("Error fetching customers:", error);
+    }
+  };
+
+  const getCustomerAddr = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/address/${loginUser}`
+      );
+      setGetAddr(response.data);
+    } catch (error) {
+      console.error("고객의 주소를 가져올수 없습니다.", error);
+    }
+  };
+
+  useEffect(() => {
+    getCustomer();
+  }, []);
+
+  useEffect(() => {
+    getCustomerAddr();
+  }, [user, userAddr]);
 
   return (
     <form className="yhw_destForm">
       {/* 주소 목록 출력 */}
-      {/* {getAddr.length > 0 ? ( */}
-      {/* {getAddr && getAddr.length > 0 && ( */}
-      {getAddr.length > 0 && (
-        getAddr.map((address, i) => (address.defaultAddr === 'Y' ? (  // defaultAddr가 Y인 것의 address 값들 가져옴
+      {getAddr.length > 0 ? (
+        getAddr.map((address, i) => (address.defaultAddr === 'Y' ? (
           <div key={i}>
             <div className="yhw_destFormInputBox">
               <label>받는 사람</label>
@@ -65,15 +104,9 @@ const DestForm = ({ isChecked }) => { // 페이지파일(= Purchase.js)에 있�
               </div>
             </div>
           </div>
-         ) : null
-         ))
-       )}
-    {/* //   ))
-    // ) : (
-    // )}
-    // 주소 목록이 비어있을 경우 */}
-    {/*// {getAddr && getAddr.length === 0 && (*/}
-      {getAddr.length === 0 && (
+        ) : null
+      ))
+    ) : (
         <>
           <div className="yhw_destFormInputBox">
             <label>받는 사람</label>
