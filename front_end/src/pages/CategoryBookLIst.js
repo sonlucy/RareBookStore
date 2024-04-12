@@ -46,23 +46,42 @@ const Button = styled.a`
   text-decoration: none;
 `;
 // ============== Style component ============== //
+
+
 const CategoryBookList = () => {
   // 카테고리이름 가져오기
   const [bookList, setBookList] = useState([]);
-  const { category } = useParams();
+  const { category, search } = useParams();
 
-  const getBuyBookList = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/buyerbook/category/${category}`
+const getBuyBookList = async () => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3001/buyerbook/category/${category}`
+    );
+    const data = response.data;
+    const updatedBookList = await getUserNicknames(data);
+
+    // URL에서 검색어 가져오기
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const searchQuery = urlParams.get('q');
+    console.log("검색어:", searchQuery);
+
+    // 검색어가 존재하면 필터링을 적용하여 업데이트된 도서 목록 설정
+    if (searchQuery) {
+      const filteredBooks = updatedBookList.filter(book => 
+        book.author.includes(searchQuery) || book.itemTitle.includes(searchQuery)
       );
-      const data = response.data;
-      const updatedBookList = await getUserNicknames(data);
+      setBookList(filteredBooks);
+    } else {
+      // 검색어가 없으면 그대로 도서 목록 설정
       setBookList(updatedBookList);
-    } catch (error) {
-      console.error("구매희망 책 리스트를 가져올수 없습니다.", error);
     }
-  };
+  } catch (error) {
+    console.error("구매희망 책 리스트를 가져올수 없습니다.", error);
+  }
+};
+
 
   const getUserNicknames = async (data) => {
     try {
@@ -86,7 +105,7 @@ const CategoryBookList = () => {
 
   useEffect(() => {
     getBuyBookList();
-  }, [category]);
+  }, [category, search]);
 
   return (
     <div>

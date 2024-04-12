@@ -27,13 +27,15 @@ const Header = () => {
       /* ${window.location.origin} */
       if (location.pathname === "/") {
         // 메인 페이지인 경우
-        navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+        //navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+        navigate(`CategoryBookList/search?q=${encodeURIComponent(searchTerm)}`);
       } else {
         // 다른 페이지인 경우
-        navigate(
-          `${location.pathname}/search?q=${encodeURIComponent(searchTerm)}`
-        );
+        navigate(`${location.pathname}/search?q=${encodeURIComponent(searchTerm)}`);
+        //navigate(`CategoryBookList/search?q=${encodeURIComponent(searchTerm)}`);
       }
+      
+      window.location.reload();
     }
   };
 
