@@ -159,8 +159,11 @@ const SilverLine = styled.div`
 // ============== Style component ============== //
 
 function ProductList({ bookList }) {
+  // console.log(bookList, "ProductList에 넘어온 bookList 데이터");
   const bookImg = bookList.itemImg;
+  const aucStatus = bookList.aucStatus;
   const navigate = useNavigate();
+
   const convey = () => {
     navigate("/SellerInfoPage", {
       state: {
@@ -168,6 +171,9 @@ function ProductList({ bookList }) {
       },
     });
   };
+  if (aucStatus !== 2) {
+    return null; // Don't render anything if aucStatus is not equal to 2
+  }
 
   return (
     <CenteredContainer>
@@ -183,12 +189,18 @@ function ProductList({ bookList }) {
                   </ProductInfoCell>
                 </ProductInfoRow>
                 <ProductInfoRow>
+                  <ProductInfoCell isAuthor>
+                    {bookList.author} <Divider>|</Divider>
+                    {bookList.publisher}
+                  </ProductInfoCell>
+                </ProductInfoRow>
+                {/* <ProductInfoRow>
                   <ProductInfoCell isAuthor>{bookList.author}</ProductInfoCell>
                   <Divider>|</Divider>
                   <ProductInfoCell isPublisher>
                     {bookList.publisher}
                   </ProductInfoCell>
-                </ProductInfoRow>
+                </ProductInfoRow> */}
                 <ProductInfoRow>
                   <ProductInfoCell
                     style={{ cursor: "pointer" }}
@@ -208,12 +220,17 @@ function ProductList({ bookList }) {
                   </ProductInfoCell>
                 </ProductInfoRow>
                 <ProductInfoRow>
-                  <ProductInfoCell isDeadline>날짜</ProductInfoCell>
-                  <ProductInfoCell isStatus>진행중</ProductInfoCell>
+                  <ProductInfoCell isDeadline>
+                    날짜 {bookList.expiry}
+                  </ProductInfoCell>
                 </ProductInfoRow>
+                {/* <ProductInfoRow>
+                  <ProductInfoCell isDeadline>날짜</ProductInfoCell>
+                  <ProductInfoCell isStatus>{bookList.expiry}</ProductInfoCell>
+                </ProductInfoRow> */}
               </tbody>
             </ProductInfoTable>
-            <ProductInfoRow>
+            {/* <ProductInfoRow>
               <ProductInfoCell isMinimum>등급별 최저가</ProductInfoCell>
             </ProductInfoRow>
             <ProductInfoRow>
@@ -227,7 +244,7 @@ function ProductList({ bookList }) {
             <ProductInfoRow>
               <ProductInfoCell isGrade>중</ProductInfoCell>
               <ProductInfoCell isPrice>8,500원</ProductInfoCell>
-            </ProductInfoRow>
+            </ProductInfoRow> */}
             <ProductInfoTable></ProductInfoTable>
           </ProductInfoContainer>
           <StyledLink to={`/SellBook/${bookList.itemBuyKey}`}>
