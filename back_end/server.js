@@ -352,6 +352,15 @@ app.get("/sellerbook/item/:itemBuyKey", (req, res) => {
     return res.json(data);
   });
 });
+// 특정 itemSellKey를 통한 조회
+app.get("/sellerbook/item/sell/:itemSellKey", (req, res) => {
+  const itemSellKey = req.params.itemSellKey;
+  const sql = "SELECT * FROM SellerBook WHERE itemSellKey = ?";
+  conn.query(sql, [itemSellKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
 
 // 특정 itemSellKey 와 itemBuyKey를 모두 만족하는 값 조회
 app.get("/sellerbook/sellbuy/:itemSellKey/:itemBuyKey", (req, res) => {
