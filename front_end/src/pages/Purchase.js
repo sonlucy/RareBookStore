@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-// import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styled/Purchase.css";
 import Header from "../components/Header";
 import PurInfoBox from "../components/PurInfoBox";
@@ -8,20 +8,25 @@ import PurDefDest from "../components/PurDefDest";
 import DestForm from "../components/DestForm";
 import Footer from "../components/Footer";
 import usePurInfoData from "../hooks/api/usePurInfoData"; // usePurInfoData 훅 임포트
-import useUserAddr from "../hooks/api/useUserAddr"; // usePurInfoData 훅 임포트
 
 const Purchase = () => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const { bookData, sellerData } = usePurInfoData();  // usePurInfoData 훅을 호출하여 bookData 상태와 데이터 가져오는 로직 사용
-  const { userAddr, setUserAddr, getAddr, setGetAddr, handlePurBtnClick } = useUserAddr();  // useUserAddr 훅 사용
+  // usePurInfoData 훅을 호출하여 bookData 상태와 데이터 가져오는 로직 사용
+  const { bookData, fetchBookData } = usePurInfoData();
 
-  // const navigate = useNavigate(); // 구매하기 버튼 클릭 시  해당 도서 Purchase 페이지로 이동
+  // 컴포넌트 마운트 시 데이터 가져오기 <= 혜원님 렌더링 이슈로 잠시 주석처리해놨습니다.
+  // useEffect(() => {
+  //   fetchBookData();
+  // }, [fetchBookData]);
 
+  /********************** BuyDetail 페이지의 DetailConts가 아직 연결되지 않아서 제대로 동작하지 않음 **********************/
+  const navigate = useNavigate(); // 구매하기 버튼 클릭 시  해당 도서 Purchase 페이지로 이동
 
-  // 자식 컴포넌트로부터 input 값 받아오는 함수
-  const handleDestInputChange = (value) => {
-    setUserAddr(value);
+  // 구매하기 버튼 클릭 시 해당 도서 Purchase 페이지로 이동하는 함수
+  const handlePurBtnClick = () => {
+    navigate(`/Purchase/${bookData.itemBuyKey}`);
+    window.scrollTo(0, 0); // 페이지 이동 후 화면의 상단으로 스크롤 이동
   };
 
   return (
@@ -46,7 +51,7 @@ const Purchase = () => {
             </div>
           </div>
           <div className="yhw_destFormDiv">
-            <DestForm isChecked={isChecked} onInputChange={handleDestInputChange}/>
+            <DestForm isChecked={isChecked} />
           </div>
           <button className="yhw_purBtn" onClick={handlePurBtnClick}>
             구매하기
