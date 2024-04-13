@@ -18,6 +18,7 @@ const BannerContainer = styled.div`
 
 function CategoryBanner({ category }) {
   const categoryLabels = {
+    all: "전체",
     science: "과학",
     economics: "경제/경영",
     novels: "소설/시/희곡",
@@ -25,7 +26,8 @@ function CategoryBanner({ category }) {
     arts: "예체능",
     essays: "에세이",
   };
-  const categoryLabel = categoryLabels[category];
+//const categoryLabel = category ? categoryLabels[category] : "전체";
+const categoryLabel = categoryLabels[category];
   return (
     <CenteredContainer>
       <BannerContainer>
