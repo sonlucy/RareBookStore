@@ -5,6 +5,8 @@ const CenteredContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  padding-left: 20px;
 `;
 
 const BannerContainer = styled.div`
