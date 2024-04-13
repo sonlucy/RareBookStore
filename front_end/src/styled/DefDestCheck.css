@@ -1,6 +1,7 @@
 .yhw_purDefDestCheckForm {
-  margin-bottom: 10px;
-  width: fit-content;
+  margin: 0 auto 20px auto;
+  /* width: fit-content; */
+  width: 48%;
 }
 .yhw_purDefDestCheckForm > input, label {
   cursor: pointer;
