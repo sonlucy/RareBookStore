@@ -86,6 +86,24 @@ app.get("/customers/:custKey", (req, res) => {
   });
 });
 
+// customer테이블의 userid가 userId인 행의 custKey 조회
+app.get("/customers/userInfo/:userid", (req, res) => {
+  const userid = req.params.userid;
+  const sql = `SELECT custKey FROM customers WHERE userid = ${userid}`;
+  conn.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error fetching customer:", error);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      if (results.length === 0) {
+        res.status(404).json({ error: "Customer not found" });
+      } else {
+        res.json(results[0]); // 첫 번째 고객 정보 반환
+      }
+    }
+  });
+});
+
 // 특정회원 point, grade 업데이트
 app.put("/updateCustomerPoint/:custKey", (req, res) => {
   const custKey = req.params.custKey;
@@ -286,6 +304,21 @@ app.put("/buyerbook/:itemBuyKey", (req, res) => {
     }
   );
 });
+app.put("/buyerbook/aucStatus/:itemBuyKey", (req, res) => {
+  const itemBuyKey = req.params.itemBuyKey;
+  const { aucStatus } = req.body;
+  const sql = "UPDATE buyerBook SET aucStatus = ? WHERE itemBuyKey = ?";
+  conn.query(sql, [aucStatus, itemBuyKey], (error, result) => {
+    if (error) return res.json(error);
+    if (result.affectedRows === 0) {
+      return res.json({ message: "해당 책 구매 희망이 없습니다." });
+    }
+    return res.json({
+      message: "aucStatus가 수정되었습니다.",
+      id: itemBuyKey,
+    });
+  });
+});
 
 // 책 구매 희망 삭제
 app.delete("/buyerbook/:itemBuyKey", (req, res) => {
@@ -348,6 +381,15 @@ app.get("/sellerbook/item/:itemBuyKey", (req, res) => {
   const itemBuyKey = req.params.itemBuyKey;
   const sql = "SELECT * FROM SellerBook WHERE itemBuyKey = ?";
   conn.query(sql, [itemBuyKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
+// 특정 itemSellKey를 통한 조회
+app.get("/sellerbook/item/sell/:itemSellKey", (req, res) => {
+  const itemSellKey = req.params.itemSellKey;
+  const sql = "SELECT * FROM SellerBook WHERE itemSellKey = ?";
+  conn.query(sql, [itemSellKey], (error, data) => {
     if (error) return res.json(error);
     return res.json(data);
   });
@@ -872,6 +914,36 @@ app.get("/reply/:boardKey", (req, res) => {
 
 // ========================= reply ================================//
 
+// 특정 사용자의 구매 희망 도서 등록 중 판매글이 달린 것 조회
+app.get("/customers/bells/:custKey", (req, res) => {
+  const custKey = req.params.custKey;
+  const sql = `SELECT BuyerBook.*
+              FROM (
+                  SELECT *
+                  FROM BuyerBook
+                  WHERE custKey = ${custKey}
+              ) AS BuyerBook
+              INNER JOIN (
+                  SELECT *
+                  FROM SellerBook
+                  ORDER BY itemSellKey
+              ) AS SortedSellerBook ON BuyerBook.ItemBuyKey = SortedSellerBook.ItemBuyKey
+              ORDER BY SortedSellerBook.itemSellKey;
+              `;
+  conn.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error fetching customer:", error);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      if (results.length === 0) {
+        res.status(404).json({ error: "Customer not found" });
+      } else {
+        res.json(results); 
+      }
+    }
+  });
+});
+
 // ========================= bookSearch ==========================//
 
 const client_id = process.env.Client_ID;
@@ -930,3 +1002,5 @@ cron.schedule("0 0 * * *", async () => {
     console.error("Expiry 업데이트 중 오류 발생:", error);
   }
 });
+
+
