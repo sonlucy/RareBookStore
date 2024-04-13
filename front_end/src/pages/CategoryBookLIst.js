@@ -14,16 +14,18 @@ const PurchaseRequestContainer = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;
-  width: 1251px;
+  /* width: 1251px; */
+  width: 100%;
   height: 115px;
-  margin: auto;
+  /* margin: auto; */
+  padding-left: 20px;
 `;
 
 const PurchaseRequest = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;
-  padding: 0 6vw; // 카테고리 링크를 가려서 padding 크기 수정.
+  padding: 0 6vw 0 0; // 카테고리 링크를 가려서 padding 크기 수정.
   margin: 0;
 `;
 
@@ -120,16 +122,19 @@ const getBuyBookList = async () => {
   return (
     <div>
       <Header />
-      <PurchaseRequestContainer>
-        <PurchaseRequest>
-          <Title>구매 희망 상품 등록</Title>
-          <Button href="/Mypage/RegRequest">상품 등록 요청</Button>
-        </PurchaseRequest>
-      </PurchaseRequestContainer>
-      <CategoryBanner category={category} />
-      {bookList.map((book, index) => (
-        <ProductList key={index} bookList={book} />
-      ))}
+      <div className="yhw_container">
+        <PurchaseRequestContainer>
+          <PurchaseRequest>
+            <Title>구매 희망 상품 등록</Title>
+            <Button href="/Mypage/RegRequest">상품 등록 요청</Button>
+          </PurchaseRequest>
+        </PurchaseRequestContainer>
+        <CategoryBanner category={category} />
+        {bookList.map((book, index) => (
+          <ProductList key={index} bookList={book} />
+        ))}
+
+      </div>
 
       <Footer />
     </div>

@@ -9,10 +9,12 @@ const CenteredContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 const ProductListContainer = styled.div`
-  width: 1050px;
+  /* width: 1050px; */
+  width: 100%;
   height: 300px;
   display: flex;
   flex-direction: row;
@@ -24,7 +26,7 @@ const ProductImage = styled.div`
   height: 268px;
   background: url(${(props) => props.bookImg});
   background-size: cover;
-  margin: 0 36px 29px;
+  margin: 0 36px 29px 15px;
 `;
 
 const ProductInfoContainer = styled.div`
@@ -177,7 +179,7 @@ function ProductList({ bookList }) {
 
   return (
     <CenteredContainer>
-      <div>
+      <div style={{width: '100%'}}>
         <ProductListContainer>
           <ProductImage bookImg={bookImg}></ProductImage>
           <ProductInfoContainer>
