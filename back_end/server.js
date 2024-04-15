@@ -914,6 +914,36 @@ app.get("/reply/:boardKey", (req, res) => {
 
 // ========================= reply ================================//
 
+// 특정 사용자의 구매 희망 도서 등록 중 판매글이 달린 것 조회
+app.get("/customers/bells/:custKey", (req, res) => {
+  const custKey = req.params.custKey;
+  const sql = `SELECT BuyerBook.*
+              FROM (
+                  SELECT *
+                  FROM BuyerBook
+                  WHERE custKey = ${custKey}
+              ) AS BuyerBook
+              INNER JOIN (
+                  SELECT *
+                  FROM SellerBook
+                  ORDER BY itemSellKey
+              ) AS SortedSellerBook ON BuyerBook.ItemBuyKey = SortedSellerBook.ItemBuyKey
+              ORDER BY SortedSellerBook.itemSellKey;
+              `;
+  conn.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error fetching customer:", error);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      if (results.length === 0) {
+        res.status(404).json({ error: "Customer not found" });
+      } else {
+        res.json(results); 
+      }
+    }
+  });
+});
+
 // ========================= bookSearch ==========================//
 
 const client_id = process.env.Client_ID;
@@ -972,3 +1002,5 @@ cron.schedule("0 0 * * *", async () => {
     console.error("Expiry 업데이트 중 오류 발생:", error);
   }
 });
+
+
