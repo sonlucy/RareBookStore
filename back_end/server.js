@@ -1011,8 +1011,9 @@ cron.schedule("0 0 * * *", async () => {
     const currentDate = new Date();
 
     // 현재 날짜보다 expiry가 이전인 buyerbook의 aucStatus를 3으로 업데이트
+    // aucStatus가 진행중(2)인것을 만료(3)로 업데이트 (낙찰(1)은 바꾸면 안됨)
     await conn.query(
-      "UPDATE buyerbook SET aucStatus = 3 WHERE STR_TO_DATE(expiry, '%Y%m%d') < CURRENT_DATE()"
+      "UPDATE buyerbook SET aucStatus = 3 WHERE STR_TO_DATE(expiry, '%Y%m%d') < CURRENT_DATE() AND aucStatus = 2"
     );
 
     console.log("Expiry 업데이트 완료");
