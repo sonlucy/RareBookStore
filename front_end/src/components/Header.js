@@ -16,7 +16,7 @@ const Header = () => {
   const navigate = useNavigate(); // useNavigate 훅
   const location = useLocation();
   const { logout } = useLogOut(); // 로그아웃 훅 사용
-  
+
   const [showNotification, setshowNotification] = useState(false);
   const [RegSellerNotification, setRegSellerNotification] = useState([]);
   const [purchaseNotification, setpurchaseNotification] = useState([]);
@@ -24,8 +24,10 @@ const Header = () => {
   const [showRegSellerNotification, setShowRegSellerNotification] = useState(false);
   const notifiRef = useRef(null);
 
+
   useEffect(() => {
-const fetchData = async () => {
+  const fetchData = async () => {
+
     try {
       const response = await axios.get(`${serverURL}/customers/bells/${loginUser}`);
       setRegSellerNotification(response.data);
@@ -61,12 +63,14 @@ const fetchData = async () => {
 
   const handleSearchSubmit = () => {
     if (searchTerm.trim().length >= 2) {
-      /* ${window.location.origin} */
-    if (location.pathname.includes("/CategoryBookList/")) { // 특정 카테고리에 있을 경우
-      navigate(`${location.pathname}/search?q=${encodeURIComponent(searchTerm)}`);
-    } else { //다른 모든 페이지의 경우, 검색 시 전체 카테고리에서 검색되도록
-      navigate(`/CategoryBookList/all/search?q=${encodeURIComponent(searchTerm)}`);
-    }
+
+      if (location.pathname.includes("/CategoryBookList/")) { // 특정 카테고리에 있을 경우
+        //location.pathname에 serach가 포함될 경우 삭제
+        let newURL = location.pathname.replace(/\/search.*/g, "");
+        navigate(`${newURL}/search?q=${encodeURIComponent(searchTerm)}`);
+      } else { //다른 모든 페이지의 경우, 검색 시 전체 카테고리에서 검색되도록
+        navigate(`/CategoryBookList/all/search?q=${encodeURIComponent(searchTerm)}`);
+      }
 
       window.location.reload();
     } else {
