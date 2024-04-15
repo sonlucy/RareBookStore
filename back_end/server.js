@@ -16,7 +16,6 @@ require("dotenv").config();
 app.use(express.json());
 app.use(
   cors({
-    // origin: "http://localhost:3000",
     origin: "*",
     credentials: true,
   })
@@ -72,6 +71,24 @@ app.get("/customers", (req, res) => {
 app.get("/customers/:custKey", (req, res) => {
   const custKey = req.params.custKey;
   const sql = `SELECT * FROM customers WHERE custKey = ${custKey}`;
+  conn.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error fetching customer:", error);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      if (results.length === 0) {
+        res.status(404).json({ error: "Customer not found" });
+      } else {
+        res.json(results[0]); // 첫 번째 고객 정보 반환
+      }
+    }
+  });
+});
+
+// customer테이블의 userid가 userId인 행의 custKey 조회
+app.get("/customers/userInfo/:userid", (req, res) => {
+  const userid = req.params.userid;
+  const sql = `SELECT custKey FROM customers WHERE userid = ${userid}`;
   conn.query(sql, (error, results) => {
     if (error) {
       console.error("Error fetching customer:", error);
@@ -700,6 +717,25 @@ app.get("/orders/seller/:sellerKey", (req, res) => {
     return res.json(data);
   });
 });
+
+// 특정 판매자의 낙찰
+app.get("/orders/customer/sell/:sellerKey", (req, res) => {
+  const sellerKey = req.params.sellerKey;
+  const sql = `
+  SELECT BuyerBook.*
+    FROM SellerBook
+    INNER JOIN BuyerBook ON SellerBook.itemBuyKey = BuyerBook.itemBuyKey
+    INNER JOIN orders ON SellerBook.itemSellKey = orders.itemSellKey
+    WHERE orders.sellerKey = ?
+    ORDER BY orders.itemKey DESC
+  `;
+  conn.query(sql, [sellerKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
+
+
 // 특정 판매희망도서 주문 조회
 app.get("/orders/sellkey/:itemSellKey", (req, res) => {
   const itemSellKey = req.params.itemSellKey;
@@ -896,6 +932,36 @@ app.get("/reply/:boardKey", (req, res) => {
 
 // ========================= reply ================================//
 
+// 특정 사용자의 구매 희망 도서 등록 중 판매글이 달린 것 조회
+app.get("/customers/bells/:custKey", (req, res) => {
+  const custKey = req.params.custKey;
+  const sql = `SELECT BuyerBook.*
+              FROM (
+                  SELECT *
+                  FROM BuyerBook
+                  WHERE custKey = ${custKey}
+              ) AS BuyerBook
+              INNER JOIN (
+                  SELECT *
+                  FROM SellerBook
+                  ORDER BY itemSellKey
+              ) AS SortedSellerBook ON BuyerBook.ItemBuyKey = SortedSellerBook.ItemBuyKey
+              ORDER BY SortedSellerBook.itemSellKey DESC;
+              `;
+  conn.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error fetching customer:", error);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      if (results.length === 0) {
+        res.status(404).json({ error: "Customer not found" });
+      } else {
+        res.json(results);
+      }
+    }
+  });
+});
+
 // ========================= bookSearch ==========================//
 
 const client_id = process.env.Client_ID;
@@ -945,8 +1011,9 @@ cron.schedule("0 0 * * *", async () => {
     const currentDate = new Date();
 
     // 현재 날짜보다 expiry가 이전인 buyerbook의 aucStatus를 3으로 업데이트
+    // aucStatus가 진행중(2)인것을 만료(3)로 업데이트 (낙찰(1)은 바꾸면 안됨)
     await conn.query(
-      "UPDATE buyerbook SET aucStatus = 3 WHERE STR_TO_DATE(expiry, '%Y%m%d') < CURRENT_DATE()"
+      "UPDATE buyerbook SET aucStatus = 3 WHERE STR_TO_DATE(expiry, '%Y%m%d') < CURRENT_DATE() AND aucStatus = 2"
     );
 
     console.log("Expiry 업데이트 완료");

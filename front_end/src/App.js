@@ -24,6 +24,7 @@ import PurchaseReview from "./pages/PurchaseReview";
 import SellBook from "./pages/SellBook";
 import XNotFound from "./pages/XNotFound";
 import Rank from "./pages/Rank";
+import ScrollToTopBtn from "./components/ScrollToTopBtn";
 
 function App() {
   const location = useLocation();
@@ -73,6 +74,7 @@ function App() {
           {/* Not Found 페이지 */}
         </Routes>
       </LoginProvider>
+      <ScrollToTopBtn/>
     </div>
   );
 }

@@ -23,6 +23,10 @@ const SignUpMail = () => {
   const pwValidatioCheck =
     /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
 
+  //============== 이메일 유효성 검사 =============//
+  const emailValidationRegex =
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
   // 비밀번호 일치 확인용 훅 사용
   const match = usePasswordMatch(password, checkPassword);
 
@@ -70,6 +74,11 @@ const SignUpMail = () => {
     const isNicknameDuplicate = await checkNicknameDuplicate(userData.nickname);
     // 중복 여부 상태 업데이트
     setIsNicknameDuplicate(isNicknameDuplicate);
+  };
+  const handleEmailChange = (e) => {
+    const email = e.target.value;
+    setIsValidEmail(emailValidationRegex.test(email));
+    handleChange(e);
   };
 
   return (
@@ -157,7 +166,7 @@ const SignUpMail = () => {
                   name="email"
                   placeholder="이메일"
                   value={userData.email}
-                  onChange={handleChange}
+                  onChange={handleEmailChange}
                 />
                 <p
                   className="yhw_passwordCheckMsg"

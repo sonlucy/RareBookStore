@@ -205,7 +205,6 @@ function ReviewCreate({ purLists, filteredSellerData }) {
     };
 
     try {
-      // Send a POST request to save the review data
       // 리뷰 저장하기 위해 POST 요청
       await axios.post("http://localhost:3001/reviews", custReview);
       // Post요청 성공후 값 초기화

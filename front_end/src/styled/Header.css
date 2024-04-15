@@ -161,7 +161,60 @@
 }
 
 
+.sbk-notification-content::-webkit-scrollbar {
+  width: 0.6rem; /* 스크롤 바 너비 */
+}
+
+.sbk-notification-content::-webkit-scrollbar-track {
+  background: #F1F1F1;
+  /* 배경색 기본 문서 스크롤바 트랙색과 같게 */
+}
+
+.sbk-notification-content::-webkit-scrollbar-thumb {
+  background: #C87E66;
+  border-radius: 6px;
+  height: 1px;
+}
+.sbk-notification-content::-webkit-scrollbar-thumb:hover {
+  background: #ab705c;
+}
+
+
+.sbk-notification-btn {
+  color: #777777;
+  font-size: 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.sbk-notification-content {
+  position: absolute;
+  right: 7vw;
+  width: 200px;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.473);
+  border-radius: 7px;
+  z-index: 1000;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.sbk-notification-content li {
+margin: 1rem;
+margin-left: 0;
+}
+
+.sbk-notification-title {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1440px) {
+
+  .sbk-notification-content {
+    width: 250px;
+    right: calc(20vw - 250px);
+  }
+
   .sbk-header-wrapper {
     padding-left: 20vw;
     padding-right: 20vw;

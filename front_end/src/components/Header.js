@@ -24,9 +24,10 @@ const Header = () => {
   const [showRegSellerNotification, setShowRegSellerNotification] = useState(false);
   const notifiRef = useRef(null);
 
-  
+
   useEffect(() => {
   const fetchData = async () => {
+
     try {
       const response = await axios.get(`${serverURL}/customers/bells/${loginUser}`);
       setRegSellerNotification(response.data);
@@ -62,6 +63,7 @@ const Header = () => {
 
   const handleSearchSubmit = () => {
     if (searchTerm.trim().length >= 2) {
+
       if (location.pathname.includes("/CategoryBookList/")) { // 특정 카테고리에 있을 경우
         //location.pathname에 serach가 포함될 경우 삭제
         let newURL = location.pathname.replace(/\/search.*/g, "");
@@ -69,6 +71,7 @@ const Header = () => {
       } else { //다른 모든 페이지의 경우, 검색 시 전체 카테고리에서 검색되도록
         navigate(`/CategoryBookList/all/search?q=${encodeURIComponent(searchTerm)}`);
       }
+
       window.location.reload();
     } else {
     alert("두 글자 이상 입력해주세요.");
