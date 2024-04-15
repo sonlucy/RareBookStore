@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { serverURL } from "../../config";
 import axios from 'axios';
 
 const usePurInfoData = () => {
@@ -18,7 +19,7 @@ const usePurInfoData = () => {
 
   const fetchBookData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/buyerbook');
+      const response = await axios.get(`${serverURL}/buyerbook`);
       const data = response.data[0];
       const sellerNickname = await getSellerNickname(data.custKey);
       setBookData({ // 가져온 데이터를 상태로 설정
@@ -37,7 +38,7 @@ const usePurInfoData = () => {
 
   const getSellerNickname = async (custKey) => {
     try {
-      const response = await axios.get(`http://localhost:3001/customers/${custKey}`);
+      const response = await axios.get(`${serverURL}/customers/${custKey}`);
       return response.data.nickname;
     } catch (error) {
       console.error('Error fetching seller nickname:', error);
