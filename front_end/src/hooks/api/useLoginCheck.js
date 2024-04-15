@@ -17,11 +17,12 @@ const useLoginCheck = () => {
       });
       const data = await res.json();
 
-      console.log(data);
       if (res.status === 200) {
+        alert("로그인 완료");
         navigate("/");
         window.location.reload(); // 페이지 리로드
       } else {
+        alert("아이디 및 비밀번호를 확인해주세요");
         setUserData({ userid: "", userpwd: "" });
       }
     } catch (err) {

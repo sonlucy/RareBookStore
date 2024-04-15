@@ -75,6 +75,7 @@ const Purchase = () => {
       // Handle the response if needed
       console.log("Response:", response.data);
       console.log("aucStatus 변경 완료", modifyAucStatus.data);
+      alert("구매가 완료되었습니다.");
       navigate("/Mypage/PurchaseHistory");
     } catch (error) {
       // Handle errors if the request fails
