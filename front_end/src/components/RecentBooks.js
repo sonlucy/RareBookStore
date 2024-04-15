@@ -131,7 +131,7 @@ const handleMouseHover = (event) => {
         </button>
         <div className="sbk-BookCardContainer" style={{ transform: `translateX(-${startIndex * cardWidth}px)` }}>
           {books.map((book, index) => (
-            <div key={index} className="sbk-BookCard">
+            <div key={index} className="sbk-BookCard" style={{ animationDelay: `${index * 0.1}s` }}>
               <img src={book.image} alt={book.title} style={{ width: `${cardWidth - 20}px` }} />
               <h3>{book.title}</h3>
             </div>
