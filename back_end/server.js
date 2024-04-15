@@ -718,6 +718,25 @@ app.get("/orders/seller/:sellerKey", (req, res) => {
     return res.json(data);
   });
 });
+
+// 특정 판매자의 낙찰
+app.get("/orders/customer/sell/:sellerKey", (req, res) => {
+  const sellerKey = req.params.sellerKey;
+  const sql = `
+  SELECT BuyerBook.*
+    FROM SellerBook
+    INNER JOIN BuyerBook ON SellerBook.itemBuyKey = BuyerBook.itemBuyKey
+    INNER JOIN orders ON SellerBook.itemSellKey = orders.itemSellKey
+    WHERE orders.sellerKey = ?
+    ORDER BY orders.itemKey DESC
+  `;
+  conn.query(sql, [sellerKey], (error, data) => {
+    if (error) return res.json(error);
+    return res.json(data);
+  });
+});
+
+
 // 특정 판매희망도서 주문 조회
 app.get("/orders/sellkey/:itemSellKey", (req, res) => {
   const itemSellKey = req.params.itemSellKey;
@@ -928,7 +947,7 @@ app.get("/customers/bells/:custKey", (req, res) => {
                   FROM SellerBook
                   ORDER BY itemSellKey
               ) AS SortedSellerBook ON BuyerBook.ItemBuyKey = SortedSellerBook.ItemBuyKey
-              ORDER BY SortedSellerBook.itemSellKey;
+              ORDER BY SortedSellerBook.itemSellKey DESC;
               `;
   conn.query(sql, (error, results) => {
     if (error) {

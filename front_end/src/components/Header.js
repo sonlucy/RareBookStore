@@ -7,6 +7,8 @@ import { LoginContext } from "./LoginContext";
 import axios from "axios";
 /* import { BrowserMultiFormatReader, BarcodeFormat, DecodeHintType } from '@zxing/library'; */
 import { FaBell } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { serverURL } from "../config";
 
 const Header = () => {
   const { isLoggedIn, loginUser } = useContext(LoginContext);
@@ -16,22 +18,30 @@ const Header = () => {
   const { logout } = useLogOut(); // 로그아웃 훅 사용
   
   const [showNotification, setshowNotification] = useState(false);
-  const [notificationContents, setNotificationContents] = useState([]);
-
+  const [RegSellerNotification, setRegSellerNotification] = useState([]);
+  const [purchaseNotification, setpurchaseNotification] = useState([]);
+  const [showPurchaseNotification, setShowPurchaseNotification] = useState(false);
+  const [showRegSellerNotification, setShowRegSellerNotification] = useState(false);
   const notifiRef = useRef(null);
 
   useEffect(() => {
-  const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3001/customers/bells/${loginUser}`); //특정 판매자의 판매 희망 책 조회
-        const notificationContents = response.data;
-        console.log('notificationContents', notificationContents);
+const fetchData = async () => {
+    try {
+      const response = await axios.get(`${serverURL}/customers/bells/${loginUser}`);
+      setRegSellerNotification(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setRegSellerNotification([]); // 에러 발생 시 빈 배열로 세팅
+    }
 
-        setNotificationContents(notificationContents.reverse());
-        } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-      }
+    try {
+      const response1 = await axios.get(`${serverURL}/orders/customer/sell/${loginUser}`);
+      setpurchaseNotification(response1.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setpurchaseNotification([]); // 에러 발생 시 빈 배열로 세팅
+    }
+  };
   if (isLoggedIn) {
       fetchData();
     }
@@ -147,24 +157,44 @@ const Header = () => {
             </dt>
             {isLoggedIn && (
               <dt>
-                <div className="sbk-menu-item notification-btn" title="알림 보기" onClick={handleBellClick}>
+                <div className="sbk-menu-item sbk-notification-btn" title="알림 보기" onClick={handleBellClick}>
                   <FaBell />
                 </div>
-                {showNotification && notificationContents.length > 0 && (
-                  <div className="notification-content" ref={notifiRef}>
-                    <ul>
-                      {notificationContents.map((item, index) => (
-                        <li key={index}>
-                          <NavLink to={`/BuyDetail/${item.itemBuyKey}`} title="판매글 확인하기">
-                            "{`${item.itemTitle}"에 대한 판매글이 등록되었습니다.`}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
+                {showNotification && (RegSellerNotification.length > 0 || purchaseNotification.length > 0) && (
+                  <div className="sbk-notification-content" ref={notifiRef}>
+                    {purchaseNotification.length > 0 && (
+                      <ul>
+                        <h4 className="sbk-notification-title" onClick={() => setShowPurchaseNotification(!showPurchaseNotification)}>
+                          <p>🐥내 판매글 낙찰 소식</p>
+                        </h4>
+                        {showPurchaseNotification && purchaseNotification.map((item, index) => (
+                          <li key={index}>
+                            <NavLink to={`/Mypage/SalesHistory`} title="판매글 확인하기">
+                            "{`${item.itemTitle}"에 대한 주문이 접수되었습니다.`}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <hr/>
+                    {RegSellerNotification.length > 0 && (
+                      <ul>
+                        <h4 className="sbk-notification-title" onClick={() => setShowRegSellerNotification(!showRegSellerNotification)}>
+                          <p>🐣내 도서에 대한 새로운 판매글</p>
+                        </h4>
+                        {showRegSellerNotification && RegSellerNotification.map((item, index) => (
+                          <li key={index}>
+                            <NavLink to={`/BuyDetail/${item.itemBuyKey}`} title="판매글 확인하기">
+                              "{`${item.itemTitle}"에 대한 판매글이 등록되었습니다.`}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 )}
-                {showNotification && notificationContents.length === 0 && (
-                  <div className="notification-content" ref={notifiRef}>
+                {showNotification && RegSellerNotification.length === 0 && purchaseNotification.length === 0 && (
+                  <div className="sbk-notification-content" ref={notifiRef}>
                     <ul>
                       <li>내역이 존재하지 않습니다.</li>
                     </ul>
