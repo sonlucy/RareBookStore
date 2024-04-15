@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { serverURL } from "../config";
 import axios from 'axios';
 import { LoginContext } from "../components/LoginContext";
 import Header from "../components/Header";
@@ -38,7 +39,7 @@ function Rank() {
         await updateSellerInfo();
 
         // 사용자 정보 가져오기
-        const response = await axios.get(`http://localhost:3001/customers/${loginUser}`);
+        const response = await axios.get(`${serverURL}/customers/${loginUser}`);
         const customerData = response.data;
         const point = customerData.point;
         const grade = calculateGrade(point);
@@ -54,7 +55,7 @@ function Rank() {
     const updateSellerInfo = async () => {
       try {
         // 리뷰 정보 가져오기
-        const reviewsResponse = await axios.get(`http://localhost:3001/reviews/seller/${loginUser}`);
+        const reviewsResponse = await axios.get(`${serverURL}/reviews/seller/${loginUser}`);
         const reviews = reviewsResponse.data;
         let point = 0;
         if (reviews.length>0) {
@@ -67,7 +68,7 @@ function Rank() {
         const grade = calculateGrade(point);
 
         // DB 업데이트
-        await axios.put(`http://localhost:3001/updateCustomerPoint/${loginUser}`, { grade, point });
+        await axios.put(`${serverURL}/updateCustomerPoint/${loginUser}`, { grade, point });
         console.log('업데이트 성공');
       } catch (error) {
         console.error('업데이트 실패:', error);

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useMemo } from "react";
+import { serverURL } from "../config";
 import PurchaseBanner from "../components/PurchaseBanner";
 import ReviewCreate from "../components/ReviewCreate";
 import Header from "../components/Header";
@@ -19,7 +20,7 @@ function PurchaseReview() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/buyerbook/${loginUser}`
+          `${serverURL}/buyerbook/${loginUser}`
         );
         const buyerbooks = response.data;
         const filteredBuyerbooks = buyerbooks.filter(
@@ -50,7 +51,7 @@ function PurchaseReview() {
   const orderData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/orders/customer/${loginUser}`
+        `${serverURL}/orders/customer/${loginUser}`
       );
       const orderByCustomer = response.data;
       setBookOrderData(orderByCustomer);
@@ -65,7 +66,7 @@ function PurchaseReview() {
       const filteredDataArray = await Promise.all(
         itemSellKeys.map(async (sellKey) => {
           const response = await axios.get(
-            `http://localhost:3001/sellerbook/sellbuy/${sellKey}/${itemKey}`
+            `${serverURL}/sellerbook/sellbuy/${sellKey}/${itemKey}`
           );
           return response.data;
         })

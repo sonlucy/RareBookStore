@@ -4,6 +4,7 @@ import '../../styled/MypageEnquiry.css';
 import QuestSide from '../QuestSide';
 import Header from '../Header';
 import Footer from '../Footer';
+import { serverURL } from "../config";
 
 function Enquiry() {
   const [enquiries, setEnquiries] = useState([]);
@@ -14,7 +15,7 @@ function Enquiry() {
 
   const fetchEnquiries = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/enquiries'); 
+      const response = await axios.get(`${serverURL}/enquiries`); 
       setEnquiries(response.data); 
     } catch (error) {
       console.error('Error fetching enquiries:', error);
@@ -33,7 +34,7 @@ function Enquiry() {
   const handleReplySubmit = async (boardKey, replyText) => {
     try {
       // 답글 서버 전송
-      await axios.post('http://localhost:3001/reply', {
+      await axios.post(`${serverURL}/reply`, {
         boardKey: boardKey,
         reply: replyText
       });

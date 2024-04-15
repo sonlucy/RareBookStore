@@ -3,6 +3,7 @@ import "../styled/DestForm.css";
 // import { defShippingData } from "../asset/defShippingData";  // TestData 폴더에 저장된 기본 배송지 정보를 가져옴
 import { LoginContext } from "../components/LoginContext";
 import axios from "axios";
+import { serverURL } from "../config";
 
 const DestForm = ({ handleUserAddrChange }) => {
   // 페이지파일(= Purchase.js)에 있는 isChecked를 props로 받아옴
@@ -63,7 +64,7 @@ const DestForm = ({ handleUserAddrChange }) => {
   const getCustomer = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/customers/${loginUser}`
+        `${serverURL}/customers/${loginUser}`
       );
       setUser(response.data);
     } catch (error) {
@@ -74,7 +75,7 @@ const DestForm = ({ handleUserAddrChange }) => {
   const getCustomerAddr = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/address/${loginUser}`
+        `${serverURL}/address/${loginUser}`
       );
       setGetAddr(response.data);
     } catch (error) {

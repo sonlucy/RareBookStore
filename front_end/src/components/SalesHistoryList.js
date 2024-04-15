@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import { serverURL } from "../config";
 import '../styled/PurchaseReqList.css';
 import axios from 'axios';
 import { formatDate } from '../hooks/useFormatDate';
@@ -18,7 +19,7 @@ const SalesHistoryList = ({ requests }) => {
   const cancelSellBook = async (itemId) => {
     try {
       // 삭제 요청을 보내고 응답을 받음
-      const response = await axios.delete(`http://localhost:3001/sellerbook/${itemId}`); //itemSellKey
+      const response = await axios.delete(`${serverURL}/sellerbook/${itemId}`); //itemSellKey
       console.log(response.data); 
       window.location.reload();
 

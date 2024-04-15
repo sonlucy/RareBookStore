@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { serverURL } from "../config";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Title from "../components/Title";
@@ -14,24 +15,26 @@ function Main() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseBuyerbooks = await axios.get(`http://localhost:3001/buyerbook`);
+        const responseBuyerbooks = await axios.get(`${serverURL}/buyerbook`);
         const allBuyerbooks = responseBuyerbooks.data; // 모든 구매 희망 도서
 
         const buyerBooks = allBuyerbooks.map(item => ({
           title: item.itemTitle,
-          image: item.itemImg
+          image: item.itemImg,
+          itemBuyKey: item.itemBuyKey,
+          status: item.aucStatus,
         }));
         const recentBuyerBooks = buyerBooks.reverse();
         setRecentBuyerBooks(recentBuyerBooks);
 
-        // http://localhost:3001/orders에서 모든 책 조회할 수 있고,, 여기서 status가 2인 것의 itemSellKey를 가져와야함
-        const responseOrders = await axios.get(`http://localhost:3001/orders`);
+        // ${serverURL}/orders에서 모든 책 조회할 수 있고,, 여기서 status가 2인 것의 itemSellKey를 가져와야함
+        const responseOrders = await axios.get(`${serverURL}/orders`);
         const orders = responseOrders.data;
         const itemSellKeys = orders.filter(order => order.status === 2).map(order => order.itemSellKey); // "낙찰"인 도서 찾기
 
         const responseSellerbooks = await Promise.all(itemSellKeys.map(async itemSellKey => {
           try {  // itemSellKeys로 sellerbook의 itemSellKey 가져와서, 해당하는 ietmBuyKey 가져오기
-            const responseSellerbook = await axios.get(`http://localhost:3001/sellerbook/orders/${itemSellKey}`); 
+            const responseSellerbook = await axios.get(`${serverURL}/sellerbook/orders/${itemSellKey}`); 
             const itemBuyKeys = responseSellerbook.data.map(item => item.itemBuyKey); // 낙찰된 도서(=판매된 도서)의 itemBuyKey 가져오기
             return itemBuyKeys;
           } catch (error) {
@@ -55,11 +58,12 @@ function Main() {
       for (const itemBuyKeyArray of itemBuyKeys) {
         const itemInfoArray = await Promise.all(itemBuyKeyArray.map(async itemBuyKey => { 
           try {
-            const responseBuyerbook = await axios.get(`http://localhost:3001/buyerbook/item/${itemBuyKey}`); // 해당 itemBuyKey를 가지는 도서정보를 buyerbook에서 조회해 가져오기
+            const responseBuyerbook = await axios.get(`${serverURL}/buyerbook/item/${itemBuyKey}`); // 해당 itemBuyKey를 가지는 도서정보를 buyerbook에서 조회해 가져오기
             const firstItem = responseBuyerbook.data[0];
             return {  //도서 정보 넣어서 반환
               title: firstItem.itemTitle,
-              image: firstItem.itemImg
+              image: firstItem.itemImg,
+              /* itemBuyKey: itemBuyKey, */
             };
           } catch (error) {
             console.error(error);

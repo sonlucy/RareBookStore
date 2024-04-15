@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { serverURL } from "../config";
 import { Link } from "react-router-dom";
 import "../styled/Profile.css";
 import "../styled/PurchaseHistory.css";
@@ -34,7 +35,7 @@ const Profile = () => {
   const getCustomer = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/customers/${loginUser}`
+        `${serverURL}/customers/${loginUser}`
       );
       setUser(response.data);
     } catch (error) {
@@ -45,7 +46,7 @@ const Profile = () => {
   const getCustomerAddr = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/address/${loginUser}`
+        `${serverURL}/address/${loginUser}`
       );
       setGetAddr(response.data);
     } catch (error) {
@@ -55,7 +56,7 @@ const Profile = () => {
 
   const deleteAddr = async (addrKey) => {
     try {
-      await axios.delete(`http://localhost:3001/address/${addrKey}`);
+      await axios.delete(`${serverURL}/address/${addrKey}`);
       getCustomer();
     } catch (error) {
       console.error("주소를 삭제를 실패하였습니다.", error);
@@ -106,12 +107,12 @@ const Profile = () => {
     try {
       if (editMode) {
         await axios.put(
-          `http://localhost:3001/address/${editAddress.addrKey}`,
+          `${serverURL}/address/${editAddress.addrKey}`,
           userAddr
         );
         setEditMode(false);
       } else {
-        await axios.post(`http://localhost:3001/address`, userAddr);
+        await axios.post(`${serverURL}/address`, userAddr);
       }
       if (defaultAddrChanged) {
         const defaultAddress = getAddr.find(
@@ -120,7 +121,7 @@ const Profile = () => {
         if (defaultAddress) {
           const updatedAddress = { ...defaultAddress, defaultAddr: "N" };
           await axios.put(
-            `http://localhost:3001/address/${defaultAddress.addrKey}`,
+            `${serverURL}/address/${defaultAddress.addrKey}`,
             updatedAddress
           );
         }
