@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import "../styled/SellerInfo.css";
 import SellerInfo from "../components/SellerInfo";
 import React, { useState, useEffect } from 'react';
+import { serverURL } from "../config";
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
@@ -29,7 +30,7 @@ function SellerInfoPage() {
   useEffect(() => {
     const custKey = location.state.custKey;
     if (custKey) {
-      axios.get(`http://localhost:3001/customers/${custKey}`)
+      axios.get(`${serverURL}/customers/${custKey}`)
         .then(response => {
           const customer = response.data;
 
@@ -44,14 +45,14 @@ function SellerInfoPage() {
           };
 
           // 판매 희망 책 조회
-          axios.get(`http://localhost:3001/sellerbook/seller/${custKey}`)
+          axios.get(`${serverURL}/sellerbook/seller/${custKey}`)
             .then(sellerBookResponse => {
               const sellerBooks = sellerBookResponse.data;
               const itemSellKeys = sellerBooks.map(book => book.itemSellKey);
               sellerData.itemSellKeys = itemSellKeys; // 판매자가 판매하고 있는 상품 키 저장
 
               // 리뷰 가져오기
-              axios.get(`http://localhost:3001/reviews/seller/${custKey}`)
+              axios.get(`${serverURL}/reviews/seller/${custKey}`)
                 .then(reviewsResponse => {
                   const reviews = reviewsResponse.data;
                   //console.log(reviews)
@@ -67,7 +68,7 @@ function SellerInfoPage() {
                   const grade = calculateGrade(point);
 
                   const handleUpdate = () => {
-                    axios.put(`http://localhost:3001/updateCustomerPoint/${custKey}`, { grade, point })
+                    axios.put(`${serverURL}/updateCustomerPoint/${custKey}`, { grade, point })
                       .then(response => {
                         console.log('업데이트 성공:', response.data); // 업데이트 성공 시 메시지 출력
                       })
@@ -79,7 +80,7 @@ function SellerInfoPage() {
 
                   const promises = reviews.map(review => {
                     // 리뷰 작성자의 닉네임 가져오기
-                    return axios.get(`http://localhost:3001/customers/${review.custKey}`)
+                    return axios.get(`${serverURL}/customers/${review.custKey}`)
                       .then(customerResponse => {
                         const customer = customerResponse.data;
                         return {

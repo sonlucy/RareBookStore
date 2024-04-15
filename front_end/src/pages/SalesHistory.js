@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { serverURL } from "../config";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PurchaseReqForm from "../components/PurchaseReqForm";
@@ -17,18 +18,18 @@ function SalesHistory() {
     const fetchData = async () => {
       try {
         const responsebuyerbooks = await axios.get(
-          `http://localhost:3001/buyerbook`
+          `${serverURL}/buyerbook`
         );
         const allbuyerbooks = responsebuyerbooks.data; // 모든 구매 희망 도서
         console.log("모든구매희망도서", allbuyerbooks);
 
         const responseSeller = await axios.get(
-          `http://localhost:3001/sellerbook/seller/${loginUser}`
+          `${serverURL}/sellerbook/seller/${loginUser}`
         ); //특정 판매자의 판매 희망 책 조회
         const sellerBooks = responseSeller.data;
 
         const responseOrders = await axios.get(
-          `http://localhost:3001/orders/seller/${loginUser}`
+          `${serverURL}/orders/seller/${loginUser}`
         ); // 판매자의 key
         const orders = responseOrders.data;
 

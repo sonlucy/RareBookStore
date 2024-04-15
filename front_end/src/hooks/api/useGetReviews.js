@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { serverURL } from "../../config";
 import axios from "axios";
 
 const useGetReviews = (itemKey) => {
@@ -8,7 +9,7 @@ const useGetReviews = (itemKey) => {
     const fetchReviews = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/reviews/item/${itemKey}`
+          `${serverURL}/reviews/item/${itemKey}`
         );
         setReviews(response.data[0]);
       } catch (error) {

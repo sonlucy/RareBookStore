@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { serverURL } from "../config";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -52,7 +53,7 @@ function SellBookInfo({ itemBuyKey }) {
   const fetchBuyerBooks = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/buyerbook/item/${itemBuyKey}`
+        `${serverURL}/buyerbook/item/${itemBuyKey}`
       );
       setBuyerBooks(response.data[0]);
     } catch (error) {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { serverURL } from "../config";
 // import { Link } from 'react-router-dom';
 import '../styled/BookStateCategory.css';
 import "../styled/PurchaseHistory.css";
@@ -24,7 +25,7 @@ function RegRequest() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/buyerbook/${loginUser}`);
+        const response = await axios.get(`${serverURL}/buyerbook/${loginUser}`);
         const buyerbooks = response.data;
         console.log("사용자의 데이터", buyerbooks)
         setBuyerBookData(buyerbooks);

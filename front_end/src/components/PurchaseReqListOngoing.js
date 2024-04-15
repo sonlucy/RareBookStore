@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styled/PurchaseReqList.css";
 import axios from "axios";
 import { formatDate } from "../hooks/useFormatDate";
+import { serverURL } from "../config";
 
 const PurchaseReqListOngoing = ({ requests }) => {
   const navigate = useNavigate(); // 현황보기 버튼 클릭 시 BuyDetail 페이지로 이동
@@ -10,7 +11,7 @@ const PurchaseReqListOngoing = ({ requests }) => {
   const [ongoingRequests, setOngoingRequests] = useState(requests);
   const handleCancel = (itemBuyKey) => {
     axios
-      .delete(`http://localhost:3001/buyerbook/${itemBuyKey}`)
+      .delete(`${serverURL}/buyerbook/${itemBuyKey}`)
       .then((response) => {
         const updatedRequests = ongoingRequests.filter(
           (request) => request.itemBuyKey !== itemBuyKey

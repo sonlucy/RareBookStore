@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { serverURL } from "../config";
 import axios from "axios";
 import "../styled/FormView.css";
 import "../styled/PurchaseHistory.css";
@@ -61,7 +62,7 @@ function QuestionForm() {
 
     try {
       // 새 질문을 서버에 POST 요청하여 제출.
-      await axios.post("http://localhost:3001/enquiries", newQuestion);
+      await axios.post(`${serverURL}/enquiries`, newQuestion);
       // 제출 후 질문 목록을 업데이트하고 입력 필드를 초기화.
       getEnquiry();
       setTitle("");
@@ -75,7 +76,7 @@ function QuestionForm() {
   const getEnquiry = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/enquiries/${loginUser}`
+        `${serverURL}/enquiries/${loginUser}`
       );
       // 가져온 질문 목록을 상태에 저장.
       setQuestions(response.data);
@@ -87,7 +88,7 @@ function QuestionForm() {
   // 서버로부터 모든 답변 목록을 가져오는 함수
   const getReply = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/reply`);
+      const response = await axios.get(`${serverURL}/reply`);
       // 가져온 답변 목록을 상태에 저장.
       setReplies(response.data);
     } catch (error) {

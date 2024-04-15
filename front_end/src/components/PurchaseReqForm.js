@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styled/PurchaseReqForm.css";
 import axios from "axios";
+import { serverURL } from "../config";
 
 const InputField = ({ label, name, value, placeholder, onChange, error }) => {
   return (
@@ -103,7 +104,7 @@ const PurchaseReqForm = ({ selectedBook, loginUser }) => {
       };
 
       const response = await axios.post(
-        "http://localhost:3001/buyerbook",
+        `${serverURL}/buyerbook`,
         data
       );
       console.log(response.data); // 서버로부터 받은 응답 데이터 출력

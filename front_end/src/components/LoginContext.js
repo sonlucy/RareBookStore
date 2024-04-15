@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useState, useEffect } from "react";
+import { serverURL } from "../config";
 export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
@@ -40,7 +41,7 @@ const fetchUserInfo = async (userId) => {
   try {
     // userId를 이용하여 사용자 정보를 가져옵니다.
     console.log(userId, "유저아이디");
-    const response = await axios.get(`http://localhost:3001/customers/userInfo/${userId}`);
+    const response = await axios.get(`${serverURL}/customers/userInfo/${userId}`);
     console.log("유저custKey", response.data.custKey);
     return response.data.custKey; // 사용자 정보를 반환
   } catch (error) {

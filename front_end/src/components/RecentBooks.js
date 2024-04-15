@@ -116,9 +116,10 @@ const handleMouseHover = (event) => {
   const isPrevDisabled = startIndex === 0;
   const isNextDisabled = startIndex + 1 >= books.length;
 
+  console.log(books, "books보기")
   return (
     <div className='sbk-RecentContainer'>
-      <Link to="/booklist" className='sbk-BookListLink'>
+      <Link to="/CategoryBookList/all" className='sbk-BookListLink'>
         <h2>{titleText}  <FaChevronRight /></h2>  {/* 클릭하면 도서리스트 페이지로 이동 */}
       </Link>
       <div className="sbk-SliderContainer" onMouseMove={(event) => handleMouseHover(event)} ref={containerRef}>
@@ -132,11 +133,21 @@ const handleMouseHover = (event) => {
         <div className="sbk-BookCardContainer" style={{ transform: `translateX(-${startIndex * cardWidth}px)` }}>
           {books.map((book, index) => (
             <div key={index} className="sbk-BookCard" style={{ animationDelay: `${index * 0.1}s` }}>
-              <img src={book.image} alt={book.title} style={{ width: `${cardWidth - 20}px` }} />
-              <h3>{book.title}</h3>
+              {(book.itemBuyKey && book.status === 2) ? ( // itemBuyKey가 있고, status가 2인 경우
+                <Link to={`/SellBook/${book.itemBuyKey}`}> {/* 최근 구매 희망 도서 */}
+                  <img src={book.image} className='sbk-recent-image-link' title='판매하러 가기' alt={book.title} style={{ width: `${cardWidth - 20}px` }} />
+                </Link>
+              ) : (book.itemBuyKey && book.status !== 2) ? ( // itemBuyKey가 있고, status가 2가 아닌 경우
+                <img src={book.image} title='이미 판매된 도서' alt={book.title} style={{ width: `${cardWidth - 20}px` }} />
+              ) : ( // itemBuyKey가 없는 경우
+                <img src={book.image} alt={book.title} style={{ width: `${cardWidth - 20}px` }} />
+              )}
+              <h3 style={{ color: (book.itemBuyKey && book.status === 2) ? '#CB7266' : 'black' }}>{book.title}</h3>
             </div>
           ))}
         </div>
+
+
         <button className="sbk-NextButton" onClick={handleNext} disabled={isNextDisabled}>
           <span className="sbk-Icon">
             <FaChevronRight />

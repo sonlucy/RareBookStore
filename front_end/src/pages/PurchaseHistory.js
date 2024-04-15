@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { serverURL } from "../config";
 import { useNavigate, useRouteError } from "react-router-dom";
 import "../styled/PurchaseHistory.css";
 import Header from "../components/Header";
@@ -28,7 +29,7 @@ const PurchaseHistory = () => {
       // 사용자의 구매 내역 가져오기
       try {
         const response = await axios.get(
-          `http://localhost:3001/buyerbook/${loginUser}`
+          `${serverURL}/buyerbook/${loginUser}`
         );
         const buyerbooks = response.data;
         // 구매 내역 중에서 aucStatus가 1인(=낙찰된) 요소들만 필터링하여 새로운 배열 생성 후 저장
@@ -58,7 +59,7 @@ const PurchaseHistory = () => {
   const orderData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/orders/customer/${loginUser}`
+        `${serverURL}/orders/customer/${loginUser}`
       );
       const orderByCustomer = response.data;
       console.log("주문한 사용자 정보", orderByCustomer);

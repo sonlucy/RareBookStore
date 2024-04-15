@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { serverURL } from "../config";
 import "../styled/PurDefDest.css";
 // import { defShippingData } from "../asset/defShippingData";  // TestData 폴더에 저장된 기본 배송지 정보를 가져옴
 import { LoginContext } from "../components/LoginContext";
@@ -25,7 +26,7 @@ const PurDefDest = () => {
   const getCustomer = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/customers/${loginUser}`
+        `${serverURL}/customers/${loginUser}`
       );
       setUser(response.data);
     } catch (error) {
@@ -36,7 +37,7 @@ const PurDefDest = () => {
   const getCustomerAddr = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/address/${loginUser}`
+        `${serverURL}/address/${loginUser}`
       );
       const filteredDefAddr = response.data.filter(
         address => address.defaultAddr === 'Y'
