@@ -16,7 +16,6 @@ require("dotenv").config();
 app.use(express.json());
 app.use(
   cors({
-    // origin: "http://localhost:3000",
     origin: "*",
     credentials: true,
   })
@@ -938,7 +937,7 @@ app.get("/customers/bells/:custKey", (req, res) => {
       if (results.length === 0) {
         res.status(404).json({ error: "Customer not found" });
       } else {
-        res.json(results); 
+        res.json(results);
       }
     }
   });
@@ -1002,5 +1001,3 @@ cron.schedule("0 0 * * *", async () => {
     console.error("Expiry 업데이트 중 오류 발생:", error);
   }
 });
-
-
