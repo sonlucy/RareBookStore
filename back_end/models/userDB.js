@@ -9,18 +9,7 @@ exports.signUp = (data) => {
     db.query(
       // 사용자 정보를 customers 테이블에 삽입
       `INSERT INTO customers (userid, userpwd, email, nickname, age, gender) VALUES (?,?,?,?,?,?) `,
-      // `INSERT INTO customers (userid, userpwd, email, nickname, age, gender, contact, grade, point) VALUES (?,?,?,?,?,?,?,?,?) `,
-      [
-        data[0],
-        data[1],
-        data[2],
-        data[3],
-        data[4],
-        data[5],
-        // data[6],
-        // data[7],
-        // data[8],
-      ],
+      [data[0], data[1], data[2], data[3], data[4], data[5]],
       (err, result) => {
         if (err) reject(err);
         else resolve(result);
@@ -166,12 +155,11 @@ exports.loginCheck = async (req, res) => {
     }
 
     // 로그인 성공 시 세션에 사용자 정보 저장
-    // req.session.userid = userid;
     req.session.user = getUser[0]; // 필요한 경우 사용자 정보의 일부만 저장 가능
     res.status(200).json({
       message: "로그인 성공",
       user: req.session.user.custKey, // 세션에 저장된 사용자 정보를 응답으로 반환
-      custKey: req.session.user.custKey // 본인 custKey 반환
+      custKey: req.session.user.custKey, // 본인 custKey 반환
     });
   } catch (err) {
     console.error(err);
