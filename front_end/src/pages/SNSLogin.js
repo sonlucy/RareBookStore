@@ -50,7 +50,7 @@ const LogoImageBox = styled.div`
   width: 400px;
   padding: 50px 0 40px 0;
   margin-bottom: 40px;
-  border-bottom: #EBEBEB 2px solid;
+  border-bottom: #ebebeb 2px solid;
 `;
 
 const LogoImage = styled.div`
@@ -137,21 +137,21 @@ const IdContainer = styled(NavLink)`
   /* width: 384px; */
   width: 100%;
   height: 52px;
-  background-color: #F2F8FF;
+  background-color: #f2f8ff;
   border-radius: 10px;
   text-decoration: none;
-  color: #1273E4;
+  color: #1273e4;
   font-size: bold;
   &:hover {
     /* text-decoration: underline; */
     background-color: #bcc8d6;
-    color: #F2F8FF;
+    color: #f2f8ff;
   }
   cursor: pointer;
   @media screen and (max-width: 1440px) {
     &:active {
       background-color: #bcc8d6;
-      color: #F2F8FF;
+      color: #f2f8ff;
     }
   }
   @media screen and (max-width: 621px) {
@@ -161,40 +161,36 @@ const IdContainer = styled(NavLink)`
   }
 `;
 
-function SNSLogin(props) {
+function SNSLogin() {
   const { login } = useLoginWithGoogle();
 
   return (
     <>
       <div className="height-container">
-      <Header />
-      <CenteredContainer>
-        <SNSLoginContainer>
-          <LogoImageBox>
-            <LogoImage />
-          </LogoImageBox>
-          <LoginContainer>
-            <KakaoContainer>
-              <KakaoLogoImage />
-              <span>카카오로 시작하기</span>
-            </KakaoContainer>
-            <GoogleContainer onClick={login}>
-              <GoogleLogoImage />
-              <span>구글로 시작하기</span>
-            </GoogleContainer>
-            {/* <GoogleContainer onClick={logout}>
-              <GoogleLogoImage />
-              <span>로그아웃</span>
-            </GoogleContainer> */}
-            <IdContainer to="/IDPWLogin">
-              <span>아이디/비밀번호</span>
-            </IdContainer>
-          </LoginContainer>
-        </SNSLoginContainer>
-      </CenteredContainer>
-    </div>
+        <Header />
+        <CenteredContainer>
+          <SNSLoginContainer>
+            <LogoImageBox>
+              <LogoImage />
+            </LogoImageBox>
+            <LoginContainer>
+              <KakaoContainer>
+                <KakaoLogoImage />
+                <span>카카오로 시작하기</span>
+              </KakaoContainer>
+              <GoogleContainer onClick={login}>
+                <GoogleLogoImage />
+                <span>구글로 시작하기</span>
+              </GoogleContainer>
+              <IdContainer to="/IDPWLogin">
+                <span>아이디/비밀번호</span>
+              </IdContainer>
+            </LoginContainer>
+          </SNSLoginContainer>
+        </CenteredContainer>
+      </div>
       <Footer />
-      </>
+    </>
   );
 }
 

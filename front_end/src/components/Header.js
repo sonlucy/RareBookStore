@@ -1,16 +1,53 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import "../styled/Header.css";
 import { FaSearch } from "react-icons/fa";
 import useLogOut from "../hooks/api/useLogOut";
 import { LoginContext } from "./LoginContext";
+import axios from "axios";
+/* import { BrowserMultiFormatReader, BarcodeFormat, DecodeHintType } from '@zxing/library'; */
+import { FaBell } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { serverURL } from "../config";
 
 const Header = () => {
+  const { isLoggedIn, loginUser } = useContext(LoginContext);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate(); // useNavigate 훅
   const location = useLocation();
   const { logout } = useLogOut(); // 로그아웃 훅 사용
-  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext); // LoginContext에서 isLoggedIn 가져오기
+  
+  const [showNotification, setshowNotification] = useState(false);
+  const [RegSellerNotification, setRegSellerNotification] = useState([]);
+  const [purchaseNotification, setpurchaseNotification] = useState([]);
+  const [showPurchaseNotification, setShowPurchaseNotification] = useState(false);
+  const [showRegSellerNotification, setShowRegSellerNotification] = useState(false);
+  const notifiRef = useRef(null);
+
+  useEffect(() => {
+const fetchData = async () => {
+    try {
+      const response = await axios.get(`${serverURL}/customers/bells/${loginUser}`);
+      setRegSellerNotification(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setRegSellerNotification([]); // 에러 발생 시 빈 배열로 세팅
+    }
+
+    try {
+      const response1 = await axios.get(`${serverURL}/orders/customer/sell/${loginUser}`);
+      setpurchaseNotification(response1.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setpurchaseNotification([]); // 에러 발생 시 빈 배열로 세팅
+    }
+  };
+  if (isLoggedIn) {
+      fetchData();
+    }
+  }, [isLoggedIn, loginUser]);
+
+
 
   const handleItemClick = (event) => {
     const items = document.querySelectorAll(".sbk-menu-item");
@@ -25,8 +62,8 @@ const Header = () => {
   const handleSearchSubmit = () => {
     if (searchTerm.trim().length >= 2) {
       /* ${window.location.origin} */
-    if (location.pathname === "/CategoryBookList/") { // 특정 카테고리에 있을 경우
-      navigate(`/CategoryBookList/search?q=${encodeURIComponent(searchTerm)}`);
+    if (location.pathname.includes("/CategoryBookList/")) { // 특정 카테고리에 있을 경우
+      navigate(`${location.pathname}/search?q=${encodeURIComponent(searchTerm)}`);
     } else { //다른 모든 페이지의 경우, 검색 시 전체 카테고리에서 검색되도록
       navigate(`/CategoryBookList/all/search?q=${encodeURIComponent(searchTerm)}`);
     }
@@ -48,6 +85,29 @@ const Header = () => {
     logout(); // 로그아웃 함수 호출
     window.location.reload(); // 페이지 리로드
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // 말풍선 외의 영역을 클릭할 때 말풍선 닫기
+      if (notifiRef.current && !notifiRef.current.contains(event.target)) {
+        setshowNotification(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  
+  const handleBellClick = () => {
+    setshowNotification(!showNotification);
+    if (notifiRef.current) {
+      const tooltipPosition = notifiRef.current.getBoundingClientRect();
+      //console.log(tooltipPosition);
+    }
+  };
+
 
   return (
     <div>
@@ -74,6 +134,7 @@ const Header = () => {
                 마이페이지
               </NavLink>
             </dt>
+
             <dt>
               {isLoggedIn ? (
                 <div
@@ -94,6 +155,54 @@ const Header = () => {
                 </NavLink>
               )}
             </dt>
+            {isLoggedIn && (
+              <dt>
+                <div className="sbk-menu-item sbk-notification-btn" title="알림 보기" onClick={handleBellClick}>
+                  <FaBell />
+                </div>
+                {showNotification && (RegSellerNotification.length > 0 || purchaseNotification.length > 0) && (
+                  <div className="sbk-notification-content" ref={notifiRef}>
+                    {purchaseNotification.length > 0 && (
+                      <ul>
+                        <h4 className="sbk-notification-title" onClick={() => setShowPurchaseNotification(!showPurchaseNotification)}>
+                          <p>🐥내 판매글 낙찰 소식</p>
+                        </h4>
+                        {showPurchaseNotification && purchaseNotification.map((item, index) => (
+                          <li key={index}>
+                            <NavLink to={`/Mypage/SalesHistory`} title="판매글 확인하기">
+                            "{`${item.itemTitle}"에 대한 주문이 접수되었습니다.`}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <hr/>
+                    {RegSellerNotification.length > 0 && (
+                      <ul>
+                        <h4 className="sbk-notification-title" onClick={() => setShowRegSellerNotification(!showRegSellerNotification)}>
+                          <p>🐣내 도서에 대한 새로운 판매글</p>
+                        </h4>
+                        {showRegSellerNotification && RegSellerNotification.map((item, index) => (
+                          <li key={index}>
+                            <NavLink to={`/BuyDetail/${item.itemBuyKey}`} title="판매글 확인하기">
+                              "{`${item.itemTitle}"에 대한 판매글이 등록되었습니다.`}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
+                {showNotification && RegSellerNotification.length === 0 && purchaseNotification.length === 0 && (
+                  <div className="sbk-notification-content" ref={notifiRef}>
+                    <ul>
+                      <li>내역이 존재하지 않습니다.</li>
+                    </ul>
+                  </div>
+                )}
+              </dt>
+            )}
+
           </dl>
         </div>
 

@@ -15,7 +15,7 @@ const DetailConts = ({ productInfo, bookInfo }) => {
   };
 
   const navigate = useNavigate(); // 구매후기작성 버튼 클릭 시 구매후기작성 페이지로 이동
-  
+
   const convey = () => {
     navigate("/SellerInfoPage", {
       //판매자 정보 페이지로 이동
@@ -50,26 +50,21 @@ const DetailConts = ({ productInfo, bookInfo }) => {
         <img src={bookInfo.itemImg} alt="상품이미지" />
         <div className="yhw_detailContsLTxt">
           <div className="yhw_detailContsLTop">
-            <b>{price}원</b>
-            <span className="yhw_detailContsSeller" title="판매자 정보 보기" onClick={convey}>
+            <b>입찰가 {price}원</b>
+            <span
+              className="yhw_detailContsSeller"
+              title="판매자 정보 보기"
+              onClick={convey}
+            >
               판매자 : {sellerNickname}
-              {/* 판매자 {seller} &#40;등급 {grade}&#41; */}
             </span>
           </div>
           <div className="yhw_detailContsLBottom">
-            {/* 체크한 상태값 가져와서 화면에 출력 */}
-            {/* {condition.map((state, index) => (
-              <span key={index} className="yhw_detailContsState">{state}</span>
-            ))} */}
-            {/* ==> 위에 거 대신 damage 개수(0:최상, 1:상, 2이상:중)에 따른 상태등급을 화면에 출력 */}
             <span>상태 등급</span>
             <b>
               {damage === 0 && "최상"}
               {damage === 1 && "상"}
               {damage >= 2 && "중"}
-              {/* {condition.length === 0 && "최상"}
-              {condition.length === 1 && "상"}
-              {condition.length >= 2 && "중"} */}
             </b>
           </div>
         </div>

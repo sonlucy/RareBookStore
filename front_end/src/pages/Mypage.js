@@ -48,8 +48,14 @@ const MypageView = () => {
                     <div className="user-detail">
                       <div className="user-info">
                         <div className="info-box">
+                        {user.custKey ? (
+                          <>
                           <strong className="name">{user.userid}</strong>
                           <p className="email">{user.email}</p>
+                          </>
+                          ) : (
+                           <p>로그인해주세요</p>
+                        )}
                         </div>
                       </div>
                     </div>

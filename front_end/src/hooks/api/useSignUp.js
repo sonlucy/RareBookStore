@@ -9,9 +9,6 @@ const useSignUp = () => {
     nickname: "",
     age: "",
     gender: "",
-    // contact: "",
-    // grade: "",
-    // point: "",
   });
 
   const navigate = useNavigate();
@@ -39,9 +36,6 @@ const useSignUp = () => {
           nickname: "",
           age: "",
           gender: "",
-          // contact: "",
-          // grade: "",
-          // point: "",
         });
         return;
       }
