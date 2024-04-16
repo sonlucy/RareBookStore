@@ -27,11 +27,19 @@ const PurchaseRequest = styled.div`
   align-items: center;
   padding: 0 6vw 0 0; // 카테고리 링크를 가려서 padding 크기 수정.
   margin: 0;
+  @media (max-width: 425px) {
+    margin-bottom: 3rem;
+  }
 `;
 
 const Title = styled.h3`
   font-size: 22px;
   margin-right: 4rem;
+
+  @media (max-width: 425px) {
+    font-size: 17px;
+    margin-right: 1rem;
+  }
 `;
 
 const Button = styled.a`
@@ -47,6 +55,12 @@ const Button = styled.a`
   cursor: pointer;
   font-size: 0.9375rem;
   text-decoration: none;
+
+  @media (max-width: 425px) {
+    font-size: 0.75rem;
+    width: 130px;
+    height: 40px;
+  }
 `;
 // ============== Style component ============== //
 
@@ -131,7 +145,9 @@ const getBuyBookList = async () => {
 
   return (
     <>
+
       <div className="height-container">
+
       <Header />
       <div className="yhw_container">
         <PurchaseRequestContainer>
@@ -144,6 +160,7 @@ const getBuyBookList = async () => {
         {bookList.map((book, index) => (
           <ProductList key={index} bookList={book} />
         ))}
+
       </div>
 
     </div>
