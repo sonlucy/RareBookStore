@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { VscChevronRight } from "react-icons/vsc";
+import { serverURL } from "../config";
 import "../styled/BuyDetail.css";
 import Header from "../components/Header";
 import DetailTop from "../components/DetailTop";
@@ -22,13 +23,13 @@ const BuyDetail = () => {
   const getBookInfo = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/buyerbook/item/${itemBuyKey}`
+        `${serverURL}/buyerbook/item/${itemBuyKey}`
       );
       const bookData = response.data[0];
 
       // 구매자 정보 가져오기
       const buyerResponse = await axios.get(
-        `http://localhost:3001/customers/${bookData.custKey}`
+        `${serverURL}/customers/${bookData.custKey}`
       );
       const buyerNickname = buyerResponse.data.nickname;
       // 구매자 닉네임을 bookData에 추가 (bookData = response.data[0];)
@@ -43,7 +44,7 @@ const BuyDetail = () => {
   const getSeller = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/sellerbook/item/${itemBuyKey}`
+        `${serverURL}/sellerbook/item/${itemBuyKey}`
       );
 
       setSellerInfo(response.data);
@@ -56,7 +57,7 @@ const BuyDetail = () => {
   const getBuyerNickname = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/customers/${bookInfo.custKey}`
+        `${serverURL}/customers/${bookInfo.custKey}`
       );
 
       setBuyerNickname(response.data.nickname);

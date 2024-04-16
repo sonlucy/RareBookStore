@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import useGetBuyerInfo from "../hooks/api/useGetBuyerInfo";
-
+import { serverURL } from "../config";
 import axios from "axios";
 
 const FlexContainer = styled.div`
@@ -120,7 +120,7 @@ function BookSaleBid({ itemBuyKey, loginUser, isLoggedIn }) {
         };
 
         const response = await axios.post(
-          "http://localhost:3001/sellerbook",
+          `${serverURL}/sellerbook`,
           sellerBookData
         );
         console.log(response.sellerBookData);

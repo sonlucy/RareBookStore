@@ -119,6 +119,16 @@ const getBuyBookList = async () => {
     getBuyBookList();
   }, [category, search]);
 
+  useEffect(() => {
+    const handlePopState = () => {
+      getBuyBookList();
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
   return (
     <div>
       <Header />

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useCallback } from "react";
 import "../styled/DestForm.css";
 import { LoginContext } from "./LoginContext";
 import axios from "axios";
+import { serverURL } from "../config";
 
 const DestForm = ({ handleUserAddrChange }) => {
   // 페이지파일(= Purchase.js)에 있는 isChecked를 props로 받아옴
@@ -69,7 +70,7 @@ const DestForm = ({ handleUserAddrChange }) => {
   const getCustomer = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/customers/${loginUser}`
+        `${serverURL}/customers/${loginUser}`
       );
       setUser(response.data);
     } catch (error) {
@@ -84,7 +85,7 @@ const DestForm = ({ handleUserAddrChange }) => {
   const getCustomerAddr = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/address/${loginUser}`
+        `${serverURL}/address/${loginUser}`
       );
       setGetAddr(response.data);
     } catch (error) {

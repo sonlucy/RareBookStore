@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { serverURL } from "../../config";
 import axios from "axios";
 
 const useSellerNickname = (custKey) => {
@@ -8,7 +9,7 @@ const useSellerNickname = (custKey) => {
     const fetchSellerNickname = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/customers/${custKey}`
+          `${serverURL}/customers/${custKey}`
         );
         setSellerNickname(response.data.nickname);
       } catch (error) {

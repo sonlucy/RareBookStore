@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { serverURL } from "../../config";
 import axios from "axios";
 
 const useBuyerInformation = (itemBuyKey) => {
@@ -8,7 +9,7 @@ const useBuyerInformation = (itemBuyKey) => {
     const fetchBuyerInformation = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/buyerbook/item/${itemBuyKey}`
+          `${serverURL}/buyerbook/item/${itemBuyKey}`
         );
         setBuyerInfo(response.data[0]);
         // console.log(response.data.custKey);

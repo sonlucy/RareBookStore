@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { serverURL } from "../config";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "../styled/Purchase.css";
@@ -64,17 +65,18 @@ const Purchase = () => {
     try {
       // Make a POST request using Axios
       const response = await axios.post(
-        "http://localhost:3001/orders",
+        `${serverURL}/orders`,
         updatedAddr
       );
       const modifyAucStatus = await axios.put(
-        `http://localhost:3001/buyerbook/aucStatus/${bookData.itemBuyKey}`,
+        `${serverURL}/buyerbook/aucStatus/${bookData.itemBuyKey}`,
         { aucStatus: 1 }
       );
 
       // Handle the response if needed
       console.log("Response:", response.data);
       console.log("aucStatus 변경 완료", modifyAucStatus.data);
+      alert("구매가 완료되었습니다.");
       navigate("/Mypage/PurchaseHistory");
     } catch (error) {
       // Handle errors if the request fails

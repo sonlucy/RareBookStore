@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { serverURL } from "../config";
 import "../styled/pageView.css";
 import "../styled/PurchaseHistory.css";
 import Header from "../components/Header";
@@ -19,7 +20,7 @@ const MypageView = () => {
   const getCustomer = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/customers/${loginUser}`
+        `${serverURL}/customers/${loginUser}`
       );
       setUser(response.data);
     } catch (error) {

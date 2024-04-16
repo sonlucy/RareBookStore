@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styled/DetailConts.css";
 import SellerRanking from "../components/SellerRanking";
 import axios from "axios";
+import { serverURL } from "../config";
 
 const DetailConts = ({ productInfo, bookInfo }) => {
   const { price, sellerKey, damage } = productInfo; //판매자 정보 가져오기
@@ -32,7 +33,7 @@ const DetailConts = ({ productInfo, bookInfo }) => {
   const getSellerNickname = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/customers/${sellerKey}`
+        `${serverURL}/customers/${sellerKey}`
       );
       console.log(response.data.nickname);
       setSellerNickname(response.data.nickname);

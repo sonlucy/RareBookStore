@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { serverURL } from "../config";
 import styled from "styled-components";
 import axios from "axios";
 // import useGetReviews from "../hooks/api/useGetReviews";
@@ -147,7 +148,7 @@ function ReviewCreate({ purLists, filteredSellerData }) {
     const getItemKey = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/orders/sellkey/${itemSellKey}`
+          `${serverURL}/orders/sellkey/${itemSellKey}`
         );
         const itemKeyNumber = response.data;
         setItemKey(itemKeyNumber[0].itemKey);
@@ -206,7 +207,7 @@ function ReviewCreate({ purLists, filteredSellerData }) {
 
     try {
       // 리뷰 저장하기 위해 POST 요청
-      await axios.post("http://localhost:3001/reviews", custReview);
+      await axios.post(`${serverURL}/reviews`, custReview);
       // Post요청 성공후 값 초기화
       setSelectedStatus(null);
       setSelectedDesire(null);

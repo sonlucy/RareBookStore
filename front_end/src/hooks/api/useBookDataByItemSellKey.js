@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { serverURL } from "../../config";
 import axios from "axios";
 
 const useBookDataByItemSellKey = (itemSellKey) => {
@@ -8,7 +9,7 @@ const useBookDataByItemSellKey = (itemSellKey) => {
     const fetchBookData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/sellerbook/orders/${itemSellKey}`
+          `${serverURL}/sellerbook/orders/${itemSellKey}`
         );
         setBookData(response.data[0]);
       } catch (error) {
