@@ -9,7 +9,7 @@
 역경매란 기존의 수요자 : 공급자 = n : 1 경매 방식과 달리, 수요자 : 공급자 = 1: n 형태로 공급자들의 가격 경쟁을 유도하는 리버스 옥션 방식입니다.
 역경매를 통해 가장 좋은 조건을 제시한 판매자를 구매자가 선택하여 거래할 수 있는 사용자 중심 서비스입니다.
 
-![](../header.png)
+![](./header.png)
 
 ## 프로젝트 정보
 
@@ -23,30 +23,7 @@
 
 |<img src="https://avatars.githubusercontent.com/u/79436968?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/90229940?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/86239847?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/117055681?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/128718237?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/154579448?v=4" width="150" height="150"/>|
 |:-:|:-:|:-:|:-:|:-:|:-:|
-|Sam Lee<br/>[@loi57111](https://github.com/loi57111)<br>
-- SNS 연동 로그인
-- ERD 설계
-- RESTful API 작성
-|Hyunwoo-Seo<br/>[@Hyunwoo-Seo](https://github.com/Hyunwoo-Seo)<br>
-- 구매후기P 구현
-- 도서리스트P 구현
-- 로그인P 구현
-|Bogyoi<br/>[@sonlucy](https://github.com/sonlucy)<br>
-- 마이페이지 구현
-- 메인페이지 구현
-- 판매자정보P 구현
-|hyewon yoo<br/>[@h1yoo](https://github.com/h1yoo)<br>
-- 구매하기P 구현
-- 도서상세P 구현
-- 관리자로그인P 구현
-|Lily<br/>[@YoonhaJ](https://github.com/YoonhaJ)<br>
-- UI/UX 설계
-- 도서검색 API
-- 관리자P 구현
-|[@jinyucha](https://github.com/jinyucha)<br>
-- 고객센터P 구현
-- 내정보P 구현
-- 마이페이지 구현|
+|Sam Lee<br/>[@loi57111](https://github.com/loi57111)<br> SNS 연동 로그인<br>ERD 설계<br>RESTful API 작성|Hyunwoo-Seo<br/>[@Hyunwoo-Seo](https://github.com/Hyunwoo-Seo)<br>구매후기P 구현<br>도서리스트P 구현<br>로그인P 구현|Bogyoi<br/[@sonlucy](https://github.com/sonlucy)<br>마이페이지 구현<br>메인페이지 구현<br>판매자정보P 구현|hyewon yoo<br/>[@h1yoo](https://github.com/h1yoo)<br>구매하기P 구현<br>도서상세P 구현<br>관리자로그인P 구현<br>|Lily<br/>[@YoonhaJ](https://github.com/YoonhaJ)<br>UI/UX 설계<br>도서검색 API<br>관리자P 구현<br>|[@jinyucha](https://github.com/jinyucha)<br>고객센터P 구현<br>내정보P 구현<br>마이페이지 구현|
 
 ## 화면 구성
 
