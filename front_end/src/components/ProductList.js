@@ -10,15 +10,22 @@ const CenteredContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 1rem;
 `;
 
 const ProductListContainer = styled.div`
   /* width: 1050px; */
   width: 100%;
-  height: 300px;
+  height: auto; //300px
   display: flex;
   flex-direction: row;
   position: relative;
+
+  @media (max-width: 425px) {
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const ProductImage = styled.div`
@@ -26,7 +33,14 @@ const ProductImage = styled.div`
   height: 268px;
   background: url(${(props) => props.bookImg});
   background-size: cover;
-  margin: 0 36px 29px 15px;
+  margin: 0 15px 0px 15px;
+
+@media (max-width: 768px) {
+  width: 180px;
+  height: 240px;
+  
+  min-width: 180px;
+}
 `;
 
 const ProductInfoContainer = styled.div`
@@ -34,11 +48,21 @@ const ProductInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 425px) {
+    margin: 0.5rem 0;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const ProductInfoTable = styled.table`
-  width: 100%;
-  margin-bottom: 20px;
+  width: 80%;
+  margin-bottom: 30px;
+  @media (max-width: 1024px) and (min-width: 769px) {
+      width: 60%;
+    }
+  
 `;
 
 const ProductInfoRow = styled.tr`
@@ -139,6 +163,14 @@ const SellButton = styled.button`
   position: absolute;
   top: 10px;
   right: 20px;
+  
+  @media (max-width: 768px) {
+    top: auto; 
+    bottom: 10px;
+  }
+  @media (max-width: 425px) {
+    width: 90%;
+}
 `;
 
 const Divider = styled.span`
@@ -148,10 +180,17 @@ const Divider = styled.span`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
+
+    @media (max-width: 425px) {
+    width: 100%;
+    margin-left: 1rem;
+    
+}
+  
 `;
 
 const SilverLine = styled.div`
-  width: 1050px;
+  width: 100%;
   height: 1px;
   background-color: #e2e2e2;
   margin-top: 27px;
