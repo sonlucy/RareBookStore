@@ -13,7 +13,7 @@
 
 ## 프로젝트 정보
 
-> 멀티캠퍼스 프론트엔드 개발자 과정 6기 Final Project
+> 멀티캠퍼스 프론트엔드 개발자 과정 6기 Final Project <br>
 > 개발 기간 `2024.03.14 ~ 2024.04.16`
 
 ## 팀 소개
@@ -23,7 +23,8 @@
 
 |<img src="https://avatars.githubusercontent.com/u/79436968?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/90229940?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/86239847?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/117055681?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/128718237?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/154579448?v=4" width="150" height="150"/>|
 |:-:|:-:|:-:|:-:|:-:|:-:|
-|Sam Lee<br/>[@loi57111](https://github.com/loi57111)<br> SNS 연동 로그인<br>ERD 설계<br>RESTful API 작성|Hyunwoo-Seo<br/>[@Hyunwoo-Seo](https://github.com/Hyunwoo-Seo)<br>구매후기P 구현<br>도서리스트P 구현<br>로그인P 구현|Bogyoi<br/[@sonlucy](https://github.com/sonlucy)<br>마이페이지 구현<br>메인페이지 구현<br>판매자정보P 구현|hyewon yoo<br/>[@h1yoo](https://github.com/h1yoo)<br>구매하기P 구현<br>도서상세P 구현<br>관리자로그인P 구현<br>|Lily<br/>[@YoonhaJ](https://github.com/YoonhaJ)<br>UI/UX 설계<br>도서검색 API<br>관리자P 구현<br>|[@jinyucha](https://github.com/jinyucha)<br>고객센터P 구현<br>내정보P 구현<br>마이페이지 구현|
+|**이총명**<br/>[@loi57111](https://github.com/loi57111)<br>SNS 연동 로그인<br>ERD 설계<br>RESTful API 작성|**서현우**<br/>[@Hyunwoo-Seo](https://github.com/Hyunwoo-Seo)<br>구매후기P 구현<br>도서리스트P 구현<br>로그인P 구현|**손보경**<br>/[@sonlucy](https://github.com/sonlucy)<br>마이페이지 구현<br>메인페이지 구현<br>판매자정보P 구현|**유혜원**<br/>[@h1yoo](https://github.com/h1yoo)<br>구매하기P 구현<br>도서상세P 구현<br>관리자로그인P 구현<br>|**전윤하**<br/>[@YoonhaJ](https://github.com/YoonhaJ)<br>UI/UX 설계<br>도서검색 API<br>관리자P 구현<br>|**차유진**[@jinyucha](https://github.com/jinyucha)<br>고객센터P 구현<br>내정보P 구현<br>마이페이지 구현|
+
 
 ## 화면 구성
 
