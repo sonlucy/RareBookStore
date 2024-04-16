@@ -82,14 +82,14 @@ function BookSearch({ onSelectBook }) {
     };
 
     return (
-        <div>
+        <div className='sbk-bookSearch-container'>
             <p className='jyh-bookSearch-info'>도서를 검색하여 구매를 희망하는 도서를 클릭 후 아래 폼을 마저 채워주세요</p>
             <div className="jyh-search-container">
                 <FaSearch className="sbk-search-icon" />
                 <input
                     type="text"
                     className="sbk-search-input"
-                    placeholder="   검색할 도서명을 입력하세요"
+                    placeholder="검색할 도서명을 입력하세요"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     onKeyDown={handleEnterKeyDown}
@@ -118,7 +118,7 @@ function BookSearch({ onSelectBook }) {
 
             {/* Pagination */}
             <div className="pagination">
-                <button onClick={goToPrevPageGroup} disabled={currentPageGroup === 1}>{'<'}</button>
+                <button onClick={goToPrevPageGroup} className="pagination-prev-button" disabled={currentPageGroup === 1}>{'<'}</button>
                 {Array.from({ length: endPage - startPage + 1 }, (_, i) => (
                     <button
                         key={startPage + i}
@@ -128,7 +128,7 @@ function BookSearch({ onSelectBook }) {
                         {startPage + i}
                     </button>
                 ))}
-                <button onClick={goToNextPageGroup} disabled={endPage === totalPages}>{'>'}</button>
+                <button onClick={goToNextPageGroup} className="pagination-next-button" disabled={endPage === totalPages}>{'>'}</button>
             </div>
         </div>
     );

@@ -68,9 +68,16 @@ height: 4.5rem;
   padding-left: 6rem;
 }
 
+@media screen and (max-width: 768px) {
+.sbk-error-container {
+  padding-left: 1rem;
+}
+}
+
 .sbk-error-message {
   color: red;
   font-size: 0.8rem;
+
 }
 
 .sbk-submit-button {
@@ -149,7 +156,8 @@ height: 4.5rem;
   text-align: right;
 }
 .yhw_purReqDropDown > select {
-  width: 170px;
+  width: 15vw;
+  min-width: 142px;
   height: 40px;
   flex-grow: 1;
   border-radius: 7px;
@@ -157,6 +165,7 @@ height: 4.5rem;
   font-size: 0.938rem;
   padding-left: 7px;
   /* color: #676767; */
+
 }
 .yhw_purReqDropDown > select option:first-child {
   color: #a4a4a4;
@@ -168,7 +177,9 @@ height: 4.5rem;
   margin-left: 25px;
 }
 
-
+.sbk-bookSearch-container {
+  
+}
 
 
 @media screen and (max-width: 1024px) {
@@ -228,6 +239,7 @@ height: 4.5rem;
 .sbk-deadline-selection {
     flex-direction: column; /* 화면이 작아질 때 세로로 배치 */
     align-items: flex-start; /* 화면이 작아질 때 자식 요소들을 위쪽으로 정렬 */
+    
   }
 
 /*   .sbk-deadline-selection {
@@ -295,6 +307,12 @@ height: 4.5rem;
   .sbk-form-fields-container {
     min-height: 25rem;
   }
+
+  .yhw_purReqDropDown>select {
+    height: 1.7rem;
+  }
+
+
 
 }
 
