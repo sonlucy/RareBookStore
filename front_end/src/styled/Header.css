@@ -112,11 +112,13 @@
 .sbk-search-input {
   width: 30vw;
   min-width: 10rem;
-/*   width: 28vw; */
-  height: 35px;
+  flex-grow: 1;
+  border-radius: 10px;
   border: none;
   outline: none;
+  height: 42px;
   font-size: 1rem;
+  padding-left: 10px;
 }
 
 @media screen and (max-width: 621px) {

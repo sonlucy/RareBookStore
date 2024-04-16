@@ -88,7 +88,7 @@ function BookSearch({ onSelectBook }) {
                 <FaSearch className="sbk-search-icon" />
                 <input
                     type="text"
-                    className="sbk-search-input"
+                    className="sbk-pur-search-input"
                     placeholder="검색할 도서명을 입력하세요"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
