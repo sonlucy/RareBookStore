@@ -63,23 +63,6 @@ const SubmitButton = styled.button`
   }
 `;
 
-// const AdditionalLinks = styled.div`
-//   display: flex;
-//   /* justify-content: space-between; */
-//   justify-content: center;
-//   margin-top: 10px;
-// `;
-
-// const AdditionalLink = styled(Link)`
-//   color: #007bff;
-//   text-decoration: none;
-//   cursor: pointer;
-
-//   &:hover {
-//     text-decoration: underline;
-//   }
-// `;
-
 const AdminLogin = () => {
   // 커스텀 훅스
   const { adminUserData, setAdminUserData, adminloginCheck } =
@@ -101,37 +84,33 @@ const AdminLogin = () => {
   return (
     <>
       <div className="height-container">
-      <Header />
-      <Container>
-        <LoginForm onSubmit={handleLogin}>
-          <H2>로그인</H2>
-          <FormGroup>
-            <Label>아이디</Label>
-            <InputField
-              type="text"
-              name="userid"
-              value={adminUserData.userid}
-              onChange={handleChange}
-              placeholder="아이디를 입력하세요"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>패스워드</Label>
-            <InputField
-              type="password"
-              name="userpwd"
-              value={adminUserData.userpwd}
-              onChange={handleChange}
-              placeholder="비밀번호를 입력하세요"
-            />
-          </FormGroup>
-          <SubmitButton type="submit">로그인</SubmitButton>
-          {/* <AdditionalLinks> */}
-          {/* <AdditionalLink href="/">아이디 / 비밀번호 찾기</AdditionalLink> */}
-          {/* <AdditionalLink to="/SignUpMail">회원가입</AdditionalLink>
-          </AdditionalLinks> */}
-        </LoginForm>
-      </Container>
+        <Header />
+        <Container>
+          <LoginForm onSubmit={handleLogin}>
+            <H2>로그인</H2>
+            <FormGroup>
+              <Label>아이디</Label>
+              <InputField
+                type="text"
+                name="userid"
+                value={adminUserData.userid}
+                onChange={handleChange}
+                placeholder="아이디를 입력하세요"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>패스워드</Label>
+              <InputField
+                type="password"
+                name="userpwd"
+                value={adminUserData.userpwd}
+                onChange={handleChange}
+                placeholder="비밀번호를 입력하세요"
+              />
+            </FormGroup>
+            <SubmitButton type="submit">로그인</SubmitButton>
+          </LoginForm>
+        </Container>
       </div>
       <Footer />
     </>
