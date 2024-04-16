@@ -23,12 +23,46 @@
 
 |<img src="https://avatars.githubusercontent.com/u/79436968?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/90229940?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/86239847?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/117055681?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/128718237?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/154579448?v=4" width="150" height="150"/>|
 |:-:|:-:|:-:|:-:|:-:|:-:|
-|**이총명**<br/>[@loi57111](https://github.com/loi57111)<br>SNS 연동 로그인<br>ERD 설계<br>RESTful API 작성|**서현우**<br/>[@Hyunwoo-Seo](https://github.com/Hyunwoo-Seo)<br>구매후기P 구현<br>도서리스트P 구현<br>로그인P 구현|**손보경**<br>/[@sonlucy](https://github.com/sonlucy)<br>마이페이지 구현<br>메인페이지 구현<br>판매자정보P 구현|**유혜원**<br/>[@h1yoo](https://github.com/h1yoo)<br>구매하기P 구현<br>도서상세P 구현<br>관리자로그인P 구현<br>|**전윤하**<br/>[@YoonhaJ](https://github.com/YoonhaJ)<br>UI/UX 설계<br>도서검색 API<br>관리자P 구현<br>|**차유진**[@jinyucha](https://github.com/jinyucha)<br>고객센터P 구현<br>내정보P 구현<br>마이페이지 구현|
+|**이총명**<br/>[@loi57111](https://github.com/loi57111)<br>SNS 연동 로그인<br>ERD 설계<br>RESTful API 작성|**서현우**<br/>[@Hyunwoo-Seo](https://github.com/Hyunwoo-Seo)<br>구매후기P 구현<br>도서리스트P 구현<br>로그인P 구현|**손보경**<br>[@sonlucy](https://github.com/sonlucy)<br>마이페이지 구현<br>메인페이지 구현<br>판매자정보P 구현|**유혜원**<br/>[@h1yoo](https://github.com/h1yoo)<br>구매하기P 구현<br>도서상세P 구현<br>관리자로그인P 구현<br>|**전윤하**<br/>[@YoonhaJ](https://github.com/YoonhaJ)<br>UI/UX 설계<br>도서검색 API<br>관리자P 구현<br>|**차유진**[@jinyucha](https://github.com/jinyucha)<br>고객센터P 구현<br>내정보P 구현<br>마이페이지 구현|
 
 
-## 화면 구성
+## 주요 화면 구성
 
+|메인 페이지|구매희망도서 등록|
+|:-:|:-:|
+|![](./layout/main.png)|![](./layout/buyform.png)|
+|**도서 카테고리**|**판매입찰 하기**|
+|![](./layout/booklist.png)|![](./layout/sell.png)|
+|**구매하기**|**문의하기**|
+|![](./layout/buy.png)|![](./layout/qna.png)|
+|**내정보 수정**|**판매 등급**|
+|![](./layout/mypage.png)|![](./layout/rank.png)|
 
+## 기술 스택
+**Environment**
+
+<br><br>
+
+**Config**
+
+<br><br>
+
+**Development**
+
+*front-end* <br>
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"><br>
+<img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"><br>
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"><br>
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><br>
+
+*back-end*<br>
+<img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"><br>
+<img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white"><br>
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"><br>
+
+**Design**
+
+**Cooperation**
 
 ## 설치 방법
 
