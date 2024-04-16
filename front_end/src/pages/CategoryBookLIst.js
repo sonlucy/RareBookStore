@@ -130,7 +130,8 @@ const getBuyBookList = async () => {
   }, []);
 
   return (
-    <div>
+    <>
+      <div className="height-container">
       <Header />
       <div className="yhw_container">
         <PurchaseRequestContainer>
@@ -143,11 +144,11 @@ const getBuyBookList = async () => {
         {bookList.map((book, index) => (
           <ProductList key={index} bookList={book} />
         ))}
-
       </div>
 
-      <Footer />
     </div>
+      <Footer />
+    </>
   );
 };
 
