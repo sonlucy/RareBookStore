@@ -145,7 +145,7 @@ const BuyDetail = () => {
                   <VscChevronRight />
                 </span>
                 <Link to="/">
-                  <span>{bookInfo.itemTitle}책제목</span>
+                  <span>{bookInfo.itemTitle}</span>
                 </Link>
               </div>
               <DetailTop bookInfo={bookInfo} />

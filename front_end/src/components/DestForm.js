@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import "../styled/DestForm.css";
-// import { defShippingData } from "../asset/defShippingData";  // TestData 폴더에 저장된 기본 배송지 정보를 가져옴
-import { LoginContext } from "../components/LoginContext";
+import { LoginContext } from "./LoginContext";
 import axios from "axios";
 import { serverURL } from "../config";
 
@@ -20,6 +19,10 @@ const DestForm = ({ handleUserAddrChange }) => {
   });
   const [getAddr, setGetAddr] = useState([]);
 
+  const checked = () => {
+    setIsChecked(!isChecked);   // isChecked 상태 토글
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     console.log(name, value);
@@ -32,36 +35,39 @@ const DestForm = ({ handleUserAddrChange }) => {
   useEffect(() => {
     console.log(isChecked, "isChecked 값");
     console.log(defaultAddress, "defaultAddress 값");
-    if (defaultAddress && isChecked) {
-      setUserAddr({
-        custKey: loginUser,
-        name: defaultAddress.name,
-        tel: defaultAddress.tel,
-        postcode: defaultAddress.postcode,
-        addr: defaultAddress.addr,
-        addrDetail: defaultAddress.addrDetail,
-      });
-      console.log("체크박스 클릭후 디폴트 주소 저장됨:", isChecked);
-      handleUserAddrChange(userAddr);
-    } else {
-      setUserAddr({
-        custKey: loginUser,
-        name: "",
-        tel: "",
-        postcode: "",
-        addr: "",
-        addrDetail: "",
-      });
-      handleUserAddrChange(userAddr);
-      console.log("체크박스 해제후 주소 초기화:", isChecked);
-    }
+    const updateUserAddr = () => {
+      if (defaultAddress && !isChecked) { // isChecked의 초깃값이 false이기 때문에 false가 아닌 경우(= ture)에 실행
+        setUserAddr({
+          custKey: loginUser,
+          name: defaultAddress.name,
+          tel: defaultAddress.tel,
+          postcode: defaultAddress.postcode,
+          addr: defaultAddress.addr,
+          addrDetail: defaultAddress.addrDetail,
+        });
+        console.log("체크박스 클릭후 디폴트 주소 저장됨:", isChecked);
+      } else {
+        setUserAddr({
+          custKey: loginUser,
+          name: "",
+          tel: "",
+          postcode: "",
+          addr: "",
+          addrDetail: "",
+        });
+        console.log("체크박스 해제후 주소 초기화:", isChecked);
+      }
+    };
+  
+    updateUserAddr(); // 최초 렌더링 시 업데이트
+  
+    // 업데이트된 userAddr를 처리
+    handleUserAddrChange(userAddr);
   }, [defaultAddress, isChecked]);
 
-  const checked = () => {
-    setIsChecked(!isChecked);
-  };
-
-  const getCustomer = async () => {
+  // 성능 최적화를 위해 useCallback 사용
+  // useCallback 훅은 함수를 메모이제이션하여 불필요한 렌더링을 방지
+  const getCustomer = useCallback(async () => {
     try {
       const response = await axios.get(
         `${serverURL}/customers/${loginUser}`
@@ -70,27 +76,26 @@ const DestForm = ({ handleUserAddrChange }) => {
     } catch (error) {
       console.error("Error fetching customers:", error);
     }
-  };
+  }, [loginUser]);
+  
+  useEffect(() => {
+    getCustomer();
+  }, [getCustomer]);
 
-  const getCustomerAddr = async () => {
+  const getCustomerAddr = useCallback(async () => {
     try {
       const response = await axios.get(
         `${serverURL}/address/${loginUser}`
       );
       setGetAddr(response.data);
     } catch (error) {
-      console.error("고객의 주소를 가져올수 없습니다.", error);
+      console.error("Error fetching customer address:", error);
     }
-  };
-
-  useEffect(() => {
-    getCustomer();
-  }, []);
-
+  }, [loginUser]);
+  
   useEffect(() => {
     getCustomerAddr();
-    checked();
-  }, [user]);
+  }, [getCustomerAddr]);
 
   return (
     <>
@@ -99,9 +104,10 @@ const DestForm = ({ handleUserAddrChange }) => {
           type="checkbox"
           value=""
           id="flexCheckDefault"
+          checked={isChecked} // 만약 isChecked가 true이면 checkbox가 선택된 상태로 표시됨
           onChange={checked}
         />
-        <label htmlFor="flexCheckDefault">새로운 배송지로 배송</label>
+        <label htmlFor="flexCheckDefault">기본 배송지로 배송</label>
       </div>
 
       <form className="yhw_destForm">
