@@ -5,7 +5,6 @@ import axios from "axios";
 import "../styled/Purchase.css";
 import Header from "../components/Header";
 import PurInfoBoxForPur from "../components/PurInfoBoxForPur";
-// import PurDefDestCheck from "../components/DefDestCheck";
 import PurDefDest from "../components/PurDefDest";
 import DestForm from "../components/DestForm";
 import Footer from "../components/Footer";
@@ -14,6 +13,7 @@ import useBookDataByItemSellKey from "../hooks/api/useBookDataByItemSellKey";
 import useBuyerInformation from "../hooks/api/useBuyerInformation";
 
 const Purchase = () => {
+  const navigate = useNavigate(); // 구매하기 버튼 클릭 시  해당 도서 Purchase 페이지로 이동
   const params = useParams();
   const itemSellKey = params.itemSellKey;
   // console.log(itemSellyKey, "itemSellyKey");
@@ -47,9 +47,6 @@ const Purchase = () => {
   });
 
   const updatedAddr = { ...userAddr, ...addInfo };
-
-  /********************** BuyDetail 페이지의 DetailConts가 아직 연결되지 않아서 제대로 동작하지 않음 **********************/
-  const navigate = useNavigate(); // 구매하기 버튼 클릭 시  해당 도서 Purchase 페이지로 이동
 
   // 구매하기 버튼 클릭 시 해당 도서 Purchase 페이지로 이동하는 함수
   const handlePurBtnClick = async (e) => {
