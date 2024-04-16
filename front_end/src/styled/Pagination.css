@@ -1,3 +1,4 @@
+
 .pagination {
   display: flex;
   justify-content: center; 
@@ -20,4 +21,33 @@
 .pagination button:disabled {
   opacity: 0.5; 
   cursor: not-allowed; 
+}
+
+@media (max-width: 425px) {
+  .pagination button {
+    width: 30px; 
+    height: 30px; 
+    font-size: 0.75rem; 
+    padding: 0;
+    margin: 0.1rem;
+  }
+  .pagination-next-button {
+    margin: 0;
+  }
+
+  .pagination-prev-button {
+    margin: 0;
+  }
+  .pagination button {
+    display: none;
+  }
+
+  .pagination button:nth-child(1),
+  .pagination button:nth-child(2),
+  .pagination button:nth-child(3),
+  .pagination button:nth-child(4),
+  .pagination button:nth-last-child(1) {
+    display: inline-block;
+  }
+
 }
