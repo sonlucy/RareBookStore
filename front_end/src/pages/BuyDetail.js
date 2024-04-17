@@ -47,26 +47,25 @@ const BuyDetail = () => {
       const response = await axios.get(
         `${serverURL}/sellerbook/item/${itemBuyKey}`
       );
-      setSellerInfo(response.data);
+      // setSellerInfo(response.data);
       // /////// 판매자 등급 순 정렬을 위해 데이터 가져오기 ==> grade에 값이 잘 안 들어가는 문제로 인해 주석처리
-      // const sellerBookData = response.data;
+      const sellerBookData = response.data;
 
-      // // 판매자 정보 데이터에 대한 추가 작업 수행
-      // const newData = await Promise.all(sellerBookData.map(async (seller) => {
-      //   // 각 판매자의 custKey를 사용하여 해당 판매자의 추가 정보 가져오기
-      //   const custResponse = await axios.get(`http://localhost:3001/customers/${seller.sellerKey}`);
-      //   const customerData = custResponse.data;
-      //   console.log("BuyDetail CustomerData 데이터", customerData);
+      // 판매자 정보 데이터에 대한 추가 작업 수행
+      const newData = await Promise.all(sellerBookData.map(async (seller) => {
+        // 각 판매자의 custKey를 사용하여 해당 판매자의 추가 정보 가져오기
+        const custResponse = await axios.get(`http://localhost:3001/customers/${seller.sellerKey}`);
+        const customerData = custResponse.data;
 
-      //   // seller 데이터에 grade 값을 추가
-      //   const newSellerData = {
-      //     ...seller,  // sellerbook 테이블에서 가져온 개별 판매자의 정보를 나타내는 객체
-      //     grade: customerData.grade // customers 테이블에서 가져온 grade 값 추가
-      //   };
-      //   return newSellerData;
-      // }));
+        // seller 데이터에 grade 값을 추가
+        const newSellerData = {
+          ...seller,  // sellerbook 테이블에서 가져온 개별 판매자의 정보를 나타내는 객체
+          grade: customerData.grade // customers 테이블에서 가져온 grade 값 추가
+        };
+        return newSellerData;
+      }));
 
-      // setSellerInfo(newData);
+      setSellerInfo(newData);
     } catch (error) {
       console.error(error);
     }
@@ -147,10 +146,9 @@ const BuyDetail = () => {
 
   // 정렬된 상품 리스트
   const sortedProducts = selectedOption === "priceAsc" ? [...filteredProducts].sort((a, b) => a.price - b.price)
-                          : selectedOption === "priceDesc"  ? [...filteredProducts].sort((a, b) => b.price - a.price)
-                          // : selectedOption === "gradeAsc" ? [...filteredProducts].sort((a, b) => a.grade - b.grade)
+                          // : selectedOption === "priceDesc"  ? [...filteredProducts].sort((a, b) => b.price - a.price)
+                          : selectedOption === "gradeAsc" ? [...filteredProducts].sort((a, b) => b.grade - a.grade)
                           : [...filteredProducts];
-  console.log("BuyDetail selectedOption 값", selectedOption);
 
   return (
     <>
@@ -200,8 +198,8 @@ const BuyDetail = () => {
                   // onChange={(e) => handleSelect(e.target.value)}
                 >
                   <option value="priceAsc">가격 낮은 순</option>
-                  <option value="priceDesc">가격 높은 순</option>
-                  {/* <option value="gradeAsc">판매자 등급 높은 순</option> */}
+                  {/* <option value="priceDesc">가격 높은 순</option> */}
+                  <option value="gradeAsc">판매자 등급 높은 순</option>
                 </select>
               </div>
               {/* 필터링된 상품 정보를 기반으로 상품 내용을 화면에 표시 */}
