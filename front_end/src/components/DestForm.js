@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../styled/DestForm.css";
 import { LoginContext } from "./LoginContext";
 import axios from "axios";
-import { serverURL } from "../config";
 
 const DestForm = ({ handleUserAddrChange }) => {
   // 페이지파일(= Purchase.js)에 있는 isChecked를 props로 받아옴
   const { loginUser } = useContext(LoginContext);
   const [user, setUser] = useState([]);
-  const [isChecked, setIsChecked] = useState(false); // 체크하기!!!!!!!!!!!!
+  // const [isChecked, setIsChecked] = useState(false); // 체크하기!!!!!!!!!!!!
+  const [isChecked, setIsChecked] = useState(true); // 체크하기=>초깃값 체크되어 있게 설정
   const [userAddr, setUserAddr] = useState({
     custKey: loginUser,
     name: "",
@@ -19,15 +19,26 @@ const DestForm = ({ handleUserAddrChange }) => {
   });
   const [getAddr, setGetAddr] = useState([]);
 
-  const checked = () => {
-    setIsChecked(!isChecked);   // isChecked 상태 토글
+  const getCustomer = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/customers/${loginUser}`
+      );
+      setUser(response.data);
+    } catch (error) {
+      console.error("Error fetching customers:", error);
+    }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    console.log(name, value);
-    setUserAddr({ ...userAddr, [name]: value });
-    handleUserAddrChange(userAddr);
+  const getCustomerAddr = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/address/${loginUser}`
+      );
+      setGetAddr(response.data);
+    } catch (error) {
+      console.error("고객의 주소를 가져올수 없습니다.", error);
+    }
   };
 
   const defaultAddress = getAddr.find((address) => address.defaultAddr === "Y");
@@ -35,67 +46,78 @@ const DestForm = ({ handleUserAddrChange }) => {
   useEffect(() => {
     console.log(isChecked, "isChecked 값");
     console.log(defaultAddress, "defaultAddress 값");
-    const updateUserAddr = () => {
-      if (defaultAddress && !isChecked) { // isChecked의 초깃값이 false이기 때문에 false가 아닌 경우(= ture)에 실행
-        setUserAddr({
-          custKey: loginUser,
-          name: defaultAddress.name,
-          tel: defaultAddress.tel,
-          postcode: defaultAddress.postcode,
-          addr: defaultAddress.addr,
-          addrDetail: defaultAddress.addrDetail,
-        });
-        console.log("체크박스 클릭후 디폴트 주소 저장됨:", isChecked);
-      } else {
-        setUserAddr({
-          custKey: loginUser,
-          name: "",
-          tel: "",
-          postcode: "",
-          addr: "",
-          addrDetail: "",
-        });
-        console.log("체크박스 해제후 주소 초기화:", isChecked);
-      }
-    };
-  
-    updateUserAddr(); // 최초 렌더링 시 업데이트
-  
-    // 업데이트된 userAddr를 처리
-    handleUserAddrChange(userAddr);
+    // if (defaultAddress && isChecked) { // isChecked의 초깃값이 false이기 때문에 false가 아닌 경우(= ture)에 실행
+    if (defaultAddress && isChecked==true) {
+      const newUserAddr = { // 새로운 사용자 주소 정보 생성
+        custKey: loginUser,
+        name: defaultAddress.name,
+        tel: defaultAddress.tel,
+        postcode: defaultAddress.postcode,
+        addr: defaultAddress.addr,
+        addrDetail: defaultAddress.addrDetail,
+      };
+      setUserAddr(newUserAddr); // 새로운 사용자 주소 정보로 상태 업데이트
+      console.log("체크박스 클릭후 디폴트 주소 저장됨:", isChecked);
+      handleUserAddrChange(newUserAddr); // 새로운 사용자 주소 정보를 전달하여 처리
+      // setUserAddr({
+      //   custKey: loginUser,
+      //   name: defaultAddress.name,
+      //   tel: defaultAddress.tel,
+      //   postcode: defaultAddress.postcode,
+      //   addr: defaultAddress.addr,
+      //   addrDetail: defaultAddress.addrDetail,
+      // });
+      // console.log("체크박스 클릭후 디폴트 주소 저장됨:", isChecked);
+      // handleUserAddrChange(userAddr);
+    } else if (isChecked==false) {
+      const emptyUserAddr = { // 빈 사용자 주소 정보 생성
+        custKey: loginUser,
+        name: "",
+        tel: "",
+        postcode: "",
+        addr: "",
+        addrDetail: "",
+      };
+      setUserAddr(emptyUserAddr); // 빈 사용자 주소 정보로 상태 업데이트
+      console.log("체크박스 해제후 주소 초기화:", isChecked);
+      handleUserAddrChange(emptyUserAddr); // 빈 사용자 주소 정보를 전달하여 처리
+      // setUserAddr({
+      //   custKey: loginUser,
+      //   name: "",
+      //   tel: "",
+      //   postcode: "",
+      //   addr: "",
+      //   addrDetail: "",
+      // });
+      // console.log("체크박스 해제후 주소 초기화:", isChecked);
+      // handleUserAddrChange(userAddr);
+    }
   }, [defaultAddress, isChecked]);
 
-  // 성능 최적화를 위해 useCallback 사용
-  // useCallback 훅은 함수를 메모이제이션하여 불필요한 렌더링을 방지
-  const getCustomer = useCallback(async () => {
-    try {
-      const response = await axios.get(
-        `${serverURL}/customers/${loginUser}`
-      );
-      setUser(response.data);
-    } catch (error) {
-      console.error("Error fetching customers:", error);
-    }
-  }, [loginUser]);
-  
+  const checked = () => {
+    setIsChecked(!isChecked);
+    // setIsChecked(prevChecked => !prevChecked); // 이전 isChecked 값의 반대값으로 설정
+  };
+
   useEffect(() => {
     getCustomer();
-  }, [getCustomer]);
+  }, []);
 
-  const getCustomerAddr = useCallback(async () => {
-    try {
-      const response = await axios.get(
-        `${serverURL}/address/${loginUser}`
-      );
-      setGetAddr(response.data);
-    } catch (error) {
-      console.error("Error fetching customer address:", error);
-    }
-  }, [loginUser]);
-  
   useEffect(() => {
     getCustomerAddr();
-  }, [getCustomerAddr]);
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    // setUserAddr({ ...userAddr, [name]: value });
+    // handleUserAddrChange(userAddr);
+    setUserAddr((prevUserAddr) => ({
+      ...prevUserAddr,
+      [name]: value,
+    }));
+    handleUserAddrChange({ ...userAddr, [name]: value }); // 입력 값 즉시 반영
+  };
 
   return (
     <>
