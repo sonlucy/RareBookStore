@@ -3,10 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import { VscChevronRight } from "react-icons/vsc";
 import { serverURL } from "../config";
 import "../styled/BuyDetail.css";
+import "../styled/DropDownSort.css";
 import Header from "../components/Header";
 import DetailTop from "../components/DetailTop";
 import StateCategory from "../components/StateCategory";
-import DropDownSort from "../components/DropDownSort";
 import DetailConts from "../components/DetailConts";
 import Footer from "../components/Footer";
 import axios from "axios";
@@ -18,6 +18,7 @@ const BuyDetail = () => {
   const [bookInfo, setBookInfo] = useState([]);
   const [sellerInfo, setSellerInfo] = useState([]);
   const [buyerNickname, setBuyerNickname] = useState();
+  const [selectedOption, setSelectedOption] = useState('priceAsc'); // 드롭다운 선택된 옵션
 
   // 특정 구매희망 도서 가져오기
   const getBookInfo = async () => {
@@ -46,8 +47,25 @@ const BuyDetail = () => {
       const response = await axios.get(
         `${serverURL}/sellerbook/item/${itemBuyKey}`
       );
+      // setSellerInfo(response.data);
+      // /////// 판매자 등급 순 정렬을 위해 데이터 가져오기 ==> grade에 값이 잘 안 들어가는 문제로 인해 주석처리
+      const sellerBookData = response.data;
 
-      setSellerInfo(response.data);
+      // 판매자 정보 데이터에 대한 추가 작업 수행
+      const newData = await Promise.all(sellerBookData.map(async (seller) => {
+        // 각 판매자의 custKey를 사용하여 해당 판매자의 추가 정보 가져오기
+        const custResponse = await axios.get(`http://localhost:3001/customers/${seller.sellerKey}`);
+        const customerData = custResponse.data;
+
+        // seller 데이터에 grade 값을 추가
+        const newSellerData = {
+          ...seller,  // sellerbook 테이블에서 가져온 개별 판매자의 정보를 나타내는 객체
+          grade: customerData.grade // customers 테이블에서 가져온 grade 값 추가
+        };
+        return newSellerData;
+      }));
+
+      setSellerInfo(newData);
     } catch (error) {
       console.error(error);
     }
@@ -119,6 +137,19 @@ const BuyDetail = () => {
         return "-";
     }
   };
+
+  // 드롭박스 옵션 이벤트 핸들러
+  // const handleDropDownSelect = (option) => {
+  const handleDropDownSelect = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
+  // 정렬된 상품 리스트
+  const sortedProducts = selectedOption === "priceAsc" ? [...filteredProducts].sort((a, b) => a.price - b.price)
+                          // : selectedOption === "priceDesc"  ? [...filteredProducts].sort((a, b) => b.price - a.price)
+                          : selectedOption === "gradeAsc" ? [...filteredProducts].sort((a, b) => b.grade - a.grade)
+                          : [...filteredProducts];
+
   return (
     <>
       <div className="height-container">
@@ -159,9 +190,21 @@ const BuyDetail = () => {
               />
             </div>
             <div className="yhw_detailMainBox">
-              <DropDownSort />
+              {/* <DropDownSort /> */}
+              <div className="yhw_dropdownBox">
+                <select
+                  value={selectedOption}
+                  onChange={handleDropDownSelect}
+                  // onChange={(e) => handleSelect(e.target.value)}
+                >
+                  <option value="priceAsc">가격 낮은 순</option>
+                  {/* <option value="priceDesc">가격 높은 순</option> */}
+                  <option value="gradeAsc">판매자 등급 높은 순</option>
+                </select>
+              </div>
               {/* 필터링된 상품 정보를 기반으로 상품 내용을 화면에 표시 */}
-              {filteredProducts.map((productInfo, index) => (
+              {/* 필터링된 상품 정보를 기반으로 정렬된 상품 내용을 화면에 표시 */}
+              {sortedProducts.map((productInfo, index) => (
                 <DetailConts
                   key={index}
                   productInfo={productInfo}
@@ -169,6 +212,14 @@ const BuyDetail = () => {
                   sellerInfo={sellerInfo}
                 />
               ))}
+              {/* {filteredProducts.map((productInfo, index) => (
+                <DetailConts
+                  key={index}
+                  productInfo={productInfo}
+                  bookInfo={bookInfo}
+                  sellerInfo={sellerInfo}
+                />
+              ))} */}
             </div>
           </div>{" "}
           {/* yhw_detailCont 끝 */}
