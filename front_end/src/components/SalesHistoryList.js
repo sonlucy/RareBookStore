@@ -6,7 +6,7 @@ import '../styled/PurchaseReqList.css';
 import axios from 'axios';
 import { formatDate } from '../hooks/useFormatDate';
 
-const SalesHistoryList = ({ requests }) => {
+const SalesHistoryList = ({ requests, startDate, endDate }) => {
 
   const navigate = useNavigate(); // 현황보기 버튼 클릭 시 BuyDetail 페이지로 이동
   // 현황보기 버튼 클릭 시 해당 도서 BuyDetail로 이동하는 함수
@@ -31,9 +31,25 @@ const SalesHistoryList = ({ requests }) => {
   cancelSellBook(itemId);
 };
 
+  // 시작일과 종료일 사이의 날짜인지 확인하는 함수
+const isDateInRange = (date) => {
+  const currentDate = new Date(date);
+  currentDate.setHours(0, 0, 0, 0); 
+  
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  start.setHours(0, 0, 0, 0); 
+  end.setHours(0, 0, 0, 0); 
+  
+  return currentDate >= start && currentDate <= end;
+  };
+
+  // 시작일과 종료일 사이에 있는 데이터만 필터링
+const filteredRequests = startDate && endDate ? requests.filter(request => isDateInRange(request.dateEnroll)) : requests;
+
   return (
     <div>
-      {requests.map((request, index) => (
+      {filteredRequests.map((request, index) => (
         <div className="sbk_sellHistContentsBox" key={index}>
         <span className="sbk_purHistContentsDate">
           {new Date(request.dateEnroll).toLocaleDateString()}{/* 판매희망을 등록한 날짜 */}
