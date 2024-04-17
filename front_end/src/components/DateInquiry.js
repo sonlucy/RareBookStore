@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import "../styled/DateInquiry.css";
 
-const DateInquiry = () => {
+const DateInquiry = ({onSearch}) => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [purchaseData, setPurchaseData] = useState([]);
+  //const [purchaseData, setPurchaseData] = useState([]);
 
-  const handleSearch = async () => {
+/*   const handleSearch = async () => {
     try {
       const response = await axios.get(`/api/purchase?startDate=${startDate}&endDate=${endDate}`);
       setPurchaseData(response.data);
     } catch (error) {
       console.error('Error fetching purchase data:', error);
     }
+  }; */
+
+const handleSearch = () => {
+    onSearch(startDate, endDate); // 시작일과 종료일을 부모 컴포넌트로 전달
   };
 
   return (

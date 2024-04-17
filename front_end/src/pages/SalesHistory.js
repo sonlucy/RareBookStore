@@ -13,7 +13,9 @@ import axios from "axios";
 function SalesHistory() {
   const { isLoggedIn, loginUser } = useContext(LoginContext);
   const [salesHistory, setSalesHistory] = useState([]);
-
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -21,7 +23,6 @@ function SalesHistory() {
           `${serverURL}/buyerbook`
         );
         const allbuyerbooks = responsebuyerbooks.data; // 모든 구매 희망 도서
-        console.log("모든구매희망도서", allbuyerbooks);
 
         const responseSeller = await axios.get(
           `${serverURL}/sellerbook/seller/${loginUser}`
@@ -78,6 +79,12 @@ function SalesHistory() {
     }
   }, [isLoggedIn, loginUser]);
 
+  const handleSearch = async (startDate, endDate) => {
+    setStartDate(startDate);
+    setEndDate(endDate);
+  };
+
+
   return (
     <>
       <div className="height-container">
@@ -91,10 +98,11 @@ function SalesHistory() {
             <div className="yhw_purHistMainCont">
               <div className="yhw_purHistTopCont">
                 <b>판매내역</b>
-                <DateInquiry /> {/* 날짜 조회 컴포넌트 일단 대충 만들어둠 */}
+                <DateInquiry onSearch={handleSearch}/> {/* 날짜 조회 컴포넌트 일단 대충 만들어둠 */}
               </div>
+              
 
-              <SalesHistoryList requests={salesHistory} />
+              <SalesHistoryList requests={salesHistory} startDate={startDate} endDate={endDate} />
             </div>
           </div>
         </div>
