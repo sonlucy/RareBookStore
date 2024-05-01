@@ -33,15 +33,6 @@
 |![](./layout/mypage.png)|![](./layout/rank.png)|
 
 ## 기술 스택
-**Environment**
-
-<br><br>
-
-**Config**
-
-<br><br>
-
-**Development**
 
 *front-end* <br>
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -65,7 +56,7 @@
 
 ## 개발 환경 설치/실행 방법
 
-### backend
+### back_end
 #### 데이터베이스 생성: table.sql
 
 ```sh
@@ -73,7 +64,7 @@ npm i
 npm run dev
 ```
 
-### frontend
+### front_end
 
 ```sh
 npm i
